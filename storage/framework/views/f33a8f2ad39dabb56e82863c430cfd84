@@ -1,0 +1,187 @@
+<?php
+
+
+    if ($Doc=="XLS")
+    {
+      
+    header('Pragma: public');
+    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate'); // HTTP/1.1
+    header('Cache-Control: pre-check=0, post-check=0, max-age=0'); // HTTP/1.1
+    header('Pragma: no-cache');
+    header('Expires: 0');
+     header('Cache-Control: max-age=0');
+    header('Content-Transfer-Encoding: none');
+    header('Content-Type: application/vnd.ms-excel'); // This should work for IE & Opera
+    header('Content-type: application/x-msexcel'); // This should work for the rest
+    header('Content-Disposition: attachment; filename="SLAM_Rendiciones.xls"');
+    $i=1;
+ ?>   
+  
+
+        
+                <table style="border-collapse: separate;border-spacing:  3px;border: 1px solid #bbb; ">
+                 <tr style="height: 20px;background:#FDFFB9" >
+                <td valign="center" COLSPAN="24" > </td>      
+                </tr>
+                <tr style="height: 40px;background:#FDFFB9" >
+                <td valign="center" COLSPAN="24" > <strong> - SISTEMA DE LOGISTICA Y ALMACEN  - SLAM </strong></td>      
+                </tr>
+                <tr style="height: 30px;background:#FDFFB9" >
+                <td valign="center" COLSPAN="24" > <strong> - MUNICIPALIDAD DISTRITAL DE VILCABAMBA </strong></td>      
+                </tr>
+
+                <tr style="height: 20px;background:#FDFFB9" >
+                <td valign="center" COLSPAN="24" > <strong> - Unidad de Sistemas e Informatica</strong></td>      
+                </tr>
+                 <tr style="height: 20px;background:#FDFFB9" >
+                <td valign="center" COLSPAN="24" > <strong> - Año de Ejecucion :<?php  echo $Anio ?></strong></td>      
+                
+
+                <tr style="height: 20px;background:#FDFFB9" >
+                <td valign="center" COLSPAN="24" > <strong>  - REPORTE SIAF - RENDICIONES </strong></td>      
+                </tr>
+        </table>
+
+     
+
+       <table  style="border-collapse: separate;border-spacing:  3px;">
+        <thead align="center">
+         <tr style="height: 40px" style="BACKGROUND:#ccc;border: 1px solid #999;border-spacing:  0px ;border-collapse: collapse; font-size:25px;" > 
+          <th colspan="4" style=" background:#ECE732;" > GENERAL </th>
+          <th colspan="6" style=" background:#ECE732;" > FASE GIRADO </th>
+          <th colspan="4" style=" background:#ECE732;"> FASE RENDICION </th>
+          <th  style=" background:#ECE732;" > GLOSA </th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="height: 28px" style="BACKGROUND:#eee;border: 1px solid #aaa;border-spacing:  0px ;border-collapse: collapse; font-weight:bold;">
+           <td WIDtd="40px"  align="center"   valign="center"  >Item</td>
+            <td WIDtd="50px"  align="center"   valign="center">Año</td>
+            <td WIDtd="50px"  align="center"   valign="center">Expediente</td>
+            <td WIDtd="100px" align="center"     valign="center" >Tipo Operacion </td>
+            <td WIDtd="80px" align="center"     valign="center" style=" background:#FDFFB9;">Codigo</td>
+            <td WIDtd="80px" align="center"     valign="center" style=" background:#FDFFB9;">Num Doc</td>
+            <td WIDtd="80px" align="center"     valign="center" style=" background:#FDFFB9;">Fecha Doc</td>
+            <td WIDtd="80px" align="center"     valign="center" style=" background:#FDFFB9;">Cheque</td>
+            <td WIDtd="80px" align="center"     valign="center" style=" background:#FDFFB9;">Nombre</td>
+            <td WIDtd="80px" align="center"     valign="center" style=" background:#FDFFB9;">Monto</td>
+
+
+            <td WIDtd="130px" align="left"     valign="center">Ren_Codigo</td>
+            <td WIDtd="130px" align="left"     valign="center">Ren_Num_Doc</td>
+            <td WIDtd="90px" align="center"     valign="center">Ren_Fecha_Doc</td>
+            <td WIDtd="80px" align="center"     valign="center">Ren_Monto</td>
+
+            <td WIDtd="5000px" align="center"     valign="center" style=" background:#FDFFB9;">Glosa</td>
+
+            </tr>
+        <?php foreach($result as $key=>$nom): ?>
+         <tr style="height: 23px" style="border: 1px solid #bbb;border-spacing:  0px ;border-collapse: collapse;" >     
+            <td style="mso-number-format:'@' ;"  ><?php echo "0".$i++;?></td>
+            <td name="thCant"  align="center"   ><?php echo e($nom->renGirAnio); ?></td>
+            <td style="mso-number-format:'@' ;" ><?php echo e($nom->renGirExpediente); ?> </td>
+            <td style="mso-number-format:'@' ; align="center" "   ><?php echo e($nom->renGirTipOpe); ?> </td>
+            
+            <td style="mso-number-format:'@' ;background:#FDFFB9; " align="center" ><?php echo e($nom->renGirCodDoc); ?> </td>
+            <td style="mso-number-format:'@' ;background:#FDFFB9;" ><?php echo e($nom->renGirNumDoc); ?> </td>
+            <td style="mso-number-format:'@' ;background:#FDFFB9;" ><?php echo e($nom->renGirFechaDoc); ?> </td>
+            <td style="mso-number-format:'@' ;background:#FDFFB9;" ><?php echo e($nom->renGirCheque); ?> </td>
+            <td style="mso-number-format:'@' ;background:#FDFFB9;" ><?php echo e($nom->renGirNombre); ?> </td>
+            <td style="mso-number-format:'0.00' ;background:#FDFFB9; "  align="right" ><?php echo e($nom->renGirMonto); ?> </td>
+
+            <td align="center"    style="mso-number-format:'@'"  ><?php echo e($nom->renRenCodDoc); ?>  </td>
+            <td align="left"   style="mso-number-format:'@'"   ><?php echo e($nom->renRenNumDoc); ?>  </td>
+            <td align="center"   style="mso-number-format:'@'"   ><?php echo e($nom->renRenFechaDoc); ?> </td>
+            <td style="mso-number-format:'0.00'"  align="right" ><?php echo e($nom->renRenMonto); ?> </td>
+            
+            <td  align="left"   style="mso-number-format:'@'"   ><?php echo e($nom->nflGlosa); ?> </td>
+            
+
+      </tr>
+        <?php endforeach; ?>
+        
+        </tbody>
+        </table>
+ 
+    <?php
+    }
+    else 
+    {
+         $i=1;
+    ?>
+
+
+      <DIV style ="width:2050px">
+
+      <div class="panel panel-default" style="margin-top: -10px; margin-bottom: -5px; padding: 2px; " >
+          <table>
+          <tr>
+            <td><DIV style="background:#f2f2f2;width: 840px; padding:2px ;padding-left:10px;border-radius:5px;"   >  <h5 style="">RESULTADOS DE LA BUSQUEDA </h5>       </DIV> </td>
+            <td  align="left"> <?php echo Form::button('EXCEL (*.xls) '        ,['id'=>'btnConRenExcel' ,'class'=>'btn btn-danger','style'=> 'width: 100Px  ;height: 35px ; padding:0; font-size:11px; margin-left:150px; ']); ?> </td>
+          </tr>
+          </table>
+      </div>
+
+            <table   class="suggest-element table table-striped gs-table-item gs-table-hover " style="font-size:12px; padding:0px; margin-top:5px; line-height:12px; border-spacing: 0px; " cellpadding="0px" cellspacing="0px">
+            <thead align="center" >
+            <tr CLASS="gsTh  btn-primary"  style="border-radius: 4px;">
+               
+            <th WIDtd="40px"  align="center"   valign="center"  >Item</th>
+            <th WIDtd="50px"  align="center"   valign="center">Año</th>
+            <th WIDtd="50px"  align="center"   valign="center">Expediente</th>
+            <th WIDtd="100px" align="center"     valign="center" >Tipo Operacion </th>
+            <th WIDtd="80px" align="center"     valign="center" >Codigo</th>
+            <th WIDtd="80px" align="center"     valign="center" >Num Doc</th>
+            <th WIDtd="80px" align="center"     valign="center">Fecha Doc</th>
+            <th WIDtd="80px" align="center"     valign="center">Cheque</th>
+            <th WIDtd="80px" align="center"     valign="center">Nombre</th>
+            <th WIDtd="80px" align="center"     valign="center" >Monto</th>
+
+
+            <th WIDtd="130px" align="left"     valign="center">Ren_Codigo</th>
+            <th WIDtd="130px" align="left"     valign="center">Ren_Num_Doc</th>
+            <th WIDtd="90px" align="center"     valign="center">Ren_Fecha_Doc</th>
+            <th WIDtd="80px" align="center"     valign="center">Ren_Monto</th>
+
+            <th WIDtd="1000px" align="center"     valign="center" >Glosa</th>
+
+            </thead>
+            <tbody>
+
+            <?php foreach($result as $key=>$nom): ?>
+            <tr style="height: 23px" style="border: 1px solid #ddd;border-spacing:  0px ;border-collapse: collapse;" >     
+             <td style="mso-number-format:'@' "  ><?php echo "0".$i++;?></td>
+            <td name="thCant"  align="center"  ><?php echo e($nom->renGirAnio); ?></td>
+            <td style="mso-number-format:'@'" ><?php echo e($nom->renGirExpediente); ?> </td>
+            <td style="mso-number-format:'@' "   ><?php echo e($nom->renGirTipOpe); ?> </td>
+            
+            <td style="mso-number-format:'@' " ><?php echo e($nom->renGirCodDoc); ?> </td>
+            <td style="mso-number-format:'@'" ><?php echo e($nom->renGirNumDoc); ?> </td>
+            <td style="mso-number-format:'@' " ><?php echo e($nom->renGirFechaDoc); ?> </td>
+            <td style="mso-number-format:'@'" ><?php echo e($nom->renGirCheque); ?> </td>
+            <td style="mso-number-format:'@'" ><?php echo e($nom->renGirNombre); ?> </td>
+            <td style="mso-number-format:'0.00'"  align="center" ><?php echo e($nom->renGirMonto); ?> </td>
+
+            <td align="center"    style="mso-number-format:'@'"  ><?php echo e($nom->renRenCodDoc); ?>  </td>
+            <td align="center"   style="mso-number-format:'@'"   ><?php echo e($nom->renRenNumDoc); ?>  </td>
+            <td align="center"   style="mso-number-format:'@'"   ><?php echo e($nom->renRenFechaDoc); ?> </td>
+            <td style="mso-number-format:'0.00'"  align="center" ><?php echo e($nom->renRenMonto); ?> </td>
+            
+            <td  align="center"   style="mso-number-format:'@'"   ><?php echo e($nom->nflGlosa); ?> </td>
+      </tr>
+            <?php endforeach; ?>
+            
+            </tbody>
+            </table>
+        </DIV>
+
+    <?php
+    
+}
+?>
+
+
+

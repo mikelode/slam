@@ -1,0 +1,66 @@
+<?php
+if(isset($result))
+{
+?>
+
+        <table    id="tbOC_Dll" doc ="Odc" class="suggest-element table table-striped gs-table-item gs-table-hover " style="font-size:11px; padding:0px; margin-top:-15px; line-height:12px; border-spacing: 0px; " cellpadding="0px" cellspacing="0px">
+        <thead align="center">
+        <tr CLASS="gsTh" >
+
+
+            <th WIDTH="55px"  align="center"   valign="center">REQUERIMIENTO</th>
+            <th WIDTH="80px"  align="center"   valign="center">COTIZACION</th>
+            <th WIDTH="80px"  align="center"   valign="center">CUADRO COMP</th>
+            <th WIDTH="80px" align="left"     valign="center">Nº ORDEN</th>
+           
+            <th WIDTH="80px" align="left"     valign="center">REG SIAF</th>
+            <th WIDTH="80px" align="left"     valign="center">COMPROMISO</th>
+            <th WIDTH="80px" align="center"    valign="center">DEVENGADO </th>
+            <th WIDTH="80px" align="right"    valign="center">GIRADO</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php foreach($result as $key=>$nom): ?>
+        <tr style= "font-size:14px;  font-weight:bold;"  >
+            <td name="tdCant"  align="center"   ><?php echo e($nom->Req); ?></td>
+            <td name="tdClasf"  align="center"   ><?php echo e($nom->Ctz); ?> </td>
+            <td name="tdUnd"  align="center"  ><?php echo e($nom->Cdr); ?> </td>
+
+            <td name="tdProd"  align="center"   ><?php echo e($nom->Cod); ?>  </td>           
+
+            <td name="tdMarca"  align="center"   > <?php echo e($nom->expExp); ?> </td>
+            <td name="tdMarca"  align="center"   > <?php echo e($nom->expComNum); ?> </td>
+            <td name="tdPrecio" align="center"> <?php echo e($nom->expDevNumDoc); ?> </td>
+            <td name="tdTotal"  align="center"> <?php echo e($nom->expGirNumDoc); ?> </td>
+        </tr>
+
+
+        <tr >
+                    <td name="tdCant"  align="center" ><?php echo e($nom->orcReqFecha); ?></td>
+                    <td name="tdClasf"  align="center" ><?php echo e($nom->orcCtzFecha); ?> </td>
+                    <td name="tdUnd"  align="center"  ><?php echo e($nom->orcCdrFecha); ?> </td>
+                    
+                    <?php if($nom->Tipo =='OC'): ?>
+                     <td name="tdProd"  align="center"   ><?php echo e($nom->orcFecha); ?>  </td>
+                    <?php else: ?>                    
+                    <td name="tdEspf"  align="center"   > <?php echo e($nom->orsFecha); ?> </td>
+                    <?php endif; ?>
+                    <td name="tdEspf"  align="center"   > <?php echo e($nom->expComFecha); ?>  </td>
+                    <td name="tdMarca"  align="center"   > <?php echo e($nom->expComFecha); ?> </td>
+                    <td name="tdPrecio" align="center"> <?php echo e($nom->expDevFecha); ?> </td>
+                    <td name="tdTotal"  align="center"> <?php echo e($nom->expGirFecha); ?> </td>
+         </tr>
+         <tr >
+
+                             <td colspan="9">-------------------------------------------------------------------------------------------------------------------</td>
+
+                  </tr>
+        <?php endforeach; ?>
+        </tbody>
+
+        </table>
+<?php
+}
+?>

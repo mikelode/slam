@@ -1,0 +1,9 @@
+<?php $__env->startSection('main-content'); ?>
+
+<p style="color:white;" >
+
+
+</p>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

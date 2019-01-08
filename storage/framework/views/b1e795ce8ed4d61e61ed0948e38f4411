@@ -1,0 +1,239 @@
+<?php
+
+
+    if ($Doc=="XLS")
+    {
+      
+    header('Pragma: public');
+    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate'); // HTTP/1.1
+    header('Cache-Control: pre-check=0, post-check=0, max-age=0'); // HTTP/1.1
+    header('Pragma: no-cache');
+    header('Expires: 0');
+     header('Cache-Control: max-age=0');
+    header('Content-Transfer-Encoding: none');
+    header('Content-Type: application/vnd.ms-excel'); // This should work for IE & Opera
+    header('Content-type: application/x-msexcel'); // This should work for the rest
+    header('Content-Disposition: attachment; filename="SLAM_TarjetaFinanciera.xls"');
+    $i=1;
+ ?>   
+  
+
+            <table>
+                <tr style="height: 40px;background:#F1F1F1" >       <td valign="center" COLSPAN="19" align="center " valign="center"> <h4>  TARJETA DE LIQUIDACION FINANCIERA </h4></td>     </tr>
+                <tr style="height: 20px;background:#F1F1F1" >       <td valign="center" COLSPAN="19" align="center " > <p style= "font-size:18px;  FONT-WEIGHT: bold; ">  MUNICIPALIDAD DISTRITAL DE VILCABAMBA </p></td>      </tr>
+                <tr style="height: 20px;background:#F1F1F1" >       <td valign="center" COLSPAN="19" align="center " > <p style= "font-size:16px;  FONT-WEIGHT: bold; ">  UNIDAD DE SISTEMAS E INFORMATICA </p></td>      </tr>
+                <tr style="height: 20px;background:#F1F1F1" >       <td valign="center" COLSPAN="19" align="center " > <p style= "font-size:16px;  FONT-WEIGHT: bold; ">  PERIODO : <?php echo  $prAnio ?> </p></td>      </tr>
+                <tr style="height: 25px;background:#F1F1F1" >       <td valign="center" COLSPAN="19" align="center " > <p style= "font-size:15px;  FONT-WEIGHT: bold; ">  SECUENCIA FUNCIONAL : <?php echo  $prTmp  ?> </p></td>     </tr>
+                <tr style="height: 25px;background:#F1F1F1" >       <td valign="center" COLSPAN="19" align="center " > <p style= "font-size:15px;  FONT-WEIGHT: bold; ">  DESCRIPCION : <?php echo  $prNombre  ?> </p></td>  </tr>              
+                
+        </table>
+
+       <table  style="border-collapse: collapse;border-spacing:  0px;">
+       <thead align="center">
+       <tr style="height: 40px" style="BACKGROUND:#ffbf00;border: 1px solid #666;border-spacing:  0px ;border-collapse: collapse; font-size:13px;" > 
+           
+            <th  WIDTH="40px"  align="center"   valign="center">ITEM</th> 
+            <th  WIDTH="40px"  align="center"   valign="center">CLASIFICADOR</th> 
+            <th  WIDTH="40px"  align="center"   valign="center">EXPEDIENTE</th>  
+            <th  WIDTH="40px"  align="center"   valign="center">N DE CHEQUE</th>        
+            <th colspan="2" align="CENTER"     valign="center">COMPROBANTE DE PAGO</th>
+            <th colspan="2" WIDTH="300px"  align="center"     valign="center">DOC SUSTENT.</th>
+
+            <th colspan="2" align="center"     valign="center">DOC FUENTE.</th>
+            <th colspan="2" align="center"     valign="center">PECOSA-REQ</th>
+           
+            <th  align="center"     valign="center">SEC FUN</th>
+            <th align="center"     valign="center">RAZON SOCIAL</th>
+            <th colspan="5" align="center"     valign="center">DETALLAES DE GASTO ( LOGISTICA )</th>
+             <th align="center"     valign="center">IMPORTE TOTAL (SIAF)</th>
+
+            
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="height: 25px" style="BACKGROUND:#fff0b3;border: 1px solid #777;border-spacing:  0px ;border-collapse: collapse; font-size:12px;" > 
+        <td WIDTH="40px"  align="center"   valign="center">-</td>
+            <td WIDTH="50px"  align="center"   valign="center">-</td>
+            <td WIDTH="50px"  align="center"   valign="center">-</td>
+            <td WIDTH="100px" align="center"     valign="center">- </td>
+
+            <td WIDTH="130px" align="left"     valign="center"> <STRONG>Nro</STRONG></td>
+            <td WIDTH="90px" align="center"     valign="center"><STRONG>Fecha</STRONG></td>
+ 
+
+            <td WIDTH="150px" align="center"     valign="center"><STRONG>O/C</STRONG></td>
+            <td WIDTH="150px" align="left"     valign="center"><STRONG>O/S</STRONG></td>
+
+
+            <td WIDTH="90px" align="center"     valign="center"><STRONG>Tipo</STRONG></td>
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>Serie-Nro</STRONG></td>
+
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>PECOSA</STRONG></td>
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>REQ</STRONG></td>
+
+            <td WIDTH="120px" align="center"     valign="center">-</td>
+            <td WIDTH="80px" align="center"     valign="center">-</td>
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>Concepto</STRONG></td>
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>Cant</STRONG></td>
+            <td WIDTH="110px" align="center"     valign="center"><STRONG>Und</STRONG></td>
+            <td WIDTH="250px" align="center"     valign="center"><STRONG>Precio Unt</STRONG></td>
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>Sub Total</STRONG></td>
+            <td WIDTH="80px" align="center"     valign="center">-</td>
+        </tr>
+        <?php foreach($resultTar as $key=>$nom): ?>
+           <tr style="height: 23px" style="border: 1px solid #ddd;border-spacing:  0px ;border-collapse: collapse;" >     
+           
+            <td style="mso-number-format:'@'" > <?php echo "0".$i++;?> </td>
+            <td style="mso-number-format:'@'" > <?php echo e($nom->tarGirClasf); ?> </td>
+            <td style="mso-number-format:'@'" > <?php echo e($nom->tarExpediente); ?> </td>
+
+            <td nstyle="mso-number-format:'@'"  ><?php echo e($nom->tarGirCheque); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarGirNumDoc); ?> </td>
+            <td name="tdMarca"  align="center" ><?php echo e($nom->tarGirFechaDoc); ?> </td>
+
+            <?php if($nom->tarComCodDoc == '031'): ?>  <td name="tdCant"  align="left"  ><?php echo e($nom->tarComNumDoc); ?></td>
+            <?php else: ?> <td name="tdCant"  align="center"  > - </td>
+            <?php endif; ?>
+
+            <?php if($nom->tarComCodDoc == '032'): ?>  <td name="tdCant"  align="center"  ><?php echo e($nom->tarComNumDoc); ?></td>
+            <?php else: ?> <td name="tdCant"  align="center"  > - </td>
+            <?php endif; ?>
+
+            <td style="mso-number-format:'@'" ><?php echo e($nom->tarDevNomDoc); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarDevNumDoc); ?> </td>
+
+            <td name="tdMarca"  align="center" ><?php echo e($nom->tarLogPcs); ?> </td>
+            <td name="tdMarca"  align="center" ><?php echo e($nom->tarLogReq); ?> </td>
+
+            <td  name="tdProd"  align="center"    ><?php echo e($nom->tarSecFun); ?>  </td>
+            <td name="tdProd"  align="left"    ><?php echo e($nom->tarGirNombre); ?>  </td>
+
+            <td name="tdProd"  align="left"    ><?php echo e($nom->tarLogDsc); ?>  </td> 
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarLogCant); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarLogUnd); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarLogPrecio); ?> </td>
+            <td name="tdEspf"  align="right"    ><?php echo e($nom->tarLogTotal); ?> </td>
+            <td name="tdMarca"  align="right" style="background:#fff0b3;" ><?php echo e($nom->tarGirMonto); ?> </td>
+                  
+          </tr>
+
+            <?php endforeach; ?>
+
+        
+        </tbody>
+        </table>
+   <?php
+    }
+    else 
+    {
+         $i=1;
+    ?>
+
+
+
+      <DIV style ="width:1850px">
+
+      <div class="panel panel-default" style="margin-top: -10px; margin-bottom: -5px; padding: 2px; " >
+          <table>
+          <tr>
+            <td><DIV style="background:#f2f2f2;width: 840px; padding:2px ;padding-left:10px;border-radius:5px;"   >  <h5 style="">RESULTADOS DE LA BUSQUEDA </h5>       </DIV> </td>
+            <td  align="left"> <?php echo Form::button('EXCEL (*.xls) '        ,['id'=>'btnLiqTFinExcel' ,'class'=>'btn btn-danger','style'=> 'width: 100Px  ;height: 35px ; padding:0; font-size:11px; margin-left:150px; ']); ?> </td>
+          </tr>
+          </table>
+      </div>
+
+            <table   class="suggest-element table table-striped gs-table-item gs-table-hover " style="font-size:12px; padding:0px; margin-top:5px; line-height:12px; border-spacing: 0px; " cellpadding="0px" cellspacing="0px">
+            <thead align="center" >
+            <tr CLASS="gsTh  btn-primary"  style="border-radius: 1px;">
+               
+            <th WIDTH="40px"  align="center"   valign="center">Item</th>
+            <th WIDTH="60px"  align="center"   valign="center">Clasificador</th>
+            <th WIDTH="50px"  align="center"   valign="center">Expediente</th>
+
+            <th WIDTH="80px" align="center"     valign="center">Cheque </th>
+            <th WIDTH="50px" align="left"     valign="center">Nro</th>
+            <th WIDTH="90px" align="center"     valign="center">Fecha</th>
+
+
+            <th WIDTH="80px" align="center"     valign="center">O/C</th>
+            <th WIDTH="80px" align="center"     valign="center">O/S</th>
+
+
+            <th WIDTH="120px" align="center"     valign="center">Tipo</th>
+            <th WIDTH="120px" align="center"     valign="center">Serie-Nro</th>
+
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>PECOSA</STRONG></td>
+            <td WIDTH="80px" align="center"     valign="center"><STRONG>REQ</STRONG></td>
+
+            <th WIDTH="50px" align="center"     valign="center">SecFun</th>
+            <th WIDTH="200px" align="center"     valign="center">RazonSocial</th>
+            <th WIDTH="250px" align="center"     valign="center">Concepto</th>
+            <th WIDTH="40px" align="center"     valign="center">Cant</th>
+            <th WIDTH="40px" align="center"     valign="center">Und</th>
+            <th WIDTH="80px" align="center"     valign="center">PrecioUnt</th>
+
+            <th WIDTH="80px" align="center"     valign="center">Importe Partial</th>
+            <th WIDTH="80px" align="center"     valign="center">Importe Total</th>
+                
+            </tr>
+
+
+            </thead>
+            <tbody>
+
+           
+
+            <?php foreach($resultTar as $key=>$nom): ?>
+            <tr>                      
+           
+             <td style="mso-number-format:'@'" > <?php echo "0".$i++;?> </td>
+            <td style="mso-number-format:'@'" > <?php echo e($nom->tarGirClasf); ?> </td>
+            <td style="mso-number-format:'@'" > <?php echo e($nom->tarExpediente); ?> </td>
+
+            <td nstyle="mso-number-format:'@'"  ><?php echo e($nom->tarGirCheque); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarGirNumDoc); ?> </td>
+            <td name="tdMarca"  align="center" ><?php echo e($nom->tarGirFechaDoc); ?> </td>
+
+            <?php if($nom->tarComCodDoc == '031'): ?>  <td name="tdCant"  align="left"  ><?php echo e($nom->tarComNumDoc); ?></td>
+            <?php else: ?> <td name="tdCant"  align="center"  > - </td>
+            <?php endif; ?>
+
+            <?php if($nom->tarComCodDoc == '032'): ?>  <td name="tdCant"  align="center"  ><?php echo e($nom->tarComNumDoc); ?></td>
+            <?php else: ?> <td name="tdCant"  align="center"  > - </td>
+            <?php endif; ?>
+
+            <td style="mso-number-format:'@'" ><?php echo e($nom->tarDevNomDoc); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarDevNumDoc); ?> </td>
+
+            <td name="tdMarca"  align="center" ><?php echo e($nom->tarLogPcs); ?> </td>
+            <td name="tdMarca"  align="center" ><?php echo e($nom->tarLogReq); ?> </td>
+
+            <td  name="tdProd"  align="left"    ><?php echo e($nom->tarSecFun); ?>  </td>
+            <td name="tdProd"  align="left"    ><?php echo e($nom->tarGirNombre); ?>  </td>
+
+            <td name="tdProd"  align="left"    ><?php echo e($nom->tarLogDsc); ?>  </td> 
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarLogCant); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarLogUnd); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarLogPrecio); ?> </td>
+            <td name="tdEspf"  align="center"    ><?php echo e($nom->tarLogTotal); ?> </td>
+            <td name="tdMarca"  align="center" ><?php echo e($nom->tarGirMonto); ?> </td>
+                  
+          </tr>
+
+            <?php endforeach; ?>
+
+            
+            </tbody>
+            </table>
+        </DIV>
+
+    <?php
+    
+}
+?>
+
+
+

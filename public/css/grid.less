@@ -1,0 +1,18 @@
+@ancho_fixed : (@columnas * @ancho_columnas) + (@columnas * @ancho_margen) * 1px;
+
+//@ancho_total : 100%; // @ancho_fixed; // tmbn puede ser 100%
+
+.generate_columns(@n, @i:1) when (@i =< @n) {
+	.net-col-@{i} {
+		width: (@i * @ancho_total / @n);
+		position: relative;
+		padding-left: 0.01 * (@i * @ancho_total / @n);
+		padding-right: 0.01 * (@i * @ancho_total / @n);
+		min-height: 1px;
+		float: left;
+	}
+	.generate_columns(@n, (@i + 1));
+	//width: @ancho_total * ((((@ancho_columnas + @ancho_margen) * @ocupa) - @ancho_margen) / @ancho_fixed);
+	//margin: 0 (@ancho_total * (@ancho_margen * 0.5) / @ancho_fixed);
+	//en width: 0.98 * (@i * @ancho_total / @n)
+}

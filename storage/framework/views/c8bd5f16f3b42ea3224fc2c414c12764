@@ -1,0 +1,227 @@
+<div class="container" style="width: 1200px">
+<div class="panel panel-default" style="border-radius: 7px;margin-top: -5px;  background: #fdfdfd; border-top-width: 2px; border-top-color: #337ab7;  ">
+<div class="panel-body">
+
+
+     <div class="panel-heading gs-panel-heading"  style=" position: relative;border-radius: 5px; width: 1140px ;  height: 55px; border: 1px solid #cecece ; padding-top: 0px; margin-top: 0px ; margin-bottom:10px; background: #f6f6f6 ;" >
+
+        <table class="gs-table" style="margin-left: 45px ; margin-top: 2px;" >
+        <tr valign="center" >
+        <TD>
+        <img src="img/pestana1.png" width="40px" height="40px" style="margin-right: 10px">
+        </TD>
+            <td ALIGN="LEFT">
+            <span style="font-size: 16px;">Cambiar Usuario de los Documentos </span>
+            </td>
+
+        </tr>
+        </table>
+    </div>
+
+<br>
+
+
+    <table class="gs-table" style="margin-left: 5px ; margin-top: 1px;" >
+    <tr valign="center">
+         <td> 
+             <div class="btn-group btn-input clearfix"  style="margin-left: 1px;"  >
+                    <button type="button" id="txAU_CodTipoDoc" codID="NN" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:200px; height: 35px; border: 1px dotted #aaa; font-size: 12px; ">    <span  id="txAU_TipoDoc"  data-bind="label" style="font-weight: bold; ">Seleccione el Documento...</span> <span style="margin-left:10px" class="caret"></span></button>
+                    <ul class="dropdown-menu menu-TipoReqAU" role="menu" style="font-size: 12px; width:200px; ">
+                       <li  psrId="RQ"><a href="#">REQUERIMIENTO</a></li>
+                       <li  psrId="CZ"><a href="#">COTIZACION</a></li>
+                       <li  psrId="CC"><a href="#">CUADRO COMPARATIVO</a></li>
+                       <li  psrId="OC"><a href="#">ORDEN DE COMPRA</a></li>
+                       <li  psrId="OS"><a href="#">ORDEN DE SERVICIO</a></li>                       
+                    </ul>
+              </div>
+
+        </td>        
+
+        <td> 
+             <div class="btn-group btn-input clearfix"  style="margin-left: 1px;"  >
+                    <button type="button" id="txAU_CodDll" codID="NN" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:200px; height: 35px; border: 1px dotted #aaa; font-size: 12px; ">    <span  id="txAU_TipoDll"  data-bind="label" style="font-weight: bold; ">Seleccione ..</span> <span style="margin-left:10px" class="caret"></span></button>
+                    <ul class="dropdown-menu menu-TipoDll" role="menu" style="font-size: 12px; width:200px; ">
+                       <li  psrId="DOC"><a href="#">NUMERO DE DOCUMENTO</a></li>
+                       <li  psrId="DNI"><a href="#"> USUARIO</a></li>                       
+                    </ul>
+              </div>
+
+        </td>        
+
+        <td> <?php echo Form::text('txAUAutoDsc', null, array('class' => 'form-control ', 'placeholder'=>'Ingrese ', 'style'=>'width:120px; height:35px ; ','id'=>'txAUAutoDsc'    )); ?> </td>
+        <td align="LEFT" >   <span id="btnAURowSEARCH" class="btn btn-primary" STYLE="WIDTH:100PX;height: 35px; padding-top: 8px; font-weight: normal; margin-left:0px;"> BUSCAR</span>     </td>
+        <td align="LEFT" >   <span id="btnAURowPROCESS" class="btn btn-primary" STYLE="WIDTH:150PX;height: 35px; padding-top: 8px; font-weight: BOLD; margin-left:350px;"> ACTUALIZAR</span>     </td>
+        
+    </tr>
+    </table>
+   <hr >
+    <div id="divAUDll">
+
+    </div>
+
+</div>
+
+
+<div id = "loadModals" > </div>
+<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" id ="tokenBtn">
+<div style="height: 56px"></div>
+
+<div id="divDialog">
+<div id="divDialogCont"></div>
+</div>
+
+</div></div>
+
+
+<script>
+
+$( document ).on( 'click', '.menu-TipoReqAU li', function( event ) {
+
+    var $target = $( event.currentTarget );
+    $target.closest( '.btn-group' ).find( '[data-bind="label"]' ).text( $target.text() ).end().children( '.dropdown-toggle' ).dropdown( 'toggle' );    
+    var TipoReq= $target.attr("psrId") ;    
+    $("#txAU_CodTipoDoc").attr("codID",TipoReq);
+    $("#divAUDll").html("");
+    $("#txAUAutoDsc").val("");
+    
+    return false;
+});
+
+$( document ).on( 'click', '.menu-TipoDll li', function( event ) {
+//$('.menu-TipoReqAU li').click(function(e){  
+    var $target = $( event.currentTarget );
+    $target.closest( '.btn-group' ).find( '[data-bind="label"]' ).text( $target.text() ).end().children( '.dropdown-toggle' ).dropdown( 'toggle' );    
+    var TipoReq= $target.attr("psrId") ;    
+    $("#txAU_CodDll").attr("codID",TipoReq);
+    $("#divAUDll").html("");
+    $("#txAUAutoDsc").val("");
+    $("#txAUAutoDsc").focus();
+    return false;
+});
+
+
+$('#btnAURowSEARCH').click(function(e){
+        e.preventDefault();
+         cod= $("#txAU_CodTipoDoc").attr("codID");
+         codDll= $("#txAU_CodDll").attr("codID");
+        if(cod=="NN") {  jsFnDialogBox(400,145, "WARNING",parent,"FALTA INFORMACION","Seleccione un Tipo de Documento <br>") ;    return ;   }
+        if(codDll=="NN") {  jsFnDialogBox(400,145, "WARNING",parent,"FALTA INFORMACION","Seleccione el tipo de Busqueda :  Por Numero de Documento o Usuario <br>") ;    return ;   }
+        $.ajax({
+                type: "POST",
+                url: "logistica/spLogGetActUserDll",
+                data: { prAnio:$(".txVarAnioEjec").val(),prAll:'N', prTipo: $("#txAU_CodTipoDoc").attr("codID") , prBsq: $("#txAU_CodDll").attr("codID") , prQry:$("#txAUAutoDsc").val(),'_token': $('#tokenBtnMain').val() },
+                error: function () {   jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); return "-";},
+                success: function (VR) { $("#divAUDll").html( VR); }
+            });
+});
+
+
+$( document ).on( 'click' , '#btnAURowVALIDAR', function( e ) {
+
+  valor = $("#txAU_DNI").val();
+  $("#note").html("");
+  var dataString = {'anio':$(".txVarAnioEjec").val() ,'obj':'DNI','tipo': 'COD' ,'valor':valor,'_token':$('#tokenBtnMain').val() } ;
+  $.ajax({
+            type: "POST",
+            url: "logistica/spLogGetDatos",
+            data: dataString,
+            error: function ()      {   $("#txAU_DNI").attr("codID","NN");  $("#txAU_Nombre").val(""); $("#note").html(":: ERROR, existe un error en la consulta ::") ;},
+            success: function(data) {                
+            
+                if( data.length>0 ) {
+                    Flg = true;
+                    id = data[0].ID;
+                    cod = data[0].Cod;
+                    dsc = data[0].Dsc;
+                    $("#txAU_DNI").attr("codID",id);
+                    $("#txAU_Nombre").val(''+dsc);
+                    if (id == null) {  Flg = false; $("#txAU_DNI").attr("codID","NN");  $("#txAU_Nombre").val(""); $("#note").html("::No se encontro ningun registro relacionado con el valor::<strong>"+valor+"</strong>") ;   }
+                }
+               else { Flg = false;  $("#txAU_DNI").attr("codID","NN");  $("#txAU_Nombre").val(""); $("#note").html("::No se encontro ningun registro relacionado con el valor::<strong>"+valor+"</strong>") ;  }
+             }
+ });
+       
+});
+
+
+$('#btnAURowPROCESS').click(function(e){
+  e.preventDefault(); 
+   var flgAU= false;
+   $('#tbAUDll tbody tr').each(function (i, row) {                                                                                                 
+    var row = $(this);   
+    if (row.find('input[type="checkbox"]').is(':checked')){     
+      flgAU=true;    
+   }
+   }); 
+   if(flgAU)
+   {
+      $("#loadModalsMain").html(jsFunModalAUChange('REALIZAR PROCESO DE CAMBIO'));
+      $('#modalAUChange').modal('show');
+      $('#txAU_DNI').attr("maxlength", 8);     
+   }
+   else { jsFnDialogBox(400, 145, "WARNING", null, "VERIFICAR CAMPOS", "Seleccione los documentos a modificar ? ");    }  
+});
+
+$( document ).on( 'click' , '#btnLogAU_SAVE', function( e ) {
+  e.preventDefault();
+  valor="";
+  cod = $("#txAU_DNI").attr("codID");
+  if(cod=="NN") {  $(".modal-backdrop").remove();  $('#modalAUChange').modal('hide');  jsFnDialogBox(400, 145, "ERROR", null, "LA PETICION NO FUE CANCELADA", "El DNI "+$("#txAU_DNI").val() +" no esta validado o no esta registrado ");  return ;} 
+  $(".modal-backdrop").remove();  
+  $('#modalAUChange').modal('hide');
+
+  $('#tbAUDll tbody tr').each(function (i, row) {                                                                                                    
+    var rowAUDll = $(this);
+    if (rowAUDll.find('input[type="checkbox"]').is(':checked'))
+    {
+           idRow= rowAUDll.find("td[name=tdAdCheck]").attr("codID");  
+           $.ajax({
+                type: "POST",
+                url: "logistica/spLogSetActUserDll",
+                data: {  prTipo: $("#txAU_CodTipoDoc").attr("codID") ,prID: idRow , prCodUser: $("#txAU_DNI").attr("codID")  ,'_token': $('#tokenBtnMain').val() },
+                error: function () {   jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); return "-";},
+                success: function (VR3) { if(VR3[0].Error==0){ rowAUDll.find("td[name=tdAdUsuario]").html( "<strong >"+ VR3[0].Usuario + "</strong >" ); }  rowAUDll.find("td[name=tdAdResult]").html("<strong style='color:#cc0000'> ** "+VR3[0].Result+" ** </strong>");   }
+            });    
+    }
+   }); 
+
+   
+});
+
+
+
+function  jsFunModalAUChange (parmTitulo)
+{
+    $(".modal-backdrop").remove();
+    t='';
+    t+=' <div class="modal fade"  id="modalAUChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  >';
+    t+=' <div class="modal-dialog" style="margin-top:150px;" >';
+    t+=' <div class="modal-content">';
+    t+='            <div class="modal-header" >';
+    t+='                    <div class="panel" > <div class="panel-heading gs-panel-heading"  style="background: #444444 ; COLOR:#ffffff; " >';
+    t+='                    <button type="button" class="close"  data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">:</span></button>';
+    t+='                    <img src="img/pestana1.png" width="20px" height="20px" style=" MARGIN-top:-5px; margin-right: 3px"><span style="font-size: 11px;  font-family:  Arial, Helvetica, Verdana  "> ';
+    t+=                    parmTitulo ;
+    t+='                    : </span>' ;
+    t+='                    </div></div>';
+    t+='           <div class="panel panel-default" style="border-radius: 5px;padding-left: 10px; padding-top: 30px; ;margin-top: -5px;  background: #FCFCFC; border-top-width: 1px; border-top-color: #E2E2E2;  " id="divRuc">';
+    t+='            <table class="gs-table" border="0"> ';
+    t+='            <tr><td>  </td> <td>  <input id="txAU_DNI" codID="NN" name="txAU_DNI" class="form-control" style=" height:30px;width: 100px; font-weight: bold; font-size: 15px;  "  type="text" placeholder="DNI" > </td> <TD><input id="txAU_Nombre" class="form-control" disabled="true"  style="font-size:13px;width: 350px; height:30px;"> </td> <td>  </td> <td align="left"> <SPAN class="btn btn-default" id="btnAURowVALIDAR" style=" width: 80px;height: 30px; padding-top:6px; padding-left: 10px; font-size: 11px;"> VALIDAR </span></td> </tr>';
+    
+    t+='            <tr ><td colspan="4" style=" height: 10px;" id="note">  </td> </tr>';
+    t+='            </table>';
+    t+='           <br></div><br>';
+    t+='            <table >';
+    t+='            <tr align="center" ><td colspan="4"> <button class="btn btn-success" id="btnLogAU_SAVE" style="width: 120px;height: 35px;margin-left:170px;"> PROCESAR </button> <button class="btn btn-default" id=" " style="MARGIN-left:10px;width: 120px;height: 35px;" data-dismiss="modal"> Cancelar</button> </td> </tr>';
+    t+='            <tr ><td colspan="3" style=" height: 10px;">  </td> </tr>';
+    t+='            </table>';
+
+    t+='   </div>';
+    t+=' </div>';
+    t+=' </div>';
+    t+=' </div> ';
+    return t;
+}
+
+
+  </script>

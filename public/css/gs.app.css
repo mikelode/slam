@@ -1,0 +1,103 @@
+
+.Corner-Items-Small
+{
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    height: 40px;
+}
+.gs-table{
+    border-collapse: separate;
+    border-spacing:  1px;
+    padding: 0px;
+}
+.gs-table-item > tbody > tr > td{
+   padding: 3px 0px;
+    color: #000000;
+  }
+.gs-table-hover > tbody > tr:hover {
+    background-color: #d9edf7;
+}
+.gs-panel-heading{
+    font-size: 12px;
+    /*height: 35px;*/
+    padding: 8px 8px;
+    font-weight: bold;
+}
+
+.gs-label{
+    margin: auto 2px;
+    font-size: 11px;
+    font-family:    Helvetica, Arial, sans-serif;
+    color: #666;
+   /* font-weight: normal;*/
+    font-style: italic;
+    font-weight: normal;
+}
+
+.gs-input{
+    height: 25px;
+    font-size: 11.5px;
+    /*text-transform:uppercase;*/
+    padding: 2px 5px;
+    font-family:     Arial, sans-serif;
+    font-weight: normal;
+    border: 1px dotted #aaa;
+    /* border: 1px solid #ccc; */
+}
+
+.gs-textarea{
+
+    font-size: 11px;
+    /*text-transform:uppercase;*/
+    padding: 5px 10px;
+    font-family:   Helvetica, Arial, sans-serif;
+
+}
+
+.gs-textarea:focus {
+    height: 6em;
+    position: relative;
+}
+
+.gs-button{
+    height: 25px;
+    font-size: 12px;
+    padding: 1px 5px;
+    font-family:  'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.fila-base{ display: none; }
+.fila-Hide
+{ display: none;
+}
+
+.delete_confirmation_dialog
+{
+    background: #EEEEEE;
+    border : 2px solid #aaaaaa;
+    border-radius: 4px;
+    display: none;
+
+    position: fixed;
+    padding:10px;
+}
+
+.gs-ui-state-primary {
+    background: #286090;
+    border:1px solid #28609f;
+}
+
+
+
+.dllsss {
+   border-style:solid;
+   border-width:1px;
+   border-color:#444444;
+   padding: 0px;
+   font-size: 12px;
+   text-align: center;
+   font-family:  Arial, sans-serif;
+  /*font-family: "Times New Roman"*/
+   width: 10px;
+ }

@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Logistica
+        psr4_prefix: Logistica
+        src_path: app

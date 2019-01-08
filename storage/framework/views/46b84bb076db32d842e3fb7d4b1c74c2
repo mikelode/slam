@@ -1,0 +1,105 @@
+<div class="panel panel-default">
+    <div class="panel-heading alm-panel-heading" style="overflow: hidden">
+        <span>Lista de Ordendes de Compra Registradas</span>
+        <div class="pull-right"><?php echo $giu->render(); ?></div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width: 10px">#</th>
+                <th data-options="field:'code'">Imprimir</th>
+                <th>Código GI</th>
+                <th>Ord. Compra</th>
+                <th>Tipo de Proceso</th>
+                <th>Plazo</th>
+                <th>Vence en</th>
+                <th>Fecha de Vencimiento</th>
+                <th>Almacen</th>
+                <th>Anulado</th>
+                <th>Internamiento</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($giu as $key => $item): ?>
+            <tr class="<?php echo e($item->estado_anulacion == 'SI' ? 'danger' : ''); ?>">
+                <td><?php echo e($giu->perPage()*($giu->currentPage() - 1) + $key + 1); ?></td>
+                <td align="center">
+                    <?php if($item->estado_validacion == 'P'): ?>
+                        ::::::::::::
+                    <?php else: ?>
+                    <a href="#" data-toggle="modal" data-target="#printPdfModal" data-gi="<?php echo e($item->ing_giu); ?>">
+                        <img style="width: 20px; height: 20px;" src="<?php echo e(asset('img/print.png')); ?>">
+                    </a>
+                    <?php endif; ?>
+                </td>
+                <td><?php echo e($item->shortGi); ?></td>
+                <td><?php echo e($item->shortOc); ?></td>
+                <td style="font-size: 9px;"><?php echo e($item->ocProcTipo); ?></td>
+                <td><?php echo e($item->oc_plazo_dias); ?></td>
+                <td>
+                <?php
+                    $hoy = \Carbon\Carbon::today();
+                    $limite = \Carbon\Carbon::parse($item->oc_fecha_limite);
+                ?>
+                <?php if($hoy->diffInDays($limite, false) >= 0): ?>
+                    <?php echo e($hoy->diffInDays($limite, false)==0?'Hoy':$hoy->diffInDays($limite, false).' Dias'); ?>
+
+                <?php else: ?>
+                    Vencido
+                <?php endif; ?>
+                </td>
+                <td>
+                <?php if($item->estado_validacion == 'P' ): ?>
+                    <a href="#" data-toggle="modal" data-target="#limitDateModal" data-gi="<?php echo e($item->ing_giu); ?>" data-limitdate="<?php echo e($item->oc_fecha_limite); ?>">
+                        <?php echo e(isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):''); ?>
+
+                    </a>
+                <?php else: ?>
+                    <?php echo e(isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):''); ?>
+
+                <?php endif; ?>
+                </td>
+                <td style="font-size: 9px;"><?php echo e($item->nombre); ?></td>
+                <td>
+                <?php if($item->estado_validacion == 'P'): ?>
+                    <a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="<?php echo e($item->ing_giu); ?>" data-oc="<?php echo e($item->oc_cod); ?>">
+                        <?php echo e($item->estado_anulacion); ?>
+
+                    </a>
+                <?php else: ?>
+                    <?php echo e($item->estado_anulacion); ?>
+
+                <?php endif; ?>
+                </td>
+                <td>
+                <?php if($item->estado_validacion == 'C'): ?>
+                    CONFORME
+                <?php elseif($item->estado_validacion == 'P'): ?>
+                    <a href="javascript:void(0)" onclick="change_to_submenu('<?php echo e('internamiento/bienes/'.$item->ing_giu); ?>')">
+                        PENDIENTE
+                    </a>
+                <?php else: ?>
+                    <a href="javascript:void(0)" onclick="change_to_submenu('<?php echo e('internamiento/bienes/'.$item->ing_giu); ?>')">
+                        EN TRANSITO
+                    </a>
+                <?php endif; ?>
+                </td>
+
+                <td>
+                <?php if($item->estado_salida == 'P' ): ?>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#rmvGiModal" data-gi="<?php echo e($item->ing_giu); ?>" data-oc="<?php echo e($item->oc_cod); ?>">
+                        <img src="<?php echo e(asset('img/cross.png')); ?>">
+                    </a>
+                <?php endif; ?>
+            </td>
+            
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="panel-footer">
+    <?php echo $giu->render(); ?>
+
+    </div>
+</div>

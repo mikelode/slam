@@ -1,0 +1,54 @@
+<div class="panel panel-default">
+    <div class="panel-heading alm-panel-heading" style="overflow: hidden">
+        <span>Lista de GI por Distribuir</span>
+        <div class="pull-right"><?php echo $giu->render(); ?></div>
+    </div>
+    <table class="table table-hover" style="width: 100%">
+        <thead>
+            <tr>
+                <th style="width: 2%">#</th>
+                <th style="width: 9%" align="center">Imprimir <img src="<?php echo e(asset('img/print.png')); ?>"></th>
+                <th style="width: 10%">Guia de Internamiento</th>
+                <th style="width: 10%">Fecha de Internamiento</th>
+                <th style="width: 10%">Orden de Compra</th>
+                <th style="width: 40%">Tipo de Proceso</th>
+                <th style="width: 10%">Almacen</th>
+                <th style="width: 9%">Estado de Salida</th>
+            </tr>
+        </thead>
+        <?php $convert = new \Logistica\Custom\FormatCode(); ?>
+        <tbody>
+            <?php foreach($giu as $key=>$item): ?>
+            <tr>
+                <td><?php echo e($giu->perPage()*($giu->currentPage() - 1) + $key + 1); ?></td>
+                <td>
+                    <?php /* <a href="#" class="btnPrintPs" data-gi="<?php echo e($item->ing_giu); ?>">Print</a> */ ?>
+                    <?php foreach($item->pecosas as $ps): ?>
+                        <a href="#" class="btnPrintPs" data-ps="<?php echo e($ps->psal_pecosa); ?>"><?php echo e($convert->toShortMode($ps->psal_pecosa)); ?></a>
+                        <a href="javascript:void(0)" onclick="change_to_submenu('<?php echo e('distribucion/edit/'.$ps->psal_pecosa); ?>')"> (Ver)</a>
+                        <br>
+                    <?php endforeach; ?>
+                </td>
+                <td><?php echo e($item->ing_giu); ?></td>
+                <td><?php echo e($item->conf_fecha); ?></td>
+                <td><?php echo e($item->oc_cod); ?></td>
+                <td><?php echo e($item->ocProcTipo); ?></td>
+                <td><?php echo e($item->nombre); ?></td>
+                <td>
+                    <?php if($item->estado_salida == 'P'): ?>
+                        <a href="#" onclick="change_to_submenu('<?php echo e('distribucion/bienes/'.$item->ing_giu); ?>')">PENDIENTE</a>
+                    <?php elseif($item->estado_salida == 'I'): ?>
+                        <a href="#" onclick="change_to_submenu('<?php echo e('distribucion/bienes/'.$item->ing_giu); ?>')">INCOMPLETO</a>
+                    <?php else: ?>
+                        CONFORME
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="panel-footer">
+        <?php echo $giu->render(); ?>
+
+    </div>
+</div>

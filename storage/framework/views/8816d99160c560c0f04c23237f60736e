@@ -1,0 +1,384 @@
+<div class="container" style="width: 1200px">
+<div class="panel panel-default" style="border-radius: 7px;margin-top: -5px;  background: #fdfdfd; border-top-width: 2px; border-top-color: #337ab7;  ">
+<div class="panel-body">
+
+
+
+
+ <div class="panel-heading gs-panel-heading"  style=" position: relative;border-radius: 5px; width: 1140px ;  height: 55px; border: 1px solid #cecece ; padding-top: 0px; margin-top: 0px ; margin-bottom:10px; background: #f6f6f6 ;" >
+
+    <table class="gs-table" style="margin-left: 45px ; margin-top: 2px;" >
+    <tr valign="center" >
+    <TD>
+    <img src="img/pestana1.png" width="40px" height="40px" style="margin-right: 10px">
+    </TD>
+        <td ALIGN="RIGHT" width="220px">
+        <span style="font-size: 15px;font-weight: bold;"> ORDEN DE SERVICIO :</span>
+        </td>
+        <td width="10"></td>
+        <td> <?php echo Form::text('txAnio', 2016, array('class' => 'form-control ', 'placeholder'=>'', 'style'=>'width:55px; height:40px ; padding:6px;','id'=>'txAnio'  )); ?></td>
+
+         <td>
+              <div class="input-group" >
+                <input id="txOS_No" type="text" class="form-control" placeholder="Nro OS"  style="width: 120px; height:40px;padding-top: 5px;font-weight:bold; font-size: 15px;">
+                   <span class="input-group-btn">
+                   <button class="btn btn-primary" id="btnLogOSSearch">
+                   <span class="glyphicon glyphicon-search" aria-hidden="true" style="width: 30px; height:25px; margin-top: 5px; margin-bottom: -5px;"></span>
+                   </button>
+                   </span>
+              </div>
+         </td>
+
+         <td width="10px">
+         </td>
+
+         <td>
+               <button class="btn btn-primary" id="btnLogOSLeft">
+               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="width: 20px; height:25px; margin-top: 5px; margin-bottom: -5px;"></span>
+               </button>
+         </td>
+
+         <td>
+               <button class="btn btn-primary" id="btnLogOSRight">
+               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="width: 20px; height:25px; margin-top: 5px; margin-bottom: -5px;"></span>
+               </button>
+         </td>
+
+
+        <td align="right" width="715px" >
+
+         <?php if( Auth::user()->usrID=='41130020' || Auth::user()->usrID=='42469504' ): ?>
+              <?php echo Form::button('IMPRIMIR',['class'=>'btn btn-default','id'=>'btnLogOSPrint','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'IMPRIMIR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconPRINT.png) no-repeat; background-position:top;' ]); ?>
+
+         <?php else: ?>
+
+            <?php echo Form::button('GUARDAR',['class'=>'btn btn-default','id'=>'btnLogOSSave','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'GUARDAR','style'=>' margin-left:2px;font-weight: bold; padding-left:2px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconSAVE2.png) no-repeat; background-position:top;' ]); ?>
+
+            <?php echo Form::button('CANCEL',['class'=>'btn btn-default','id'=>'btnLogOSCancel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'CANCELAR','style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px;background: url(img/iconCANCEL.png) no-repeat; background-position:top;' ]); ?>
+
+
+            <?php echo Form::button('NUEVO',['class'=>'btn btn-default','id'=>'btnLogOSNew','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'NUEVO',       'style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconADD.png) no-repeat; background-position:top;' ]); ?>
+
+            <?php echo Form::button('EDITAR',['class'=>'btn btn-default','id'=>'btnLogOSUpd','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'MODIFICAR',  'style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconUPD.png) no-repeat; background-position:top;']); ?>
+
+            <?php echo Form::button('ANULAR',['class'=>'btn btn-default','id'=>'btnLogOSDel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'ELIMINAR',   'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconDEL.png) no-repeat; background-position:top;' ]); ?>
+
+            <?php echo Form::button('REVERSAR',['class'=>'btn btn-default','id'=>'btnLogOSBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconBusy.png) no-repeat; background-position:top;' ]); ?>
+
+            <?php echo Form::button('IMPRIMIR',['class'=>'btn btn-default','id'=>'btnLogOSPrint','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'IMPRIMIR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconPRINT.png) no-repeat; background-position:top;' ]); ?>
+
+           <?php echo Form::button('SIAF',['class'=>'btn btn-default','id'=>'btnLogOSSiaf','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'SIAF','style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconADD.png) no-repeat; background-position:top;']); ?>
+
+            <?php echo Form::button('CERRAR',['class'=>'btn btn-default btn-cerrar','id'=>'a','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'CERRAR',     'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px;background: url(img/iconClose.png) no-repeat; background-position:top;' ]); ?>
+
+          <!--  <?php echo Form::button('BORRAR',['class'=>'btn btn-default','id'=>'btnLogOSTrsh','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'TRASH',     'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px;background: url(img/iconTRASH.png) no-repeat; background-position:top;' ]); ?>  -->
+        <!--  <?php echo Form::button('RESERVA',['class'=>'btn btn-default','id'=>'btnLogOSBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:3px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/Cancel2.png) no-repeat; background-position:top;' ]); ?>    -->
+          <?php endif; ?>
+        </td>
+    </tr>
+    </table>
+</div>
+
+
+<div class="panel panel-default" style="margin-top: 5px; padding-bottom: 5px;" >
+<div class="panel-heading gs-panel-heading"  style="padding: 5px" > ::: Datos Principales </div>
+<table style ="margin-top: 5px;">
+<tr >
+<td >
+        <table class="gs-table" style=" border-spacing:  0px;border-collapse: separate; ">
+            <tr>
+                <td align="right"> <label class="gs-label">Fecha :  </label></td>
+                <td>
+                     <table class="gs-table">
+                     <tr>
+                     <td align="left" colspan="2">  <input type="date" name="fecha" id="txOS_Fecha" class="form-control  gs-input" style="width: 150px; FONT-WEIGHT:BOLD; font-size:14px;">   </td>
+                     </tr>
+                     </table>
+                </td>
+            </tr>
+
+            <tr>
+            <td  align="right" > <?php echo Form::label('first_name','Origen :', array('class'=> 'gs-label')); ?>  </td>
+            <td>
+                <table>
+                <tr>
+                <td>
+                 <div class="btn-group btn-input clearfix"  style="margin-left: 1px;"  >
+                    <button type="button" id="txOS_CodTipoDoc" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:130px; height: 30px; border: 1px dotted #aaa; font-size: 12px; ">    <span  id="txOS_TipoDoc"  data-bind="label">Seleccione...</span> <span class="caret"></span></button>
+                    <ul class="dropdown-menu menu-TipoReqOS" role="menu" style="font-size: 12px;">                       
+                       <li  psrId="RQ"><a href="#">Requerimiento</a></li>
+                       <li  psrId="CC"><a href="#">Cuadro Comp.</a></li>
+                       <li  psrId="NN"><a href="#">Sin origen</a></li>
+                    </ul>
+                 </div>
+                 </td>
+                 <td><?php echo Form::text('txOS_NroDoc', null, array('ID'=>'txOS_NroDoc', 'class' => 'form-control gs-input', 'placeholder'=>'Nro Doc ', 'style'=>'width:100px; margin-left:2px; height:29px; ', 'codID'=>'NN')); ?></td>
+                 </tr>
+                 </table>
+            </td>
+            </tr>
+
+
+
+            <tr>
+                 <td  align="right" > <?php echo Form::label('first_name','Dependencia :', array('class'=> 'gs-label')); ?>  </td>
+                 <td>
+                      <TABLE class="gs-table" >
+                      <tr>
+                      <td><?php echo Form::text('txOS_CodDep', null, array('ID'=>'txOS_CodDep','class' => 'form-control gs-input', 'placeholder'=>'Cod', 'style'=>'width:60px')); ?></td>
+                      <td><?php echo Form::text('txOS_Dep', null, array('ID'=>'txOS_Dep', 'class' => 'form-control gs-input', 'placeholder'=>'Dependencia', 'style'=>'width:345px')); ?></td>
+                      </tr>
+                      </TABLE>
+                 </td>
+            </tr>
+
+            <tr>
+                   <td  align="right" > <?php echo Form::label('first_name','Sec Fun :', array('class'=> 'gs-label')); ?>  </td>
+                   <td>
+                      <TABLE class="gs-table" >
+                      <tr>
+                      <td><?php echo Form::text('txOS_CodSecFun', null, array('ID'=>'txOS_CodSecFun','class' => 'form-control gs-input', 'placeholder'=>'Cod', 'style'=>'width:60px')); ?></td>
+                      <td><?php echo Form::text('txOS_SecFun', null, array('ID'=>'txOS_SecFun', 'class' => 'form-control gs-input', 'placeholder'=>'Secuencia Funcional', 'style'=>'width:345px')); ?></td>
+                      </tr>
+                      </TABLE>
+                   </td>
+            </tr>
+
+
+            <tr>
+                   <td  align="right" > <?php echo Form::label('first_name', 'Rubro :', array('class'=> 'gs-label')); ?>  </td>
+                   <td>
+                      <TABLE class="gs-table" >
+                      <tr>
+                      <td><?php echo Form::text('txOS_CodRubro', null, array('ID'=>'txOS_CodRubro','class' => 'form-control gs-input', 'placeholder'=>'Cod', 'style'=>'width:60px')); ?></td>
+                      <td><?php echo Form::text('txOS_Rubro', null, array('ID'=>'txOS_Rubro', 'class' => 'form-control gs-input', 'placeholder'=>'Rubro', 'style'=>'width:345px')); ?></td>
+                      </tr>
+                      </TABLE>
+                   </td>
+            </tr>
+
+             <tr>
+                    <td  align="right" > <?php echo Form::label('first_name','Tipo Proc :', array('class'=> 'gs-label')); ?>  </td>
+                    <td>
+                          <TABLE class="gs-table" >
+                          <tr>
+                          <td><?php echo Form::text('txOS_CodTipoProc', null, array('ID'=>'txOS_CodTipoProc','class' => 'form-control gs-input', 'placeholder'=>'Cod', 'style'=>'width:60px')); ?></td>
+                          <td><?php echo Form::text('txOS_TipoProc', null, array('ID'=>'txOS_TipoProc', 'class' => 'form-control gs-input', 'placeholder'=>'Tipo de Proceso', 'style'=>'width:345px')); ?></td>
+                          </tr>
+                          </TABLE>
+                    </td>
+             </tr>
+
+            <tr>
+                    <td  align="right" > <?php echo Form::label('first_name','Glosa :', array('class'=> 'gs-label')); ?>  </td>
+                    <td>
+                          <TABLE class="gs-table" >
+                          <tr>                          
+                          <td><?php echo Form::text('txOS_Glosa', null, array('ID'=>'txOS_Glosa', 'class' => 'form-control gs-input', 'placeholder'=>'Glosa', 'style'=>'width:407px')); ?></td>
+                          </tr>
+                          </TABLE>
+                    </td>
+             </tr>
+
+             <tr>
+                <td  align="right" > <?php echo Form::label('first_name','Referencia :', array('class'=> 'gs-label')); ?>  </td>
+                <td>
+                      <TABLE class="gs-table" >
+                      <tr>
+                      <td><?php echo Form::text('txOS_Ref', null, array('ID'=>'txOS_Ref', 'class' => 'form-control gs-input', 'placeholder'=>'Referencia', 'style'=>'width:407px')); ?></td>
+                      </tr>
+                      </TABLE>
+                </td>
+            </tr>
+
+              <tr>
+                    <td  align="right" > <?php echo Form::label('first_name','Lugar Entrg :', array('class'=> 'gs-label')); ?>  </td>
+                    <td>
+                          <TABLE class="gs-table" >
+                          <tr>
+                          <td><?php echo Form::text('txOS_LugarEnt', null, array('ID'=>'txOS_LugarEnt', 'class' => 'form-control gs-input', 'placeholder'=>'Lugar de Entrega', 'style'=>'width:407px')); ?></td>
+                          </tr>
+                          </TABLE>
+                    </td>
+            </tr>
+
+             <tr valign="top">
+               <td  align="right" > <?php echo Form::label('first_name','Obsv :', array('class'=> 'gs-label')); ?>  </td>
+             <td>
+             <TABLE class="gs-table" >
+             <tr>
+             <td ><?php echo Form::textarea('txOS_Obsv', null, array('ID'=>'txOS_Obsv', 'class' => 'form-control gs-input', 'placeholder'=>'Observaciones', 'style'=>'width:405px','rows'=>'5')); ?></td>
+             </tr>
+             </TABLE>
+            </td>
+            </tr>
+      </table>
+
+</td>
+<td width="5">
+
+</td>
+<td valign="top">
+   <table>
+  <tr>
+           <td >Expdiente SIAF : <span style="margin-left:0px; font-size:13px; font-weight:bold: " id="lblExp">  </span> </td>
+            <td  align="right">
+            
+            <label  id="txOS_Etapa"  style="margin-top: 0px;border-radius: 3px; padding: 2px; border: 1px #ddd dashed; ; height: 25px; font-size: 15px; width:100px; font-weight: bold; text-align: center; margin-bottom: -4px"></label>
+            </td>
+        </tr>    
+	  
+	  
+	  <tr>	
+	  
+	  <td colspan="2" >
+             <TABLE class="gs-table" >
+             <tr>
+             <td ><?php echo Form::textarea('txOS_Condicion', null, array('ID'=>'txOS_Condicion', 'class' => 'form-control gs-input', 'placeholder'=>'Condicion', 'rows'=>'6')); ?></td>
+             </tr>
+
+             </TABLE>
+      </td>
+      </tr>
+    
+	
+	</table>
+
+
+</td>
+</tr>
+</table>
+
+</div>
+
+
+
+<div class="panel panel-default" style="margin-top: -15px; " >
+
+   <div style="margin:5px;">
+     <table>
+          <tr>
+          <td  align="right"  width="65px;"> <?php echo Form::label('first_name','RUC :', array('class'=> 'gs-label')); ?>  </td>
+          <td><?php echo Form::text('txOS_Ruc', null, array('ID'=>'txOS_Ruc','class' => 'form-control gs-input', 'placeholder'=>'Ruc', 'style'=>'width:130px; FONT-WEIGHT:BOLD;font-size:16px;')); ?></td>
+          <td  width="5px"> </td>
+          <td><?php echo Form::text('txOS_RSocial', null, array('ID'=>'txOS_RSocial','class' => 'form-control gs-input', 'placeholder'=>'Razon Social', 'style'=>'width:435px')); ?></td>
+          <td  width="5px"> </td>
+          <td  align="right"  > <?php echo Form::label('first_name','Plazo :', array('class'=> 'gs-label')); ?>  </td>
+          <td><?php echo Form::text('txOS_Plazo', null, array('ID'=>'txOS_Plazo','class' => 'form-control gs-input', 'placeholder'=>'Plazo', 'style'=>'width:190px')); ?></td>
+
+          <td  width="10px"> </td>
+          <td  align="right"  > <?php echo Form::label('first_name','IGV :', array('class'=> 'gs-label')); ?>  </td>
+          <td><?php echo Form::text('txOS_IGV', null, array('ID'=>'txOS_IGV','class' => 'form-control gs-input', 'placeholder'=>'IGV', 'style'=>'width:50px')); ?></td>
+
+          <td  width="10px"> </td>
+          <td  align="right"  > <?php echo Form::label('first_name','Garantia :', array('class'=> 'gs-label')); ?>  </td>
+          <td><?php echo Form::text('txOS_Garantia', null, array('ID'=>'txOS_Garantia','class' => 'form-control gs-input', 'placeholder'=>'Garantia', 'style'=>'width:100px')); ?></td>
+
+          <!--<td  width="18px"> </td>-->
+          <!--<td  width="10px"> <span id="btnLogOS_Ruc" class="btn btn-info" STYLE="height: 25px; padding-top: 2px; font-weight: bold;"> RUC </span> </td> -->
+          </tr>
+     </table>
+   </div>
+</div>
+
+
+</div>
+</div>
+
+
+<div class="panel panel-default" style="margin-top: -15px" >
+<div class="panel-heading gs-panel-heading" > :::  Lista de SERVICIOS <TABLE style = "margin-top:-15px;"><TR> <TD> <?php echo Form::button('Catalogo '     ,['id'=>'btnLogOSCatalogo' ,'class'=>'btn btn-default','style'=> 'width: 100Px  ;height: 30px ; padding=0;margin-top:-5px; font-size:10px; margin-left:360px; ']); ?> </TD> <TD> <?php echo Form::button(' - LIMPIAR '     ,['id'=>'btnLogOSLimpiar' ,'class'=>'btn btn-default','style'=> 'width: 100Px  ;height: 30px ; padding=0;margin-top:-5px; font-size:10px; margin-left:175px; ']); ?> </TD><TD>   <?php echo Form::button(' + ITEM '        ,['id'=>'btnLogOSItem' ,'class'=>'btn btn-default','style'=> 'width: 100Px  ;height: 30px ; padding=0;margin-top:-5px; font-size:10px; margin-left:300px; ']); ?> </TD></TR></TABLE> </div>
+<div id="dvBarraAdd" class="panel-heading gs-panel-heading" style="display: none;" >
+     <table id="tbBarraBienes" style="height: 50px;" >
+
+     </table>
+</div>
+<div class="panel-body" id="divOS_Dll">
+
+
+</div>
+
+</div>
+
+</div>
+
+<div id = "OS" opeID="NN" anioID = "NN" reqID="NN" fteID="NN" ctzID = "" cdrID ="NN" osID=""  osEtapa="NN"  osDllOPE="NN" > </div>
+<div id = "loadModals" > </div>
+<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" id ="tokenBtn">
+<div style="height: 56px"></div>
+
+<div id="divDialog">
+<div id="divDialogCont"></div>
+</div>
+
+<div id="modalOC"></div> 
+
+<script type="text/javascript">
+$("#txOS_Condicion").summernote(
+  {
+     width:650,
+     height:280,
+ styleWithSpan: false,
+                        toolbar: [
+                        ]     
+}
+  );
+
+
+
+
+function  jsFunModalExpediente (parmTitulo, parmHtml)
+{
+    $(".modal-backdrop").remove();
+    t='';
+    t+=' <div class="modal fade"  id="modalVentExpediente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  >';
+    t+=' <div class="modal-dialog"  >';
+    t+=' <div class="modal-content" > ';
+    t+='            <div class="modal-header"  >';
+    t+='                    <div class="panel" style="margin-bottom:-15px;" > <div class="panel-heading gs-panel-heading"  style="background: #2F3414 ; COLOR:#ffffff;" >';
+    t+='                    <button type="button" class="close"  data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">:</span></button>';
+    t+='                    <img src="img/pestana1.png" width="20px" height="20px" style=" MARGIN-top:-5px; margin-right: 3px"><span style="font-size: 12px;  font-family:  Arial, Helvetica, Verdana  "> Orden de Compra : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ';
+    t+= '                   <span style="font-size:22px;"> '+ parmTitulo +'  </span> ';
+    t+='                     </span>' ;
+    t+='                    </div></div>';
+
+    t+='            </div>';
+    t+='            <div class="modal-body"  id="modalContExpediente"  >  '+jsFunModalExpedientePanel(parmHtml)+' </div> ';
+
+t+='<table style="margin-left:30px; "> ';
+t+=' ';
+t+='<tr ><td align="right"> &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp; &nbsp;  &nbsp; &nbsp; Año : </td> <td > <input id="txExpAnio" value=""  class="form-control"style="width:65px; font-size:15px;" maxlength="4" /> </td> ';
+t+='<td align="right"> &nbsp; &nbsp;  &nbsp; Expediente : </td> <td  >  <input id="txExpCod"  value="0000"  class="form-control" style="width:75px ; font-size:15px;" maxlength="4" />  </td> ';
+t+='<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;   &nbsp; &nbsp; <button id ="btnLogOSSiaf_ADD" name="btnLogOSSiaf_ADD" class="btn btn-primary " style="font-size:10px;margin:10px; width: 80px;height: 35px; " idItem="0" align="right"> GUARDAR  </button> </td><td> <button class="btn btn-default" id=" " style="width: 80px;height: 35px;" data-dismiss="modal"> Cancelar</button>  </td>';
+t+='</table> ';
+
+    t+=' ';
+    t+=' </div>';       
+    t+=' </div>';
+    t+=' </div> ';
+    return t;
+}
+
+
+function  jsFunModalExpedientePanel (prmHtml)
+{
+  t='';
+
+
+t+='<div class="panel panel-default" style="margin-top: 0px; padding-bottom: 0px; width:550px; height:175px;" > ';
+t+='<div class="panel-heading gs-panel-heading"  style="padding: 5px" > ::: Expediente SIAF  </div> ';
+t+='<div id="modalExp" style="overflow: scroll;    height: 140px; ">  '+prmHtml+' </div>';
+t+='</div>';
+
+
+  return t;
+}
+
+
+
+</script>>
+
+
+
+
+

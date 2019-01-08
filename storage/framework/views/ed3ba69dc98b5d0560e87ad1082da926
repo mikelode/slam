@@ -1,0 +1,59 @@
+ <?php if (isset($result["Dll"]))
+        {?>
+        <?php $i=1;?>
+        <?php foreach($result["Dll"] as $key=>$nom): ?>
+        <tr style="height: 40px" >            
+            
+            <td name="tdCant"  align="center" ><strong><?php echo "0".$i++;?></strong></td>      
+      
+
+            <td  align="center" bgcolor="#f7f7f7"  valign="center"> <span class="btn btn-primary btnLogReqSegVer " reqID ='<?php echo e($nom->ReqID); ?>'  reqCodigo ='<?php echo e($nom->NroReq); ?>' style="width:   70Px  ;height: 30px ; padding-left: 7px; font-size:12px; font-weight:bold; " > <?php echo e($nom->NroReq); ?> </span></td>
+            <td  align="center" bgcolor="#f7f7f7"><?php echo e($nom->Fecha_Req); ?></td>
+            <td  align="center" bgcolor="#f7f7f7"><?php echo e($nom->reqMonto); ?></td>
+
+            <td  align="center" ><?php echo e($nom->Usr); ?></td>      
+            <td  align="center" ><?php echo e($nom->Estado); ?></td>
+            <td  align="center" ><?php echo e($nom->NroDep); ?></td>
+            <td  align="center" ><?php echo e($nom->NroSecFun); ?></td>
+          
+            <td  align="center" ><?php echo e($nom->NroCot); ?></td>
+            <td  align="center" ><?php echo e($nom->Fecha_Cot); ?></td>
+
+            <td  align="center" bgcolor="#f7f7f7"><?php echo e($nom->NroCC); ?></td>
+            <td  align="center" bgcolor="#f7f7f7"><?php echo e($nom->Fecha_Adj); ?></td>
+
+            <td  align="left" ><?php echo e($nom->Ruc); ?></td>
+            <td  align="left" ><?php echo e($nom->RazonSocial); ?></td>
+
+            <td  align="center" > <?php echo e($nom->NroOC); ?> </td>
+            <td  align="center" ><?php echo e($nom->Fecha_OC); ?></td>
+
+            <td  align="center" > <?php echo e($nom->NroOS); ?></td>
+            <td  align="center" ><?php echo e($nom->Fecha_OS); ?></td>
+      
+            <td  align="center" ><?php echo e($nom->GUI_Nro); ?></td>
+            <td  align="center" ><?php echo e($nom->GUI_Fecha); ?></td>
+            
+            <td  align="center" ><?php echo e($nom->PCS_Nro); ?></td>
+            <td  align="center" ><?php echo e($nom->PCS_Fecha); ?></td>
+            
+            <td  align="center" ><?php echo e($nom->expExp); ?></td>            
+            <td  align="center" > <?php echo e($nom->expComNumDoc); ?></td>
+            <td  align="center" ><?php echo e($nom->expComFecha); ?></td>
+            <td  align="center" ><?php echo e($nom->expComMonto); ?></td>
+
+            
+            <td  align="center" ><?php echo e($nom->expDevNumDoc); ?></td>
+            <td  align="center" ><?php echo e($nom->expDevFechaDoc); ?></td>     
+            <td  align="center" ><?php echo e($nom->expDevMonto); ?></td>     
+        
+            <td  align="center" ><?php echo e($nom->expGirNumDoc); ?></td>
+            <td  align="center" ><?php echo e($nom->expGirFechaDoc); ?></td>
+            <td  align="center" ><?php echo e($nom->expGirMonto); ?></td>
+    
+      
+        </tr>
+        <?php endforeach; ?>
+        <?php
+        }
+        ?>

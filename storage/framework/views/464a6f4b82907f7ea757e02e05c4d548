@@ -1,0 +1,48 @@
+<?php $__env->startSection('main-content'); ?>
+
+<p style="color:white;" >
+
+
+</p>
+
+<script type="text/javascript">
+  $('#btnMainLogSiafFrmto').click(function(e){
+        e.preventDefault();
+        var url = 'logistica/vwLiqFrmto';
+        $.get(url,function(data){
+            $('.alm-content-wrapper').html(data);
+
+        });
+    });
+
+   $('#btnMainLogSiafTFin').click(function(e){
+        e.preventDefault();
+        var url = 'logistica/vwLiqTFin';
+        $.get(url,function(data){
+            $('.alm-content-wrapper').html(data);
+
+        });
+    });
+
+    $('#btnMainLogSiafSeg').click(function(e){
+        e.preventDefault();
+        var url = 'logistica/vwAdqSegDoc';
+        $.get(url,function(data){
+            $('.alm-content-wrapper').html(data);
+
+        });
+    });
+   $('#btnMainLogCS').click(function(e){
+        e.preventDefault();
+        var url = 'logistica/vwLiqCS';
+        $.get(url,function(data){
+            $('.alm-content-wrapper').html(data);
+
+        });
+    });
+
+
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

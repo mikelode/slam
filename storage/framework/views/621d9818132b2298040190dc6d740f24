@@ -1,0 +1,32 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
+    <title></title>
+
+    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
+
+    <!-- RIBBON MENU -->
+    <link href="<?php echo e(asset('plugins/ribbon/ribbon/ribbon.css')); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('plugins/ribbon/soft_button.css')); ?>" rel="stylesheet" type="text/css" />
+    <!-- BOOTSTRAP -->
+    <link href="<?php echo e(asset('plugins/bootstrap/css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css">
+    <!-- FONT AWESOME ICONS -->
+    <link href="<?php echo e(asset('plugins/font-awesome-4.3.0/css/font-awesome.min.css')); ?>" rel="stylesheet" type="text/css">
+    <!-- IONICONS -->
+    <!-- JQUERY UI -->
+    <link href="<?php echo e(asset('plugins/jquery-ui/jquery-ui.min.css')); ?>" rel="stylesheet" type="text/css">
+    <!-- x-editable field -->
+    <link href="<?php echo e(asset('plugins/x-editable/bootstrap3-editable/css/bootstrap-editable.css')); ?>" rel="stylesheet" type="text/css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="<?php echo e(asset('/plugins/summernote-master/dist/summernote.css')); ?>" rel="stylesheet" type="text/css" />
+    <!-- CUSTOM CSS -->
+    <link href="<?php echo e(asset('css/almacen.css')); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo e(asset('css/gs.app.css')); ?>" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="<?php echo e(asset('plugins/jquery/jQuery-2.1.4.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('plugins/jquery/jquery-migrate-1.2.1.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('plugins/ribbon/ribbon/ribbon.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('plugins/ribbon/ribbon/jquery.tooltip.min.js')); ?>"></script>
+
+</head>
