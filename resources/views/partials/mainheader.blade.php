@@ -9,11 +9,10 @@
         </div>
     </div>
 
-
     <div class="ribbon-tab" id="next-tab">
         <span class="ribbon-title">General</span>
         <div class="ribbon-section">
-            <span class="section-title">Grl</span>
+            <span class="section-title">Usuario</span>
 
             <div class="ribbon-button ribbon-button-large"  id="btnMainLogAnio" >
             <span class="button-title">Año de <br/>Ejecución</span>
@@ -30,23 +29,24 @@
             <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCal.png') }}" width="40px" height="40px" />
             </div>
             -->
-            <div class="ribbon-button ribbon-button-large" id="btnMainLogCat">
-               <span class="button-title">Catalogo de <br>Bienes y Servicios</span>
-               <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCat.png') }}" />
-            </div>
            
         </div>
          <div class="ribbon-section">
-              <span class="section-title">Usuarios</span>
+              <span class="section-title">Requerimiento</span>
               <div class="ribbon-button ribbon-button-large" id="btnMainLogReq">
-              <span class="button-title">Solicitud de <br>Requerimientos</span>
+              <span class="button-title">Solicitud de <br>Requerimiento</span>
               <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconRq.png') }}" width="32px" height="32px" />
               </div>
 
               <div class="ribbon-button ribbon-button-large" id="btnMainLogReqSg">
-              <span class="button-title">Seguimiento <br>de Requermiento</span>
-              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCtz.png') }}" width="32px" height="32px"  />
+              <span class="button-title">Seguimiento</span>
+              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconSegreq.png') }}" width="32px" height="32px"  />
               </div>
+
+             <div class="ribbon-button ribbon-button-large" id="btnMainLogCat">
+                 <span class="button-title">Catálogo de <br>BB y SS</span>
+                 <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCat.png') }}" />
+             </div>
          </div>
         
          <div class="ribbon-section">
@@ -54,7 +54,7 @@
 
              <div class="ribbon-button ribbon-button-large" id="btnMainLogCS" style="width:80px">
               <span class="button-title">Reporte  <br>de OC y OS</span>
-              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconSeg.png') }}" width="35px" height="35px"  />
+              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconRptocs.png') }}" width="35px" height="35px"  />
              </div>
 
 
@@ -81,7 +81,7 @@
         -->
           <div class="ribbon-section">
              <div class="ribbon-button ribbon-button-large" id="btnMainLogAnio">
-            <span class="button-title">Año de Ejecucion</span>
+            <span class="button-title">Año de Ejecución</span>
              <input type="text" id="txAnioFinal" name="txAnioFinal"  disabled="true" value="{{ config('slam.ANIO') }}" class="form-control gs-input txVarAnioEje2" style="width: 110px; text-align: center;  height:60px;font-size: 35px;  "   placeholder=".......... " > 
             </div>
           </div>
@@ -102,18 +102,18 @@
     </div>
     <div class="ribbon-tab" id="tabLogistica">
 
-        <span class="ribbon-title">Logistica</span>
+        <span class="ribbon-title">Logística</span>
         <div class="ribbon-section">
             <span class="section-title">Ctz- CC - OC - OS </span>
 
             <div class="ribbon-button ribbon-button-large" id="btnMainLogCtz">
-            <span class="button-title">Solicitud de <br/>Cotizacion </span>
-            <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCtz.png') }}" />
+            <span class="button-title">Solicitud de <br/>Cotización </span>
+            <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCtz2.png') }}" />
             </div>
 
             <div class="ribbon-button ribbon-button-large" id="btnMainLogCC">
             <span class="button-title">Cuadro <br/>Comparativo</span>
-            <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCdr.png') }}" />
+            <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCmp.png') }}" />
             </div>
 
            <div class="ribbon-button ribbon-button-large" id="btnMainLogOC">
@@ -162,7 +162,7 @@
 
        <div class="ribbon-section">
             <div class="ribbon-button ribbon-button-large" id="btnMainLogAnio">
-            <span class="button-title">Año de Ejecucion</span>
+            <span class="button-title">Año de Ejecución</span>
              <input type="text"    disabled="true" value="{{ config('slam.ANIO') }}" class="form-control gs-input txVarAnioEjec" style="width: 110px; text-align: center;  height:60px;font-size: 35px;  "   placeholder=".......... " > 
             </div>
        </div>
@@ -200,14 +200,14 @@
         </div>
        
        <div class="ribbon-section">
-            <span class="section-title">Año de Ejecucion</span>
+            <span class="section-title">Año de Ejecución</span>
                 <input disabled="true" type="text" id="periodSys" value="{{ Carbon\Carbon::now()->year }}" class="form-control gs-input" style="width: 110px; text-align: center;  height:60px;font-size: 35px;  " />
         </div>
 </div>
 
 
  <div class="ribbon-tab" id="tbConfiguracion">
-        <span class="ribbon-title">Configuracion</span>    
+        <span class="ribbon-title">Configuración</span>
         <div class="ribbon-section">
             <span class="section-title">Configuraciones</span>
 

@@ -3,8 +3,8 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Login Form</title>
-
+<title>Login SLAM</title>
+<link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
 <!--STYLESHEETS-->
 <link href="<?php echo e(asset('css/style-login.css')); ?>" rel="stylesheet" type="text/css" />
 
