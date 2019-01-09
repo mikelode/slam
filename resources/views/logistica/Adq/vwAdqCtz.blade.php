@@ -132,7 +132,7 @@
                  </td>
 
                  <td valign="bottom" >                 
-                    {!! Form::button(' Catalogo de Bienes ' ,['id'=>'btnLogCtzCatalogo' ,'class'=>'btn btn-primary','style'=> 'width: 120Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:30px; ']) !!} 
+                    {{--{!! Form::button(' Catalogo de Bienes ' ,['id'=>'btnLogCtzCatalogo' ,'class'=>'btn btn-primary','style'=> 'width: 120Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:30px; ']) !!} --}}
                     {!! Form::button(' Nuevo Bien '        ,['id'=>'btnLogCtzItem' ,'class'=>'btn btn-primary','style'=> 'width: 120Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']) !!}
                   </td>
                  </tr>

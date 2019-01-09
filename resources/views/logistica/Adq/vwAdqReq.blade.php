@@ -116,11 +116,11 @@
             			<td>{!! Form::text('txCodSecFun', null, array('ID'=>'txCodSecFun' ,'class' => 'form-control gs-input', 'placeholder'=>'Codigo', 'style'=>'width:55px'))  !!}</td>
             			<td>{!! Form::textarea('txSecFun', null, array('ID'=>'txSecFun' , 'class' => 'form-control gs-input', 'placeholder'=>'Secuencia Funcional', 'style'=>'width:350px' , 'rows'=>'2'))  !!}</td>
                         </tr>
-                        <tr >
-                        <td align="right"> {!! Form::label('first_name','Sub Sec :', array('class'=> 'gs-label'))!!}  </td>
-                        <td>{!! Form::text('txCodSubSec', null, array('ID'=>'txCodSubSec' ,'class' => 'form-control gs-input', 'placeholder'=>'Codigo', 'style'=>'width:55px'))  !!}</td>
-                        <td>{!! Form::text('txSubSec', null, array('ID'=>'txSubSec' , 'class' => 'form-control gs-input', 'placeholder'=>'Sub Secuencia', 'style'=>'width:350px'))  !!}</td>
-                        </tr>
+                        {{--<tr >--}}
+                        {{--<td align="right"> {!! Form::label('first_name','Sub Sec :', array('class'=> 'gs-label'))!!}  </td>--}}
+                        {{--<td>{!! Form::text('txCodSubSec', null, array('ID'=>'txCodSubSec' ,'class' => 'form-control gs-input', 'placeholder'=>'Codigo', 'style'=>'width:55px'))  !!}</td>--}}
+                        {{--<td>{!! Form::text('txSubSec', null, array('ID'=>'txSubSec' , 'class' => 'form-control gs-input', 'placeholder'=>'Sub Secuencia', 'style'=>'width:350px'))  !!}</td>--}}
+                        {{--</tr>--}}
                         <tr>
             			<td  align="right" > {!! Form::label('first_name','Rubro :', array('class'=> 'gs-label'))!!}  </td>
                         <td>{!! Form::text('txCodRubro', null,array('ID'=>'txCodRubro', 'class' => 'form-control gs-input', 'placeholder'=>'Codigo', 'style'=>'width:55px')) !!}</td>
@@ -173,7 +173,7 @@
                  <td>
                      <table>
                      <tr>
-                         <td><div id="txTipoGto"></div>{!! Form::label('first_name','Tipo de Gasto :', array('class'=> 'gs-label'))!!}</td>
+                         <td><div id="txTipoGto"></div>{!! Form::label('first_name','Tipo Solicitante :', array('class'=> 'gs-label'))!!}</td>
                          <td width="10"></td>
                          <td><div class="radio"> <label><input type="radio" id="r1" name="optradio">Jefe de Area</label>  </div></td>
                          <td width="20"></td>

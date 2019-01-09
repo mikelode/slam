@@ -59,7 +59,7 @@
 
             <?php echo Form::button('ANULAR',['class'=>'btn btn-default','id'=>'btnLogCCDel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'ELIMINAR',   'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconDEL.png) no-repeat; background-position:top;' ]); ?>
 
-            <?php echo Form::button('REVERSAR',['class'=>'btn btn-default','id'=>'btnLogCCBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconBusy.png) no-repeat; background-position:top;' ]); ?>
+            <?php echo Form::button('RESERVAR',['class'=>'btn btn-default','id'=>'btnLogCCBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconBusy.png) no-repeat; background-position:top;' ]); ?>
 
             <?php echo Form::button('IMPRIMIR',['class'=>'btn btn-default','id'=>'btnLogCCPrint','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'IMPRIMIR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconPRINT.png) no-repeat; background-position:top;' ]); ?>
 
@@ -128,7 +128,7 @@
                      <td>
 
                     <?php echo Form::button(' Añadir RUC' ,['id'=>'btnLogCdrRucADD' ,'class'=>'btn btn-danger','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:0px; ']); ?> 
-                    <?php echo Form::button(' Catalogo de Bienes ' ,['id'=>'btnLogCdrCtgo' ,'class'=>'btn btn-primary','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']); ?> 
+                    <?php /*<?php echo Form::button(' Catalogo de Bienes ' ,['id'=>'btnLogCdrCtgo' ,'class'=>'btn btn-primary','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']); ?> */ ?>
                     <?php echo Form::button(' Nuevo Bien '        ,['id'=>'btnLogCdrItem' ,'class'=>'btn btn-primary','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']); ?>
 
                     <?php echo Form::button(' Borrar Bienes '        ,['id'=>'btnLogCdrItemClear' ,'class'=>'btn btn-primary','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']); ?>

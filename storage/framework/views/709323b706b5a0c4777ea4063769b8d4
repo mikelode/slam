@@ -62,7 +62,7 @@
 
           <?php echo Form::button('ANULAR',['class'=>'btn btn-default','id'=>'btnLogOCDel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'ELIMINAR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconDEL.png) no-repeat; background-position:top;' ]); ?>
 
-          <?php echo Form::button('REVERSAR',['class'=>'btn btn-default','id'=>'btnLogOCBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconBusy.png) no-repeat; background-position:top;' ]); ?>
+          <?php echo Form::button('RESERVAR',['class'=>'btn btn-default','id'=>'btnLogOCBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconBusy.png) no-repeat; background-position:top;' ]); ?>
 
           <?php echo Form::button('IMPRIMIR',['class'=>'btn btn-default','id'=>'btnLogOCPrint','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'IMPRIMIR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconPRINT.png) no-repeat; background-position:top;' ]); ?>
 
