@@ -383,7 +383,7 @@ class ctrlGrl extends Controller
 
     public  function     autoFindClasf( Request $request  )
     {
-        $qry = \DB::connection('dblogistica')-> select(' exec spLogGetDatosTmp ?,?,?,? ',array ('CLASF','','2017'," where replace( cod,'.','')  like '".str_replace ('.','', $request->term )."%' "));
+        $qry = \DB::connection('dblogistica')-> select(' exec spLogGetDatosTmp ?,?,?,? ',array ('CLASF','','2019'," where replace( cod,'.','')  like '".str_replace ('.','', $request->term )."%' "));
         $result = [];
         foreach($qry as $und) {
             $result[] = array('label' => $und->Cod,'value' => $und->ID );

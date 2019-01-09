@@ -16,12 +16,12 @@
 
             <div class="ribbon-button ribbon-button-large"  id="btnMainLogAnio" >
             <span class="button-title">Año de <br/>Ejecución</span>
-            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconAnio.png')); ?>" />
+            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconAnios.png')); ?>" />
             </div>
 
             <div class="ribbon-button ribbon-button-large " id="btnMainLogPass">
             <span class="button-title">Cambiar<br/>Contraseña</span>
-            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPass.png')); ?>" />
+            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPassword.png')); ?>" />
             </div>
             <!--
             <div class="ribbon-button ribbon-button-large " id="btnMainLogCal">

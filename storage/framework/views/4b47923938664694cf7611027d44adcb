@@ -1,0 +1,28 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width: 15px">Nro</th>
+            <th>Producto</th>
+            <th>Cant</th>
+            <th>Und</th>
+            <th>Marca</th>
+            <th>Precio</th>
+            <th>Costo</th>
+            <th>Clasif</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($products as $key=>$item): ?>
+            <tr>
+                <td><?php echo e($key + 1); ?></td>
+                <td><?php echo e(trim($item->ocdProd).': '.trim($item->cdtEspecif)); ?></td>
+                <td><?php echo e($item->cdtCant); ?></td>
+                <td><?php echo e($item->ocdUnd); ?></td>
+                <td><?php echo e($item->cdtMarca); ?></td>
+                <td><?php echo e($item->cdtPrecio); ?></td>
+                <td><?php echo e($item->cdtCant * $item->cdtPrecio); ?></td>
+                <td><?php echo e(trim($item->ocdClsf)); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

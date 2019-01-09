@@ -22,7 +22,7 @@ body
 	cursor: default;
 	font-size: 8pt;
 	padding-top: 10px;
-	background-color: #eaedf1;
+	background-color: #3d6cac;
 	border-bottom: 1px solid #8b9097;
 	-webkit-box-shadow: #8b9097 0px 1px 3px;
 	-moz-box-shadow: #8b9097 0px 1px 3px;
@@ -63,7 +63,7 @@ body
 	margin: 0 5px;
 	padding: 5px 10px;
 	font-size: 8pt;
-	color: #444; /*border: 1px solid #eaedf1;*/
+	color: #ffffff; /*border: 1px solid #eaedf1;*/
 	border-bottom: 1px solid #b6babf;
 	-webkit-border-radius: 4px 4px 0px 0px;
 	-moz-border-radius: 4px 4px 0px 0px;
@@ -83,6 +83,7 @@ body
 	border: 1px solid #b6babf;
 	margin: -1px 4px;
 	cursor: pointer;
+	color: #000;
 }
 
 #ribbon.backstage .ribbon-tab-header
@@ -98,6 +99,7 @@ body
 	border-bottom: 1px solid #fff;
 	cursor: default;
 	z-index: 45;
+	color: #000;
 }
 
 #ribbon .ribbon-tab-header.file
