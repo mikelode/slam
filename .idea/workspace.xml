@@ -2,54 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/BANNER.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/azul.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/azul02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/banner-vilca.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/green02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/rasaspata-vilcabamba.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/img/vilca.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/evento1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logoMDV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsApp2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsApp2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevCdr2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevCdr2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevCtz2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevCtz2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevReq2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevReq2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/ribbon/ribbon/ribbon.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/ribbon/ribbon/ribbon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCdr.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCdr.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCtz.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCtz.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucAdd.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucAdd.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucAdj.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucAdj.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/7dd510dd62ae7bcca87f81c6ed7d499d346e8ffa" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/15d6efeac2c33166cf22c99017179a1b" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/15d6efeac2c33166cf22c99017179a1b" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/3927fd780de58c25619538a1c97e0689" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3927fd780de58c25619538a1c97e0689" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/41fca8ac1da9a4bbd722d29a06ba98a0" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/41fca8ac1da9a4bbd722d29a06ba98a0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/44d180d19b3efaa72597d726e37aafd5" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/44d180d19b3efaa72597d726e37aafd5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b30c25ad55c4f03b4ff0ee663fe65fc" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b30c25ad55c4f03b4ff0ee663fe65fc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/709323b706b5a0c4777ea4063769b8d4" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/709323b706b5a0c4777ea4063769b8d4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/9957852b663e824d8f3ec200a76b8447" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9957852b663e824d8f3ec200a76b8447" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/a89e75d990e2e95293de8818520067f7" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a89e75d990e2e95293de8818520067f7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/b2f0e641ee94b6eb9df1f4bd87400ccb" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/b2f0e641ee94b6eb9df1f4bd87400ccb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/b52afd552ca8cc9a8b326a2e4fb6b11f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/b52afd552ca8cc9a8b326a2e4fb6b11f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/dc1cd84c496c357d9c8ddfb0f448ca4e" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/dc1cd84c496c357d9c8ddfb0f448ca4e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/de8336d690422e2ed6c8d25749a962ea" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/de8336d690422e2ed6c8d25749a962ea" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/ec8cd21aa128760ed2e75eb3ec70d085" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/ec8cd21aa128760ed2e75eb3ec70d085" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/8d9a8d716601d4c63b94508fb6af8883447f9da6" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/8d9a8d716601d4c63b94508fb6af8883447f9da6" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,12 +29,13 @@
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.35" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key=".env file" value="25" />
+          <entry key=".env file" value="29" />
           <entry key="Blade" value="4215" />
           <entry key="CSS" value="24" />
           <entry key="HTML" value="2" />
@@ -91,7 +45,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key=".env file" value="8" />
+          <entry key=".env file" value="9" />
           <entry key="Blade" value="65" />
           <entry key="CSS" value="3" />
           <entry key="JavaScript" value="21" />
@@ -112,7 +66,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
+            <state relative-caret-position="3344">
               <caret line="218" column="67" selection-start-line="218" selection-start-column="56" selection-end-line="218" selection-end-column="67" />
             </state>
           </provider>
@@ -121,14 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
+            <state relative-caret-position="9536">
               <caret line="609" column="125" selection-start-line="609" selection-start-column="125" selection-end-line="609" selection-end-column="125" />
-              <folding>
-                <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -136,17 +84,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/jsDevMenu2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
+            <state relative-caret-position="5520">
               <caret line="345" column="44" selection-start-line="345" selection-start-column="44" selection-end-line="345" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/jsApp2.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="379">
-              <caret line="876" column="53" lean-forward="true" selection-start-line="876" selection-start-column="53" selection-end-line="876" selection-end-column="53" />
+              <caret line="876" column="53" selection-start-line="876" selection-start-column="53" selection-end-line="876" selection-end-column="53" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
@@ -332,10 +280,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
+            <state relative-caret-position="816">
               <caret line="54" column="51" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
             </state>
           </provider>
@@ -344,7 +301,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
+            <state relative-caret-position="6688">
               <caret line="418" column="20" selection-start-line="418" selection-start-column="20" selection-end-line="418" selection-end-column="20" />
             </state>
           </provider>
@@ -353,16 +310,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
+            <state relative-caret-position="2656">
               <caret line="166" column="95" selection-start-line="166" selection-start-column="95" selection-end-line="166" selection-end-column="95" />
-              <folding>
-                <element signature="n#style#0;n#button#0;n#td#11;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#tfoot#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#tfoot#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#2;n#tr#0;n#tfoot#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#2;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#td#12;n#tr#0;n#tbody#2;n#table#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -370,7 +319,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
+            <state relative-caret-position="448">
               <caret line="28" column="52" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
             </state>
           </provider>
@@ -379,11 +328,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/jsDevCdr2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="1285" column="216" lean-forward="true" selection-start-line="1285" selection-start-column="216" selection-end-line="1285" selection-end-column="216" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="20560">
+              <caret line="1285" column="216" selection-start-line="1285" selection-start-column="216" selection-end-line="1285" selection-end-column="216" />
             </state>
           </provider>
         </entry>
@@ -496,10 +442,10 @@
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucAdj.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/public/js/jsApp2.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" />
+        <option value="$PROJECT_DIR$/.env" />
       </list>
     </option>
   </component>
@@ -594,7 +540,7 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="65" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -754,16 +700,18 @@
       <workItem from="1546822223642" duration="2464000" />
       <workItem from="1546973394874" duration="17194000" />
       <workItem from="1547128608253" duration="101263000" />
+      <workItem from="1547472218486" duration="1207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134332000" />
+    <option name="totallyTimeSpent" value="135539000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1624161" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16442953" />
       <window_info id="Structure" order="1" weight="0.24966443" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -923,9 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="204" column="36" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -933,57 +878,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="353" column="13" lean-forward="true" selection-start-line="353" selection-start-column="13" selection-end-line="353" selection-end-column="13" />
-          <folding>
-            <element signature="e#3581#3607#0#HTML" expanded="true" />
-            <element signature="e#3630#3656#0#HTML" expanded="true" />
-            <element signature="e#3671#3699#0#HTML" expanded="true" />
-            <element signature="e#3891#3916#0#HTML" expanded="true" />
-            <element signature="e#4027#4055#0#HTML" expanded="true" />
-            <element signature="e#4174#4262#0#HTML" expanded="true" />
-            <element signature="e#4399#4423#0#HTML" expanded="true" />
-            <element signature="e#4657#4816#0#HTML" expanded="true" />
-            <element signature="e#5083#5111#0#HTML" expanded="true" />
-            <element signature="e#5372#5432#0#HTML" expanded="true" />
-            <element signature="e#5799#5824#0#HTML" expanded="true" />
-            <element signature="e#6123#6151#0#HTML" expanded="true" />
-            <element signature="e#6237#6260#0#HTML" expanded="true" />
-            <element signature="e#6495#6520#0#HTML" expanded="true" />
-            <element signature="e#6559#6622#0#HTML" expanded="true" />
-            <element signature="e#6670#6694#0#HTML" expanded="true" />
-            <element signature="e#6545#6586#0#HTML" expanded="true" />
-            <element signature="e#7272#7318#0#HTML" expanded="true" />
-            <element signature="e#7409#7452#0#HTML" expanded="true" />
-            <element signature="e#7798#7834#0#HTML" expanded="true" />
-            <element signature="e#7915#7951#0#HTML" expanded="true" />
-            <element signature="e#7983#8057#0#HTML" expanded="true" />
-            <element signature="e#8127#8163#0#HTML" expanded="true" />
-            <element signature="e#8248#8284#0#HTML" expanded="true" />
-            <element signature="e#8316#8391#0#HTML" expanded="true" />
-            <element signature="e#8871#8899#0#HTML" expanded="true" />
-            <element signature="e#9100#9146#0#HTML" expanded="true" />
-            <element signature="e#7683#7706#0#HTML" expanded="true" />
-            <element signature="e#9461#9507#0#HTML" expanded="true" />
-            <element signature="e#9473#9496#0#HTML" expanded="true" />
-            <element signature="e#9824#9870#0#HTML" expanded="true" />
-            <element signature="e#9755#9778#0#HTML" expanded="true" />
-            <element signature="e#10189#10235#0#HTML" expanded="true" />
-            <element signature="e#8283#8307#0#HTML" expanded="true" />
-            <element signature="e#8458#8499#0#HTML" expanded="true" />
-            <element signature="e#8931#8952#0#HTML" expanded="true" />
-            <element signature="e#9265#9289#0#HTML" expanded="true" />
-            <element signature="e#11854#11875#0#HTML" expanded="true" />
-            <element signature="e#11888#11911#0#HTML" expanded="true" />
-            <element signature="e#9798#9838#0#HTML" expanded="true" />
-            <element signature="e#10955#11016#0#HTML" expanded="true" />
-            <element signature="e#14195#14370#0#HTML" expanded="true" />
-            <element signature="e#12993#13017#0#HTML" expanded="true" />
-            <element signature="e#13072#13145#0#HTML" expanded="true" />
-            <element signature="e#13243#13286#0#HTML" expanded="true" />
-            <element signature="e#13476#13538#0#HTML" expanded="true" />
-            <element signature="e#13815#13840#0#HTML" expanded="true" />
-            <element signature="e#14024#14061#0#HTML" expanded="true" />
-            <element signature="e#14173#14215#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1054,10 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="27" column="62" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="62" />
-          <folding>
-            <element signature="e#2165#2240#0#HTML" expanded="true" />
-            <element signature="e#2318#2393#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1098,12 +988,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
           <caret line="235" column="48" selection-start-line="235" selection-start-column="48" selection-end-line="235" selection-end-column="48" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#td#0;n#tr#1;n#table#0;n#td#2;n#tr#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#8;n#tr#0;n#tfoot#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#4;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1118,48 +1002,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#103#110#1" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#212#218#0" expanded="true" />
-            <element signature="e#219#225#0" expanded="true" />
-            <element signature="e#226#232#0" expanded="true" />
-            <element signature="e#233#239#0" expanded="true" />
-            <element signature="e#240#246#0" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="e#24#30#0" expanded="true" />
-            <element signature="e#31#37#0" expanded="true" />
-            <element signature="e#38#44#0" expanded="true" />
-            <element signature="e#45#51#0" expanded="true" />
-            <element signature="e#54#60#0" expanded="true" />
-            <element signature="e#61#67#0" expanded="true" />
-            <element signature="e#69#75#0" expanded="true" />
-            <element signature="e#76#82#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="e#19#25#0" expanded="true" />
-            <element signature="e#26#32#0" expanded="true" />
-            <element signature="e#34#40#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#!!top" expanded="true" />
-            <element signature="e#5#11#0" expanded="true" />
-            <element signature="e#12#18#0" expanded="true" />
-            <element signature="e#19#25#0" expanded="true" />
-            <element signature="e#26#32#0" expanded="true" />
-            <element signature="e#33#39#0" expanded="true" />
-            <element signature="e#40#46#0" expanded="true" />
-            <element signature="e#48#54#0" expanded="true" />
-            <element signature="e#55#61#0" expanded="true" />
-            <element signature="e#64#70#0" expanded="true" />
-            <element signature="e#71#77#0" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1174,48 +1016,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
           <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#103#110#1" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#212#218#0" expanded="true" />
-            <element signature="e#219#225#0" expanded="true" />
-            <element signature="e#226#232#0" expanded="true" />
-            <element signature="e#233#239#0" expanded="true" />
-            <element signature="e#240#246#0" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="e#24#30#0" expanded="true" />
-            <element signature="e#31#37#0" expanded="true" />
-            <element signature="e#38#44#0" expanded="true" />
-            <element signature="e#45#51#0" expanded="true" />
-            <element signature="e#54#60#0" expanded="true" />
-            <element signature="e#61#67#0" expanded="true" />
-            <element signature="e#69#75#0" expanded="true" />
-            <element signature="e#76#82#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="e#19#25#0" expanded="true" />
-            <element signature="e#26#32#0" expanded="true" />
-            <element signature="e#34#40#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#!!top" expanded="true" />
-            <element signature="e#5#11#0" expanded="true" />
-            <element signature="e#12#18#0" expanded="true" />
-            <element signature="e#19#25#0" expanded="true" />
-            <element signature="e#26#32#0" expanded="true" />
-            <element signature="e#33#39#0" expanded="true" />
-            <element signature="e#40#46#0" expanded="true" />
-            <element signature="e#48#54#0" expanded="true" />
-            <element signature="e#55#61#0" expanded="true" />
-            <element signature="e#64#70#0" expanded="true" />
-            <element signature="e#71#77#0" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1223,64 +1023,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
           <caret line="42" column="82" selection-start-line="42" selection-start-column="82" selection-end-line="42" selection-end-column="82" />
-          <folding>
-            <element signature="e#87#108#0#HTML" expanded="true" />
-            <element signature="e#220#244#0#HTML" expanded="true" />
-            <element signature="e#2426#2447#0#HTML" expanded="true" />
-            <element signature="e#2485#2525#0#HTML" expanded="true" />
-            <element signature="e#2642#2667#0#HTML" expanded="true" />
-            <element signature="e#2584#2627#0#HTML" expanded="true" />
-            <element signature="e#2847#2872#0#HTML" expanded="true" />
-            <element signature="e#3012#3037#0#HTML" expanded="true" />
-            <element signature="e#3167#3192#0#HTML" expanded="true" />
-            <element signature="e#3421#3446#0#HTML" expanded="true" />
-            <element signature="e#3684#3709#0#HTML" expanded="true" />
-            <element signature="e#3937#3962#0#HTML" expanded="true" />
-            <element signature="e#4200#4225#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="166" column="95" selection-start-line="166" selection-start-column="95" selection-end-line="166" selection-end-column="95" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#td#11;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tfoot#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#tfoot#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#0;n#tfoot#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#2;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#12;n#tr#0;n#tbody#2;n#table#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="28" column="52" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="54" column="51" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="418" column="20" selection-start-line="418" selection-start-column="20" selection-end-line="418" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1298,47 +1040,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/jsDevCdr2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="1285" column="216" lean-forward="true" selection-start-line="1285" selection-start-column="216" selection-end-line="1285" selection-end-column="216" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/jsDevMenu2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="345" column="44" selection-start-line="345" selection-start-column="44" selection-end-line="345" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
+        <state relative-caret-position="3344">
           <caret line="218" column="67" selection-start-line="218" selection-start-column="56" selection-end-line="218" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
+        <state relative-caret-position="9536">
           <caret line="609" column="125" selection-start-line="609" selection-start-column="125" selection-end-line="609" selection-end-column="125" />
-          <folding>
-            <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jsDevMenu2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5520">
+          <caret line="345" column="44" selection-start-line="345" selection-start-column="44" selection-end-line="345" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="54" column="51" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6688">
+          <caret line="418" column="20" selection-start-line="418" selection-start-column="20" selection-end-line="418" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2656">
+          <caret line="166" column="95" selection-start-line="166" selection-start-column="95" selection-end-line="166" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="28" column="52" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jsDevCdr2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20560">
+          <caret line="1285" column="216" selection-start-line="1285" selection-start-column="216" selection-end-line="1285" selection-end-column="216" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/jsApp2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="379">
-          <caret line="876" column="53" lean-forward="true" selection-start-line="876" selection-start-column="53" selection-end-line="876" selection-end-column="53" />
+          <caret line="876" column="53" selection-start-line="876" selection-start-column="53" selection-end-line="876" selection-end-column="53" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
@@ -1520,6 +1281,13 @@
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
         </state>
       </provider>
     </entry>
