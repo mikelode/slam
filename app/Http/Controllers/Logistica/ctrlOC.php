@@ -136,6 +136,15 @@ class ctrlOC extends Controller
     {
         $ReturnData["Usr"]=Auth::user()->usrID ;
         $ReturnData["OC"] = \DB::select('exec spLogGetOC ?,?,?', array(  ' top 1 ',$anio, " and ocid = '".$id."' " ));
+
+        $txtcondicion = trim(str_replace('</p>', '</p>|',$ReturnData["OC"][0]->ocCondicion));
+
+        if (count(explode('|',$txtcondicion)) == 1){
+            $txtcondicion = trim(str_replace('<br>', '<br>|',$ReturnData["OC"][0]->ocCondicion));
+        }
+        $txtcondicion = explode('|',$txtcondicion);
+
+//        dd($txtcondicion);
         
         if($ReturnData["OC"][0]->ocEtapa =="RESERVADO")
         {
@@ -143,19 +152,20 @@ class ctrlOC extends Controller
         }
         else
         {
-        $ReturnData["OCDll"] = \DB::select('exec spLogGetOCD ?',array(  $id ));
+            $ReturnData["OCDll"] = \DB::select('exec spLogGetOCD ?',array(  $id ));
 
-        $ReturnData["prCant"] = \DB::select('exec spLogGetOCSub  ?,?',array('CANT',  $id ));
-            if ($ReturnData["prCant"][0]->Cant>1)
-            {
-                $ReturnData["prSum"] = \DB::select('exec spLogGetOCSub  ?,?',array('SUM',  $id ));
-                $ReturnData["prSecFun"] = \DB::select('exec spLogGetOCSub  ?,?',array('SFUN',  $id ));
-            }
+            $ReturnData["prCant"] = \DB::select('exec spLogGetOCSub  ?,?',array('CANT',  $id ));
+                if ($ReturnData["prCant"][0]->Cant>1)
+                {
+                    $ReturnData["prSum"] = \DB::select('exec spLogGetOCSub  ?,?',array('SUM',  $id ));
+                    $ReturnData["prSecFun"] = \DB::select('exec spLogGetOCSub  ?,?',array('SFUN',  $id ));
+                }
 
-        $ReturnData["OCAbsClasf"] = \DB::select('exec spLogGetOCAbsClasf ?',array(  $id ));
-        $ReturnData["RUC"] = \DB::select('exec spLogGetRuc ?',array(  " where ruc='".$ReturnData["OC"][0]->ocRUC ."'" ));
-        $v = view("logistica.rptAdqOCom",compact('ReturnData'))->render();
+            $ReturnData["OCAbsClasf"] = \DB::select('exec spLogGetOCAbsClasf ?',array(  $id ));
+            $ReturnData["RUC"] = \DB::select('exec spLogGetRuc ?',array(  " where ruc='".$ReturnData["OC"][0]->ocRUC ."'" ));
+            $v = view("logistica.rptAdqOCom",compact('ReturnData','txtcondicion'))->render();
         }
+
         $pdf=\App::make('dompdf.wrapper');
         $pdf->loadHTML($v)->setPaper('letter')->setOrientation('portrait')->setWarnings(false);
         return $pdf->stream();

@@ -3,16 +3,14 @@
 <head>
  <style>
 
- @page { margin: 20px 15px 100px 25px; padding-bottom:85px;  }
+ @page { margin: 40px 25px 190px 35px;  }
 
 .header {
-  height: 265px;
   position: fixed;
   left: 0px;
   top: 0px;
   right: 0px;
-  margin-bottom: 50px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Arial;
   /*font-family: "Times New Roman";*/
 }
 
@@ -23,13 +21,11 @@
 }
 .footer {
   position: fixed;
-  bottom: -95;
+  bottom: -3cm;
   width: 100%;
   font-size: 10px;
   display: inline-block;
-  height: 135;
-
-  
+  height: 3cm;
   align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -65,12 +61,11 @@ td.dll {
    border-style:solid;
    border-width:1px;
    border-color:#444444;
-   padding: 0px;
-   font-size: 12px;
+   padding: 2px 0 2px 0;
+   font-size: 11.5px;
    text-align: center;
    font-family:  Arial, sans-serif;
   /*font-family: "Times New Roman"*/
-   width: 10px;
  }
 
  td.lefts {
@@ -131,326 +126,407 @@ td.lineB {
 }
 
 .info {
-   font-size: 12px;
    border: 2px #999 solid;
-   padding: 0px 15px;
-   margin: 0px 0px 0px -5px;
+   padding: 0px 0px 0px 10px;
+   /*margin: 0px 0px 0px -5px;*/
    background: #FEFEFE;
    border-radius: 10px;
    font-family: Arial, sans-serif;
-   /*font-family: "Times New Roman";*/
-   text-align: center;
-   font-weight:normal;
 }
 
 .labels{
   font-size: 11px;
   font-weight: normal;
+    font-weight: bold;
+}
+
+.container{
 }
 </style>
 
-<title>Reporte de Orden de Servicio</title>
+<title>Orden de Servicio</title>
 </head>
 
-<body style="margin-top: 275px;">
+<body style="padding-top: 257px;">
 
   <div class="header" style="font-size: 11px ; ">
     <table>
     <tr valign="top">
-       <td>
-              <div class="logo">
-                <img src="{{ config('slam.APP_LOGO') }}" width="85px" height="85" style="margin-left: 0px;margin-top:-20px">
-              </div>
+       <td width="170px">
+          <div class="logo">
+            <img src="{{ config('slam.APP_LOGO') }}" width="120px" height="85" style="margin-left: 0px;">
+          </div>
        </td>
-       <td >
-               <table style="border:0px solid #ccc">
+       <td width="440px">
+           <table style="border:0px solid #ccc">
               <tr>
-              <td>
-                  <table class="entidad" align="left" style="margin-left:-20px ; margin-top:-20px"  >                   
-                   <tr ><td class="entidadMuni"  align="left" style="font-size:13px;" width="280px">  &nbsp;  &nbsp;    {{ config('slam.APP_ENTIDAD') }}    <td>   </tr>
-                   <tr><td class="entidadMuni" style="font-size: 12px;"  align="left" width="280px" >   &nbsp;  &nbsp;   RUC:  {{ config('slam.ENTIDAD_RUC') }}  </td></tr>
-                   <tr><td align="center" class="centers"> <div style="width: 280px;"  > <div class="titulo entidadMuni"  style="margin-left: 50px;  width: 280px; border-radius: 15px;font-size:15px;font-weight: bold; font-family: Helvetica, Arial , sans-serif ; margin-top:2px; MARGIN-bottom:-10px;">   ORDEN DE COMPRA <br> GUIA DE INTERNAMIENTO   </div></div></td></tr>
+              <td align="center">
+                  <table class="entidad" style="margin-top:-10px"  >
+                   <tr>
+                       <td class="entidadMuni" align="center" style="font-size:18px; font-family: Helvetica, Arial , sans-serif ; font-weight: normal">
+                       {{ config('slam.APP_ENTIDAD') }}
+                       <td>
+                   </tr>
+                   <tr>
+                       <td class="entidadMuni" align="center" style="font-size: 12px;"  align="left" >
+                           RUC:  {{ config('slam.ENTIDAD_RUC') }}
+                       </td>
+                   </tr>
+                   <tr>
+                       <td align="center" class="centers">
+                           <div >
+                               <div class="titulo entidadMuni"  style="border-radius: 15px;font-size:18px;font-weight: bold; font-family: Helvetica, Arial , sans-serif ; margin-top:2px; MARGIN-bottom:-10px;">
+                                   ORDEN DE COMPRA <br> GUIA DE INTERNAMIENTO
+                               </div>
+                           </div>
+                       </td>
+                   </tr>
                    </table>
 
               </td>
-              <td>
-                    <div style ="font-size:12px; font-weight:bold; padding:3px;border:2px solid #444; width:165px; height:65px; border-radius: 10px ;margin-left:-15px; margin-top:-10px;margin-right:10px;">
-                    <table cellpadding="4px">
-                    <tr><td> REG.SIAF:</td><td> .......................  </td> </tr>
-                    <tr><td> CERTIFIC:</td><td>   .......................  </td></tr>
-                    <tr><td> FECHA:</td><td>    ...../....../.......... </td></tr>
-                    </table>
-                    </div>
-              </td>
               </tr>
-              </table>                  
-				   
-
+          </table>
        </td>
-       <td>
-            <div class="version" align="LEFT"  >
-                <div style="margin-left: 0px; margin-top: -12px;" >
-                <div   class="titulo"             style=" background:#fff; border: 0px #444 solid; border-radius: 8px;width: 130px ; height: 20px; padding-top: 5px; font-size: 14px ;   padding-bottom: 0px; font-family: Helvetica" > Fecha : <strong>{{ $ReturnData["OC"][0]->ocFecha }} </strong></div>
-               <br>
-                <div class="titulo" style="width: 120px; font-weight: bold; font-size: 20px; border-color: #555; border-radius: 10px; margin-top:-5px;"  >{{ $ReturnData["OC"][0]->ocCodigo }}</div>					
-                </div>
-
-              </div>
+       <td width="170px">
+           <table border="1" cellpadding="5px" style="margin: -15px 0 0 0;">
+               <tr>
+                   <td align="center">Nro</td>
+                   <td align="center">Fecha</td>
+               </tr>
+               <tr>
+                   <td align="center">
+                       <div style="font-weight: bold; font-size: 20px; margin-top:-5px;"  >
+                       {{ explode('-',$ReturnData["OC"][0]->ocCodigo)[1]  }}
+                       </div>
+                   </td>
+                   <td align="center">
+                       {{ $ReturnData["OC"][0]->ocFecha }}
+                   </td>
+               </tr>
+           </table>
+           <table style="margin-top: 10px;" cellpadding="4px">
+               <tr><td> REG.SIAF:</td><td> .......................  </td> </tr>
+               <tr><td> CERTIFIC:</td><td>   .......................  </td></tr>
+           </table>
         </td>
   </tr>
   </table>
-
-            
-            <div class="info" style="margin-top:0px;">
-            
-            <table >
-        <tr ><td   colspan="2">   {{  $ReturnData["OC"][0]->ocMotivo   }}</td></tr>       
-			  <tr ><td style="font-size:12px; font-weight:bold;" > <label class="labels"  > RAZON SOCIAL: </label>  {{  $ReturnData["OC"][0]->ocRazon    }}  </td><td> <label class="labels" > RUC : </label>  <label CLASS="labels" style="font-size: 16px; font-weight:bold;">   {{  $ReturnData["OC"][0]->ocRUC    }}   </label>  </td></tr>
-        <tr ><td  colspan="2" style="font-size:11px; font-weight:normal;"> <label class="labels" >  DIRECCION: </label> {{  $ReturnData["RUC"][0]->Direccion    }}    </td>  </tr>
-				<tr ><td  colspan="2" style="font-size:11px; font-weight:normal;"> <label class="labels" >  GLOSA: </label> {{  $ReturnData["OC"][0]->ocGlosa    }}    </td>  </tr>
-        @if (strlen(  $ReturnData["OC"][0]->ocMotivo ) < 4	)
-				<tr ><td  colspan="2" > <label class="labels">  LUGAR ENTREGA :</label> <strong>   {{  $ReturnData["OC"][0]->ocLugar  }} </strong></td> </tr> 
-				@endif
-        <tr > <td colspan="2"> Factura a Nombre de : <label class="labels"> {{ config('slam.APP_ENTIDAD') }} &nbsp; &nbsp; &nbsp; &nbsp;  CON RUC : </label> <strong> {{ config('slam.ENTIDAD_RUC') }} </strong>  </td> </tr>
-            </table>
-            </div>
-            <div class="info">
-            <table >
-                <tr ><td  STYLE="font-size:11px;"> <label class="labels"> DEPENDENCIA : </label><strong> ( {{  $ReturnData["OC"][0]->ocDepCod    }}  ) {{  $ReturnData["OC"][0]->ocDepDsc    }}</strong>  </td></tr>
-                 @if ( $ReturnData["prCant"][0]->Cant  >1 ) 
-                <tr >
-                <td  STYLE="font-size:11px;"> <label class="labels"> SEC FUN : </label>  .
-                <strong> 
-
-                @foreach($ReturnData["prSecFun"] as $key=>$dll)
-                      <b> -  ( SEC. FUN =   {{ $dll->SecFun  }} ) </b> 
-                 @endforeach  
-                </strong> 
-                 </td>
-                 </tr>
-                @else 
-                <tr ><td  STYLE="font-size:11px;"> <label class="labels"> SEC FUN : </label>  <strong> ( {{  $ReturnData["OC"][0]->ocSecFunCod    }}  ) {{  $ReturnData["OC"][0]->ocSecFunDsc    }}</strong>  </td></tr>
-                @endif
-
-
-                <tr ><td  STYLE="font-size:11px;"> <label class="labels"> RUBRO : </label> <strong> ( {{  $ReturnData["OC"][0]->ocRubroCod    }} ) {{  $ReturnData["OC"][0]->ocRubroDsc    }}</strong> </td></tr>
-                <tr ><td  STYLE="font-size:11px;"> <label class="labels"> REFERENCIA : </label> <strong>  {{  $ReturnData["OC"][0]->ocRef    }} </strong> </td></tr>
-            </table>
-            </div>
-
- </div>
- <div class="footer" align="center"  style="font-size: 11px; margin-top:0px;">   
-
-          <table border="1">
-                    <thead>
-                    <tr style="background: #ccc"> <th width="210px" align="center"> JEFE DE ADQUISICIONES </th> <th width="210px"  align="center"> JEFE DE LOGISTICA </th>  <th width="270px" align="center">    JEFE DE ALMACEN CENTRAL </th>  </tr>
-                    </thead>
-                    <tbody>
-                    <tr valign="bottom"> <td height="50px" align="center"> </td> <td   align="center"> </td>  <td align="center">
-                        <table>
-                        <tr ><td width="15px"> </td>     <td  style="height: 40px;"> <strong>RECIBI CONFORME</strong></td> <td >  </td></tr>
-                        <tr> <td width="15px"> </td>    <td > ......../........../.............. </td>  <td >    ............................................. </td></tr>
-                        </table>
-                    </td>  </tr>
-                    <tr><td colspan="3" style="font-size: 9px;">
-                     NOTA: Esta Orden es nula sin la firma del Jefe de Abastecimiento; cada Orden de Compra debe tener su guía de Remisión y su factura correpondiente en original y copia, luego remitirlas a la Unidad de Almacén y Abastecimientos. Nos reservamos el derecho de devolver los  Bienes que no estén de acuerdo a nuestras especificaciones, en conformidad  a la Ley 30225 y su Reglamento y las modificatorias.
-                     </td></tr>
-                    </tbody>
-                    </table>
-
-          <hr style="width: auto; " >
-          <span style="font-size: 9px;"> {{ config('slam.ENTIDAD_PIE') }}  -    Página <span class="pagenum"></span></span>
- </div>
-
-
-
-             <table  style="font-size: 9px; margin-left:-5px " width="100%" >
-             <THEAD>
-             <tr>
-              <th ALIGN="center" class="dll" width="10px">Nº</th>
-              <th ALIGN="center" class="dll" width="40px">CANT</th>
-              <th ALIGN="center" class="dll" width="20px">UND</th>
-              <th ALIGN="center" class="dll" width="60px">CLASF</th>
-              <th class="dll"  width="380px"  > DESCRIPCION  </th>
-              <th ALIGN="center"  class="dll" width="80px" >MARCA</th>
-              <th ALIGN="center" class="dll" width="55px">P. UNT</th>
-              <th ALIGN="center" class="dll" width="65px">TOTAL</th>
-             </tr>
-              </THEAD>
-              <tbody>
-              <?php  $Total=0; $Item =1 ;?>
-              @foreach($ReturnData["OCDll"] as $key=>$OSDll)
-              <tr class="dll">
-                   <td ALIGN="center" class="dll"><?php echo $Item++ ;?></td>
-                   <td ALIGN="center" class="dll" style="font-weight:normal;"> <strong> {{ number_format ( (float)$OSDll->dllCant ,2,'.',',' )      }}</strong></td>
-                   <td ALIGN="center" class="dll" style="font-weight:normal;"> <strong>  {{ $OSDll->dllUndAbrv  }}</strong></td>
-                   <td ALIGN="center" class="dll" style="font-weight:normal;" ><strong>  {{ $OSDll->dllClasfCod }}</strong></td>
-                   <td ALIGN="left" class="dll lefts" style="padding-left: 6px; font-size:12px;  font-weight:bold;"  >  <?php echo strtoupper ($OSDll->dllProdDsc )." - ".  strtoupper ($OSDll->dllProdEspf ) ?> </td>
-                   <td ALIGN="center" class="dll " style="font-weight:normal;font-size:11px;"> <strong>  {{ $OSDll->dllMarca   }}</strong></td>
-                   <td ALIGN="right" class="dll rights" style="font-weight:normal; font-size:14px;" >   <?php  echo floatval( $OSDll->dllPrecio ) ;?>    </td>
-                   <td ALIGN="right" class="dll rights" style="font-weight:normal;font-size:14px;">     <?php echo  number_format ($OSDll->dllTotal   ,2);?></td>
+      <div class="info" style="margin-bottom: 2px;">
+          <table style="table-layout: fixed;" width="100%">
+              <tr>
+                  <td colspan="6">{{  $ReturnData["OC"][0]->ocMotivo   }}</td>
               </tr>
-			   <?php  $Condicion=$OSDll->dllTotal;  ?>
-               <?php  $Total+=$OSDll->dllTotal;  ?>
-              @endforeach
-
-			  <tr class="dll">
-                   <td ALIGN="center" class="dll" colspan="4"></td>
-                   @if ( $ReturnData["prCant"][0]->Cant  >1 )                        
-                    <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >
-                                     <strong>Resumen General ===============  ============= ========== <strong><BR>
-                                           @foreach($ReturnData["prSum"] as $key=>$dll)
-                                             <span style="font-size: 12.5px"> <strong>( SECFUN. - {{ $dll->SecFun }} ) -   {{ $dll->Clasf }}  = S/.  {{ $dll->Total }} </strong></span><br>
-                                           @endforeach
-                              
-                            
-                    @else
-                    <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  > =============== ============= ========== 
-                    @endif          
-                   </td>
-                   <td ALIGN="center" class="dll" colspan="3">  </td>
+              <tr>
+                  <td width="15%"><label class="labels"> RAZON SOCIAL</label>   </td>
+                  <td width="1%">:</td>
+                  <td style="overflow: hidden;">
+                      <label class="labels" style="font-size: 14px; font-weight:bold; white-space: nowrap;">
+                          {{  $ReturnData["OC"][0]->ocRazon    }}</label>
+                  </td>
+                  <td width="5%" align="right">
+                      <label class="labels"> RUC </label>
+                  </td>
+                  <td width="1%">:</td>
+                  <td width="15%">
+                      <label class="labels" style="font-size: 16px; font-weight:bold;"> {{  $ReturnData["OC"][0]->ocRUC    }}   </label>
+                  </td>
               </tr>
-			 </tbody>
-			 </table>
-
-
-
-      @if(  $ReturnData["OC"][0]->ocTipoProcID=="009"  &&   $ReturnData["OC"][0]->ocIGV=="SI")    
-
-        <table  style="font-size: 9px; margin-left:-5px ; margin-top:-13px;" width="100%"  >
-        <thead>
-         <tr>
-          <th ALIGN="center" width="500px">-</th>
-          <th ALIGN="center" width="60px">-</th>
-         </tr> 
-        </thead>
-        <tbody >
-                <tr class="dll">
-                               
-                         <td  class="dll rights" ALIGN="right" >SubTotal :  </td>
-                         <td   class="dll rights" ALIGN="right" style="font-weight:normal;font-size:14px;" > {{$ReturnData["OC"][0]->ocMonto}}</td>
-                </tr>
-
-                <tr class="dll">
-                               
-                         <td  class="dll rights" ALIGN="right"  >Descuento :  </td>
-                         <td ALIGN="center "  class="dll rights  " style="font-weight:normal;font-size:14px;"> {{ (float) $ReturnData["OC"][0]->ocDescuento }} </td>
-                </tr>
-                <tr class="dll">
-                                  
-                                  <td  class="dll rights" ALIGN="right"  >Envio :  </td>
-                         <td ALIGN="center"  class="dll rights" style="font-weight:normal;font-size:14px;">   {{  $ReturnData["OC"][0]->ocEnvio}} </td>
-                </tr>
-
-                <tr class="dll">
-                                  
-                                  <td  class="dll rights" ALIGN="right"  >IGV(%) :  </td>
-                         <td ALIGN="center"  class="dll rights" style="font-weight:normal;font-size:14px;">   {{ $ReturnData["OC"][0]->ocTotalIGV}} </td>
-                </tr>
-        <tbody>
+              <tr>
+                  <td style="font-size:11px; font-weight:normal;">
+                      <label class="labels">DIRECCION: </label>    </td>
+                  <td>:</td>
+                  <td colspan="4" style="white-space: nowrap; overflow: hidden;">{{  $ReturnData["RUC"][0]->Direccion    }} </td>
+              </tr>
+              <tr>
+                  <td style="font-size:11px; font-weight:normal;"><label class="labels">
+                          GLOSA</label>     </td>
+                  <td>:</td>
+                  <td colspan="4">
+                      {{  $ReturnData["OC"][0]->ocGlosa    }}
+                  </td>
+              </tr>
+              @if (strlen(  $ReturnData["OC"][0]->ocMotivo ) < 4	)
+                  <tr>
+                      <td style="border-bottom: solid #0f0f0f"><label class="labels"> LUGAR ENTREGA</label>
+                          <strong>   </strong></td>
+                      <td style="border-bottom: solid #0f0f0f">:</td>
+                      <td style="border-bottom: solid #0f0f0f; white-space: nowrap; overflow: hidden;" colspan="4" >
+                          {{  $ReturnData["OC"][0]->ocLugar  }}
+                      </td>
+                  </tr>
+              @endif
+              <tr>
+                  <td colspan="6"> FACTURAR A NOMBRE DE : <label class="labels"> {{ config('slam.APP_ENTIDAD') }}
+                          CON RUC:</label> <strong> {{ config('slam.ENTIDAD_RUC') }} </strong>
+                  </td>
+              </tr>
+          </table>
+      </div>
+    <div class="info">
+        <table width="100%" style="table-layout: fixed;">
+            <tr>
+                <td width="14.8%">
+                    <label class="labels"> DEPENDENCIA </label>
+                </td>
+                <td width="1%">:</td>
+                <td style="white-space: nowrap; overflow: hidden;">( {{  $ReturnData["OC"][0]->ocDepCod    }}  ) {{  $ReturnData["OC"][0]->ocDepDsc    }}</td>
+            </tr>
+            @if ( $ReturnData["prCant"][0]->Cant  >1 )
+            <tr>
+                <td STYLE="font-size:11px;">
+                    <label class="labels"> SEC FUN </label>
+                </td>
+                <td>:</td>
+                <td style="white-space: nowrap; overflow: hidden;">
+                    @foreach($ReturnData["prSecFun"] as $key=>$dll)
+                        <b> -  ( SEC. FUN =   {{ $dll->SecFun  }} ) </b>
+                    @endforeach
+                </td>
+            </tr>
+            @else
+            <tr>
+                <td  STYLE="font-size:11px;">
+                    <label class="labels"> SEC FUN</label>
+                </td>
+                <td>:</td>
+                <td style="white-space: nowrap; overflow: hidden;">( {{  $ReturnData["OC"][0]->ocSecFunCod    }}  ) {{  $ReturnData["OC"][0]->ocSecFunDsc    }}</td>
+            </tr>
+            @endif
+            <tr>
+                <td  STYLE="font-size:11px;">
+                    <label class="labels"> RUBRO </label>
+                </td>
+                <td>:</td>
+                <td style="white-space: nowrap;"> ( {{  $ReturnData["OC"][0]->ocRubroCod    }} ) {{  $ReturnData["OC"][0]->ocRubroDsc    }}</td>
+            </tr>
+            <tr>
+                <td  STYLE="font-size:11px;">
+                    <label class="labels"> REFERENCIA</label>
+                </td>
+                <td>:</td>
+                <td style="white-space: nowrap;">
+                    {{  $ReturnData["OC"][0]->ocRef    }}
+                </td>
+            </tr>
         </table>
-        <table  style="font-size: 9px; margin-left:-5px " width="100%" >
-        <tr style="text-align:left;">
-       <!-- <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" >  </td>-->
-           <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
-        </tr>
-       </TABLE> 
+    </div>
+ </div>
+ <div class="footer" align="center"  style="font-size: 11px; margin-top:0px;">
+  <table border="1">
+            <thead>
+            <tr style="background: #ccc">
+                <th width="210px" align="center"> JEFE DE ADQUISICIONES </th>
+                <th width="210px"  align="center"> JEFE DE LOGISTICA </th>
+                <th width="270px" align="center">    JEFE DE ALMACEN CENTRAL </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr valign="bottom">
+                <td height="50px" align="center"> </td>
+                <td   align="center"> </td>
+                <td align="center">
+                    <table>
+                    <tr >
+                        <td width="15px"> </td>
+                        <td  style="height: 40px;"> <strong>RECIBI CONFORME</strong></td>
+                        <td >  </td>
+                    </tr>
+                    <tr>
+                        <td width="15px"> </td>
+                        <td > ......../........../.............. </td>
+                        <td > ............................................. </td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr><td colspan="3" style="font-size: 9px;">
+             NOTA: Esta Orden es nula sin la firma del Jefe de Abastecimiento; cada Orden de Compra debe tener su guía de Remisión y su factura correpondiente en original y copia, luego remitirlas a la Unidad de Almacén y Abastecimientos. Nos reservamos el derecho de devolver los  Bienes que no estén de acuerdo a nuestras especificaciones, en conformidad  a la Ley 30225 y su Reglamento y las modificatorias.
+             </td></tr>
+            </tbody>
+            </table>
 
-      @endif 
-			 
-			<table  style="font-size: 9px; margin-left:-5px " width="100%" >
-
-			 
-				
-			</table>
-			
-		    <div  style=" margin-left:-7px; padding-left:145px; padding-right:10px; font-size:12px;     font-family: Helvetica, Arial, sans-serif; font-weight:bold;  border:1px solid #000000;" >
-	<br>
-  	{!! $ReturnData["OC"][0]->ocCondicion !!}	  
-		   </div>
-			
-				
-			@if(  $ReturnData["OC"][0]->ocTipoProcID=="009"  &&   $ReturnData["OC"][0]->ocIGV=="SI") 		
-
-       <table  style="font-size: 9px; margin-left:-5px ; margin-top:-13px; " width="100%" >
+  <hr style="width: auto; " >
+  <span style="font-size: 9px;"> {{ config('slam.ENTIDAD_PIE') }}  -    Página <span class="pagenum"></span></span>
+     <script type='text/php'>
+                if ( isset($pdf) ) {
+                    $font = Font_Metrics::get_font('helvetica', 'normal');
+                    $size = 12;
+                    $y = $pdf->get_height() - 19;
+                    $x = $pdf->get_width() - 15 - Font_Metrics::get_text_width('1/1', $font, $size);
+                    $pdf->page_text($x, $y, '{PAGE_NUM}/{PAGE_COUNT}', $font, $size);
+                }
+            </script>
+ </div>
+<div class="container">
+    <table  style="table-layout: fixed;" width="100%" >
         <thead>
-         <tr>
-          <th ALIGN="center" width="450px">-</th>
-          <th ALIGN="center" width="100px">-</th>
-         </tr> 
-        </thead>
-         <tbody>
-       <tr style="text-align:left;">
-        <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: {{ numtoletras($ReturnData["OC"][0]->ocTotalSuper) }}  </td>
-        <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+        <tr>
+            <th colspan="6" class="dll">ARTÍCULOS</th>
+            <th colspan="2" class="dll">PRECIO</th>
         </tr>
-         </tbody>
-       </TABLE> 
- 
-		
+        <tr>
+            <th ALIGN="center" class="dll" width="3%">Nro</th>
+            <th ALIGN="center" class="dll" width="8%">Cant.</th>
+            <th ALIGN="center" class="dll" width="6%">Und.</th>
+            <th ALIGN="center" class="dll" width="10%">Clasf.</th>
+            <th class="dll"  width="380px"  > Descripción  </th>
+            <th ALIGN="center"  class="dll" width="10%" >Marca</th>
+            <th ALIGN="center" class="dll" width="8%">Unit.</th>
+            <th ALIGN="center" class="dll" width="8%">Sub-total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php  $Total=0; $Item =1 ;?>
+        @foreach($ReturnData["OCDll"] as $key=>$OSDll)
+            <tr>
+                <td ALIGN="center" class="dll"><?php echo $Item++ ;?></td>
+                <td ALIGN="center" class="dll" style="font-weight:normal;"> {{ number_format ( (float)$OSDll->dllCant ,2,'.',',' )      }}</td>
+                <td ALIGN="center" class="dll" style="font-weight:normal;">  {{ $OSDll->dllUndAbrv  }}</td>
+                <td ALIGN="center" class="dll" style="font-weight:normal;" > {{ $OSDll->dllClasfCod }}</td>
+                <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >  <?php echo strtoupper ($OSDll->dllProdDsc )." - ".  strtoupper ($OSDll->dllProdEspf ) ?> </td>
+                <td ALIGN="center" class="dll " style="font-weight:normal;">  {{ $OSDll->dllMarca   }}</td>
+                <td ALIGN="right" class="dll rights" style="font-weight:normal;" >   <?php  echo floatval( $OSDll->dllPrecio ) ;?>    </td>
+                <td ALIGN="right" class="dll rights" style="font-weight:normal;">     <?php echo  number_format ($OSDll->dllTotal,2);?></td>
+            </tr>
+            <?php  $Condicion=$OSDll->dllTotal;  ?>
+            <?php  $Total+=$OSDll->dllTotal;  ?>
+        @endforeach
+
+        <tr>
+            <td ALIGN="center" class="dll" colspan="4"></td>
+            @if ( $ReturnData["prCant"][0]->Cant  >1 )
+                <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >
+                    <strong>Resumen General ===============  ============= ========== <strong><BR>
+                            @foreach($ReturnData["prSum"] as $key=>$dll)
+                                <span style="font-size: 12.5px"> <strong>( SECFUN. - {{ $dll->SecFun }} ) -   {{ $dll->Clasf }}  = S/.  {{ $dll->Total }} </strong></span><br>
+                @endforeach
+            @else
+                <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  > =============== ============= ==========
+            @endif
+            </td>
+            <td ALIGN="center" class="dll" colspan="3">  </td>
+        </tr>
+        </tbody>
+    </table>
+
+    @if($ReturnData["OC"][0]->ocTipoProcID=="009"  &&   $ReturnData["OC"][0]->ocIGV=="SI")
+
+        <table  style="font-size: 9px; margin-top:-13px; table-layout: fixed;" width="100%"  >
+            <thead>
+            <tr>
+                <th ALIGN="center" width="84%">-</th>
+                <th ALIGN="center" width="16%">-</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr class="dll">
+                <td  class="dll rights" ALIGN="right" >SubTotal :  </td>
+                <td   class="dll rights" ALIGN="right" style="font-weight:normal;font-size:12px;" > {{$ReturnData["OC"][0]->ocMonto}}</td>
+            </tr>
+
+            <tr class="dll">
+
+                <td  class="dll rights" ALIGN="right"  >Descuento :  </td>
+                <td ALIGN="center "  class="dll rights  " style="font-weight:normal;font-size:12px;"> {{ (float) $ReturnData["OC"][0]->ocDescuento }} </td>
+            </tr>
+            <tr class="dll">
+
+                <td  class="dll rights" ALIGN="right"  >Envio :  </td>
+                <td ALIGN="center"  class="dll rights" style="font-weight:normal;font-size:12px;">   {{  $ReturnData["OC"][0]->ocEnvio}} </td>
+            </tr>
+
+            <tr class="dll">
+
+                <td  class="dll rights" ALIGN="right"  >IGV(%) :  </td>
+                <td ALIGN="center"  class="dll rights" style="font-weight:normal;font-size:12px;">   {{ $ReturnData["OC"][0]->ocTotalIGV}} </td>
+            </tr>
+            <tbody>
+        </table>
+        <table  style="font-size: 9px;" width="100%" >
+            <tr style="text-align:left;">
+                <!-- <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" >  </td>-->
+                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+            </tr>
+        </table>
+
+    @endif
+
+    <table style="table-layout: fixed; font-size: 11px;" width="100%">
+        @foreach($txtcondicion as $key => $line)
+        <tr>
+            <td colspan="2" width="8%" style="border-right: solid 1px #444444; border-left: solid 1px #444444;"></td>
+            <td colspan="5" style="padding: 0 5px 0 5px;">
+                {!! $line !!}
+            </td>
+            <td width="8%" style="border-right: solid 1px #444444; border-left: solid 1px #444444;"></td>
+        </tr>
+        @endforeach
+    </table>
+
+    {{--<div  style="padding-left:145px; padding-right:10px; font-size:12px; font-family: Helvetica, Arial, sans-serif; font-weight:bold;  border:1px solid #000000;" >--}}
+        {{--<br>--}}
+
+    {{--</div>--}}
+
+    @if(  $ReturnData["OC"][0]->ocTipoProcID=="009"  &&   $ReturnData["OC"][0]->ocIGV=="SI")
+
+        <table  style="font-size: 9px; margin-top:-13px; " width="100%" >
+            <thead>
+            <tr>
+                <th ALIGN="center" width="450px">-</th>
+                <th ALIGN="center" width="100px">-</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="text-align:left;">
+                <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: {{ numtoletras($ReturnData["OC"][0]->ocTotalSuper) }}  </td>
+                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+            </tr>
+            </tbody>
+        </TABLE>
+
+
     @else
+        <table  style="font-size: 9px; margin-top:-13px; " width="100%" >
+            <thead>
+            <tr>
+                <th ALIGN="center" width="450px">-</th>
+                <th ALIGN="center" width="100px">-</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="text-align:left;">
+                <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: {{ numtoletras($ReturnData["OC"][0]->ocTotalSuper) }}  </td>
+                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+            </tr>
+            </tbody>
+        </table>
+        <table  style="font-size: 10px;" width="100%" >
+            <tr>
+                <td class="dll lefts"  >
+                    <div style="display: inline-block; font-size: 12px; margin-left: 0px; font-weight:bold;  ">
+                        @if ( $ReturnData["prCant"][0]->Cant  <=1 )
+                            <div><strong>Resumen por Clasificador: </strong> </div>
+                            @foreach($ReturnData["OCAbsClasf"] as $key=>$ReqDll)
+                                <span style="font-size: 12px"> {{ $ReqDll->Clasf }}  = {{ $ReqDll->Total }} </span><br>
+                            @endforeach
+                        @endif
+                    </div>
 
+                </td>
 
-         <table  style="font-size: 9px; margin-left:-5px ; margin-top:-13px; " width="100%" >
-        <thead>
-         <tr>
-          <th ALIGN="center" width="450px">-</th>
-          <th ALIGN="center" width="100px">-</th>
-         </tr> 
-        </thead>
-         <tbody>
-       <tr style="text-align:left;">
-        <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: {{ numtoletras($ReturnData["OC"][0]->ocTotalSuper) }}  </td>
-        <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
-        </tr>
-         </tbody>
-       </TABLE> 
- 
+                <td  class="dll lefts"  valign="top">
+                    <table >
+                        <tr> <td ><label class="labels"> OBSV :</label> <label style="font-size: 12px; width: 150px; ">{{  $ReturnData["OC"][0]->ocObsv  }} </label></td>  </tr>
+                    </table>
+                </td>
+                <td class="dll rights"  valign="center" style="font-size:10px;  font-weight:bold; ">
+                    Elb:{{  $ReturnData["OC"][0]->ocUsrID  }} <br> Imp: {{$ReturnData["Usr"] }}<br>
+                </td>
+            </tr>
+        </table>
 
-       		
-			  
-			  
-			
-			<table  style="font-size: 10px; margin-left:-5px " width="100%" >		 			  
-      <tr>
-           <td class="dll lefts"  >
-
-          <div style="display: inline-block; font-size: 12px; margin-left: 0px; font-weight:bold;  ">
-                          
-                              
-                              @if ( $ReturnData["prCant"][0]->Cant  <=1 )    
-                              <div><strong>Resumen por Clasificador: </strong> </div>          
-
-                                          @foreach($ReturnData["OCAbsClasf"] as $key=>$ReqDll)
-                                             <span style="font-size: 12px"> {{ $ReqDll->Clasf }}  = {{ $ReqDll->Total }} </span><br>
-                                           @endforeach                           
-                                         
-                              @endif
-                   </div>
-                                           
-               </td>
-
-               <td  class="dll lefts"  valign="top">
-      				   <table >
-      						<tr> <td ><label class="labels"> OBSV :</label> <label style="font-size: 12px; width: 150px; ">{{  $ReturnData["OC"][0]->ocObsv  }} </label></td>  </tr>
-      				  </table>
-              </td>
-               <td class="dll rights"  valign="center" style="font-size:10px;  font-weight:bold; ">
-                Elb:{{  $ReturnData["OC"][0]->ocUsrID  }} <br> Imp: {{$ReturnData["Usr"] }}<br>
-               </td>
-              </tr> 
-			</table>
-			
-			 @endif  
-			
-          
-          
-		 
-		 
-		  
-		 
-              
-
+    @endif
+</div>
 </body>
 </html>
 
@@ -584,7 +660,7 @@ function numtoletras($xcifra)
                         $xcadena = "UN  $xdecimales/100 M.N. ";
                     }
                     if ($xcifra >= 2) {
-                        $xcadena.= " CON  $xdecimales/100 Nuevos Soles "; //
+                        $xcadena.= " CON  $xdecimales/100 Soles "; //
                     }
                     break;
             } // endswitch ($xz)

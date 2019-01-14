@@ -10,7 +10,7 @@
     <table class="gs-table" style="margin-left: 5px ; margin-top: 2px;" >
     <tr valign="center" >
     <TD>
-    <img src="img/pestana1.png" width="40px" height="40px" style="margin-right: 5px">
+    <img src="img/tabCdr.png" width="40px" height="40px" style="margin-right: 5px">
     </TD>
         <td ALIGN="RIGHT" width="250px">
         <span style="font-size: 16px; font-weight: bold;"> CUADRO COMPARATIVO :</span>
@@ -119,7 +119,10 @@
                   <tr valign="bottom">
                      <td>
 
-                    {!! Form::button(' Añadir RUC' ,['id'=>'btnLogCdrRucADD' ,'class'=>'btn btn-danger','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:0px; ']) !!} 
+                        <button class="btn btn-danger" style="font-size: 10px;" id="btnLogCdrRucADD">
+                            <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                            AGREGAR <BR> PROPUESTA
+                        </button>
                     {{--{!! Form::button(' Catalogo de Bienes ' ,['id'=>'btnLogCdrCtgo' ,'class'=>'btn btn-primary','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']) !!} --}}
                     {!! Form::button(' Nuevo Bien '        ,['id'=>'btnLogCdrItem' ,'class'=>'btn btn-primary','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']) !!}
                     {!! Form::button(' Borrar Bienes '        ,['id'=>'btnLogCdrItemClear' ,'class'=>'btn btn-primary','style'=> 'width: 110Px  ;height: 30px ; padding:0;margin-top:0px; font-size:10px; margin-left:5px; ']) !!}
@@ -158,9 +161,9 @@
 
                  <ul id = "myTab" class = "nav nav-tabs">
                     <li  id="liBns"   class = "active" >    <a   id="aBns"  href = "#tabBienesList" data-toggle = "tab">LISTA DE BIENES  </a>   </li>
-                    <li  id="liRucAdd" >  <a id="aRucAdd" href = "#tabRucAdd" data-toggle = "tab">REGISTRO DEL RUC  </a>   </li>
+                    <li  id="liRucAdd" >  <a id="aRucAdd" href = "#tabRucAdd" data-toggle = "tab"><STRONG>REGISTRO DEL PROVEEDOR: </STRONG>  </a>   </li>
                     <li  id="liRucList">  <a id="aRucList" href = "#tabRucList" data-toggle = "tab">PROPUESTAS  </a>   </li>
-                    <li  id="liAdj" >     <a id="aAdj" href = "#tabAdj" data-toggle = "tab">ADJUDICADO</a></li>
+                    <li  id="liAdj" >     <a id="aAdj" href = "#tabAdj" data-toggle = "tab">PROVEEDOR ADJUDICADO</a></li>
                     <li  id="liRucBns" >     <a id="aRucBns" href = "#tabRucBns" data-toggle = "tab">Lista de Bienes</a></li>
                  </ul>
                  <div id = "myTabContent" class = "tab-content">
@@ -221,8 +224,10 @@
                  <div class = "tab-pane fade" id = "tabAdj">
 
                     <div style="margin: 20px;">
-                    <h4 ><strong>ADJUDICACION </strong></h4>
-                    <table id="tbCC_Adjudicacion" style="font-size: 13px;">
+                    <table class="table table-condensed" id="tbCC_Adjudicacion" style="font-size: 13px;">
+                        <tr>
+                            <td align="center" colspan="3"><strong>DATOS DE ADJUDICACION DE LA BUENA PRO </strong></td>
+                        </tr>
                     <tr> <td> RUC  </td>              <td  ALIGN="CENTER"> : </td> <td style="font-weight: bold; font-size: 14px;"  id="tbAdjRuc" > </td> </tr>
                     <tr> <td> Razon Social  </td>     <td  ALIGN="CENTER"> : </td> <td id="tbAdjRSocial" > - </td> </tr>
                     <tr> <td> Monto  </td>            <td  ALIGN="CENTER"> : </td> <td id="tbAdjMonto"> - </td> </tr>
@@ -264,21 +269,21 @@
 
 
 
-$( document ).on( 'keydown' ,'#txProdMarca ',function(e) {
-if(e.keyCode == 39  ||   e.keyCode == 13 ) {
-   $( "#txProdPrecio" ).focus(); 
-}
-});
-
-
-
-$( document ).on( 'keydown' ,'#txProdPrecio ',function(e) {
-if(e.keyCode == 13 ) {
-   $( "#btnLogCC_ItemSave" ).click(); 
-
-}
-
-});
+// $( document ).on( 'keydown' ,'#txProdMarca ',function(e) {
+// if(e.keyCode == 39  ||   e.keyCode == 13 ) {
+//    $( "#txProdPrecio" ).focus();
+// }
+// });
+//
+//
+//
+// $( document ).on( 'keydown' ,'#txProdPrecio ',function(e) {
+// if(e.keyCode == 13 ) {
+//    $( "#btnLogCC_ItemSave" ).click();
+//
+// }
+//
+// });
 
 
 

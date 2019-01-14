@@ -91,7 +91,7 @@
            <span class="section-title"><a id="CloseSys" href="./auth/logout" ></a></span>
             <div class="ribbon-button ribbon-button-large" id="btnMainClose">
             <span class="button-title">SALIR</span>
-            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/close.png')); ?>" />
+            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconExit.png')); ?>" />
             </div>
 
         
@@ -133,7 +133,7 @@
          <div class="ribbon-section">
 
               <div class="ribbon-button ribbon-button-large" id="btnMainLogRptRanking">
-              <span class="button-title">Ranking de <br>Proveedores</span>
+              <span class="button-title">Record de <br>Proveedores</span>
               <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPrice.png')); ?>" />
               </div>
 
@@ -176,12 +176,12 @@
             <div class="ribbon-button ribbon-button-large" id="btn-menuInternamiento">
                 <span class="button-title">Internamiento</span>
                 <span class="button-help">Registro de Internamiento de Bienes.</span>
-                <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/box_down.png')); ?>" />
+                <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconInter.png')); ?>" />
             </div>
             <div class="ribbon-button ribbon-button-large" id="btn-menuDistribucion">
                 <span class="button-title">PECOSA</span>
                 <span class="button-help">Registro de Salida de Bienes.</span>
-                <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/iconDistribution.png')); ?>" />
+                <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPcs.png')); ?>" />
             </div>
         </div>
         <div class="ribbon-section">
@@ -213,23 +213,23 @@
 
              <div class="ribbon-button ribbon-button-large" id="btnMainLogRUC" >
              <span class="button-title">Registro de  <br>Proveedores</span>
-             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconProv.png')); ?>" />
+             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconProveedor.png')); ?>" />
              </div>
 
              <div class="ribbon-button ribbon-button-large" id="btnMainLogPers">
              <span class="button-title">Registro de  <br>Personal</span>
-             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPer.png')); ?>" />
+             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPerson.png')); ?>" />
              </div>
 
           
              <div class="ribbon-button ribbon-button-large" id="btnMainLogDep">
              <span class="button-title">Registro de  <br>Dependencia</span>
-             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPer.png')); ?>" />
+             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconDep.png')); ?>" />
              </div>
 
              <div class="ribbon-button ribbon-button-large" id="btnMainLogSecFun">
              <span class="button-title">Registro de  <br>Secuencia Funcional</span>
-             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPer.png')); ?>" />
+             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconMeta.png')); ?>" />
              </div>
 
               <div class="ribbon-button ribbon-button-large" id="btnMainLogActDoc">
@@ -240,7 +240,7 @@
           
              <div class="ribbon-button ribbon-button-large" id="btnMainLogActUser">
              <span class="button-title">Cambiar  <br>Usuarios</span>
-             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconPer.png')); ?>" />
+             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconCambiar.png')); ?>" />
              </div>
              
          </div>
@@ -248,16 +248,8 @@
          <div class="ribbon-section">
                         <div class="ribbon-button ribbon-button-large" id="btnMainLogUsr">
                <span class="button-title">Registro de  <br>Cuentas de Usuario</span>
-               <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconUsr.png')); ?>"  width="30px" height="30px" />
+               <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconNuevousr.png')); ?>"  width="30px" height="30px" />
                </div>
-           </div>
-
-           <div class="ribbon-section">
-                       <span class="section-title"><a id="CloseSys" href="./auth/logout" ></a></span>
-                       <div class="ribbon-button ribbon-button-large" id="btnMainClose">
-                       <span class="button-title">SALIR</span>
-                       <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/close.png')); ?>" />
-                       </div>
            </div>
     </div>
 

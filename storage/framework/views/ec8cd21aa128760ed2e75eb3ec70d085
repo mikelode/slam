@@ -5,8 +5,10 @@ if(isset($Ftes["Fte"]))
 
      <?php foreach($Ftes["Fte"] as $key=>$nom): ?>
     <div style="margin: 20px;">
-      <h4 ><strong>ADJUDICACION : SE LE OTORGA LA BUENA PRO</strong></h4>
-      <table id="tbCC_Adjudicacion" style="font-size: 13px;" >
+      <table class="table table-condensed" id="tbCC_Adjudicacion" style="font-size: 13px;" >
+          <tr>
+              <td align="center" colspan="3"><strong>SE LE OTORGA LA BUENA PRO A:</strong></td>
+          </tr>
       <tr name="ruc"> <td> RUC  </td>              <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td style="font-weight: bold; font-size: 14px;"  id="tbAdjRuc"  name="tbAdjRuc" >  <input style="font-weight: bold;width: 100px;" disabled="true" class="form-control  gs-input"  value="<?php echo e($nom->fteRuc); ?>" > </td> </tr>
       <tr> <td> Razon Social  </td>     <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td id="tbAdjRSocial"  width="600px"> <input style="width: 900px;" disabled="true" class="form-control  gs-input"  value="<?php echo e($nom->fteRazon); ?>" > </td> </tr>
       <tr> <td> Monto  </td>            <td  ALIGN="CENTER"> : </td> <td id="tbAdjMonto"> <input disabled="true" style="width: 100px;" class="form-control  gs-input"  value="<?php echo e($nom->fteTotal); ?>" > </td> </tr>
@@ -36,16 +38,58 @@ else
 {
 ?>
  <div style="margin: 20px;">
-      <h4 ><strong>ADJUDICACION </strong></h4>
-      <table id="tbCC_Adjudicacion" style="font-size: 13px;">
-      <tr> <td> RUC  </td>              <td  ALIGN="CENTER"> : </td> <td style="font-weight: bold; font-size: 14px;"  id="tbAdjRuc" > </td> </tr>
-      <tr> <td> Razon Social  </td>     <td  ALIGN="CENTER"> : </td> <td id="tbAdjRSocial" > - </td> </tr>
-      <tr> <td> Monto  </td>            <td  ALIGN="CENTER"> : </td> <td id="tbAdjMonto"> - </td> </tr>
-      <tr> <td> Plazo de Entrega</td>   <td  ALIGN="CENTER"> : </td> <td id="tbAdjPlazo" >  <input  id="txAdjPlazo" style="width: 900px;" class="form-control  gs-input"  value="" > </td> </td> </tr>
-      <tr> <td> Justificacion  </td>         <td  ALIGN="CENTER"> : </td> <td id="tbAdjJust" > <input id="txAdjJustf"  class="form-control  gs-input" width="900px" value="" > </td>   </td> </tr>
-      <tr> <td> Plazo de Ejecucion  </td>         <td  ALIGN="CENTER"> : </td> <td id="tbAdjEje" > <input id="txAdjEje"  class="form-control  gs-input" width="900px" value="" > </td>   </td> </tr>
-      <tr> <td> Lugar Entrega  </td>         <td  ALIGN="CENTER"> : </td> <td id="tbAdjLugarEnt" > <input id="txAdjLugarEnt"  class="form-control  gs-input" width="900px" value="" > <br></td>   </td> </tr>
-      <tr> <td> Garantia  </td>         <td ALIGN="CENTER"> : </td> <td id="tbAdjGarantia" >   </td> </tr>
+      <table class="table table-condensed" id="tbCC_Adjudicacion" style="font-size: 13px; table-layout: fixed;" width="100%">
+          <tr>
+              <td align="center" colspan="3"><strong>DATOS DE ADJUDICACION DE LA BUENA PRO </strong></td>
+          </tr>
+      <tr>
+          <td width="15%" style="font-weight: bold"> RUC  </td>
+          <td width="1%" ALIGN="CENTER"> : </td>
+          <td style="font-weight: bold; font-size: 14px;"  id="tbAdjRuc" > </td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold"> Razón Social  </td>
+          <td  ALIGN="CENTER"> : </td>
+          <td id="tbAdjRSocial" > - </td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold"> Monto  </td>
+          <td  ALIGN="CENTER"> : </td>
+          <td id="tbAdjMonto"> - </td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold"> Plazo de Entrega</td>
+          <td  ALIGN="CENTER"> : </td>
+          <td id="tbAdjPlazo" >
+              <input  id="txAdjPlazo" class="form-control  gs-input"  value="" >
+          </td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold"> Justificación  </td>
+          <td  ALIGN="CENTER"> : </td>
+          <td id="tbAdjJust" >
+              <textarea id="txAdjJustf" class="form-control  gs-input" rows="3"></textarea>
+          </td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold"> Plazo de Ejecución  </td>
+          <td  ALIGN="CENTER"> : </td>
+          <td id="tbAdjEje" >
+              <input id="txAdjEje"  class="form-control  gs-input" value="" >
+          </td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold"> Lugar Entrega  </td>
+          <td  ALIGN="CENTER"> : </td>
+          <td id="tbAdjLugarEnt" >
+              <input id="txAdjLugarEnt"  class="form-control  gs-input" value="" > <br>
+          </td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold"> Garantía  </td>
+          <td ALIGN="CENTER"> : </td>
+          <td id="tbAdjGarantia" >   </td>
+      </tr>
 
 	  <tr> <td colspan="3" id="tbAdjIGV" > =========== === ================= </td> </tr>
       </table>

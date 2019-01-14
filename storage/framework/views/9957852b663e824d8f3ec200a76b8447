@@ -12,10 +12,10 @@ if ($Doc=="Req")
             <th WIDTH="55px"  align="center"   valign="center">Cant</th>
             <th WIDTH="45px"  align="center"   valign="center">Und</th>
             <th WIDTH="80px"   align="center"   valign="center">Clasificador</th>            
-            <th WIDTH="430px" align="left"     valign="center">Descripcion</th>
+            <th WIDTH="430px" align="left"     valign="center">Descripción</th>
             <th WIDTH="430px" align="left"     valign="center">Especificaciones</th>
             <th WIDTH="90px" style="display: none" align="left"     valign="center">Marca</th>
-            <th WIDTH="80px" style="display: none" align="center"    valign="center">Precio </th>
+            <th WIDTH="80px" style="display: none" align="center"    valign="center">Precio Rq </th>
             <th WIDTH="80px" style="display: none" align="right"    valign="center">Total</th>
             <th valign="right" >Editar</th>
             <th align="right"></th>
@@ -82,7 +82,7 @@ else if ($Doc=="Ctz")
             <th WIDTH="430px" align="left"     valign="center">Descripcion</th>
             <th WIDTH="430px" align="left"     valign="center">Especificaciones</th>
             <th WIDTH="90px" style="display: none" align="left"     valign="center">Marca</th>
-            <th WIDTH="80px" style="display: none" align="center"    valign="center">Precio </th>
+            <th WIDTH="80px" style="display: none" align="center"    valign="center">Precio Ctz</th>
             <th WIDTH="80px" style="display: none" align="right"    valign="center">Total</th>
             <th valign="right" >Editar</th>
             <th align="right"></th>
@@ -149,7 +149,7 @@ else if   ($Doc=="Fte")
             <th WIDTH="430px" align="left"     valign="center">Descripcion</th>
             <th WIDTH="430px" align="left"     valign="center">Especificaciones</th>
             <th WIDTH="90px"  align="left"     valign="center">Marca</th>
-            <th WIDTH="80px"  align="center"    valign="center">Precio </th>
+            <th WIDTH="80px"  align="center"    valign="center">Precio Fte</th>
             <th WIDTH="80px"  align="right"    valign="center">Total</th>
             <th valign="right" >Editar</th>
             <th align="right"></th>
@@ -157,22 +157,33 @@ else if   ($Doc=="Fte")
         </thead>
         <tbody>
           <?php foreach($result as $key=>$nom): ?>
-        <tr >
-            <td name="tdCdItm"  style="display: none" style="display: none" fteID="<?php echo e($nom->dllFteID); ?>"   ><?php echo e($nom->dllCdItm); ?></td>
+        <tr id="<?php echo e('row'.$key); ?>">
+            <td name="tdCdItm"  style="display: none" fteID="<?php echo e($nom->dllFteID); ?>"   ><?php echo e($nom->dllCdItm); ?></td>
             <td name="tdCzItm"  style="display: none"   ><?php echo e($nom->dllCzItm); ?></td>
             <td name="tdRqItm"  style="display: none"   ><?php echo e($nom->dllRqItm); ?></td>
 
            
-            <td name="tdCant"  align="center" > <?php echo e($nom->dllCant); ?></td>            
+            <td name="tdCant"  align="center" ><?php echo e($nom->dllCant); ?></td>
             <td name="tdUnd"  align="center" codID="<?php echo e($nom->dllUndID); ?>"  ><?php echo e($nom->dllUndAbrv); ?> </td>
             <td name="tdClasf"   align="center" codID="<?php echo e($nom->dllClasfID); ?>" ><?php echo e($nom->dllClasfCod); ?> </td>
             <td name="tdProd"  align="left"  codID="<?php echo e($nom->dllProdID); ?>"  ><?php echo e($nom->dllProdDsc); ?>  </td>
             <td name="tdEspf"  align="left"   > <?php echo e($nom->dllProdEspf); ?> </td>
-            <td name="tdMarca"    >  <?php echo e($nom->dllMarca); ?> </td>
-            <td name="tdPrecio"  align="center">  <?php echo e($nom->dllPrecio); ?></td>
-            <td name="tdTotal"    align="center">  <?php echo e($nom->dllTotal); ?></td>
-            <td BGCOLOR="#d9edf7"><button id="btnLogCC_ItemEDIT" class="btn btn-default " style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">EDIT</button> </td>
-            <td BGCOLOR="#d9edf7" style="display: none" > <button id="btnCdrRowDEL" class="btn btn-danger  " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>
+            <td name="tdMarca"    >
+                <input id="txProdMarca" name ="txProdMarca" class="form-control gs-input" autofocus placeholder="Marca" style="width:95px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text" value="<?php echo e($nom->dllMarca); ?>">
+            </td>
+            <td name="tdPrecio"  align="center">
+                <input id="txProdPrecio" name ="txProdPrecio" onblur="fnComputeTotal(<?php echo e($key); ?>, this.value)" class="form-control gs-input" placeholder="Precio" style="width:75px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text" value="<?php echo e($nom->dllPrecio); ?>">
+            </td>
+            <td name="tdTotal"    align="center">
+                <input type="text" class="form-control gs-input dllTotal" value="<?php echo e($nom->dllTotal); ?>" readonly>
+            </td>
+            <td BGCOLOR="#d9edf7">
+                <?php /*<button id="btnLogCC_ItemEDIT" class="btn btn-default " style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">EDIT</button>*/ ?>
+            </td>
+            <td BGCOLOR="#d9edf7">
+                <button id="btnLogCC_ItemSave" class="btn btn-primary " style="width:45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;" data-key="<?php echo e($key); ?>">Guardar</button>
+            </td>
+            <?php /*<td BGCOLOR="#d9edf7" style="display: none" > <button id="btnCdrRowDEL" class="btn btn-danger  " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>*/ ?>
         </tr>
         <?php endforeach; ?>
 
@@ -189,7 +200,7 @@ else if   ($Doc=="Fte")
                     <td name="tdProd"  align="left"   >4</td>
                     <td name="tdEspf"  align="left"   >6</td>
                     <td name="tdMarca"  align="center" ></td>
-                    <td name="tdPrecio" align="center"  >/td>
+                    <td name="tdPrecio" align="center" ></td>
                     <td name="tdTotal"  align="center" ></td> 
                     <td BGCOLOR="#d9edf7"><button id="btnLogCC_ItemEDIT" class="btn btn-default " style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">EDIT</button> </td>
                      <td BGCOLOR="#d9edf7" style="display: none" > <button id="btnCdrRowDEL" class="btn btn-danger  " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>

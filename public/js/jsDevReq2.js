@@ -413,6 +413,79 @@ $( document ).on( 'keydown','#txCodDep, #txCodTipoReq ,#txCodSecFun , #txCodRubr
 /**********************************************************************************************/
 /**************** EVENT BUSQ , ADD ROW A DB ***************************************************/
 
+function fnFindRucProveedor(valor, Evento){
+    if(valor.length<1) {return;}
+
+    var id ;
+    var cod;
+    var dsc;
+    var obj ='NN';
+    var tipo;
+    var token = $('#tokenBtn').val();
+    var Flg = false ;
+
+    if(Evento=='txProdUnd' )   {  obj='UND'; tipo='STR';  }
+    else if(Evento=='txProdClasf'){  obj='CLASF'; tipo='STR'; }
+    else if(Evento=='txOC_Ruc'  ){  obj='RUC'; tipo='STR'; }
+    else if(Evento=='txOS_Ruc'  ){  obj='RUC'; tipo='STR'; }
+    else if(Evento=='txRUC'  )  {  obj='RUC'; tipo='STR'; }
+
+    else {  $(".modal-backdrop").remove();  obj="NN"; $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encuentra dentro de los parametros establecidos'));  $('#dvAviso').modal('show'); return;  }
+
+    $("#loadModals").html(jsFunLoadWait());
+
+    var dataString = {'obj':obj,'tipo': tipo ,'valor':valor,'_token':token } ;
+    $.ajax({
+        type: "POST",
+        url: "logistica/spLogGetDatos",
+        data: dataString,
+        beforeSend: function () {  jsFnDialogBox(0,0,"LOAD",parent," PETICION EN PROCESO","Cargando, Espere un momento...") ;},
+        error: function ()      {  jsFnDialogBox(400,145, "WARNING",parent,"ERROR EN LA PETICION","Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>") ;},
+        success: function(data) {
+            $("#divDialog").dialog("close");
+            $('#dvWait').modal('hide');
+            $('#dvAviso').modal('hide');
+            $(".modal-backdrop").remove();
+            if( data.length>0 ) {
+                Flg = true;
+                id = data[0].ID;
+                cod = data[0].Cod;
+                dsc = data[0].Dsc;
+                if (id == null) {  Flg = false;   $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor '));  $('#dvAviso').modal('show');   }
+            }
+            else { Flg = false;   $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor'));  $('#dvAviso').modal('show'); }
+
+            if(Evento=='txProdUnd')
+            {
+                if (Flg==false) {   $('#txProdUnd').attr('codID','NN');  $('#txProdUnd').val('');   $( "#txProdUnd" ).focus(); }
+                else      {   $('#txProdUnd').attr('codID',id);    $('#txProdUnd').val(cod);    $( "#txProdProd" ).focus();  }
+            }
+            else if(Evento=='txProdClasf')
+            {
+                if (Flg==false) {  $('#txProdClasf').attr('codID','NN');  $('#txProdClasf').val('');   $( "#txProdClasf" ).focus(); }
+                else      {  $('#txProdClasf').attr('codID',id);    $('#txProdClasf').val(cod);    $( "#txProdUnd" ).focus();  }
+            }
+            else if(Evento=='txOC_Ruc')
+            {
+                if (Flg==false) {  $('#txOC_Ruc').attr('codID','NN');  $('#txOC_Ruc').attr('tel','-'); $('#txOC_Ruc').attr('dir','-');   $('#txOC_Ruc').val('');   $('#txOC_RSocial').val('');  $( "#txOC_Ruc" ).focus(); }
+                else      {  $('#txOC_Ruc').attr('codID',id);    $('#txOC_Ruc').val(cod);   $('#txOC_RSocial').val(dsc);  $('#txOC_Ruc').attr("tel",data[0].Tel); $('#txOC_RSocial').attr("dir",data[0].Dir);   $( "#txOC_Plazo" ).focus();  }
+            }
+            else if(Evento=='txOS_Ruc')
+            {
+                if (Flg==false) {  $('#txOS_Ruc').attr('codID','NN');  $('#txOS_Ruc').attr('tel','-'); $('#txOS_Ruc').attr('dir','-');   $('#txOS_Ruc').val('');   $('#txOS_RSocial').val('');  $( "#txOS_Ruc" ).focus(); }
+                else      {  $('#txOS_Ruc').attr('codID',id);    $('#txOS_Ruc').val(cod);   $('#txOS_RSocial').val(dsc);  $('#txOS_Ruc').attr("tel",data[0].Tel); $('#txOS_RSocial').attr("dir",data[0].Dir);   $( "#txOS_Plazo" ).focus();  }
+            }
+            else if(Evento=='txRUC')
+            {
+                if (Flg==false) {   $('#txRUC').attr('codID','NN');  $('#txRUC').val('');       $('#txRSocial').val('');   $('#txRUC').attr('tel','-');     $('#txRUC').attr('dir','-');      $( "#txRUC" ).focus(); }
+                else      {         $('#txRUC').attr('codID',id);    $('#txRUC').val(cod);       $('#txRSocial').val(dsc);  $('#txRUC').attr("tel",data[0].Tel); $('#txRSocial').attr("dir",data[0].Dir);   $( "#txPlazo" ).focus();  }
+            }
+
+            else {obj="NN";}
+        }
+    });
+}
+
 //$( document ).on( 'keydown',' #txProdClasf , #txProdUnd  ,#txOC_Ruc ,#txOS_Ruc  ,#txRUC ',function(event) {
 $( document ).on( 'keydown',' #txOC_Ruc ,#txOS_Ruc  ,#txRUC ',function(event) {
     if(event.shiftKey)     {        event.preventDefault();      }
@@ -420,78 +493,9 @@ $( document ).on( 'keydown',' #txOC_Ruc ,#txOS_Ruc  ,#txRUC ',function(event) {
     {
         $(".modal-backdrop").remove();
         var valor = $(this).val();
-
-        if(valor.length<1) {return;}
-
-        var id ;
-        var cod;
-        var dsc;
-        var obj ='NN';
-        var tipo;
-        var token = $('#tokenBtn').val();
         var Evento = $(this).attr('name');
-        var Flg = false ;
+        fnFindRucProveedor(valor, Evento);
 
-        if(Evento=='txProdUnd' )   {  obj='UND'; tipo='STR';  }
-        else if(Evento=='txProdClasf'){  obj='CLASF'; tipo='STR'; }
-        else if(Evento=='txOC_Ruc'  ){  obj='RUC'; tipo='STR'; }
-        else if(Evento=='txOS_Ruc'  ){  obj='RUC'; tipo='STR'; }
-        else if(Evento=='txRUC'  )  {  obj='RUC'; tipo='STR'; }
-
-        else {  $(".modal-backdrop").remove();  obj="NN"; $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encuentra dentro de los parametros establecidos'));  $('#dvAviso').modal('show'); return;  }
-
-        $("#loadModals").html(jsFunLoadWait());
-
-        var dataString = {'obj':obj,'tipo': tipo ,'valor':valor,'_token':token } ;
-        $.ajax({
-            type: "POST",
-            url: "logistica/spLogGetDatos",
-            data: dataString,
-            beforeSend: function () {  jsFnDialogBox(0,0,"LOAD",parent," PETICION EN PROCESO","Cargando, Espere un momento...") ;},
-            error: function ()      {  jsFnDialogBox(400,145, "WARNING",parent,"ERROR EN LA PETICION","Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>") ;},
-            success: function(data) {
-                $("#divDialog").dialog("close");
-                $('#dvWait').modal('hide');
-                $('#dvAviso').modal('hide');
-                $(".modal-backdrop").remove();
-                if( data.length>0 ) {
-                    Flg = true;
-                    id = data[0].ID;
-                    cod = data[0].Cod;
-                    dsc = data[0].Dsc;
-                    if (id == null) {  Flg = false;   $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor '));  $('#dvAviso').modal('show');   }
-                }
-                else { Flg = false;   $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor'));  $('#dvAviso').modal('show'); }
-
-                if(Evento=='txProdUnd')
-                {
-                    if (Flg==false) {   $('#txProdUnd').attr('codID','NN');  $('#txProdUnd').val('');   $( "#txProdUnd" ).focus(); }
-                    else      {   $('#txProdUnd').attr('codID',id);    $('#txProdUnd').val(cod);    $( "#txProdProd" ).focus();  }
-                }
-                else if(Evento=='txProdClasf')
-                {
-                    if (Flg==false) {  $('#txProdClasf').attr('codID','NN');  $('#txProdClasf').val('');   $( "#txProdClasf" ).focus(); }
-                    else      {  $('#txProdClasf').attr('codID',id);    $('#txProdClasf').val(cod);    $( "#txProdUnd" ).focus();  }
-                }
-                else if(Evento=='txOC_Ruc')
-                {
-                    if (Flg==false) {  $('#txOC_Ruc').attr('codID','NN');  $('#txOC_Ruc').attr('tel','-'); $('#txOC_Ruc').attr('dir','-');   $('#txOC_Ruc').val('');   $('#txOC_RSocial').val('');  $( "#txOC_Ruc" ).focus(); }
-                    else      {  $('#txOC_Ruc').attr('codID',id);    $('#txOC_Ruc').val(cod);   $('#txOC_RSocial').val(dsc);  $('#txOC_Ruc').attr("tel",data[0].Tel); $('#txOC_RSocial').attr("dir",data[0].Dir);   $( "#txOC_Plazo" ).focus();  }
-                }
-                else if(Evento=='txOS_Ruc')
-                {
-                    if (Flg==false) {  $('#txOS_Ruc').attr('codID','NN');  $('#txOS_Ruc').attr('tel','-'); $('#txOS_Ruc').attr('dir','-');   $('#txOS_Ruc').val('');   $('#txOS_RSocial').val('');  $( "#txOS_Ruc" ).focus(); }
-                    else      {  $('#txOS_Ruc').attr('codID',id);    $('#txOS_Ruc').val(cod);   $('#txOS_RSocial').val(dsc);  $('#txOS_Ruc').attr("tel",data[0].Tel); $('#txOS_RSocial').attr("dir",data[0].Dir);   $( "#txOS_Plazo" ).focus();  }
-                }
-                else if(Evento=='txRUC')
-                {
-                    if (Flg==false) {   $('#txRUC').attr('codID','NN');  $('#txRUC').val('');       $('#txRSocial').val('');   $('#txRUC').attr('tel','-');     $('#txRUC').attr('dir','-');      $( "#txRUC" ).focus(); }
-                    else      {         $('#txRUC').attr('codID',id);    $('#txRUC').val(cod);       $('#txRSocial').val(dsc);  $('#txRUC').attr("tel",data[0].Tel); $('#txRSocial').attr("dir",data[0].Dir);   $( "#txPlazo" ).focus();  }
-                }
-
-                else {obj="NN";}
-            }
-        });
     }
     //if (event.keyCode == 46 || event.keyCode == 8  || event.keyCode == 37 || event.keyCode == 39    ){  }
     //else {
@@ -523,14 +527,14 @@ $( document ).on( 'keydown', '#txCodDep, #txCodTipoReq ,#txCodSecFun , #txCodRub
 });
 
 
-$( document ).on( 'keydown','#txGlosa, #txLugarEnt, #txCondicion ',function(event) {
-    if(event.keyCode == 13 ) {
-        var Evento = $(this).attr('ID');
-        if (Evento == 'txGlosa') {     $("#txLugarEnt").focus();   }
-        else if (Evento == 'txLugarEnt') {  $("#txDNI").focus();   }
-        else if (Evento == 'txCondicion') {   $("#txObsv").focus();   }
-    }
-});
+// $( document ).on( 'keydown','#txGlosa, #txLugarEnt, #txCondicion ',function(event) {
+//     if(event.keyCode == 13 ) {
+//         var Evento = $(this).attr('ID');
+//         if (Evento == 'txGlosa') {     $("#txLugarEnt").focus();   }
+//         else if (Evento == 'txLugarEnt') {  $("#txDNI").focus();   }
+//         else if (Evento == 'txCondicion') {   $("#txObsv").focus();   }
+//     }
+// });
 $( document ).on( 'change','#r1, #r2',function(e) {
     e.preventDefault();
     if ($('#r1').is(":checked")) {  $("#txTipoGto").attr("tipoGtoID","0") ; }

@@ -10,7 +10,7 @@
     <table class="gs-table" style="margin-left: 45px ; margin-top: 2px;" >
     <tr valign="center" >
     <TD>
-    <img src="img/pestana1.png" width="40px" height="40px" style="margin-right: 10px">
+    <img src="img/tabOs.png" width="40px" height="40px" style="margin-right: 10px">
     </TD>
         <td ALIGN="RIGHT" width="220px">
         <span style="font-size: 15px;font-weight: bold;"> ORDEN DE SERVICIO :</span>

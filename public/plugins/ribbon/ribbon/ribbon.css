@@ -149,7 +149,7 @@ body
 	margin-top: 5px;
 	border-top: 1px solid #b6babf;
 	background: #FFF url('rib-back.png') repeat-x bottom;
-	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#eaedf1));
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#d6dfea), to(#b5d2f9));
 	background: -moz-linear-gradient(#ffffff, #eaedf1); /*-pie-background: linear-gradient(#ffffff, #eaedf1);*/
 	overflow: hidden;
 	min-width: 500px;

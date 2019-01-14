@@ -657,7 +657,7 @@ function  jsFunModalRuc (parmTitulo)
     t+='                    </div></div>';
     t+='           <div class="panel panel-default" style="border-radius: 5px;padding-left: 10px; padding-top: 10px; ;margin-top: -5px;  background: #FCFCFC; border-top-width: 1px; border-top-color: #E2E2E2;  " id="divRuc">';
     t+='            <table class="gs-table" border="0"> ';
-    t+='            <tr><td> <label class="gs-label">RUC:          </label> </td> <td width="100px;">  <input id="txRUC_Ruc" codID="ADD" name="txRUC_Ruc" class="form-control gs-input" style="width: 100px; font-weight: bold; font-size: 12px;  "  type="text" placeholder="RUC" > </td> <td align="left"> <SPAN class="btn btn-primary" id="btnLogRUC_SEARCH" style=" width: 60px;height: 26px; padding-top:6px; padding-left: 6px; font-size: 11px;"> BUSCAR </span></td> </tr>';
+    t+='            <tr><td> <label class="gs-label">RUC:          </label> </td> <td width="100px;">  <input id="txRUC_Ruc" codID="ADD" name="txRUC_Ruc" class="form-control gs-input" style="width: 100px; font-weight: bold; font-size: 12px;  "  type="text" placeholder="RUC" > </td> <td align="left"> <SPAN class="btn btn-primary" id="btnLogRUC_SEARCH" style=" width: 60px;height: 26px; padding-top:6px; padding-left: 6px; font-size: 11px;"> BUSCAR </span><button class="btn btn-warning" id="btnLogRUC_SUNAT" style=" width: 60px;height: 26px; padding-top:6px; padding-left: 12px; font-size: 11px;">SUNAT</button><span id="txMessage"></span></td> </tr>';
     t+='            <tr><td> <label class="gs-label">R.Social:    </label> </td> <td colspan="2"> <input id="txRUC_RSocial" codID="CID" name="txRUC_RSocial" class="form-control gs-input" style="width: 500px;  font-size: 12px;  "  type="text" placeholder="Razon Social" > </td> </tr>';
     t+='            <tr><td> <label class="gs-label">Direccion:    </label> </td> <td colspan="2"> <input id="txRUC_Dir" codID="CID" name="txRUC_Dir" class="form-control gs-input" style="width: 500px;  font-size: 12px;  "  type="text" placeholder="Direccion" > </td> </tr>';
     t+='            <tr><td> <label class="gs-label">Telefono:     </label> </td> <td colspan="2"> <input id="txRUC_Tel" codID="CID" name="txRUC_Tel" class="form-control gs-input" style="width: 200px;  font-size: 12px;  "  type="text" placeholder="Telefono" > </td> </tr>';
@@ -822,6 +822,44 @@ $(document).on('keydown','#txRUC_Ruc',function(e){
 $(document).on('click','#btnLogRUC_SEARCH',function(e){
     e.preventDefault();
     jsFunGetRuc();
+});
+
+$(document).on('click','#btnLogRUC_SUNAT',function(e){
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "logistica/spLogGetRucsunat",
+        data:{qry:$('#txRUC_Ruc').val() ,'_token': $('#tokenBtnMain').val()} ,
+        beforeSend: function () {  $('#txMessage').html("CONECTANDO A SUNAT. Espere un momento...")  },
+        error: function () {  jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+        success: function (VR) {
+            $('#txMessage').html('');
+            if (VR[0] != 'nn') {
+                $("#txRUC_Ruc").val(VR[0]);
+                $("#txRUC_RSocial").val(VR[1]);
+                $("#txRUC_Tel").val('');
+                $("#txRUC_Dir").val(VR[7]);
+                $("#txRUC_Contacto").val('');
+                $("#txRUC_EMail").val('');
+                $("#txRUC_Web").val('');
+                $("#txRUC_Otros").val(VR[5]);
+                $("#txRUC_Ruc").attr("codID","ADD")
+
+            }
+            else
+            {
+                $("#txRUC_Ruc").val("");
+                $("#txRUC_RSocial").val("");
+                $("#txRUC_Tel").val("");
+                $("#txRUC_Dir").val("");
+                $("#txRUC_Contacto").val("");
+                $("#txRUC_EMail").val("");
+                $("#txRUC_Web").val("");
+                $("#txRUC_Otros").val("");
+                $("#txRUC_Ruc").attr("codID","ADD")
+            }
+        }
+    });
 });
 
 function jsFunGetRuc()
@@ -1352,4 +1390,31 @@ function jsFunSetModalHead(parmTipo,parmTitulo, parmMsg)
     }
   
    return msg ;
+}
+
+
+/*symva development*/
+$.extend($.expr[':'],{
+    focusable: function (el, index, selector) {
+        return $(el).is('a, button, :input, [tabindex]');
+    }
+});
+
+$(document).on('keypress', 'input,select', function (e) {
+    if (e.which === 13) {
+        e.preventDefault();
+        // Get all focusable elements on the page
+        var $canfocus = $(':focusable');
+        var pindex = $canfocus.index(document.activeElement) * 1;
+        var index = $canfocus.index(document.activeElement) + 1;
+        // alert('act: ' + pindex + ' - next: ' + index);
+        if (index >= $canfocus.length) index = 0;
+        $canfocus.eq(index).focus();
+    }
+});
+
+function fnComputeTotal(row, price) {
+    var cant = $('#row' + row).find("td[name=tdCant]").html().trim();
+    var total = price * cant;
+    $('#row' + row).find('.dllTotal').val(total);
 }

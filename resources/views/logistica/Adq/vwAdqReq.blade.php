@@ -10,7 +10,7 @@
     <table class="gs-table" style="margin-left: 45px ; margin-top: 2px;" >
     <tr valign="center" >
     <TD>
-    <img src="img/pestana1.png" width="40px" height="40px" style="margin-right: 10px">
+    <img src="img/tabReq.png" width="40px" height="40px" style="margin-right: 10px">
     </TD>
         <td ALIGN="RIGHT" width="165px">
         <span style="font-size: 16px;font-weight:bold;"> REQUERIMIENTOS :</span>

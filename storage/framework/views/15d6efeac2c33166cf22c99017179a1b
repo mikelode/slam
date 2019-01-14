@@ -6,77 +6,95 @@
 <title>Login SLAM</title>
 <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
 <!--STYLESHEETS-->
-<link href="<?php echo e(asset('css/style-login.css')); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(asset('css/bootstrap4.min.css')); ?>" rel="stylesheet" id="bootstrap-css">
+<script src="<?php echo e(asset('js/bootstrap4.min.js')); ?>"></script>
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="<?php echo e(asset('/plugins/jquery/jquery.min.js')); ?>"></script>
-<!--Slider-in icons-->
-<script type="text/javascript">
-$(document).ready(function() {
-	$(".username").focus(function() {
-		$(".user-icon").css("left","-48px");
-	});
-	$(".username").blur(function() {
-		$(".user-icon").css("left","0px");
-	});
-	
-	$(".password").focus(function() {
-		$(".pass-icon").css("left","-48px");
-	});
-	$(".password").blur(function() {
-		$(".pass-icon").css("left","0px");
-	});
-});
-</script>
+<style>
 
+    .login-block{
+        background: #DE6262;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #021c4e, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        float:left;
+        width:100%;
+        padding : 50px 0;
+    }
+    .banner-sec{background:url(<?php echo e(asset('img/quellouno.jpg')); ?>)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+    .container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+    .carousel-inner{border-radius:0 10px 10px 0;}
+    .carousel-caption{text-align:left; left:5%;}
+    .login-sec{padding: 50px 30px; position:relative;}
+    .login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+    .login-sec .copy-text i{color:#FEB58A;}
+    .login-sec .copy-text a{color:#E36262;}
+    .login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #3e86bf;}
+    .login-sec h2:after{content:" "; width:100px; height:5px; background:#3e86bf; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+    .btn-login{background: #DE6262; color:#fff; font-weight:600;}
+    .banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;background-color: #aadd7759}
+    .banner-text h2{color:#fff; font-weight:600;}
+    .banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
+    .banner-text p{color:#fff;}
+
+
+</style>
 </head>
 <body>
 
-<!--WRAPPER-->
-<div id="wrapper">
+<section class="login-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+                <h2 class="text-center">Logística y Almacén <small>SLAM v2019</small></h2>
 
-	<!--SLIDE-IN ICONS-->
-    <div class="user-icon"></div>
-    <div class="pass-icon"></div>
-    <!--END SLIDE-IN ICONS-->
+                <form class="login-form" method="POST" name="login-form" action="<?php echo e(asset('/auth/login')); ?>">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="text-uppercase">Usuario</label>
+                        <input name="usrID" autocomplete="off" autofocus type="text" class="form-control" placeholder="" onfocus="this.value=''">
 
-<!--LOGIN FORM-->
-<form method="POST" name="login-form" class="login-form" action="<?php echo e(asset('/auth/login')); ?>">
-	<?php echo csrf_field(); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" class="text-uppercase">Contraseña</label>
+                        <input name="password" autocomplete="off" type="password" class="form-control" placeholder="" onfocus="this.value=''">
+                    </div>
 
 
-	<!--HEADER-->
-    <div class="header">
-    <!--DESCRIPTION--><p align="center" ><span><?php echo e(config('slam.ENTIDAD_PIE')); ?></span></p><br><!--END DESCRIPTION-->
-    <!--TITLE--><h4 ALIGN="CENTER">Sistema de Logistica <BR>  Almacen<BR> </h4><br><!--END TITLE-->
-    <!--TITLE--><h4 ALIGN="CENTER"><?php echo e(config('slam.VERSION')); ?></h4><!--END TITLE-->
+                    <div class="form-check">
+                        <?php /*<label class="form-check-label">*/ ?>
+                            <?php /*<input type="checkbox" class="form-check-input">*/ ?>
+                            <?php /*<small>Remember Me</small>*/ ?>
+                        <?php /*</label>*/ ?>
+                        <button type="submit" name="submit" class="btn btn-login float-right">Ingresar</button>
+                    </div>
 
+                </form>
+                <div class="copy-text"> Municipalidad Distrital de Quellouno </div>
+            </div>
+            <div class="col-md-8 banner-sec">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img class="d-block img-fluid" src="<?php echo e(asset('img/quellouno.jpg')); ?>" alt="First slide">
+                            <?php /*<div class="carousel-caption d-none d-md-block">*/ ?>
+                                <?php /*<div class="banner-text">*/ ?>
+                                    <?php /*<h2>This is Heaven</h2>*/ ?>
+                                    <?php /*<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>*/ ?>
+                                <?php /*</div>*/ ?>
+                            <?php /*</div>*/ ?>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <!--END HEADER-->
-	
-	<!--CONTENT-->
-    <div class="content">
-		<input name="usrID" type="text" autocomplete="off" class="input username" placeholder="Usuario" onfocus="this.value=''" />
-	    <input name="password" type="password" autocomplete="off" class="input password" placeholder="Contraseña" onfocus="this.value=''" />
-    </div>
-    <!--END CONTENT-->
-    <!--FOOTER-->
-    <div class="footer">
-    	<input type="submit" name="submit" value="Entrar" class="button" />
-
-    </div>
-    <!--END FOOTER-->
-
-	
-	
-	
-</form>
-<!--END LOGIN FORM-->
-
-</div>
-<!--END WRAPPER-->
-
-<!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+</section>
 
 </body>
 </html>

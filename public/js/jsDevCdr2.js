@@ -58,10 +58,17 @@ $( document ).on( 'click', '.menu-TipoCdDoc li', function( event ) {
 
 
 
-$( document ).on( 'keydown',  '.btn-search,.btn-cdrSelect,#btnLogCCSave , #btnLogCCCancel, #btnLogCCUpd, #btnLogCCDel, #btnLogCCSearch, #btnLogCCNew, #btnLogCCPrint , #btnLogCCBusy , #btnLogCCTrsh,    #btnLogCCRucADD,  #btnLogCCRucSave,  #btnLogCCRucCancel,#btnLogCCRucSUNAT',function(e) {
+$( document ).on( 'keydown',  '.btn-search,.btn-cdrSelect,#btnLogCCSave , #btnLogCCCancel, #btnLogCCUpd, #btnLogCCDel, #btnLogCCSearch, #btnLogCCNew, #btnLogCCPrint , #btnLogCCBusy , #btnLogCCTrsh,    #btnLogCCRucADD,  #btnLogCCRucSave,  #btnLogCCRucCancel',function(e) {
     e.preventDefault();
 });
 
+
+$(document).on('click', '#btnLogCCRucSUNAT', function(e){
+    $(".modal-backdrop").remove();
+    var valor = $('#txRUC').val();
+    var Evento = $('#txRUC').attr('name');
+    fnFindRucProveedor(valor, Evento);
+});
 
 $( document ).on( 'click',  '#btnLogCCLeft',function(e) {
     e.preventDefault();
@@ -314,7 +321,7 @@ $(document).on('click','.btnCdrRowCANCEL',function(e){
 });
 
 
-/*******  MENU REQ DLL   ****************************************************/
+/*******  MENU REQ DLL   ***************************************************?????*/
 $(document).on('click','.btnCdrRowEDIT',function(e){
    
     var flg = false;
@@ -1518,8 +1525,8 @@ $( document ).on( 'click' ,'#btnLogCC_ItemEDIT ',function(e) {
     }
     else { jsFnDialogBox(400, 160, "WARNING", null, "ADVERTENCIA", "Existe una fila ya esta modificando<br> <strong>Primero tiene que termina el proceso actual</strong>"); }
 
-    $( "#txProdMarca" ).focus(); 
-    $( "#txProdMarca" ).focus(); 
+    $( "#txProdMarca" ).focus();
+    $( "#txProdMarca" ).focus();
 
 });
 
@@ -1543,7 +1550,7 @@ $( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) {
     varFteDll.dllProdID=trClone .find("td[name=tdProd]").attr ("codID");
     varFteDll.dllUndID=trClone .find("td[name=tdUnd]").attr ("codID");
     varFteDll.dllClasfID=trClone .find("td[name=tdClasf]").attr ("codID");
-    varFteDll.dllCant=trClone.find("td[name=tdCant]").html( );
+    varFteDll.dllCant=trClone.find("td[name=tdCant]").html().trim();
     //varFteDll.dllProdID=trClone .find("td[name=tdProd]").attr ("codID");
 
     varFteDll.dllPrecio=trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val( );
@@ -1552,13 +1559,15 @@ $( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) {
     varFteDll.dllMarca=trClone.find("td[name=tdMarca]").find('input[id=txProdMarca]').val( );
     varFteDll.dllUsrID="NN";
     varFte._token="-";
+
+    var nxtrow = $(this).data('key') + 1;
      
     //alert(varFteDll.dllEspf);
 
     var datos = {
         varBns:varFteDll,
         '_token': $('#tokenBtn').val()
-    }
+    };
     $.ajax({
         type: "post",
         url: "logistica/spLogSetFteD",
@@ -1571,11 +1580,10 @@ $( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) {
           //  $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
            // $('#dvAviso').modal('show');
 
-            $("#tabRucBns").html(VR["FteDll"]);
-            $("#aRucBns").click();
+            //$("#tabRucBns").html(VR["FteDll"]);
+            // $("#aRucBns").click();
          //   $("#divOC_Dll").html(VR["vwDll"]);
-
-
+            $('#row' + nxtrow).find("input[name=txProdMarca]").focus();
         }
     });
 });

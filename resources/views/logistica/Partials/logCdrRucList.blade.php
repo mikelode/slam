@@ -9,9 +9,9 @@
                      <th WIDTH="100px" align="left"     valign="center">IGV</th>
                      <th WIDTH="100px" align="left"     valign="center">Plazo</th>
                      <th WIDTH="100px" align="left"     valign="center">Garantia</th>
-                     <th valign="right" ><SPAN id="btnLogRucShow" >Mostrar</SPAN></th>
-                     <th valign="right" ><SPAN id="" >Ganador</SPAN></th>
-                     <th valign="right" ><SPAN id="btnLogRucEdit" >Editar</SPAN></th>
+                     <th valign="right" ><SPAN id="btnLogRucShow" ></SPAN></th>
+                     <th valign="right" ><SPAN id="" ></SPAN></th>
+                     <th valign="right" ><SPAN id="btnLogRucEdit" ></SPAN></th>
                      <th align="right"><SPAN id="btnLogRucDel" >Borrar</SPAN></th>
                  </tr>
                  </thead>
@@ -27,10 +27,9 @@
                              <td name="tbPlazo"  align="left"   > {{  $nom->ftePlazo }} </td>
                              <td name="tbGarantia"  align="left"   > {{  $nom->fteGarantia  }} </td>
                              <td BGCOLOR="#d9edf7"><button  id="btnCCRucVER" class="btn btn-default " style="width:   65Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button" >PROPUESTA</button> </td>
-                             <td BGCOLOR="#d9edf7"><button  id="btnCCRucBUENAPRO" class="btn btn-default " style="width:   65Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button" >BUENA PRO</button> </td>
-
                              <td BGCOLOR="#d9edf7"><button  id="btnCCRucEDIT" class="btn btn-default " style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button" >BIENES</button> </td>
-                             <td BGCOLOR="#d9edf7" ><button  id="btnCCRucDEL"  class="btn btn-default " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button" >X</button> </td>
+                             <td BGCOLOR="#d9edf7"><button  id="btnCCRucBUENAPRO" class="btn btn-success " style="width:   65Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button" >BUENA PRO</button> </td>
+                             <td BGCOLOR="#d9edf7" ><button  id="btnCCRucDEL"  class="btn btn-danger " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button" >X</button> </td>
                          </tr>
                          @endforeach
        </tbody>

@@ -217,6 +217,7 @@ Route::post('logistica/spLogGetCatalogo', 'Logistica\ctrlGrl@spLogGetCatalogo');
 Route::post('logistica/spLogSetCatalogo', 'Logistica\ctrlGrl@spLogSetCatalogo');
 Route::post('logistica/spLogSetRuc', 'Logistica\ctrlGrl@spLogSetRuc');
 Route::post('logistica/spLogGetRuc', 'Logistica\ctrlGrl@spLogGetRuc');
+Route::post('logistica/spLogGetRucsunat', 'Logistica\ctrlGrl@spLogGetRucsunat');
 
 Route::post('logistica/spLogSetPers', 'Logistica\ctrlGrl@spLogSetPers');
 Route::post('logistica/spLogGetPers', 'Logistica\ctrlGrl@spLogGetPers');

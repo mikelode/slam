@@ -172,7 +172,7 @@ class ctrlCC extends Controller
        
             $idCdr = $qry[0]->CCNo ;
             $ErrorDtll =array();
-            if($idCdr=="NN") { return response()->json($qry); ; }
+            if($idCdr=="NN") { return response()->json($qry);}
             if( $varOpe=="ADD" )
              {   
                 foreach ($prRqsCC["varCdrDll"] as $key => $valor)

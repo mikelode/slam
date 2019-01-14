@@ -1,363 +1,435 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
- <style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
 
- @page  { margin: 5px 5px 100px 25px; padding-bottom:70px;  }
+        @page  { margin: 40px 25px 100px 35px; padding-bottom:80px;  }
 
-.header {
-  height: 285px;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  margin-bottom: 50px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /*font-family: "Times New Roman";*/
-}
+        .header {
+            height: 285px;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            margin-bottom: 50px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            /*font-family: "Times New Roman";*/
+        }
 
-.footer {
-  position: fixed;
-  bottom: -90;
-  width: 100%;
-  font-size: 10px;
-  display: inline-block;
-  height: 130;
-  align: center;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        .footer {
+            position: fixed;
+            bottom: -1cm;
+            width: 100%;
+            font-size: 10px;
+            display: inline-block;
+            height: 3cm;
+            align: center;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .logo{
+            width: 90px;
+            float: left;
+            display: inline-block;
+        }
 
+        .version{
+            width: 170px;
+            float: right;
+            text-align: right;
+            font-size: 7px;
+        }
+        hr{height: 0px;border: 1px solid #666;}
+        table {
+            border-collapse: collapse;
+            padding: 0px;
+            margin: 0px;
+        }
 
+        th.dll {
+            border-style:solid;
+            border-width:1px;
+            border-color:#000000;
+            padding: 5px 0px;
+            font-size: 12px;
+            background: #e2e2e2;
+        }
 
-}
-.logo{
-  width: 90px;
-  float: left;
-  display: inline-block;
-}
+        td.dll {
+            border-style:solid;
+            border-width:1px;
+            border-color:#444444;
+            padding: 0px;
+            font-size: 12px;
+            text-align: center;
+            font-family:  Arial, sans-serif;
+            /*font-family: "Times New Roman"*/
+            width: 10px;
+        }
 
-.version{
- width: 170px;
- float: right;
- text-align: right;
- font-size: 7px;
-}
-hr{height: 0px;border: 1px solid #666;}
-table {
- border-collapse: collapse;
- padding: 0px;
- margin: 0px;
-}
+        td.lefts {
+            text-align: left;
+            padding-left: 2px;;
+        }
+        td.rights  {
+            text-align: right;
+            padding-right: 2px;;
+        }
+        td.centers  {
+            text-align: center;
+            align-content: center;
+            align:center ;
 
-th.dll {
-   border-style:solid;
-   border-width:1px;
-   border-color:#000000;
-   padding: 5px 0px;
-   font-size: 12px;
-   background: #e2e2e2;
- }
+        }
+        table.entidad {
+            text-align: center;
+            align:center;
+        }
+        .entidadMuni {
+            font-size: 15px;
+            font-weight: bold;
+            align:center;
+        }
 
-td.dll {
-   border-style:solid;
-   border-width:1px;
-   border-color:#444444;
-   padding: 0px;
-   font-size: 12px;
-   text-align: center;
-   font-family:  Arial, sans-serif;
-  /*font-family: "Times New Roman"*/
-   width: 10px;
- }
+        td.line {
+            border-bottom: 0px #000000 dashed;
+            padding: 2px 0px;
+            width: 690px;
+            padding-bottom: 0px;
+        }
 
- td.lefts {
-   text-align: left;
-   padding-left: 2px;;
-}
- td.rights  {
-   text-align: right;
-   padding-right: 2px;;
-}
- td.centers  {
-  text-align: center;
-  padding-right: 2px;
-  align-content: center;
-  align:center ;
+        td.lineB {
+            border-bottom: 1px #000000 dashed;
+            padding: 2px 0px;
+            width: 600px;
+            padding-bottom: 0px;
+        }
 
-}
-table.entidad {
-  text-align: center;
-  align:center;
-}
-.entidadMuni {
-  font-size: 15px;
-  font-weight: bold;
-  align:center;
-}
+        .pagenum:before {
+            content: counter(page);
+        }
 
-td.line {
-  border-bottom: 0px #000000 dashed;
-  padding: 2px 0px;
-  width: 690px;
-  padding-bottom: 0px;
-}
-
-td.lineB {
-  border-bottom: 1px #000000 dashed;
-  padding: 2px 0px;
-  width: 600px;
-  padding-bottom: 0px;
-}
-
-.pagenum:before {
-  content: counter(page);
-}
-
-.titulo{
-   font-size: 18px;
-   border: 3px #444 solid;
-   padding: 3px;
-   margin: 2px;;
-   background: #efefef;
-   border-radius: 15px;
-   font-family:  Helvetica;
-   text-align: center;
-   width: 270;
-}
-.pp > p
-{
-  margin: 0px;
-}
+        .titulo{
+            font-size: 18px;
+            border: 3px #444 solid;
+            padding: 3px;
+            margin: 2px;;
+            background: #efefef;
+            border-radius: 15px;
+            font-family:  Helvetica;
+            text-align: center;
+            width: 270;
+        }
+        .pp > p
+        {
+            margin: 0px;
+        }
 
 
-.info {
-   font-size: 12px;
-   border: 1px #444 solid;
-   padding: 0px 15px;
-   margin: 2px;;
-   background: #FEFEFE;
-   border-radius: 10px;
-   font-family: Arial, sans-serif;
-   /*font-family: "Times New Roman";*/
-   text-align: center;
-   font-weight:bold;
-}
+        .info {
+            font-size: 12px;
+            border: 1px #444 solid;
+            padding: 0px 0px 0px 10px;
+            margin: 2px;;
+            background: #FEFEFE;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            /*font-family: "Times New Roman";*/
+            text-align: center;
+            font-weight:normal;
+        }
 
-.labels{
-  font-size: 11px;
-  font-weight: bold;
-}
-</style>
+        .labels{
+            font-size: 11px;
+            font-weight: bold;
+        }
+    </style>
 
-<title>Reporte de Orden de Servicio</title>
+    <title>Reporte de Orden de Servicio</title>
 </head>
 
 <body style="margin-top: 275px;">
 
-  <div class="header" style="font-size: 11px ; ">
-   
- 
- <table>
-    <tr valign="top">
-       <td>
-              <div class="logo">
-                <img src="<?php echo e(config('slam.APP_LOGO')); ?>" width="85px" height="85" style="margin-left: 0px;margin-top:-10px;">
-              </div>
-       </td>
-       <td align="left" >
-               <table style="border:0px solid #ccc; margin-top:3px;">
-              <tr>
-              <td>
-                  <table class="entidad" align="left" style="margin-left:-20px ; margin-top:-5px"  >                   
-                   <tr ><td class="entidadMuni"  align="left" style="font-size:13px;" width="200px">  &nbsp;  &nbsp;    <?php echo e(config('slam.APP_ENTIDAD')); ?>     <td>   </tr>
-                   <tr><td class="entidadMuni" style="font-size: 12px;"  align="left" width="200px" >   &nbsp;  &nbsp;   RUC:  <?php echo e(config('slam.ENTIDAD_RUC')); ?>  </td></tr>
-                   <tr><td align="center" class="centers"> <div style="width: 200px;"  > <div class="titulo entidadMuni"  style="margin-left: 50px;  width: 280px; border-radius: 15px;font-size:15px;font-weight: bold; font-family: Helvetica, Arial , sans-serif ; margin-top:2px; MARGIN-bottom:-10px; height:23px;">    ORDEN DE SERVICIO    </div></div></td></tr>
-                   </table>
+<div class="header" style="font-size: 11px ; ">
 
-              </td>
-              <td>
-                    <div style ="font-size:12px; font-weight:bold; padding:3px;border:2px solid #444; width:165px; height:65px; border-radius: 10px ;margin-left:-15px; margin-top:-8px;margin-right:10px;">
-                    <table cellpadding="4px">
+
+    <table style="table-layout: fixed;" width="100%">
+        <tr valign="top">
+            <td width="23%">
+                <div class="logo">
+                    <img src="<?php echo e(config('slam.APP_LOGO')); ?>" width="120px" height="85" style="margin-left: 0px;">
+                </div>
+            </td>
+            <td width="54%">
+                <table class="entidad" style="table-layout: fixed;" width="100%"  >
+                    <tr>
+                        <td width="100%" class="entidadMuni"  align="center" style="font-size:18px; font-family: Helvetica, Arial , sans-serif ; font-weight: normal"><?php echo e(config('slam.APP_ENTIDAD')); ?><td>
+                    </tr>
+                    <tr>
+                        <td class="entidadMuni" style="font-size: 12px;"  align="center">RUC:  <?php echo e(config('slam.ENTIDAD_RUC')); ?>  </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="centers">
+                            <div class="titulo entidadMuni" style="margin: 0 auto; border-radius: 15px;font-size:20px;font-weight: bold; font-family: Helvetica, Arial , sans-serif ; margin-top:2px; MARGIN-bottom:-10px;">
+                                ORDEN DE SERVICIO
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="23%">
+                <table border="1" cellpadding="5px" style="margin: -15px 0 0 0;">
+                    <tr>
+                        <td align="center">Nro</td>
+                        <td align="center">Fecha</td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <div style="font-weight: bold; font-size: 20px; margin-top:-5px;"  >
+                                <?php echo e(explode('-',$ReturnData["OS"][0]->osCodigo)[1]); ?>
+
+                            </div>
+                        </td>
+                        <td align="center">
+                            <?php echo e($ReturnData["OS"][0]->osFecha); ?>
+
+                        </td>
+                    </tr>
+                </table>
+                <table style="margin-top: 10px;" cellpadding="4px">
                     <tr><td> REG.SIAF:</td><td> .......................  </td> </tr>
                     <tr><td> CERTIFIC:</td><td>   .......................  </td></tr>
-                    <tr><td> FECHA:</td><td>    ...../....../.......... </td></tr>
-                    </table>
-                    </div>
-              </td>
-              </tr>
-              </table>                  
-           
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div class="info">
+        <table style="table-layout: fixed;" width="100%">
+            <tr ><td colspan="6">   <?php echo e($ReturnData["OS"][0]->osMotivo); ?></td></tr>
+            <tr>
+                <td width="15%" style="font-size:12px;">
+                    <label class="labels"> RAZON SOCIAL </label>
+                </td>
+                <td width="1%">:</td>
+                <td style="overflow: hidden;">
+                    <label class="labels" style="font-size: 14px; font-weight:bold; white-space: nowrap;">
+                    <?php echo e($ReturnData["OS"][0]->osRazon); ?>
 
-       </td>
-       <td>
-            <div class="version" align="LEFT"  >
-                <div style="margin-left: 0px; margin-top: -2px;" >
-                <div   class="titulo"             style=" background:#fff; border: 0px #444 solid; border-radius: 8px;width: 130px ; height: 20px; padding-top: 5px; font-size: 14px ;   padding-bottom: 0px; font-family: Helvetica" > Fecha : <strong><?php echo e($ReturnData["OS"][0]->osFecha); ?> </strong></div>
-              
-                <div class="titulo" style="width: 120px; font-weight: bold; font-size: 20px; border-color: #555; border-radius: 10px; margin-top:5px;"  ><?php echo e($ReturnData["OS"][0]->osCodigo); ?></div>          
-                </div>
+                    </label>
+                </td>
+                <td width="5%" align="right"> <label class="labels" > RUC </label>
+                </td>
+                <td width="1%">:</td>
+                <td width="15%"><label CLASS="labels" style="font-size: 16px;">   <?php echo e($ReturnData["OS"][0]->osRUC); ?>   </label></td>
+            </tr>
+            <tr>
+                <td style="font-size:11px; font-weight:normal;">
+                    <label class="labels" >  DIRECCION </label>
+                </td>
+                <td>:</td>
+                <td colspan="4" style="white-space: nowrap; overflow: hidden;"><?php echo e($ReturnData["RUC"][0]->Direccion); ?></td>
+            </tr>
+            <tr>
+                <td style="font-size:11px; font-weight:normal;">
+                    <label class="labels" >  GLOSA </label>
+                </td>
+                <td>:</td>
+                <td colspan="4">
+                    <?php echo e($ReturnData["OS"][0]->osGlosa); ?>
 
-              </div>
-        </td>
-  </tr>
-  </table>
+                </td>
+            </tr>
+            <?php if(strlen(  $ReturnData["OS"][0]->osMotivo ) < 4 	): ?>
+                <tr >
+                    <td style="border-bottom: solid #0f0f0f"> <label class="labels">  LUGAR ENTREGA</label>    </td>
+                    <td style="border-bottom: solid #0f0f0f">:</td>
+                    <td style="border-bottom: solid #0f0f0f; white-space: nowrap; overflow: hidden;"><?php echo e($ReturnData["OS"][0]->osLugar); ?></td>
+                    <td style="border-bottom: solid #0f0f0f" align="right"> <label class="labels"> TEL. </label>   </td>
+                    <td style="border-bottom: solid #0f0f0f">:</td>
+                    <td style="border-bottom: solid #0f0f0f; white-space: nowrap; overflow: hidden;"><?php echo e($ReturnData["RUC"][0]->Telefono); ?></td>
+                </tr>
+            <?php endif; ?>
+
+            <tr>
+                <td colspan="6">
+                    <label class="labels">  FACTURAR A NOMBRE DE LA </label>
+                    <?php echo e(config('slam.APP_ENTIDAD')); ?> CON RUC:
+                    <strong><?php echo e(config('slam.ENTIDAD_RUC')); ?></strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="info">
+        <table width="100%" style="table-layout: fixed;">
+            <tr >
+                <td width="14.8%">
+                    <label class="labels"> DEPENDENCIA </label>
+
+                </td>
+                <td width="1%">:</td>
+                <td style="white-space: nowrap; overflow: hidden;">( <?php echo e($ReturnData["OS"][0]->osDepCod); ?>  ) <?php echo e($ReturnData["OS"][0]->osDepDsc); ?></td>
+            </tr>
+            <tr >
+                <td class="line" STYLE="font-size:11px;">
+                    <label class="labels"> SEC FUN </label>
+
+                </td>
+                <td>:</td>
+                <td style="white-space: nowrap; overflow: hidden;">( <?php echo e($ReturnData["OS"][0]->osSecFunCod); ?>  ) <?php echo e($ReturnData["OS"][0]->osSecFunDsc); ?></td>
+            </tr>
+            <tr >
+                <td class="line" STYLE="font-size:11px;">
+                <label class="labels"> RUBRO </label>
+
+                </td>
+                <td>:</td>
+                <td style="white-space: nowrap; overflow: hidden;">( <?php echo e($ReturnData["OS"][0]->osRubroCod); ?> ) <?php echo e($ReturnData["OS"][0]->osRubroDsc); ?></td>
+            </tr>
+            <tr >
+                <td class="line" STYLE="font-size:11px;">
+                <label class="labels"> REFERENCIA </label>
+
+                </td>
+                <td>:</td>
+                <td style="white-space: nowrap; overflow: hidden;"><?php echo e($ReturnData["OS"][0]->osRef); ?></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div class="footer" align="center"  style="font-size: 11px;">   <!-- ** DATOS FIRMAS ****************************************** -->
+    <table border="1">
+        <thead>
+        <tr style="background: #eee; font-size:12px;"> <th width="210px" align="center"> JEFE DE ADQUISICIONES </th> <th width="210px"  align="center"> JEFE DE LOGISTICA </th>  <th width="270px" align="center">    CONFORMIDAD DEL SERVICIO </th>  </tr>
+        </thead>
+        <tbody>
+        <tr valign="bottom"> <td height="60px" align="center"> </td> <td   align="center"> </td>  <td align="center">
+                <table>
+                    <tr ><td width="15px"> </td>     <td  style="height: 40px;"> <strong>LOS TRABAJOS SON CONFORMES</strong></td> <td >  </td></tr>
+                    <tr> <td width="15px"> </td>    <td > ......../........../.............. </td>  <td >    ............................................. </td></tr>
+                </table>
+            </td>  </tr>
+        <tr><td colspan="3" style="font-size: 10px;">
+                NOTA: Esta Orden es nula sin la firma del Jefe de Abastecimiento y Administración; cada Orden de Compra debe tener su guía de Remisión y su factura correpondiente en original y copia, luego remitirlas a la Unidad de Almacén y Abastecimientos. Nos reservamos el derecho de devolver los  Bienes que no estén de acuerdo a nuestras especificaciones, en conformidad  a la Ley 30225 y su Reglamento y las modificatorias.
+            </td></tr>
+        </tbody>
+    </table>
+    <hr style="width: auto; " >
+    <span style="font-size: 9px;"> <?php echo e(config('slam.ENTIDAD_PIE')); ?>  -    Página <span class="pagenum"></span></span>
+    <script type='text/php'>
+                if ( isset($pdf) ) {
+                    $font = Font_Metrics::get_font('helvetica', 'normal');
+                    $size = 12;
+                    $y = $pdf->get_height() - 19;
+                    $x = $pdf->get_width() - 15 - Font_Metrics::get_text_width('1/1', $font, $size);
+                    $pdf->page_text($x, $y, '{PAGE_NUM}/{PAGE_COUNT}', $font, $size);
+                }
+            </script>
+</div>
 
 
 
 
-            <div class="info">
-         
-            <table >
-			                <tr ><td  >   <?php echo e($ReturnData["OS"][0]->osMotivo); ?></td></tr>       
-                <tr ><td class="lineB" style="font-size:12px;"> <label class="labels"> RAZON SOCIAL: </label>  <?php echo e($ReturnData["OS"][0]->osRazon); ?>  </td><td> <label class="labels" > RUC : </label>  <label CLASS="labels" style="font-size: 16px;">   <?php echo e($ReturnData["OS"][0]->osRUC); ?>   </label>  </td></tr>
-                <tr ><td  colspan="2" style="font-size:11px; font-weight:bold;"> <label class="labels" >  DIRECCION: </label> <?php echo e($ReturnData["RUC"][0]->Direccion); ?>    </td>  </tr>
-                <tr ><td  colspan="2" style="font-size:11px; font-weight:bold;"> <label class="labels" >  GLOSA: </label> <?php echo e($ReturnData["OS"][0]->osGlosa); ?>    </td>  </tr>
-                
-        
-				 <?php if(strlen(  $ReturnData["OS"][0]->osMotivo ) < 4 	): ?>
-				<tr ><td  > <label class="labels">  LUGAR ENTREGA :</label>   <?php echo e($ReturnData["OS"][0]->osLugar); ?> </td><td> <label class="labels"> TELEFONO : </label>  <?php echo e($ReturnData["RUC"][0]->Telefono); ?> </td></tr>
-				<?php endif; ?>
-				
-                <tr ><td class="lineB"> <label class="labels">  Factura a Nombre de : </label>  <?php echo e(config('slam.APP_ENTIDAD')); ?>  </td> <td> <label class="labels"> CON RUC : </label>  <?php echo e(config('slam.ENTIDAD_RUC')); ?>  </td> </tr>
-            </table>
-            </div>
-            <div class="info">
-            <table >
-                <tr ><td class="line"> <label class="labels"> DEPENDENCIA : </label> ( <?php echo e($ReturnData["OS"][0]->osDepCod); ?>  ) <?php echo e($ReturnData["OS"][0]->osDepDsc); ?>  </td></tr>
-                <tr ><td class="line" STYLE="font-size:11px;"> <label class="labels"> SEC FUN : </label>  ( <?php echo e($ReturnData["OS"][0]->osSecFunCod); ?>  ) <?php echo e($ReturnData["OS"][0]->osSecFunDsc); ?>  </td></tr>
-                <tr ><td class="line" STYLE="font-size:11px;> <label class="labels"> RUBRO : </label>  ( <?php echo e($ReturnData["OS"][0]->osRubroCod); ?> ) <?php echo e($ReturnData["OS"][0]->osRubroDsc); ?> </td></tr>
-                <tr ><td class="line" STYLE="font-size:11px;> <label class="labels"> REFERENCIA : </label>   <?php echo e($ReturnData["OS"][0]->osRef); ?>  </td></tr>
-            </table>
-            </div>
+<table  style="table-layout: fixed;" width="100%">
+    <thead>
+    <tr>
+        <th ALIGN="center" class="dll" width="3%">Nro</th>
+        <th ALIGN="center" class="dll" width="5%">Cant.</th>
+        <th ALIGN="center" class="dll" width="6%">Und.</th>
+        <th ALIGN="center" class="dll" width="10%">Clasf.</th>
+        <th class="dll"  width="370px"  > Descripción </th>
+        <th ALIGN="center" class="dll" width="10%">Marca</th>
+        <th ALIGN="center" class="dll" width="8%">P.Unit.</th>
+        <th ALIGN="center" class="dll" width="8%">Sub-total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php  $Total=0; $Item =1 ;?>
+    <?php foreach($ReturnData["OSDll"] as $key=>$OSDll): ?>
+        <tr class="dll">
+            <td ALIGN="center" class="dll"><?php echo $Item++ ;?></td>
+            <td ALIGN="center" class="dll">  <?php echo e($OSDll->dllCant); ?></td>
+            <td ALIGN="center" class="dll">  <?php echo e($OSDll->dllUndAbrv); ?></td>
+            <td ALIGN="center" class="dll">  <?php echo e($OSDll->dllClasfCod); ?></td>
+            <td ALIGN="left" class="dll lefts" style="padding-left: 6px; "  >   <?php echo strtoupper ($OSDll->dllProdDsc )." --:".  strtoupper ($OSDll->dllProdEspf ) ?></td>
+            <td ALIGN="center" class="dll" >   <?php echo e($OSDll->dllMarca); ?></td>
+            <td align="center" class="dll">  <?php  echo floatval( $OSDll->dllPrecio ) ;?></td>
+            <td ALIGN="right" class="dll rights">   <?php echo e($OSDll->dllTotal); ?></td>
+        </tr>
+        <?php  $Condicion=$OSDll->dllTotal;  ?>
+        <?php  $Total+=$OSDll->dllTotal;  ?>
+    <?php endforeach; ?>
 
- </div>
- <div class="footer" align="center"  style="font-size: 11px;">   <!-- ** DATOS FIRMAS ****************************************** -->
-
-
-          <table style="margin-left:-5px;" border="1">
-                    <thead>
-                    <tr style="background: #eee; font-size:12px;"> <th width="210px" align="center"> JEFE DE ADQUISICIONES </th> <th width="210px"  align="center"> JEFE DE LOGISTICA </th>  <th width="270px" align="center">    CONFORMIDAD DEL SERVICIO </th>  </tr>
-                    </thead>
-                    <tbody>
-                    <tr valign="bottom"> <td height="60px" align="center"> </td> <td   align="center"> </td>  <td align="center">
-                        <table>
-                        <tr ><td width="15px"> </td>     <td  style="height: 40px;"> <strong>LOS TRABAJOS SON CONFORMES</strong></td> <td >  </td></tr>
-                        <tr> <td width="15px"> </td>    <td > ......../........../.............. </td>  <td >    ............................................. </td></tr>
-                        </table>
-                    </td>  </tr>
-                    <tr><td colspan="3" style="font-size: 10px;">
-                     NOTA: Esta Orden es nula sin la firma del Jefe de Abastecimiento y Administración; cada Orden de Compra debe tener su guía de Remisión y su factura correpondiente en original y copia, luego remitirlas a la Unidad de Almacén y Abastecimientos. Nos reservamos el derecho de devolver los  Bienes que no estén de acuerdo a nuestras especificaciones, en conformidad  a la Ley 30225 y su Reglamento y las modificatorias.
-                     </td></tr>
-                    </tbody>
-                    </table>
-
-
-
-
- </div>
-
-
-
-
-             <table  style="font-size: 9px; margin-left:0px " width="100%">
-             <THEAD>
-             <tr>
-              <th ALIGN="center" class="dll" width="10px">Nº</th>
-              <th ALIGN="center" class="dll" width="30px">CANT</th>
-              <th ALIGN="center" class="dll" width="20px">UND</th>
-              <th ALIGN="center" class="dll" width="60px">CLASF</th>
-              <th class="dll"  width="370px"  > DESCRIPCION </th>
-              <th ALIGN="center" class="dll" width="5px">MARCA</th>
-              <th ALIGN="center" class="dll" width="45px">P. UNT</th>
-              <th ALIGN="center" class="dll" width="45px">TOTAL</th>
-             </tr>
-              </THEAD>
-              <tbody>
-              <?php  $Total=0; $Item =1 ;?>
-              <?php foreach($ReturnData["OSDll"] as $key=>$OSDll): ?>
-              <tr class="dll">
-                   <td ALIGN="center" class="dll"><?php echo $Item++ ;?></td>
-                   <td ALIGN="center" class="dll" style="font-weight:bold;">  <?php echo e($OSDll->dllCant); ?></td>
-                   <td ALIGN="center" class="dll" style="font-weight:bold;font-size:11px; ">  <?php echo e($OSDll->dllUndAbrv); ?></td>
-                   <td ALIGN="center" class="dll" style="font-weight:bold;" >  <?php echo e($OSDll->dllClasfCod); ?></td>
-                   <td ALIGN="left" class="dll lefts" style="padding-left: 6px; font-size:12px;  font-weight:bold;"  >   <?php echo strtoupper ($OSDll->dllProdDsc )." --:".  strtoupper ($OSDll->dllProdEspf ) ?></td>
-                   <td ALIGN="right" class="dll rights" style="font-weight:bold;font-size:11px;">   <?php echo e($OSDll->dllMarca); ?></td>
-                   <td ALIGN="right" class="dll rights" style="font-weight:normal; font-size:13px;font-weight:bold" >  <?php  echo floatval( $OSDll->dllPrecio ) ;?></td>
-                   <td ALIGN="right" class="dll rights" style="font-weight:normal;font-size:13px;font-weight:bold">   <?php echo e($OSDll->dllTotal); ?></td>
-              </tr>
-			   <?php  $Condicion=$OSDll->dllTotal;  ?>
-               <?php  $Total+=$OSDll->dllTotal;  ?>
-              <?php endforeach; ?>
-
-			<!--  <tr class="dll">
+    <!--  <tr class="dll">
                    <td ALIGN="center" class="dll" colspan="4"></td>
                    <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  > =============== ============= ==========</td>
                    <td ALIGN="center" class="dll" colspan="3">  </td>
               </tr>
 -->
-        </tbody>
-        </table>
+    </tbody>
+</table>
 
 
-         <div  style=" margin-left:0px; padding-left:160px; padding-right:10px ;font-size:11.5px;     font-family: Helvetica, Arial, sans-serif; font-weight:bold;  border:1px solid #000000;" >
-        <?php echo $ReturnData["OS"][0]->osCondicion; ?>      
-       </div>
+<div  style=" padding-left:55px; padding-right:10px ;font-size:11px; font-family: Helvetica, Arial, sans-serif; border:1px solid #000000;" >
+    <?php echo $ReturnData["OS"][0]->osCondicion; ?>
 
-        <table width="100%" border="1">
-        <tbody>
-			 <!-- <tr class="dll">
+</div>
+
+<table width="100%" border="1">
+    <tbody>
+    <!-- <tr class="dll">
                    <td ALIGN="center" class="dll" colspan="4"></td>
                    <td ALIGN="left" colspan="4" class="dll lefts pp" style="padding-left: 6px; font-size:9.5px; font-weight:bold;  "  >  <?php echo $ReturnData["OS"][0]->osCondicion; ?> </td>
 
               </tr>
         -->
 
-			 <!--  <?php for($i = 0; $i < 1-$Item ; $i++): ?>
-              <tr class="dll">
-                   <td ALIGN="center" class="dll" colspan="4" > &nbsp;&nbsp; </td>
+    <!--  <?php for($i = 0; $i < 1-$Item ; $i++): ?>
+        <tr class="dll">
+             <td ALIGN="center" class="dll" colspan="4" > &nbsp;&nbsp; </td>
                    <td ALIGN="left " class=" lefts dll" style="padding-left: 6px;"  > </td>
 				   <td ALIGN="center" colspan="3" class="dll">  </td>
 
                             </tr>
          <?php endfor; ?>
--->
+            -->
 
-        <tr class="dll" style="text-align:left;">
-			  <td   colspan="1" class="dll "  align="left" style="font-size: 12px; font-weight: bold;text-align:left; width:300px; " > Son: <?php echo e(numtoletras($Total)); ?>  </td>
-			  <td colspan="3" class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : <?php echo  number_format ($Total ,2);?>  </td>
-			  </tr>
+    <tr class="dll" style="text-align:left;">
+        <td   colspan="1" class="dll "  align="left" style="font-size: 12px; font-weight: bold;text-align:left; width:300px; " > Son: <?php echo e(numtoletras($Total)); ?>  </td>
+        <td colspan="3" class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : <?php echo  number_format ($Total ,2);?>  </td>
+    </tr>
 
-      </tbody>
-      </table>
+    </tbody>
+</table>
 
-      <table width="100%" border="1">
+<table width="100%" border="1">
 
-         
 
-      
 
-        <tr>
-               <td  class="dll lefts" >
 
-                  <div style=" font-size: 10px; margin-left: 10px; font-weight:bold;">
-                           <div><strong>Resumen por Clasificador : </strong> </div>
-                            <?php foreach($ReturnData["OSAbsClasf"] as $key=>$ReqDll): ?>
-                               <?php echo e($ReqDll->Clasf); ?>  = <?php echo e($ReqDll->Total); ?><br>
-                            <?php endforeach; ?>
-                            </div>
-                            <div style="margin-left: 10px"><strong>Total de Items :<?php echo --$Item;?> </strong> </div>
-               </td>
 
-               <td  class="dll lefts"  valign="top" >
-                  <label  class="labels"> OBSV :</label> <label style="font-size: 13px; width:230px "><?php echo e($ReturnData["OS"][0]->osObsv); ?> </label>
-              </td>
-               <td    class="dll rights"  valign="center" style="font-size:10px;  font-weight:bold;">
-                Elb:<?php echo e($ReturnData["OS"][0]->osUsrID); ?> <br> Imp: <?php echo e($ReturnData["Usr"]); ?><br>
-               </td>
-              </tr>
+    <tr>
+        <td  class="dll lefts" >
 
-    
-      </table>
+            <div style=" font-size: 10px; margin-left: 10px; font-weight:bold;">
+                <div><strong>Resumen por Clasificador : </strong> </div>
+                <?php foreach($ReturnData["OSAbsClasf"] as $key=>$ReqDll): ?>
+                    <?php echo e($ReqDll->Clasf); ?>  = <?php echo e($ReqDll->Total); ?><br>
+                <?php endforeach; ?>
+            </div>
+            <div style="margin-left: 10px"><strong>Total de Items :<?php echo --$Item;?> </strong> </div>
+        </td>
+
+        <td  class="dll lefts"  valign="top" >
+            <label  class="labels"> OBSV :</label> <label style="font-size: 13px; width:230px "><?php echo e($ReturnData["OS"][0]->osObsv); ?> </label>
+        </td>
+        <td    class="dll rights"  valign="center" style="font-size:10px;  font-weight:bold;">
+            Elb:<?php echo e($ReturnData["OS"][0]->osUsrID); ?> <br> Imp: <?php echo e($ReturnData["Usr"]); ?><br>
+        </td>
+    </tr>
+
+
+</table>
 </body>
 </html>
 

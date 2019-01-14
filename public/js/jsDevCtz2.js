@@ -161,68 +161,68 @@ $( document ).on( 'keydown',  '#txCodReq',function(e) {
 $( document ).on( 'keydown',  '#btnLogCtzSave , #btnLogCtzCancel, #btnLogCtzUpd, #btnLogCtzDel, #btnLogCtzSearch, #btnLogCtzNew, #btnLogCtzPrint , #btnLogCtzBusy , #btnLogCtzTrsh',function(e) {
     e.preventDefault();
 });
-$( document ).on( 'click',  '#btnLogCtzBusy',function(e) {
-    e.preventDefault();
-    var  Cod="NN";
-    var datos = {Anio:$(".txVarAnioEjec").val(), '_token': $('#tokenBtn').val()}
-    $.ajax({
-        type: "POST",
-        url: "logistica/spLogGetCtzBusy",
-        data: datos,
-        beforeSend: function () {jsFnDialogBox(0, 0, "LOAD", null, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
-        error: function () {     jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");        },
-        success: function (returnData) {
-            $(".modal-backdrop").remove();
-            Cod = returnData[0].Codigo ;
-            $("#divDialog").dialog(opt);
-            $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
-            $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
-            $("#divDialog").dialog("open");
-            $("#divDialog").dialog({ width:400,height: 150, title: "CONFIRMAR OPERACION"});
-            $("#divDialogCont").html("<br>Esta Seguro que desea RESERVAR el Requerimiento:<strong> "+Cod+"<strong>");
-            $("#divDialog").dialog({
-                buttons: {
-                    "Aceptar": function () {
-
-                        var datos = {Anio:$(".txVarAnioEjec").val(), Usr: '00000','_token': $('#tokenBtn').val()}
-                        $.ajax({
-                            type: "POST",
-                            url: "logistica/spLogSetCtzBusy",
-                            data: datos,
-                            beforeSend: function () {
-                                jsFnDialogBox(0, 0, "LOAD", null, "PETICION EN PROCESO", "Cargando, Espere un momento...");
-                            },
-                            error: function () {
-                                jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");
-                            },
-                            success: function (returnData) {
-                                $("#divDialog").dialog("close");
-                                $(".modal-backdrop").remove();
-
-                                if (returnData.length > 0) {
-                                    if (returnData[0].Error == "0") {
-                                        $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE <br> Se ha Reservador el Requerimiento = ' + returnData[0].Codigo));
-                                        $('#dvAviso').modal('show');
-                                    }
-                                    else {
-                                        jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>" + returnData[0].Mensaje + "</strong>");
-                                    }
-                                }
-                                else {
-                                    jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>No se retorno ningun registro.!</strong>");
-                                }
-                            }
-                        });
-
-                        $(this).dialog("close");
-                    },
-                    "Cancel": function () {  $(this).dialog("close"); }    }
-            });
-
-
-        }
-    });
-});
+// $( document ).on( 'click',  '#btnLogCtzBusy',function(e) {
+//     e.preventDefault();
+//     var  Cod="NN";
+//     var datos = {Anio:$(".txVarAnioEjec").val(), '_token': $('#tokenBtn').val()}
+//     $.ajax({
+//         type: "POST",
+//         url: "logistica/spLogGetCtzBusy",
+//         data: datos,
+//         beforeSend: function () {jsFnDialogBox(0, 0, "LOAD", null, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
+//         error: function () {     jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");        },
+//         success: function (returnData) {
+//             $(".modal-backdrop").remove();
+//             Cod = returnData[0].Codigo ;
+//             $("#divDialog").dialog(opt);
+//             $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
+//             $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
+//             $("#divDialog").dialog("open");
+//             $("#divDialog").dialog({ width:400,height: 150, title: "CONFIRMAR OPERACION"});
+//             $("#divDialogCont").html("<br>Esta Seguro que desea RESERVAR el Requerimiento:<strong> "+Cod+"<strong>");
+//             $("#divDialog").dialog({
+//                 buttons: {
+//                     "Aceptar": function () {
+//
+//                         var datos = {Anio:$(".txVarAnioEjec").val(), Usr: '00000','_token': $('#tokenBtn').val()}
+//                         $.ajax({
+//                             type: "POST",
+//                             url: "logistica/spLogSetCtzBusy",
+//                             data: datos,
+//                             beforeSend: function () {
+//                                 jsFnDialogBox(0, 0, "LOAD", null, "PETICION EN PROCESO", "Cargando, Espere un momento...");
+//                             },
+//                             error: function () {
+//                                 jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");
+//                             },
+//                             success: function (returnData) {
+//                                 $("#divDialog").dialog("close");
+//                                 $(".modal-backdrop").remove();
+//
+//                                 if (returnData.length > 0) {
+//                                     if (returnData[0].Error == "0") {
+//                                         $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE <br> Se ha Reservador el Requerimiento = ' + returnData[0].Codigo));
+//                                         $('#dvAviso').modal('show');
+//                                     }
+//                                     else {
+//                                         jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>" + returnData[0].Mensaje + "</strong>");
+//                                     }
+//                                 }
+//                                 else {
+//                                     jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>No se retorno ningun registro.!</strong>");
+//                                 }
+//                             }
+//                         });
+//
+//                         $(this).dialog("close");
+//                     },
+//                     "Cancel": function () {  $(this).dialog("close"); }    }
+//             });
+//
+//
+//         }
+//     });
+// });
 
 $( document ).on( 'click',  '#btnLogCtzSave , #btnLogCtzDel , #btnLogCtzTrsh',function(e){
     e.preventDefault();
@@ -438,14 +438,14 @@ $( document ).on( 'click',  '#btnLogCtzBusy',function(e) {
 /********************************************************************/
 /********************************************************************/
 
-$( document ).on( 'keydown','#txGlosa, #txLugarEnt, #txCondicion ',function(event) {
-    if(event.keyCode == 13 ) {
-        var Evento = $(this).attr('ID');
-        if (Evento == 'txGlosa') {     $("#txLugarEnt").focus();   }
-        else if (Evento == 'txLugarEnt') {  $("#txDNI").focus();   }
-        else if (Evento == 'txCondicion') {   $("#txObsv").focus();   }
-    }
-});
+// $( document ).on( 'keydown','#txGlosa, #txLugarEnt, #txCondicion ',function(event) {
+//     if(event.keyCode == 13 ) {
+//         var Evento = $(this).attr('ID');
+//         if (Evento == 'txGlosa') {     $("#txLugarEnt").focus();   }
+//         else if (Evento == 'txLugarEnt') {  $("#txDNI").focus();   }
+//         else if (Evento == 'txCondicion') {   $("#txObsv").focus();   }
+//     }
+// });
 
 
 /***********************************************************************************/
