@@ -926,7 +926,8 @@ class ctrlGrl extends Controller
     {
         if($request->prAnio == '2016' || $request->prAnio == '2017' || $request->prAnio == '2018')
         {
-            $result = \DB::connection('dblogistica')-> select("   Select secid as id ,substring(secid,6,4) as cod,  +' ( '+ substring(secid,6,4)+' ) '+ secDsc  as dsc from TPreSF where   '20'+substring(secid,3,2) = "    .$request->prAnio. " and substring (secid,6,4)= ".$request->prCodSecFun);
+//            $result = \DB::connection('dblogistica')-> select("   Select secid as id ,substring(secid,6,4) as cod,  +' ( '+ substring(secid,6,4)+' ) '+ secDsc  as dsc from TPreSF where   '20'+substring(secid,3,2) = "    .$request->prAnio. " and substring (secid,6,4)= ".$request->prCodSecFun);
+            $result = \DB::connection('dbCli')-> select("   Select codObra as id, substring (CodObra,7,4) as cod,  ' ( '+substring (CodObra,7,4)+' ) '+   Denominacion as dsc from Proy  where    substring(CodObra,3,4) =" .$request->prAnio. " and substring (CodObra,7,4)= ".$request->prCodSecFun);
         }
         else if($request->prAnio == '2015' ||  $request->prAnio == '2014')
         {

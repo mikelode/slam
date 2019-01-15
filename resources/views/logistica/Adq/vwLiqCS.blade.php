@@ -35,7 +35,10 @@
                                  <div class="btn-group btn-input clearfix" >
                                     <button type="button" id="btnLiqCSAnio" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:140px; height: 40px;font-size: 14px;  ">    <span  id="txRptLiqCSAnio"  data-bind="label">Seleccione</span> <span class="caret"></span></button>
                                     <ul class="dropdown-menu menu-RptLiqCSAnio" role="menu" style="font-size: 16px; font-weight:bold;">
-                                    
+
+                                        <li  psrId="2018"><a href="#">2018</a></li>
+                                        <li  psrId="2017"><a href="#">2017</a></li>
+                                        <li  psrId="2016"><a href="#">2016</a></li>
                                        <li  psrId="2015"><a href="#">2015</a></li>
                                        <li  psrId="2014"><a href="#">2014</a></li>
                                        <li  psrId="2013"><a href="#">2013</a></li>

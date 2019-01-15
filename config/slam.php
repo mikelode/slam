@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'APP_LOGO' => 'img/muni_quellouno_logo.png',
+    'APP_LOGO' => 'img/logo_quello.png',
     'APP_ENTIDAD' => 'MUNICIPALIDAD DISTRITAL DE QUELLOUNO',
     'ENTIDAD_TI' => 'UNIDAD DE SISTEMAS E INFORMÁTICA',
     'ENTIDAD_PROV' => 'PROV. DE LA CONVENCION - CUSCO',
