@@ -961,8 +961,11 @@ class ctrlGrl extends Controller
 
          if($request->prAnio == '2016' || $request->prAnio == '2017' || $request->prAnio == '2018')
         {
-            $resultTar = \DB::connection('dblogistica')->select('exec spLiqGetTar ?,?', array(  $request->prTipo,$request->prCodSecFun )); 
-             $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSLDll', compact('resultTar','Doc'))->render();
+//            $resultTar = \DB::connection('dblogistica')->select('exec spLiqGetTar ?,?', array(  $request->prTipo,$request->prCodSecFun ));
+//             $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSLDll', compact('resultTar','Doc'))->render();
+             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?', array(  $request->prTipo,$request->prCodSecFun ));
+             if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc'))->render();
+             else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc'))->render();
         }
         else if($request->prAnio == '2015' ||  $request->prAnio == '2014')
         {
