@@ -33,6 +33,7 @@
   width: 100px;
   float: left;
   display: inline-block;
+    margin-top: -30px;
 }
 
 .version{
@@ -154,7 +155,7 @@ td.lineB {
     <tr valign="top">
        <td width="170px">
           <div class="logo">
-            <img src="<?php echo e(config('slam.APP_LOGO')); ?>" width="120px" height="85" style="margin-left: 0px;">
+            <img src="<?php echo e(config('slam.APP_LOGO')); ?>" width="120px" height="120" style="margin-left: 0px;">
           </div>
        </td>
        <td width="440px">
@@ -347,7 +348,7 @@ td.lineB {
                 </td>
             </tr>
             <tr><td colspan="3" style="font-size: 9px;">
-             NOTA: Esta Orden es nula sin la firma del Jefe de Abastecimiento; cada Orden de Compra debe tener su guía de Remisión y su factura correpondiente en original y copia, luego remitirlas a la Unidad de Almacén y Abastecimientos. Nos reservamos el derecho de devolver los  Bienes que no estén de acuerdo a nuestras especificaciones, en conformidad  a la Ley 30225 y su Reglamento y las modificatorias.
+             NOTA: Esta Orden es nula sin la firma del Jefe de Logística y Jefe de Adquisiciones; cada Orden de Compra debe tener su guía de Remisión y factura correpondiente en original y copia, luego remitirlas a la Unidad de Almacén. Nos reservamos el derecho de devolver los  Bienes que no estén de acuerdo a nuestras especificaciones, en conformidad a la Ley 30225 y su Reglamento con sus modificatorias.
              </td></tr>
             </tbody>
             </table>

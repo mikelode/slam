@@ -228,7 +228,7 @@ td.line {
 
  </div>
  <br>
-             <table  style="font-size: 9px; margin-left:5px width:auto; "  >
+             <table  style="font-size: 9px; margin-left:5px; width:auto; "  >
              <THEAD>
              <tr>
               <th  class="dll" width="10px" style="background:#bbb;" >Nº</th>
@@ -265,7 +265,9 @@ td.line {
                                  <td ALIGN="center" class="dll"></td>
                             </tr>
             @endfor
-                <tr><td colspan="6" class="dll rights" align="right" style="font-size: 14px; font-weight: bold;" > TOTAL :</td><td class="dll" colspan="1"></td></tr>
+                <tr>
+                    <td colspan="2" class="dll" style="font-size: 13px; font-weight: bold; border-right: solid white">SON:</td>
+                    <td colspan="4" class="dll rights" align="right" style="font-size: 14px; font-weight: bold;" > TOTAL :</td><td class="dll" colspan="1"></td></tr>
 
                <tr>
                    <td colspan="3" class="dll lefts" >
@@ -281,8 +283,8 @@ td.line {
               <tr>
               <td colspan="6" class="dll" style="text-align: left">
 
-                      * Si por cualquier  causa no esta en condiciones de cotizar. Sirva (n)se Ud (1) firmar y devolver este documento.<br>
-                         * Si esta en condicionesde cotizar sirva(n)se Ud(s) firmar este documento y devolverlo en un SOBRE CERRADO.
+                      * Si por cualquier  causa no esta en condiciones de cotizar. Sirva(n)se Ud(s) firmar y devolver este documento.<br>
+                         * Si esta en condiciones de cotizar sirva(n)se Ud(s) firmar este documento y devolverlo en un SOBRE CERRADO.
 
                </td>
                 </td>
@@ -294,12 +296,12 @@ td.line {
                     <td colspan="7" class="dll" style="text-align: left">
                      * Llenar todos los datos requeridos en este forrnato, caso contrario será descalificada:
                      la cotizacion deberá Incluir todos los tributos, seguros, transportes, inspecciones, pruebas así coma cualquier otro concepto que pueda
-                     tener insidencia sobre el costa del bien a contratar de acuerdo a la legislación Vigente.
+                     tener insidencia sobre el costo del bien a contratar de acuerdo a la legislación Vigente.
 
                      <br>
-                     * La ejecucion de la prestacion se realizara previa a la notificacion de la O/C u O/S debidamente con registro SIAF de compromiso; caso contrario NO es valido la prestacion:                     
+                     * La ejecucion de la prestacion se realizara previa a la notificacion de la O/C u O/S debidamente con registro SIAF de compromiso; caso contrario NO es valido la prestacion.
 
-                      <p style="margin-bottom: -2px; margin-top:-5px; ;font-size: 10px; font-family: Helvetica, Arial, sans-serif"><strong>PLAZO DE ENTREGA :__________ </strong> &nbsp; <strong>VALIDEZ DE OFERTA :___________</strong>  ¿Incluye IGV?<strong style="font-size:13px;"> ( SI  )  &nbsp; (  NO )  &nbsp; ( RH )  </strong>&nbsp; Fecha de Cotiz: ___/____/20_____    </p>
+                      <p style="margin-bottom: 2px; margin-top:-5px; ;font-size: 10px; font-family: Helvetica, Arial, sans-serif"><strong>PLAZO DE ENTREGA :__________ </strong> &nbsp; <strong>VALIDEZ DE OFERTA :___________</strong> <strong>ACOGIDO A LA LEY 27037:</strong><img src="img/imgHuella.jpg" width="20px"  height="20px" style=""> &nbsp; Fecha de Cotiz: ___/____/20_____    </p>
 
               </td>
               </tr>
