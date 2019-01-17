@@ -46,7 +46,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 login-sec">
-                <h2 class="text-center">Logística y Almacén <small>v2019</small></h2>
+                <h2 class="text-center">Logística y Almacén <small>LogiSmart v2019</small></h2>
 
                 <form class="login-form" method="POST" name="login-form" action="{{ asset('/auth/login') }}">
                     <div class="form-group">
