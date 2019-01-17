@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Login SLAM</title>
+<title>Login logiSmart</title>
 <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
 <!--STYLESHEETS-->
 <link href="<?php echo e(asset('css/bootstrap4.min.css')); ?>" rel="stylesheet" id="bootstrap-css">
