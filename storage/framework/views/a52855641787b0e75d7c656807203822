@@ -86,7 +86,11 @@
                             
                               <table class="gs-table" >           
                                 <tr>
-                                <td><button class="btn btn-primary" id = "btnLiqCSMostrar" style="HEIGHT:45PX;"> Mostrar ( OC / OS ) </button> </td>
+                                <td><button class="btn btn-primary" id = "btnLiqCSMostrar" data-ordn="oc" style="HEIGHT:45PX;"> Mostrar ( OC ) </button> </td>
+                                <td width="50px"> &nbsp;</td>
+                                    <td>
+                                        <button class="btn btn-info" id = "btnLiqCSMostrar" data-ordn="os" style="HEIGHT:45PX;"> Mostrar ( OS ) </button>
+                                    </td>
                                 <td width="50px"> &nbsp;</td>
                                 <td><button class="btn btn-default" style="width:120px; HEIGHT:45PX;" data-dismiss="modal"> Cancelar </button></td>
                               </tr>

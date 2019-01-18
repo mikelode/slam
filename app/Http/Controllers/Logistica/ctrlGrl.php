@@ -957,21 +957,22 @@ class ctrlGrl extends Controller
 
  public  function    spLiqGetCS( Request $request  )
     {
-        $Doc='SHOW';       
+        $Doc='SHOW';
+        $tipoOrd = $request->orden;
 
          if($request->prAnio == '2016' || $request->prAnio == '2017' || $request->prAnio == '2018')
         {
 //            $resultTar = \DB::connection('dblogistica')->select('exec spLiqGetTar ?,?', array(  $request->prTipo,$request->prCodSecFun ));
 //             $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSLDll', compact('resultTar','Doc'))->render();
-             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$request->orden ));
-             if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc'))->render();
-             else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc'))->render();
+             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$tipoOrd ));
+             if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc','tipoOrd'))->render();
+             else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc','tipoOrd'))->render();
         }
         else if($request->prAnio == '2015' ||  $request->prAnio == '2014')
         {
-             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$request->orden ));
-             if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc'))->render();  
-             else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc'))->render();
+             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$tipoOrd ));
+             if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc','tipoOrd'))->render();
+             else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc','tipoOrd'))->render();
         }
         else if($request->prAnio == '2013' ||  $request->prAnio == '2012'  ||  $request->prAnio == '2011' )
         {
@@ -983,7 +984,7 @@ class ctrlGrl extends Controller
     } 
   
 
-    public  function    spLiqGetCSExcel(  $prAnio , $prCodSecFun , $prTipo )
+    public  function    spLiqGetCSExcel(  $prAnio , $prCodSecFun , $prTipo, $prOrdn )
     {
         $Doc='XLS';
        
@@ -993,14 +994,14 @@ class ctrlGrl extends Controller
 //            if($prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSLDll', compact('resultTar','Doc'))->render();
 //            else                  $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSL', compact('resultTar','Doc'))->render();
 
-             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?', array(  $prTipo,$prCodSecFun ));
+             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $prTipo,$prCodSecFun, $prOrdn ));
              if($prTipo =="DLL")  $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc'))->render();
              else                 $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc'))->render();
 
         }
         else if($prAnio == '2015' ||  $prAnio == '2014')
         {
-             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?', array(  $prTipo,$prCodSecFun ));
+             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $prTipo,$prCodSecFun, $prOrdn ));
               if($prTipo =="DLL")  $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc'))->render(); 
               else                 $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc'))->render(); 
         }

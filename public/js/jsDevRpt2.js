@@ -449,7 +449,8 @@ $(document).on('click','#btnLiqCSExcel',function(e){
      prAnio= $("#txRptLiqCSAnio").attr("codID") ;
      prCodSecFun=$("#txLiqCSCodSecFun").attr("secFunID");
      prTipo= $("#txRptLiqCSTipo").attr("codID") ;
-    window.open("logistica/rptLiqCSExcel/"+prAnio+"/"+prCodSecFun+"/"+prTipo, "rpt");
+     prOrdn = $(this).data('ordn');
+    window.open("logistica/rptLiqCSExcel/"+prAnio+"/"+prCodSecFun+"/"+prTipo+"/"+prOrdn, "rpt");
 });
 
 

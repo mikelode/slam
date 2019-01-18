@@ -322,7 +322,7 @@ Route::get('logistica/rptPrueba/{prAnio}/{prTipoRpt}/{prFecIni}/{prFecFin}/{prSe
 
 Route::get('logistica/vwLiqCS',    'Logistica\ctrlGrl@fnGetViewLiqCS');
 Route::post('logistica/spLiqGetCS',    'Logistica\ctrlGrl@spLiqGetCS');	
-Route::get('logistica/rptLiqCSExcel/{prAnio}/{prCodSecFun}/{prTipo}',    'Logistica\ctrlGrl@spLiqGetCSExcel');
+Route::get('logistica/rptLiqCSExcel/{prAnio}/{prCodSecFun}/{prTipo}/{prOrdn}',    'Logistica\ctrlGrl@spLiqGetCSExcel');
 
 
 Route::post('logistica/spLogGetOC_Expediente',    'Logistica\ctrlOC@spLogGetOC_Expediente');
