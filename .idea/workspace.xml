@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevRpt2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevRpt2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/3113ed46c7a8bedd1db7b7e2d0a08cd9fe9e1bfe" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/3113ed46c7a8bedd1db7b7e2d0a08cd9fe9e1bfe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/a52855641787b0e75d7c656807203822" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a52855641787b0e75d7c656807203822" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +37,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="146" />
-          <entry key="Blade" value="4718" />
+          <entry key="Blade" value="4778" />
           <entry key="CSS" value="24" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="1255" />
@@ -53,7 +47,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="13" />
-          <entry key="Blade" value="78" />
+          <entry key="Blade" value="79" />
           <entry key="CSS" value="3" />
           <entry key="JavaScript" value="22" />
           <entry key="Markdown" value="1" />
@@ -70,11 +64,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="1001" column="56" lean-forward="true" selection-start-line="1001" selection-start-column="56" selection-end-line="1001" selection-end-column="56" />
+            <state relative-caret-position="591">
+              <caret line="990" column="54" selection-start-line="990" selection-start-column="54" selection-end-line="990" selection-end-column="54" />
               <folding>
                 <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
@@ -85,11 +79,23 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="89" column="88" selection-start-line="89" selection-start-column="88" selection-end-line="89" selection-end-column="88" />
+              <folding>
+                <element signature="e#4537#4620#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDll.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="103" column="41" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="41" />
+            <state relative-caret-position="112">
+              <caret line="103" column="88" lean-forward="true" selection-start-line="103" selection-start-column="80" selection-end-line="103" selection-end-column="88" />
               <folding>
                 <element signature="e#5218#5301#0#HTML" expanded="true" />
               </folding>
@@ -214,7 +220,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2018_12_27_220958_create_procesosintern_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_12_27_221623_create_procesosinternproductos_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_12_28_054938_create_procesossalida_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_12_28_055905_create_procesossalidaproductos_table.php" />
@@ -265,6 +270,7 @@
         <option value="$PROJECT_DIR$/public/js/jsDevRpt2.js" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" />
+        <option value="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php" />
       </list>
     </option>
   </component>
@@ -551,12 +557,12 @@
       <workItem from="1547590922202" duration="3522000" />
       <workItem from="1547610631148" duration="709000" />
       <workItem from="1547649152312" duration="9795000" />
-      <workItem from="1547732301443" duration="10326000" />
+      <workItem from="1547732301443" duration="10767000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163327000" />
+    <option name="totallyTimeSpent" value="163768000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -601,13 +607,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="46" column="56" lean-forward="true" selection-start-line="46" selection-start-column="56" selection-end-line="46" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/scripts.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -928,25 +927,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="990" column="54" selection-start-line="990" selection-start-column="54" selection-end-line="990" selection-end-column="54" />
+          <folding>
+            <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDll.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="103" column="41" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="41" />
+        <state relative-caret-position="112">
+          <caret line="103" column="88" lean-forward="true" selection-start-line="103" selection-start-column="80" selection-end-line="103" selection-end-column="88" />
           <folding>
             <element signature="e#5218#5301#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="1001" column="56" lean-forward="true" selection-start-line="1001" selection-start-column="56" selection-end-line="1001" selection-end-column="56" />
+        <state relative-caret-position="224">
+          <caret line="89" column="88" selection-start-line="89" selection-start-column="88" selection-end-line="89" selection-end-column="88" />
           <folding>
-            <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#4537#4620#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

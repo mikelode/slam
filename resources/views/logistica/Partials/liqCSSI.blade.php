@@ -86,7 +86,11 @@
           <table>
           <tr>
             <td><DIV style="background:#f2f2f2;width: 840px; padding:2px ;padding-left:10px;border-radius:5px;"   >  <h5 style="">RESULTADOS DE LA BUSQUEDA </h5>       </DIV> </td>
-            <td  align="left"> {!! Form::button('EXCEL (*.xls) '        ,['id'=>'btnLiqCSExcel' ,'class'=>'btn btn-danger','style'=> 'width: 100Px  ;height: 35px ; padding:0; font-size:11px; margin-left:150px; ']) !!} </td>
+            <td  align="left">
+                <button id="btnLiqCSExcel" class="btn btn-danger" data-ordn="{{ $tipoOrd }}" style="width: 100Px  ;height: 35px ; padding:0; font-size:11px; margin-left:150px;">
+                    EXCEL (*.xls)
+                </button>
+            </td>
           </tr>
           </table>
       </div>
