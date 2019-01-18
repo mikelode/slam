@@ -963,13 +963,13 @@ class ctrlGrl extends Controller
         {
 //            $resultTar = \DB::connection('dblogistica')->select('exec spLiqGetTar ?,?', array(  $request->prTipo,$request->prCodSecFun ));
 //             $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSLDll', compact('resultTar','Doc'))->render();
-             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?', array(  $request->prTipo,$request->prCodSecFun ));
+             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$request->orden ));
              if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc'))->render();
              else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc'))->render();
         }
         else if($request->prAnio == '2015' ||  $request->prAnio == '2014')
         {
-             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?', array(  $request->prTipo,$request->prCodSecFun ));
+             $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$request->orden ));
              if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc'))->render();  
              else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc'))->render();
         }

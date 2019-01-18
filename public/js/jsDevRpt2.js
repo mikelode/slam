@@ -299,9 +299,10 @@ $(document).on('click','#btn-consultar-doc',function(e){
 
 $( document ).on( 'click',  '#btnLiqCSMostrar',function(e) {
     e.preventDefault();
-    var token= $('#tokenBtnMain').val();  
+    var token= $('#tokenBtnMain').val();
+    var ordn = $(this).data('ordn');
 
-    var dataString = {'prAnio': $("#txRptLiqCSAnio").attr("codID"),'prCodSecFun':$("#txLiqCSCodSecFun").attr("secFunID") , 'prTipo': $("#txRptLiqCSTipo").attr("codID") ,'_token':token } ;
+    var dataString = {'prAnio': $("#txRptLiqCSAnio").attr("codID"),'prCodSecFun':$("#txLiqCSCodSecFun").attr("secFunID") , 'prTipo': $("#txRptLiqCSTipo").attr("codID") , 'orden': ordn, '_token':token } ;
     $.ajax({
         type: "POST",
         url: "logistica/spLiqGetCS",
