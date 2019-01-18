@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDllOS.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIOS.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDll.blade.php" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,7 +41,7 @@
           <entry key="CSS" value="24" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="1255" />
-          <entry key="PHP" value="6697" />
+          <entry key="PHP" value="6766" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -69,11 +64,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="993" column="80" selection-start-line="993" selection-start-column="80" selection-end-line="993" selection-end-column="80" />
+            <state relative-caret-position="515">
+              <caret line="1044" column="80" selection-start-line="1044" selection-start-column="80" selection-end-line="1044" selection-end-column="80" />
               <folding>
                 <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
@@ -93,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDllOS.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+            <state relative-caret-position="112">
+              <caret line="7" column="56" lean-forward="true" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -186,8 +181,8 @@
       <find>btnLiqCSMostrar</find>
       <find>spLiqGetCS</find>
       <find>btnLiqCSExcel</find>
-      <find>rptLiqCSExcel</find>
       <find>spLiqGetCSExcel</find>
+      <find>rptLiqCSExcel</find>
     </findStrings>
     <dirStrings>
       <dir>D:\xampp\htdocs\slam\app\Http\Controllers\Logistica</dir>
@@ -256,11 +251,11 @@
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwLiqCS.blade.php" />
         <option value="$PROJECT_DIR$/public/js/jsDevRpt2.js" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDll.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIOS.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDllOS.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" />
       </list>
     </option>
   </component>
@@ -547,12 +542,12 @@
       <workItem from="1547590922202" duration="3522000" />
       <workItem from="1547610631148" duration="709000" />
       <workItem from="1547649152312" duration="9795000" />
-      <workItem from="1547732301443" duration="11730000" />
+      <workItem from="1547732301443" duration="12026000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164731000" />
+    <option name="totallyTimeSpent" value="165027000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -896,26 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="324" column="116" selection-start-line="324" selection-start-column="101" selection-end-line="324" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="993" column="80" selection-start-line="993" selection-start-column="80" selection-end-line="993" selection-end-column="80" />
-          <folding>
-            <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSI.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -945,8 +920,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/liqCSSIDllOS.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        <state relative-caret-position="112">
+          <caret line="7" column="56" lean-forward="true" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="324" column="116" selection-start-line="324" selection-start-column="101" selection-end-line="324" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="1044" column="80" selection-start-line="1044" selection-start-column="80" selection-end-line="1044" selection-end-column="80" />
+          <folding>
+            <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
