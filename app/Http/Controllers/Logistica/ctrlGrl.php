@@ -965,14 +965,34 @@ class ctrlGrl extends Controller
 //            $resultTar = \DB::connection('dblogistica')->select('exec spLiqGetTar ?,?', array(  $request->prTipo,$request->prCodSecFun ));
 //             $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSLDll', compact('resultTar','Doc'))->render();
              $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$tipoOrd ));
-             if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc','tipoOrd'))->render();
-             else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc','tipoOrd'))->render();
+             if($request->prTipo =="DLL"){
+                 if($tipoOrd == 'oc')
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc','tipoOrd'))->render();
+                 else
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDllOS', compact('resultTar','Doc','tipoOrd'))->render();
+             }
+             else{
+                 if($tipoOrd == 'oc')
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc','tipoOrd'))->render();
+                 else
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIOS', compact('resultTar','Doc','tipoOrd'))->render();
+             }
         }
         else if($request->prAnio == '2015' ||  $request->prAnio == '2014')
         {
              $resultTar = \DB::connection('dbCli')->select('exec spLiqGetCSSIA ?,?,?', array(  $request->prTipo,$request->prCodSecFun,$tipoOrd ));
-             if($request->prTipo =="DLL")   $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc','tipoOrd'))->render();
-             else                           $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc','tipoOrd'))->render();
+             if($request->prTipo =="DLL"){
+                 if($tipoOrd == 'oc')
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDll', compact('resultTar','Doc','tipoOrd'))->render();
+                 else
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIDllOS', compact('resultTar','Doc','tipoOrd'))->render();
+             }
+             else{
+                 if($tipoOrd == 'oc')
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSI', compact('resultTar','Doc','tipoOrd'))->render();
+                 else
+                    $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSIOS', compact('resultTar','Doc','tipoOrd'))->render();
+             }
         }
         else if($request->prAnio == '2013' ||  $request->prAnio == '2012'  ||  $request->prAnio == '2011' )
         {

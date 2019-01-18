@@ -22,7 +22,7 @@
 
        <table>
                 <tr style="height: 20px;background:#c0c0dd" >
-                <td valign="center" COLSPAN="19" > <h4>REPORTE DETALLADO : DE ORDENES DE COMPRA</h4></td>        </tr>
+                <td valign="center" COLSPAN="19" > <h4>REPORTE DETALLADO : DE ORDENES DE SERVICIOS</h4></td>        </tr>
         </table>
 
        <table  style="border-collapse: separate;border-spacing:  3px;">
@@ -42,7 +42,7 @@
                 <th WIDTH="90px" align="center"     valign="center">Tipo Adq</th>
                 <th WIDTH="90px" align="center"     valign="center">Depenciencia</th>
                 <th WIDTH="90px" align="center"     valign="center">Glosa</th>
-                <th WIDTH="90px" align="center"     valign="center">Lugar Ent.</th>
+                <th WIDTH="90px" align="center"     valign="center">Atencion</th>
                 <th WIDTH="90px" align="center"     valign="center">Referencia</th>
         </tr>
         </thead>
@@ -64,7 +64,7 @@
                 <td  style="mso-number-format:'@'" >{{  $nom->tipoAdqCod }} -  {{  $nom->tipoAdq }} </td>               
                 <td  style="mso-number-format:'@'" >{{  $nom->depCod }} -  {{  $nom->Dep }} </td>               
                 <td  style="mso-number-format:'@'" >{{  $nom->Glosa }} </td>  
-                <td  style="mso-number-format:'@'" >{{  $nom->lugarEnt }} </td>                  
+                <td  style="mso-number-format:'@'" >{{  $nom->Atender }} </td>
                 <td   align="left" >{{  $nom->Ref }} </td>
       </tr>
         @endforeach
@@ -113,7 +113,7 @@
                 <th WIDTH="150px" align="center"     valign="center">Tipo Adq</th>
                 <th WIDTH="150px" align="center"     valign="center">Depenciencia</th>
                 <th WIDTH="200px" align="center"     valign="center">Glosa</th>
-                <th WIDTH="200px" align="center"     valign="center">Lugar Ent.</th>
+                <th WIDTH="200px" align="center"     valign="center">Atender</th>
                 <th WIDTH="350px" align="center"     valign="center">Referencia</th>
 
             </tr>
@@ -136,7 +136,7 @@
                 <td  style="mso-number-format:'@'" >{{  $nom->tipoAdqCod }} -  {{  $nom->tipoAdq }} </td>               
                 <td  style="mso-number-format:'@'" >{{  $nom->depCod }} -  {{  $nom->Dep }} </td>               
                 <td  style="mso-number-format:'@'" >{{  $nom->Glosa }} </td>  
-                <td  style="mso-number-format:'@'" >{{  $nom->lugarEnt }} </td>                  
+                <td  style="mso-number-format:'@'" >{{  $nom->Atender }} </td>
                 <td   align="left" >{{  $nom->Ref }} </td>
             </tr>
             @endforeach

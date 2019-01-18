@@ -22,7 +22,7 @@
 
        <table>
                 <tr style="height: 20px;background:#c0c0dd" >
-                <td valign="center" COLSPAN="19" > <h4>REPORTE DETALLADO : DE ORDENES DE COMPRA Y SERVICIOS</h4></td>        </tr>
+                <td valign="center" COLSPAN="19" > <h4>REPORTE DETALLADO : DE ORDENES DE COMPRA</h4></td>        </tr>
         </table>
 
        <table  style="border-collapse: separate;border-spacing:  3px;">
