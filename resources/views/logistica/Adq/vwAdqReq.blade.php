@@ -163,8 +163,8 @@
                         <td colspan="2">{!! Form::text('txCondicion', null, array('ID'=>'txCondicion', 'class' => 'form-control gs-input', 'placeholder'=>'Condicion', 'style'=>'width:424px')) !!}</td>
                         </tr><tr valign="top">
 
-                         <td  align="right" > {!! Form::label('first_name','Observaciones :', array('class'=> 'gs-label'))!!}  </td>
-                         <td colspan="2" >{!! Form::textarea('txObsv', null, array('ID'=>'txObsv', 'class' => 'form-control gs-input', 'placeholder'=>'Observaciones', 'style'=>'width:424px','rows'=>'7')) !!}</td>
+                         <td  align="right" > {!! Form::label('first_name','Nota :', array('class'=> 'gs-label'))!!}  </td>
+                         <td colspan="2" >{!! Form::textarea('txObsv', null, array('ID'=>'txObsv', 'class' => 'form-control gs-input', 'placeholder'=>'Nota', 'style'=>'width:424px','rows'=>'7')) !!}</td>
                          </tr>
                       </table>
                  </td>

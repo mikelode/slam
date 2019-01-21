@@ -237,7 +237,7 @@ td.line {
 
                       </td>
                       <td width="35%" align="center">
-                          ------------------------------------- <br> Logistica
+                          ------------------------------------- <br> Logística
                       </td>
                       <td width="6%">
 
@@ -299,7 +299,22 @@ td.line {
                    <td ALIGN="center" class="dll" colspan="2">  </td>
 
                 </tr>
-			   @for ($i = 0; $i < 12-$Item ; $i++)
+              @foreach(str_split($ReturnData["Req"][0]->reqObsv,85) as $key => $row)
+                  <tr class="dll">
+                      <td ALIGN="center" class="dll">-</td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="center" class="dll" >
+                          @if($key == 0)
+                              Nota:
+                          @endif
+                      </td>
+                      <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >{{ $row }}</td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="right" class="dll rights" >  </td>
+                  </tr>
+              @endforeach
+			   @for ($i = 0; $i < 8-$Item ; $i++)
               <tr class="dll">
                                  <td ALIGN="center" class="dll">-</td>
                    <td ALIGN="center" class="dll" >  </td>
@@ -311,6 +326,7 @@ td.line {
 
                             </tr>
             @endfor
+
 
               <tr><td colspan="7" class="dll rights" align="right" style="font-size: 14px; font-weight: bold;" > TOTAL : <?php echo  number_format ($Total ,2);?>  </td></tr>
 
@@ -336,7 +352,7 @@ td.line {
 
                <td colspan="2" class="dll lefts"  valign="top">
                <table >
-                    <tr> <td ><label class="labels"> OBSV :</label> <label style="font-size: 9px;"> {{  $ReturnData["Req"][0]->reqObsv  }} </label></td>  </tr>
+                    <tr> <td ><label class="labels"> OBSV :</label> <label style="font-size: 9px;"> </label></td>  </tr>
               </table>
               </td>
                <td  class="dll rights"  valign="center" style="font-size: 8px">
