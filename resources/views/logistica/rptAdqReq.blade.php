@@ -2,7 +2,7 @@
 <html>
 <head>
  <style>
-  @page { margin: 10px 35px 80px 35px; padding-bottom:70px;  }
+  @page { margin: 10px 35px 80px 1cm;}
 
 .header {
   height: 220px;
@@ -16,12 +16,10 @@
 
 .footer {
   position: fixed;
-  bottom: -1;
+  bottom: 2.5cm;
   width: 100%;
   font-size: 10px;
   display: inline-block;
-  height: 52;
-
   align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -133,10 +131,10 @@ td.line {
 <title>Reporte de Requerimientos</title>
 </head>
 
-<body style="margin-top: 225px;">
+<body style="padding-top: 245px;">
 
   <div class="header" style="font-size: 11px ; ">
-     <table style="margin-top:-10px">
+     <table style="margin-top:10px">
        <tr valign="top">
        <td>
               <div class="logo">
@@ -192,8 +190,7 @@ td.line {
 
   </div>
  <div class="footer" align="center"  style="font-size: 12px;">   <!-- ** DATOS FIRMAS ****************************************** -->
-
- <br>  <br>
+ <br>
         <?php
         if( $ReturnData["Req"][0]->reqGtoTip=='0')
         {
@@ -217,7 +214,7 @@ td.line {
        else
        {
        ?>
-          <table style="table-layout: fixed; margin-bottom: 20px;" width="100%">
+          <table style="table-layout: fixed; margin-bottom: 1.25cm;" width="100%">
               <tbody>
                   <tr>
                       <td width="5%">  </td>
@@ -251,7 +248,6 @@ td.line {
                   </tr>
               </tbody>
           </table>
-          <br>  <br>                
       <?php
 
       } ?>
@@ -265,7 +261,7 @@ td.line {
 
 
 
-             <table  style="font-size: 9px; margin-left:5px width:auto; " >
+             <table  style="font-size: 9px; margin-left:5px; width:auto; " >
              <THEAD>
              <tr>
               <th ALIGN="center" class="dll" width="10px" style="background:#bbb;">Nº</th>
@@ -300,14 +296,23 @@ td.line {
 
                 </tr>
               @foreach(str_split($ReturnData["Req"][0]->reqObsv,85) as $key => $row)
+                  @if($key == 0)
+                      <tr class="dll">
+                      <td ALIGN="center" class="dll">-</td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="center" class="dll" > </td>
+                      <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >NOTA</td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="right" class="dll rights" >  </td>
+                      </tr>
+                  @endif
                   <tr class="dll">
                       <td ALIGN="center" class="dll">-</td>
                       <td ALIGN="center" class="dll" >  </td>
                       <td ALIGN="center" class="dll" >  </td>
                       <td ALIGN="center" class="dll" >
-                          @if($key == 0)
-                              Nota:
-                          @endif
+
                       </td>
                       <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >{{ $row }}</td>
                       <td ALIGN="center" class="dll" >  </td>
