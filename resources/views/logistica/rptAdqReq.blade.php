@@ -295,7 +295,7 @@ td.line {
                    <td ALIGN="center" class="dll" colspan="2">  </td>
 
                 </tr>
-              @foreach(str_split($ReturnData["Req"][0]->reqObsv,65) as $key => $row)
+              @foreach(str_split($ReturnData["Req"][0]->reqObsv,66) as $key => $row)
                   @if($key == 0)
                       <tr class="dll">
                       <td ALIGN="center" class="dll">-</td>
