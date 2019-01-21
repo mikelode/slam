@@ -16,7 +16,7 @@
 
 .footer {
   position: fixed;
-  bottom: -40;
+  bottom: -1;
   width: 100%;
   font-size: 10px;
   display: inline-block;
@@ -198,14 +198,59 @@ td.line {
         if( $ReturnData["Req"][0]->reqGtoTip=='0')
         {
           ?>
-          <table> <tr> <td width="100px">  </td><td align="center"> ------------------------------------- <br>  Solicitante (Firma)</td> <td width="50px">  </td> <td align="center"> ------------------------------------- <br> Jefe Inmediato (Firma)  </td>    <td width="50px">  </td>  <td align="center"> ------------------------------------- <br> Logistica </td>   </tr>   </table>
+          <table style="table-layout: fixed;" width="100%">
+              <tr>
+                  <td width="5%"></td>
+                  <td width="10%" align="center"> ------------------------------------- <br>  Solicitante</td>
+                  <td width="5%">  </td>
+                  <td width="10%" align="center"> ------------------------------------- <br> Jefe Inmediato  </td>
+                  <td width="5%">  </td>
+                  <td width="10%" align="center"> ------------------------------------- <br> Logistica </td>
+                  <td width="5%">  </td>
+                  <td width="10%" align="center"> ------------------------------------- <br> O.G.A. </td>
+                  <td width="5%">  </td>
+              </tr>
+          </table>
           <br>   <br>        
        <?php
        }
        else
        {
        ?>
-          <table> <tr> <td width="5px">  </td><td align="center"> ------------------------------------- <br> Residente (Firma)</td> <td width="30px">  </td> <td align="center"> ------------------------------------- <br> Inspector (Firma)  </td>  <td width="30px">  </td> <td align="center"> ------------------------------------- <br>Gerente de Linea (V°B°)</td>  <td width="30px">  </td>  <td align="center"> ------------------------------------- <br> Logistica </td>   </tr>   </table>
+          <table style="table-layout: fixed; margin-bottom: 20px;" width="100%">
+              <tbody>
+                  <tr>
+                      <td width="5%">  </td>
+                      <td align="center"> ------------------------------------- <br> Residente (Firma)</td>
+                      <td width="">  </td>
+                      <td align="center"> ------------------------------------- <br> Inspector (Firma)  </td>
+                      <td width="">  </td>
+                      <td align="center"> ------------------------------------- <br>Gerente de Linea (V°B°)</td>
+                      <td width="5%">  </td>
+                  </tr>
+              </tbody>
+          </table>
+          <table style="table-layout: fixed;" width="100%">
+              <tbody>
+                  <tr>
+                      <td width="12%">
+
+                      </td>
+                      <td width="35%" align="center">
+                          ------------------------------------- <br> Logistica
+                      </td>
+                      <td width="6%">
+
+                      </td>
+                      <td width="35%" align="center">
+                          ------------------------------------- <br> O.G.A.
+                      </td>
+                      <td width="12%">
+
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
           <br>  <br>                
       <?php
 
@@ -253,7 +298,7 @@ td.line {
                    <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  > =============== ================= ============== ==========</td>
                    <td ALIGN="center" class="dll" colspan="2">  </td>
 
-                            </tr>
+                </tr>
 			   @for ($i = 0; $i < 12-$Item ; $i++)
               <tr class="dll">
                                  <td ALIGN="center" class="dll">-</td>

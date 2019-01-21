@@ -256,6 +256,7 @@ class internamientoController extends Controller
                 $ocInt->oc_glosa = $oc[0]->orcGlosa;
                 $ocInt->oc_expSiaf = 'siaf'; //$oc[0]->orcExpSiaf;
                 $ocInt->oc_fecha_notificacion = $request->ocDateNotification;
+                $ocInt->oc_medio_notificacion = $request->ocMedioNotificacion;
 
                 $ocInt->save();
 
@@ -264,7 +265,7 @@ class internamientoController extends Controller
                 $flagCMarco = false;
                 if($oc[0]->orcProcTip == '009' && trim($oc[0]->orcIGV) == 'SI')
                 {
-                    $checkCMarco = array('OC1600044','OC1600040','OC1600030','OC1600035','OC1600034','OC1600042','OC1600033','OC1600032','OC1600036','OC1600045','OC1600039','OC1600041','OC1600043','OC1600031');
+                    $checkCMarco = array();
                     if(in_array($oc[0]->orcID,$checkCMarco))
                     {
                         $flagCMarco = false;
@@ -335,11 +336,19 @@ class internamientoController extends Controller
                 $seguimiento->save();
             });
 
-            $status = 'Orden de compra registrada con éxito';
+            $status = 'Notificación de Orden de compra registrada con éxito';
         }
         else
         {
-            $status = 'La orden de compra seleccionada ya fue registrada anteriormente';
+            $status = 'La orden de compra seleccionada ya fue registrada anteriormente, y se actualizaron sus datos correctamente';
+            $intern = almInternamiento::find($request->guiId);
+            $intern->ing_almacen = $request->ocAlmacen;
+            $intern->ing_obs = $request->ocComment;
+            $intern->tipo_internamiento = $request->ocDeliveryType;
+            $intern->oc_fecha_limite = $request->ocDateExpiration;
+            $intern->oc_fecha_notificacion = $request->ocDateNotification;
+            $intern->oc_medio_notificacion = $request->ocMedioNotificacion;
+            $intern->save();
         }
 
         return $status;
@@ -483,6 +492,16 @@ class internamientoController extends Controller
     public function getCloseInternamiento(Request $request)
     {
         return '';
+    }
+
+    public function getViewInternamiento($gi, $pi)
+    {
+        $guia = almInternamiento::find($gi);
+        $proceso = almProcesoInternamiento::find($pi);
+        $bienes = almProcesoInternamiento::find($pi)->productos_ingresados;
+
+        $view = view('almacen.ingreso.viewinternamiento',compact('guia','proceso','bienes'));
+        return $view;
     }
 
     public function getInternamientoBienes($gi, Request $request)

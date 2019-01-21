@@ -31,15 +31,15 @@
                             {{--<button class="btn btn-primary" onclick="change_to_submenu('internamiento/panel')">
                                 VER TODOS
                             </button>--}}
-                            <button type="button" class="btn btn-primary" onclick="change_to_submenu('internamiento/oc')">
-                                <i class="glyphicon glyphicon-shopping-cart"></i> INGRESO POR COMPRA
-                            </button>
+                            {{--<button type="button" class="btn btn-primary" onclick="change_to_submenu('internamiento/oc')">--}}
+                                {{--<i class="glyphicon glyphicon-shopping-cart"></i> INGRESO POR COMPRA--}}
+                            {{--</button>--}}
                             <button type="button" class="btn btn-primary" onclick="change_to_submenu('internamiento/nea')" >
                                 <i class="glyphicon glyphicon-list-alt"></i> INGRESO POR NEA
                             </button>
-                            {{--<button class="btn btn-primary" onclick="change_menu_to('internamiento/close')">
-                                SALIR
-                            </button>--}}
+                            <button class="btn btn-danger" onclick="change_menu_to('internamiento/close')">
+                                CERRAR
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -53,10 +53,10 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th data-options="field:'code'">Imprimir</th>
+                                    <th data-options="field:'code'">Detalle</th>
                                     <th>Código GI</th>
                                     <th>Ord. Compra</th>
-                                    <th>Tipo de Proceso</th>
+                                    <th>Proveedor</th>
                                     <th>Plazo</th>
                                     <th>Vence en</th>
                                     <th>Fecha de Vencimiento</th>
@@ -75,36 +75,32 @@
                                             ::::::
                                         @else
                                         <a href="#" data-toggle="modal" data-target="#printPdfModal" data-gi="{{ $item->ing_giu }}">
-                                            <img style="width: 20px; height: 20px;" src="{{ asset('img/print.png') }}">
+                                            <img style="width: 20px; height: 20px;" src="{{ asset('img/iconDetail.png') }}">
                                         </a>
                                         @endif
 
                                     </td>
                                     <td>{{ $item->shortGi }}</td>
                                     <td>{{ $item->shortOc }}</td>
-                                    <td style="font-size: 9px;">{{ $item->ocProcTipo }}</td>
+                                    <td>{{ $item->oc_proveedor }}</td>
                                     <td>{{ $item->oc_plazo_dias }}</td>
                                     <td>
                                     <?php
                                         $hoy = \Carbon\Carbon::today();
                                         $limite = \Carbon\Carbon::parse($item->oc_fecha_limite);
                                     ?>
-                                    @if($hoy->diffInDays($limite, false) >= 0)
                                         {{ $hoy->diffInDays($limite, false)==0?'Hoy':$hoy->diffInDays($limite, false).' Dias' }}
-                                    @else
-                                        Vencido
-                                    @endif
                                     </td>
                                     <td>
                                     @if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO')
-                                        <a href="#" data-toggle="modal" data-target="#limitDateModal" data-gi="{{ $item->ing_giu }}" data-limitdate="{{ $item->oc_fecha_limite }}" data-oc="{{ $item->oc_cod }}">
+                                        {{--<a href="#" data-toggle="modal" data-target="#limitDateModal" data-gui="{{ $item->ing_giu }}" data-limitdate="{{ $item->oc_fecha_limite }}" data-orc="{{ $item->oc_cod }}">--}}
                                             {{ isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):'' }}
-                                        </a>
+                                        {{--</a>--}}
                                     @else
                                         {{ isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):'' }}
                                     @endif
                                     </td>
-                                    <td style="font-size: 9px;">{{ $item->nombre }}</td>
+                                    <td>{{ $item->nombre }}</td>
                                     <td>
                                     @if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO')
                                         <a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">
@@ -115,17 +111,23 @@
                                     @endif
                                     </td>
                                     <td>
-                                    @if($item->estado_anulacion == 'NO')
-                                        @if($item->estado_validacion == 'C')
-                                            CONFORME
-                                        @elseif($item->estado_validacion == 'P')
-                                            <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
-                                                PENDIENTE
-                                            </a>
-                                        @else
-                                            <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
-                                                EN TRANSITO
-                                            </a>
+                                    @if($hoy->diffInDays($limite, false) < 0)
+                                        <div class="bg-danger">
+                                            FUERA DE PLAZO
+                                        </div>
+                                    @else
+                                        @if($item->estado_anulacion == 'NO')
+                                            @if($item->estado_validacion == 'C')
+                                                CONFORME
+                                            @elseif($item->estado_validacion == 'P')
+                                                <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
+                                                    PENDIENTE
+                                                </a>
+                                            @else
+                                                <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
+                                                    EN TRANSITO
+                                                </a>
+                                            @endif
                                         @endif
                                     @endif
                                     </td>

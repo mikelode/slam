@@ -1,0 +1,24 @@
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>SF</th>
+        <th>FF</th>
+        <th>CG</th>
+        <th>PIM</th>
+        <th>CERT</th>
+        <th>SALDO</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($data as $dt): ?>
+        <tr>
+            <td><?php echo e($dt->ptoSecFun); ?></td>
+            <td><?php echo e($dt->ptoRubro); ?></td>
+            <td><?php echo e($dt->ptoClasificador); ?></td>
+            <td align="right"><?php echo e(number_format($dt->ptoPim,2,'.',',')); ?></td>
+            <td align="right"><?php echo e(number_format($dt->ptoCertif,2,'.',',')); ?></td>
+            <td align="right"><?php echo e(number_format($dt->ptoPim - $dt->ptoCertif,2,'.',',')); ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

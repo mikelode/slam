@@ -29,5 +29,10 @@ class User extends Model implements AuthenticatableContract,
     protected $fillable = ['usrID', 'password'];
     protected $hidden = ['password', 'remember_token'];
 
+    public function persona()
+    {
+        return $this->hasOne('Logistica\Almacen\almTPerPrs','perID','usrID');
+    }
+
 
 }

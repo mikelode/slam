@@ -403,7 +403,13 @@ $('#btnMainLogActUser').click(function(e){
         });
     });
 
-
+    $('#btnMainLogNot').click(function(e){
+        e.preventDefault();
+        var url = 'logistica/vwNotify';
+        $.get(url, function(response){
+            $('.alm-content-wrapper').html(response);
+        });
+    });
 
 
 

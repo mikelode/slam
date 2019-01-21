@@ -31,15 +31,15 @@
                             <?php /*<button class="btn btn-primary" onclick="change_to_submenu('internamiento/panel')">
                                 VER TODOS
                             </button>*/ ?>
-                            <button type="button" class="btn btn-primary" onclick="change_to_submenu('internamiento/oc')">
-                                <i class="glyphicon glyphicon-shopping-cart"></i> INGRESO POR COMPRA
-                            </button>
+                            <?php /*<button type="button" class="btn btn-primary" onclick="change_to_submenu('internamiento/oc')">*/ ?>
+                                <?php /*<i class="glyphicon glyphicon-shopping-cart"></i> INGRESO POR COMPRA*/ ?>
+                            <?php /*</button>*/ ?>
                             <button type="button" class="btn btn-primary" onclick="change_to_submenu('internamiento/nea')" >
                                 <i class="glyphicon glyphicon-list-alt"></i> INGRESO POR NEA
                             </button>
-                            <?php /*<button class="btn btn-primary" onclick="change_menu_to('internamiento/close')">
-                                SALIR
-                            </button>*/ ?>
+                            <button class="btn btn-danger" onclick="change_menu_to('internamiento/close')">
+                                CERRAR
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -53,10 +53,10 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th data-options="field:'code'">Imprimir</th>
+                                    <th data-options="field:'code'">Detalle</th>
                                     <th>Código GI</th>
                                     <th>Ord. Compra</th>
-                                    <th>Tipo de Proceso</th>
+                                    <th>Proveedor</th>
                                     <th>Plazo</th>
                                     <th>Vence en</th>
                                     <th>Fecha de Vencimiento</th>
@@ -75,39 +75,35 @@
                                             ::::::
                                         <?php else: ?>
                                         <a href="#" data-toggle="modal" data-target="#printPdfModal" data-gi="<?php echo e($item->ing_giu); ?>">
-                                            <img style="width: 20px; height: 20px;" src="<?php echo e(asset('img/print.png')); ?>">
+                                            <img style="width: 20px; height: 20px;" src="<?php echo e(asset('img/iconDetail.png')); ?>">
                                         </a>
                                         <?php endif; ?>
 
                                     </td>
                                     <td><?php echo e($item->shortGi); ?></td>
                                     <td><?php echo e($item->shortOc); ?></td>
-                                    <td style="font-size: 9px;"><?php echo e($item->ocProcTipo); ?></td>
+                                    <td><?php echo e($item->oc_proveedor); ?></td>
                                     <td><?php echo e($item->oc_plazo_dias); ?></td>
                                     <td>
                                     <?php
                                         $hoy = \Carbon\Carbon::today();
                                         $limite = \Carbon\Carbon::parse($item->oc_fecha_limite);
                                     ?>
-                                    <?php if($hoy->diffInDays($limite, false) >= 0): ?>
                                         <?php echo e($hoy->diffInDays($limite, false)==0?'Hoy':$hoy->diffInDays($limite, false).' Dias'); ?>
 
-                                    <?php else: ?>
-                                        Vencido
-                                    <?php endif; ?>
                                     </td>
                                     <td>
                                     <?php if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO'): ?>
-                                        <a href="#" data-toggle="modal" data-target="#limitDateModal" data-gi="<?php echo e($item->ing_giu); ?>" data-limitdate="<?php echo e($item->oc_fecha_limite); ?>" data-oc="<?php echo e($item->oc_cod); ?>">
+                                        <?php /*<a href="#" data-toggle="modal" data-target="#limitDateModal" data-gui="<?php echo e($item->ing_giu); ?>" data-limitdate="<?php echo e($item->oc_fecha_limite); ?>" data-orc="<?php echo e($item->oc_cod); ?>">*/ ?>
                                             <?php echo e(isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):''); ?>
 
-                                        </a>
+                                        <?php /*</a>*/ ?>
                                     <?php else: ?>
                                         <?php echo e(isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):''); ?>
 
                                     <?php endif; ?>
                                     </td>
-                                    <td style="font-size: 9px;"><?php echo e($item->nombre); ?></td>
+                                    <td><?php echo e($item->nombre); ?></td>
                                     <td>
                                     <?php if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO'): ?>
                                         <a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="<?php echo e($item->ing_giu); ?>" data-oc="<?php echo e($item->oc_cod); ?>">
@@ -120,17 +116,23 @@
                                     <?php endif; ?>
                                     </td>
                                     <td>
-                                    <?php if($item->estado_anulacion == 'NO'): ?>
-                                        <?php if($item->estado_validacion == 'C'): ?>
-                                            CONFORME
-                                        <?php elseif($item->estado_validacion == 'P'): ?>
-                                            <a href="javascript:void(0)" onclick="change_to_submenu('<?php echo e('internamiento/bienes/'.$item->ing_giu); ?>')">
-                                                PENDIENTE
-                                            </a>
-                                        <?php else: ?>
-                                            <a href="javascript:void(0)" onclick="change_to_submenu('<?php echo e('internamiento/bienes/'.$item->ing_giu); ?>')">
-                                                EN TRANSITO
-                                            </a>
+                                    <?php if($hoy->diffInDays($limite, false) < 0): ?>
+                                        <div class="bg-danger">
+                                            FUERA DE PLAZO
+                                        </div>
+                                    <?php else: ?>
+                                        <?php if($item->estado_anulacion == 'NO'): ?>
+                                            <?php if($item->estado_validacion == 'C'): ?>
+                                                CONFORME
+                                            <?php elseif($item->estado_validacion == 'P'): ?>
+                                                <a href="javascript:void(0)" onclick="change_to_submenu('<?php echo e('internamiento/bienes/'.$item->ing_giu); ?>')">
+                                                    PENDIENTE
+                                                </a>
+                                            <?php else: ?>
+                                                <a href="javascript:void(0)" onclick="change_to_submenu('<?php echo e('internamiento/bienes/'.$item->ing_giu); ?>')">
+                                                    EN TRANSITO
+                                                </a>
+                                            <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     </td>

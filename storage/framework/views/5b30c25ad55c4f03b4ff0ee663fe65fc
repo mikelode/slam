@@ -1,11 +1,10 @@
-<div id="ribbon">
-    <span class="ribbon-window-title"></span>
+
+    <span class="ribbon-window-title">
+    </span>
     <div class="ribbon-tab file" id="file-tab">
-        <span class="ribbon-title">Inicio</span>
+        <span class="ribbon-title">Usu: <?php echo e(auth()->user()->persona->perNombres); ?></span>
         <div class="ribbon-backstage">
         <H4>    <?php echo e(config('slam.APP_ENTIDAD')); ?> - <?php echo e(config('slam.ENTIDAD_TI')); ?> </H4>
-
-           
         </div>
     </div>
 
@@ -126,7 +125,10 @@
             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconOS.png')); ?>" />
             </div>
 
-            
+            <div class="ribbon-button ribbon-button-large" id="btnMainLogNot">
+                <span class="button-title">Registro de<br/>Notificaciones</span>
+                <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconNotif.png')); ?>" />
+            </div>
         </div>
 
 
@@ -252,12 +254,6 @@
                </div>
            </div>
     </div>
-
-  
-
-
- 
-</div>
 
 <script>
     $('#btn-menuInternamiento').click(function(e){

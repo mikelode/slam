@@ -20,6 +20,7 @@ use Logistica\Almacen\almInternamiento;
 use Logistica\Almacen\almTPreSF;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
+use Logistica\Almacen\logTbNotif;
 use Maatwebsite\Excel\Facades\Excel;
 use TCPDF;
 
@@ -1052,6 +1053,26 @@ class ctrlGrl extends Controller
             else                  $ReturnData["liqCSDll"] = view('logistica.Partials.liqCSSV', compact('resultTar','Doc'))->render(); 
         }     
         return  $ReturnData ["liqCSDll"]  ;
+    }
+
+    public function fnGetViewNotify(Request $request){
+
+        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_NTF'  ));
+        if( isset ($result[0]->NEW ))
+        {
+            if( $result[0]->NEW =="1") {
+                $almacen = almAlmacen::all();
+                $medios = logTbNotif::all();
+                $view = view('logistica.Adq.vwNotify', compact('almacen','medios'));
+                return $view;
+            }
+            else {
+                return view('logistica.Adq.vwPermission');
+            }
+        }
+        else {
+            return view('logistica.Adq.vwPermission');
+        }
     }
 
 

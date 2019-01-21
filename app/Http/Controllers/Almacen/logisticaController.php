@@ -2,6 +2,7 @@
 
 namespace Logistica\Http\Controllers\Almacen;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Logistica\Almacen\almInternamiento;
@@ -205,5 +206,67 @@ class logisticaController extends Controller
             else
                 return 501;
         }
+    }
+
+    public function displayOc(Request $request)
+    {
+        try{
+            $ocID = 'OC' . substr($request->period,2,2) . sprintf("%'.05d",$request->oc);
+            $oc = almTLogOC::find($ocID);
+
+            if (is_null($oc))
+                throw new Exception("El número de orden de compra ingresado no existe");
+
+            /* Verificamos si esta registrado en Internamiento es porque ya se grabo su fecha de notificación */
+            $ocNotificado = almInternamiento::where('oc_cod',$ocID)->count();
+
+            if($ocNotificado == 0)  // si no esta notificado
+            {
+                $datanotif = null;
+            }
+            else // si esta notificado
+            {
+                $datanotif = almInternamiento::select('*')
+                    ->where('oc_cod',$ocID)
+                    ->where('estado_anulacion','NO')
+                    ->get();
+            }
+
+
+            $data = DB::connection('dblogistica')->table('TLogOC')
+                ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('DEP',orcDep,'') as ocDepdesc"))
+                ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('RUC',orcRuc,'') as ocProv"))
+                ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('ADQTIP',orcProcTip,'') as ocProcTipo"))
+                ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('SECFUN',orcSecFun,'') as ocSecFuncDesc"))
+                ->where('orcID',$ocID)->get();
+
+            $ct = DB::connection('dblogistica')->table('TLogOCD')
+                ->select(DB::raw("CONVERT(DECIMAL(19,4),SUM(cdtCant * cdtPrecio)) as ocTotalCosto"))
+                ->where('cdtCodOC',$ocID)->get();
+
+            $viewData = view('almacen.ingreso.ocDetailData',['data' => $data, 'ct' => $ct])->render();
+
+            $products = DB::connection('dblogistica')->table('TLogOCD')
+                ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('PROD',cdtCodProd,'') AS ocdProd"))
+                ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('UNDABRV',cdtCodUnd,'') AS ocdUnd"))
+                ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('CLASF',cdtCodClsf,'') AS ocdClsf"))
+                ->where('cdtCodOC',$ocID)->get();
+
+            $viewProducts = view('almacen.ingreso.ocDetailProducts',compact('products'))->render();
+
+            $msg = 'Orden de compra recuperada correctamente';
+            $msgId = 200;
+
+        }
+        catch (Exception $e){
+            $msg = 'Error: ' . $e->getMessage() . ' - ' . $e->getLine() . " \n";
+            $msgId = 500;
+            $datanotif = null;
+            $viewData = null;
+            $viewProducts = null;
+            $oc = null;
+        }
+
+        return response()->json(compact('msg','msgId','datanotif','viewData','viewProducts','oc'));
     }
 }

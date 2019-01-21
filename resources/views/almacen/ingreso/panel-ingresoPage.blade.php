@@ -7,10 +7,10 @@
         <thead>
             <tr>
                 <th style="width: 10px">#</th>
-                <th data-options="field:'code'">Imprimir</th>
+                <th data-options="field:'code'">Detalle</th>
                 <th>Código GI</th>
                 <th>Ord. Compra</th>
-                <th>Tipo de Proceso</th>
+                <th>Proveedor</th>
                 <th>Plazo</th>
                 <th>Vence en</th>
                 <th>Fecha de Vencimiento</th>
@@ -29,7 +29,7 @@
                         ::::::::::::
                     @else
                     <a href="#" data-toggle="modal" data-target="#printPdfModal" data-gi="{{ $item->ing_giu }}">
-                        <img style="width: 20px; height: 20px;" src="{{ asset('img/print.png') }}">
+                        <img style="width: 20px; height: 20px;" src="{{ asset('img/iconDetail.png') }}">
                     </a>
                     @endif
                 </td>

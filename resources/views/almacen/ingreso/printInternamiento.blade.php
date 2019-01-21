@@ -18,6 +18,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <input type="button" id="btnPreview" value="Revisar">
                 <input type="button" id="btnPrintPdf" value="Imprimir">
                 <button type="button" data-dismiss="modal">Cerrar</button>
             </div>
@@ -40,6 +41,18 @@ $('#select-cpi').on('click','#btnPreviewActa',function(e){
 
     $('#printPdfModal').modal('hide');
     window.open(url,"popupWindow", "width=800, height=600, scrollbars=yes, location=no");
+});
+
+$('#btnPreview').click(function (e) {
+    e.preventDefault();
+    var gi = $('#printGi').val();
+    var pi = $('#printPi').val();
+    var url = 'internamiento/view/' + gi + '/' + pi;
+
+    $.get(url,function (response) {
+        $('.alm-sub-content').html(response);
+    });
+
 });
 
 </script>

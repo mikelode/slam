@@ -43,6 +43,8 @@ Route::get('findOr/{oc}','Almacen\internamientoController@getFindOrden');
 Route::get('findNea/{nea}','Almacen\internamientoController@getFindNota');
 Route::post('task/{operation}','Almacen\internamientoController@postMakeTask');
 
+Route::get('internamiento/view/{gi}/{pi}','Almacen\internamientoController@getViewInternamiento');
+
 /*
  * DISTRIBUCION O SALIDA
  * */
@@ -132,6 +134,12 @@ Route::post('update/statetram','Tramite\tramiteController@postUpdateStatetram');
  * TEST -PRUEBAS
  * */
 
+Route::post('sync/fullsyncclasif','Tramite\tramiteController@fullsyncclasif');
+Route::post('sync/listsyncclasif','Tramite\tramiteController@listsyncclasif');
+Route::post('sync/listclasif','Tramite\tramiteController@listclasif');
+Route::get('sync/querysecfun','Tramite\tramiteController@listsf');
+Route::post('sync/executesf','Tramite\tramiteController@updatesf');
+Route::get('sync','Tramite\tramiteController@indexSync');
 Route::get('testsiaf','Tramite\tramiteController@testSiaf');
 Route::get('fillDataOcSiaf','Tramite\tramiteController@fillDataSiaf');
 Route::get('cleanDataOcSiaf','Tramite\tramiteController@cleanDataSiaf');
@@ -227,7 +235,7 @@ Route::post('logistica/spLogSetUsr', 'Logistica\ctrlGrl@spLogSetUsr');
 
 
 
-/**  REQUERIMIENTOS **************/
+/* *  REQUERIMIENTOS ************* */
 Route::get('logistica/vwReq', 'Logistica\ctrlReq@fnGetViewReq');
 Route::post('logistica/spLogGetReq', 'Logistica\ctrlReq@spLogGetReq');
 
@@ -241,7 +249,7 @@ Route::post('logistica/spLogSetReqD', 'Logistica\ctrlReq@spLogSetReqD');
 Route::post('logistica/spLogSetReqBusy', 'Logistica\ctrlReq@spLogSetReqBusy');
 Route::post('logistica/spLogGetReqLR',   'Logistica\ctrlReq@spLogGetReqLR');
 
-/**  COTIZACION **************/
+/* *  COTIZACION ************* */
 Route::get('logistica/vwCtz',           'Logistica\ctrlCtz@fnGetViewCtz');
 Route::post('logistica/spLogSetCtz',    'Logistica\ctrlCtz@spLogSetCtz');
 Route::post('logistica/spLogSetCtzD',   'Logistica\ctrlCtz@spLogSetCtzD');
@@ -254,7 +262,7 @@ Route::post('logistica/spLogGetCtzLR',   'Logistica\ctrlCtz@spLogGetCtzLR');
 Route::post('logistica/spLogGetCtzSearch',   'Logistica\ctrlCtz@spLogGetCtzSearch');
 
 
-/**  CUADRO COMPARATIVO  **************/
+/* *  CUADRO COMPARATIVO  ************* */
 Route::get('logistica/vwCC',           'Logistica\ctrlCC@fnGetViewCC');
 Route::get('logistica/vwCCRucAdd',     'Logistica\ctrlCC@fnGetViewCCRucAdd');
 Route::get('logistica/spLogGetFte',    'Logistica\ctrlCC@spLogGetFte');
@@ -273,7 +281,7 @@ Route::post('logistica/spLogGetCCSearch',   'Logistica\ctrlCC@spLogGetCCSearch')
 Route::Post('logistica/spLogGetCC_Ctz',     'Logistica\ctrlCC@spLogGetCC_Ctz');
 Route::Post('logistica/spLogGetCC_Req',     'Logistica\ctrlCC@spLogGetCC_Req');
 
-/**  ORDEN DE COMPRA **************/
+/* *  ORDEN DE COMPRA ************* */
 Route::get('logistica/vwOC',           'Logistica\ctrlOC@fnGetViewOC');
 Route::post('logistica/spLogGetOC',    'Logistica\ctrlOC@spLogGetOC');
 Route::post('logistica/spLogGetOCTmp',    'Logistica\ctrlOC@spLogGetOCTmp');
@@ -297,7 +305,7 @@ Route::Post('logistica/spLogSetOCIgv','Logistica\ctrlOC@spLogSetOCIgv');
 Route::Post('logistica/spLogSetOCDDel','Logistica\ctrlOC@spLogSetOCDDel');
 Route::post('logistica/spLogGetOC_CCVal', 'Logistica\ctrlOC@spLogGetOC_CCVal');
 
-/**  ORDEN DE SERVICIO **************/
+/* *  ORDEN DE SERVICIO ************* */
 Route::get('logistica/vwOS',           'Logistica\ctrlOS@fnGetViewOS');
 Route::post('logistica/spLogGetOS',    'Logistica\ctrlOS@spLogGetOS');
 Route::post('logistica/spLogGetOSD',   'Logistica\ctrlOS@spLogGetOSD');
@@ -360,4 +368,7 @@ Route::Post('logistica/spLogGetPriceItem',     'Logistica\ctrlGrl@spLogGetPriceI
 Route::Post('logistica/spLogGetPriceAll',     'Logistica\ctrlGrl@spLogGetPriceAll');
 Route::get('logistica/rptPriceRefExcel/{prAnio}/{prCodigo}',    'Logistica\ctrlGrl@spLogGetPriceRefExcel');
 
+/* *************** NOTIFY OCS ROUTE ***************** */
 
+Route::get('logistica/vwNotify', 'Logistica\ctrlGrl@fnGetViewNotify');
+Route::get('displayOc','Almacen\logisticaController@displayOc');

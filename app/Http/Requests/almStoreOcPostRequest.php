@@ -29,8 +29,8 @@ class almStoreOcPostRequest extends Request
             'ocDateExpiration' => 'required',
             'ocDeliveryType' => 'required',
             'ocAlmacen' => 'required',
-            'ocNroGuiaRemision' => 'required',
-            'ocNroFactura' => 'required',
+//            'ocNroGuiaRemision' => 'required',
+//            'ocNroFactura' => 'required',
             'ocComment' => 'max:255',
         ];
     }
@@ -43,8 +43,8 @@ class almStoreOcPostRequest extends Request
             'ocDateExpiration' => 'Fecha de Vencimiento',
             'ocDeliveryType' => 'Tipo de Entrega',
             'ocAlmacen' => 'Almacén',
-            'ocNroGuiaRemision' => 'Guia de Remisión',
-            'ocNroFactura' => 'Factura',
+//            'ocNroGuiaRemision' => 'Guia de Remisión',
+//            'ocNroFactura' => 'Factura',
             'ocComment' => 'Observación',
         ];
     }

@@ -1,0 +1,28 @@
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>Año</th>
+        <th>Ejecutora</th>
+        <th>Sec.Fun</th>
+        <th>Programa</th>
+        <th>Subprograma</th>
+        <th>Act/Proy</th>
+        <th>Finalidad</th>
+        <th>Nombre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($result as $rs): ?>
+        <tr>
+            <td><?php echo e($rs['year']); ?></td>
+            <td><?php echo e($rs['ejec']); ?></td>
+            <td><?php echo e($rs['sf']); ?></td>
+            <td><?php echo e($rs['prog']); ?></td>
+            <td><?php echo e($rs['subprg']); ?></td>
+            <td><?php echo e($rs['actpry']); ?></td>
+            <td><?php echo e($rs['fin']); ?></td>
+            <td><?php echo e($rs['name']); ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

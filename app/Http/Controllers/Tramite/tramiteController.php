@@ -2,6 +2,8 @@
 
 namespace Logistica\Http\Controllers\Tramite;
 
+use Logistica\Almacen\almTPrePto;
+use Logistica\Almacen\almTPreSF;
 use Logistica\Custom\FormatCode;
 use Logistica\Custom\OleDbConnection;
 use Carbon\Carbon;
@@ -728,6 +730,298 @@ class tramiteController extends Controller
         $newCode = $pref.$year.$number;
 
         return $newCode;
+    }
+
+    public function indexSync()
+    {
+        $view = view('sync.index');
+        return $view;
+    }
+
+    public function listsf()
+    {
+        $conn = new OleDbConnection();
+        $conn->openDataOleDb(config('slam.PATH_SYNC'));
+        $data = $conn->makeQueryOleDb('SELECT A.Ano_eje, A.Sec_ejec, A.Sec_func, A.Programa, A.Sub_programa, A.Act_proy, A.Finalidad, B.Nombre as Namepry FROM META as A INNER JOIN Finalidad as B ON A.Ano_eje =B.Ano_eje AND A.Finalidad = B.Finalidad  WHERE A.Ano_eje = "2018" AND A.Sec_ejec="000902" ORDER BY A.Sec_func ASC');
+        $result = array();
+
+        while(!$data->EOF){
+            $sf['year'] = $data->Fields('Ano_eje')->value;
+            $sf['ejec'] = $data->Fields('Sec_ejec')->value;
+            $sf['sf'] = $data->Fields('Sec_func')->value;
+            $sf['prog'] = $data->Fields('Programa')->value;
+            $sf['subprg'] = $data->Fields('Sub_programa')->value;
+            $sf['actpry'] = $data->Fields('Act_proy')->value;
+            $sf['fin'] = $data->Fields('Finalidad')->value;
+            $sf['name'] = iconv('','UTF-8',trim($data->Fields('Namepry')->value));
+
+            array_push($result,$sf);
+
+            $data->MoveNExt();
+        }
+
+        $data->Close();
+        $conn->closeDataOleDb();
+        $view = view('sync.listSyncSf',compact('result'));
+
+        return $view;
+    }
+
+    public function updatesf(Request $request)
+    {
+        try{
+            $periodo = substr($request->periodo,-2);
+
+            $conn = new OleDbConnection();
+            $conn->openDataOleDb(config('slam.PATH_SYNC'));
+
+            $data = $conn->makeQueryOleDb('SELECT A.Ano_eje, A.Sec_ejec, A.Sec_func, A.Programa, A.Sub_programa, A.Act_proy, A.Finalidad, B.Nombre as Namepry FROM META as A INNER JOIN Finalidad as B ON A.Ano_eje =B.Ano_eje AND A.Finalidad = B.Finalidad  WHERE A.Ano_eje = "'.$request->periodo.'" AND A.Sec_ejec="' . config('slam.UE_ENTIDAD') . '" ORDER BY A.Sec_func ASC');
+
+            if($data->EOF){
+                throw new Exception('No existen secuencias funcionales que correspondan a los parámetros elegidos');
+            }
+
+            $result = array();
+
+            while(!$data->EOF){
+                $sf['year'] = $data->Fields('Ano_eje')->value;
+                $sf['ejec'] = $data->Fields('Sec_ejec')->value;
+                $sf['sf'] = $data->Fields('Sec_func')->value;
+                $sf['prog'] = $data->Fields('Programa')->value;
+                $sf['subprg'] = $data->Fields('Sub_programa')->value;
+                $sf['actpry'] = $data->Fields('Act_proy')->value;
+                $sf['fin'] = $data->Fields('Finalidad')->value;
+                $sf['name'] = iconv('','UTF-8',trim($data->Fields('Namepry')->value));
+
+                array_push($result,$sf);
+                $data->MoveNExt();
+            }
+
+            $data->Close();
+            $conn->closeDataOleDb();
+
+            $registrados = 0;
+
+            foreach ($result as $i=>$row){
+                $sfid = 'SF' . $periodo . substr('00000' . $row['sf'],-5);
+                $sfslam = almTPreSF::find($sfid);
+
+                if(is_null($sfslam)) {
+                    $secfun = new almTPreSF();
+                    $secfun->secID = $sfid;
+                    $secfun->secDsc = $row['name'];
+                    $secfun->secFin = $row['fin'];
+                    $secfun->save();
+
+                    if($secfun)
+                        $registrados++;
+                    else
+                        throw new Exception('Error al registrar la secuencia funcional ' . $row['sf']);
+                }
+            }
+
+            $msg = "Se agregaron " . $registrados . " Secuencias Funcionales nuevas";
+            $msgId = 200;
+
+        }catch (Exception $e){
+            $msgId = '500';
+            $msg = 'Error: ' . $e->getMessage();
+            $registrados = 999;
+        }
+
+        return response()->json(compact('msgId','msg','registrados'));
+    }
+
+    public function listclasif(Request $request)
+    {
+        $year = $request->nanioSecfun;
+        $secfun = substr('0000' . $request->ncodSecfun, -4);
+
+        $data = almTPrePto::where('ptoAnio',$year)
+                ->where('ptoSecFun',$secfun)
+                ->get();
+
+        $view = view('sync.listLocalClasif', compact('data'));
+
+        return $view;
+    }
+
+    public function listsyncclasif(Request $request)
+    {
+        try{
+            $year = $request->nanioSecfun;
+            $secfun = substr('0000' . $request->ncodSecfun, -4);
+
+            $conn = new OleDbConnection();
+            $conn->openDataOleDb(config('slam.PATH_SYNC'));
+
+            $query = 'SELECT A.Ano_eje, A.Sec_func, A.Fuente_financ, B.clasificador, A.Id_clasificador, SUM(A.Modificacion) as Pim, SUM(A.Monto_certificado) as Certif  from gasto as A INNER JOIN maestro_clasificador as B ON B.Id_clasificador = A.Id_clasificador AND B.Ano_eje = A.Ano_eje  WHERE A.Ano_eje = "'.$year.'" AND A.Sec_func = "'.$secfun.'" AND A.Sec_ejec="'.config('slam.UE_ENTIDAD').'" GROUP BY A.Ano_eje, A.Sec_func, A.Fuente_financ, B.clasificador, A.Id_clasificador';
+
+            $data = $conn->makeQueryOleDb($query);
+
+            if($data->EOF){
+                throw new Exception('No existen clasificadores que correspondan a los parámetros elegidos');
+            }
+
+            $clasiaf = array();
+
+            while(!$data->EOF){
+                $item['year'] = trim($data->Fields('Ano_eje')->value);
+                $item['sf'] = trim($data->Fields('Sec_func')->value);
+                $item['rubro'] = trim($data->Fields('Fuente_financ')->value);
+                $item['claid'] = trim($data->Fields('Id_clasificador')->value);
+                $item['cla'] = trim($data->Fields('clasificador')->value);
+                $item['pim'] = trim($data->Fields('Pim')->value);
+                $item['cert'] = trim($data->Fields('Certif')->value);
+
+                array_push($clasiaf,$item);
+                $data->MoveNExt();
+            }
+
+            $data->Close();
+            $conn->closeDataOleDb();
+
+            $updated = 0;
+            $added = 0;
+
+            foreach ($clasiaf as $cla){
+                $localCla = almTPrePto::where('ptoAnio',$year)
+                            ->where('ptoSecFun',$secfun)
+                            ->where('ptoRubro',$cla['rubro'])
+                            ->where('ptoIdClasificador',$cla['claid'])
+                            ->first();
+
+                if(is_null($localCla)){
+
+                    $newLocalCla = new almTPrePto();
+                    $newLocalCla->ptoAnio = $cla['year'];
+                    $newLocalCla->ptoSecFun = $cla['sf'];
+                    $newLocalCla->ptoRubro = $cla['rubro'];
+                    $newLocalCla->ptoIdClasificador = $cla['claid'];
+                    $newLocalCla->ptoClasificador = $cla['cla'];
+                    $newLocalCla->ptoPim = $cla['pim'];
+                    $newLocalCla->ptoCertif = $cla['cert'];
+                    $newLocalCla->save();
+
+                    if($newLocalCla)
+                        $added++;
+                    else
+                        throw new Exception('Error al intentar registrar el clasificador');
+                }
+                else{
+                    almTPrePto::where('ptoAnio',$year)
+                        ->where('ptoSecFun',$secfun)
+                        ->where('ptoRubro',$cla['rubro'])
+                        ->where('ptoIdClasificador',$cla['claid'])
+                        ->update(['ptoPim' => $cla['pim'], 'ptoCertif' => $cla['cert']]);
+
+                    $updated++;
+                }
+
+            }
+
+            $msg = "Se agregaron " . $added . " y se actualizaron " . $updated . " clasificadores para la secuencia funcional " . $secfun;
+            $msgId = 200;
+
+
+        }catch (Exception $e){
+            $msgId = 500;
+            $msg = 'Error: ' . $e->getMessage();
+            $updated = 999;
+            $added = 999;
+        }
+
+        return response()->json(compact('msgId','msg','added','updated'));
+    }
+
+    public function fullsyncclasif(Request $request)
+    {
+        try{
+
+            /* El año de sincronizacion es establecido en la configuración de la aplicación */
+
+            $year = $request->periodo;
+
+            $conn = new OleDbConnection();
+            $conn->openDataOleDb(config('slam.PATH_SYNC'));
+
+            $query = 'SELECT A.Ano_eje, A.Sec_func, A.Fuente_financ, B.clasificador, A.Id_clasificador, SUM(A.Modificacion) as Pim, SUM(A.Monto_certificado) as Certif  from gasto as A INNER JOIN maestro_clasificador as B ON B.Id_clasificador = A.Id_clasificador AND B.Ano_eje = A.Ano_eje  WHERE A.Ano_eje = "'.$year.'" AND A.Sec_ejec="'.config('slam.UE_ENTIDAD').'" GROUP BY A.Ano_eje, A.Sec_func, A.Fuente_financ, B.clasificador, A.Id_clasificador';
+
+            $data = $conn->makeQueryOleDb($query);
+
+            if($data->EOF){
+                throw new Exception('No existen clasificadores que correspondan a los parámetros elegidos');
+            }
+
+            $clasiaf = array();
+
+            while(!$data->EOF){
+                $item['year'] = trim($data->Fields('Ano_eje')->value);
+                $item['sf'] = trim($data->Fields('Sec_func')->value);
+                $item['rubro'] = trim($data->Fields('Fuente_financ')->value);
+                $item['claid'] = trim($data->Fields('Id_clasificador')->value);
+                $item['cla'] = trim($data->Fields('clasificador')->value);
+                $item['pim'] = trim($data->Fields('Pim')->value);
+                $item['cert'] = trim($data->Fields('Certif')->value);
+
+                array_push($clasiaf,$item);
+                $data->MoveNExt();
+            }
+
+            $data->Close();
+            $conn->closeDataOleDb();
+
+            $updated = 0;
+            $added = 0;
+
+            foreach ($clasiaf as $cla){
+                $localCla = almTPrePto::where('ptoAnio',$year)
+                    ->where('ptoSecFun',$cla['sf'])
+                    ->where('ptoRubro',$cla['rubro'])
+                    ->where('ptoIdClasificador',$cla['claid'])
+                    ->first();
+
+                if(is_null($localCla)){
+
+                    $newLocalCla = new almTPrePto();
+                    $newLocalCla->ptoAnio = $cla['year'];
+                    $newLocalCla->ptoSecFun = $cla['sf'];
+                    $newLocalCla->ptoRubro = $cla['rubro'];
+                    $newLocalCla->ptoIdClasificador = $cla['claid'];
+                    $newLocalCla->ptoClasificador = $cla['cla'];
+                    $newLocalCla->ptoPim = $cla['pim'];
+                    $newLocalCla->ptoCertif = $cla['cert'];
+                    $newLocalCla->save();
+
+                    if($newLocalCla)
+                        $added++;
+                    else
+                        throw new Exception('Error al intentar registrar el clasificador');
+                }
+                else{
+                    almTPrePto::where('ptoAnio',$year)
+                        ->where('ptoSecFun',$cla['sf'])
+                        ->where('ptoRubro',$cla['rubro'])
+                        ->where('ptoIdClasificador',$cla['claid'])
+                        ->update(['ptoPim' => $cla['pim'], 'ptoCertif' => $cla['cert']]);
+
+                    $updated++;
+                }
+
+            }
+
+            $msg = "Se agregaron " . $added . " y se actualizaron " . $updated . " clasificadores de todas las secuencias funcionales ";
+            $msgId = 200;
+
+
+        }catch (Exception $e){
+            $msgId = 500;
+            $msg = 'Error: ' . $e->getMessage();
+            $updated = 999;
+            $added = 999;
+        }
+
+        return response()->json(compact('msgId','msg','added','updated'));
     }
 
     public function testSiaf()
