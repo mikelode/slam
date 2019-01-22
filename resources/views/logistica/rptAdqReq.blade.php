@@ -353,7 +353,7 @@ td.line {
                       <td ALIGN="right" class="dll rights" >  </td>
                   </tr>
               @endforeach
-              @for ($i = 0; $i < 25 - $Item - count($parrafo) ; $i++)
+              @for ($i = 0; $i < 20 - $Item - count($parrafo) ; $i++)
               <tr class="dll">
                                  <td ALIGN="center" class="dll">-</td>
                    <td ALIGN="center" class="dll" >  </td>

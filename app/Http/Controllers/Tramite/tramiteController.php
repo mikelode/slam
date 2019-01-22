@@ -742,7 +742,7 @@ class tramiteController extends Controller
     {
         $conn = new OleDbConnection();
         $conn->openDataOleDb(config('slam.PATH_SYNC'));
-        $data = $conn->makeQueryOleDb('SELECT A.Ano_eje, A.Sec_ejec, A.Sec_func, A.Programa, A.Sub_programa, A.Act_proy, A.Finalidad, B.Nombre as Namepry FROM META as A INNER JOIN Finalidad as B ON A.Ano_eje =B.Ano_eje AND A.Finalidad = B.Finalidad  WHERE A.Ano_eje = "2018" AND A.Sec_ejec="000902" ORDER BY A.Sec_func ASC');
+        $data = $conn->makeQueryOleDb('SELECT A.Ano_eje, A.Sec_ejec, A.Sec_func, A.Programa, A.Sub_programa, A.Act_proy, A.Finalidad, B.Nombre as Namepry FROM META as A INNER JOIN Finalidad as B ON A.Ano_eje =B.Ano_eje AND A.Finalidad = B.Finalidad  WHERE A.Ano_eje = "'.config('slam.ANIO').'" AND A.Sec_ejec="'.config('slam.UE_ENTIDAD').'" ORDER BY A.Sec_func ASC');
         $result = array();
 
         while(!$data->EOF){
