@@ -254,7 +254,79 @@ td.line {
               </tr>
 
               <?php endforeach; ?>
-			    <?php for($i = 0; $i < 15-$Item ; $i++): ?>
+
+              <tr class="dll">
+                  <td ALIGN="center" class="dll"></td>
+                  <td ALIGN="center" class="dll"></td>
+                  <td ALIGN="center" class="dll"></td>
+                  <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  > =============== ================= ============== ==========</td>
+                  <td ALIGN="center" class="dll">  </td>
+                  <td ALIGN="center" class="dll"></td>
+                  <td ALIGN="center" class="dll"></td>
+
+              </tr>
+
+              <?php
+              $long = 65 - 1;
+
+              $itext = $long;
+              $text = 'NOTA.-' . $ReturnData["Req"][0]->reqObsv;
+              $ltext = strlen($text);
+              if($ltext < $long){
+                  $parrafo[] = $text;
+              }
+              else{
+                  while($itext <= $ltext){
+
+                      $letter = $text[$itext];
+
+                      if($letter == ' '){
+                          $text[$itext] = '|';
+                      }
+                      else{
+                          $nxtlet = $text[$itext + 1];
+
+                          if($nxtlet == ' '){
+                              $text[$itext + 1] = '|';
+                          }
+                          else{
+                              $prvlet = $text[$itext - 1];
+                              $count = 1;
+
+                              while($prvlet != ' '){
+                                  $count++;
+                                  $prvlet = $text[$itext - $count];
+                              }
+
+                              $text[$itext - $count] = '|';
+
+                          }
+                      }
+
+                      $itext = $itext + $long;
+                  }
+
+                  $parrafo = explode('|', $text);
+              }
+
+
+
+              ?>
+
+              <?php foreach($parrafo as $row): ?>
+                  <tr class="dll">
+                      <td ALIGN="center" class="dll">-</td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"><?php echo e($row); ?></td>
+                      <td ALIGN="left" class="dll"  ></td>
+                      <td ALIGN="center" class="dll" >  </td>
+                      <td ALIGN="right" class="dll rights" >  </td>
+                  </tr>
+              <?php endforeach; ?>
+
+
+			    <?php for($i = 0; $i < 18-$Item- count($parrafo) ; $i++): ?>
               <tr class="dll">
                                  <td ALIGN="center" class="dll">-</td>
                                  <td ALIGN="center" class="dll"> </td>
