@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/66383db5a5d7a1092c16f15785cfe88a3b1b1f47" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/66383db5a5d7a1092c16f15785cfe88a3b1b1f47" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/073ec979aa206e9d6ef45259ff490d86" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/073ec979aa206e9d6ef45259ff490d86" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +40,9 @@
     <session id="509610203">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.19" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="3" />
@@ -46,17 +50,17 @@
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.35" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="150" />
-          <entry key="Blade" value="10941" />
+          <entry key="Blade" value="11917" />
           <entry key="CSS" value="24" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="1384" />
-          <entry key="PHP" value="13027" />
+          <entry key="PHP" value="13046" />
           <entry key="SQL" value="1" />
         </counts>
       </usages-collector>
@@ -84,22 +88,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="297" column="66" selection-start-line="297" selection-start-column="66" selection-end-line="297" selection-end-column="66" />
+            <state relative-caret-position="368">
+              <caret line="300" column="29" lean-forward="true" selection-start-line="300" selection-start-column="29" selection-end-line="300" selection-end-column="29" />
               <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#hr#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#4;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,7 +100,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2640">
+            <state relative-caret-position="721">
               <caret line="166" column="155" selection-start-line="166" selection-start-column="155" selection-end-line="166" selection-end-column="155" />
             </state>
           </provider>
@@ -117,8 +109,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="160" column="48" selection-start-line="160" selection-start-column="48" selection-end-line="160" selection-end-column="48" />
+            <state relative-caret-position="289">
+              <caret line="163" column="30" lean-forward="true" selection-start-line="161" selection-start-column="8" selection-end-line="163" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -126,17 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="150" column="34" lean-forward="true" selection-start-line="150" selection-start-column="34" selection-end-line="150" selection-end-column="34" />
-              <folding>
-                <element signature="e#2248#2275#0#HTML" expanded="true" />
-                <element signature="e#2300#2326#0#HTML" expanded="true" />
-                <element signature="e#2598#2627#0#HTML" expanded="true" />
-                <element signature="e#3987#4015#0#HTML" expanded="true" />
-                <element signature="e#4619#4644#0#HTML" expanded="true" />
-                <element signature="e#4902#4929#0#HTML" expanded="true" />
-                <element signature="e#4948#4976#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="2400">
+              <caret line="150" column="34" selection-start-line="150" selection-start-column="34" selection-end-line="150" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -144,7 +127,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
+            <state relative-caret-position="2336">
               <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="150" selection-end-column="33" />
             </state>
           </provider>
@@ -153,8 +136,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="356" column="44" lean-forward="true" selection-start-line="356" selection-start-column="44" selection-end-line="356" selection-end-column="44" />
+            <state relative-caret-position="5696">
+              <caret line="356" column="44" selection-start-line="356" selection-start-column="44" selection-end-line="356" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -170,7 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>btnMainLogOS</find>
       <find>$</find>
       <find>txVarAnioEjec</find>
       <find>#txFecha</find>
@@ -198,8 +180,9 @@
       <find>varDatosReqProd</find>
       <find>btnSyncSfClasif</find>
       <find>rptAdqOCom</find>
-      <find>rptAdqReq</find>
       <find>observ</find>
+      <find>rptAdqReq</find>
+      <find>$Item</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -228,7 +211,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php" />
         <option value="$PROJECT_DIR$/public/js/jsDevReq2.js" />
         <option value="$PROJECT_DIR$/public/js/jsDevCtz2.js" />
@@ -278,6 +260,7 @@
         <option value="$PROJECT_DIR$/resources/views/sync/listLocalClasif.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php" />
       </list>
     </option>
@@ -539,18 +522,19 @@
       <workItem from="1547732301443" duration="12394000" />
       <workItem from="1547778881977" duration="1930000" />
       <workItem from="1547915773653" duration="55119000" />
-      <workItem from="1548078788297" duration="9759000" />
+      <workItem from="1548078788297" duration="11009000" />
+      <workItem from="1548126928890" duration="5533000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232203000" />
+    <option name="totallyTimeSpent" value="238986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17986578" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18255034" />
       <window_info id="Structure" order="1" weight="0.24966443" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -863,9 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
           <caret line="961" column="37" selection-start-line="961" selection-start-column="37" selection-end-line="961" selection-end-column="37" />
-          <folding>
-            <element signature="e#54#87#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -883,20 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="356" column="44" lean-forward="true" selection-start-line="356" selection-start-column="44" selection-end-line="356" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="150" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -904,54 +871,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2400">
+          <caret line="150" column="34" selection-start-line="150" selection-start-column="34" selection-end-line="150" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2336">
+          <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="150" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5696">
+          <caret line="356" column="44" selection-start-line="356" selection-start-column="44" selection-end-line="356" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="160" column="48" selection-start-line="160" selection-start-column="48" selection-end-line="160" selection-end-column="48" />
+        <state relative-caret-position="289">
+          <caret line="163" column="30" lean-forward="true" selection-start-line="161" selection-start-column="8" selection-end-line="163" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
+        <state relative-caret-position="721">
           <caret line="166" column="155" selection-start-line="166" selection-start-column="155" selection-end-line="166" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="150" column="34" lean-forward="true" selection-start-line="150" selection-start-column="34" selection-end-line="150" selection-end-column="34" />
-          <folding>
-            <element signature="e#2248#2275#0#HTML" expanded="true" />
-            <element signature="e#2300#2326#0#HTML" expanded="true" />
-            <element signature="e#2598#2627#0#HTML" expanded="true" />
-            <element signature="e#3987#4015#0#HTML" expanded="true" />
-            <element signature="e#4619#4644#0#HTML" expanded="true" />
-            <element signature="e#4902#4929#0#HTML" expanded="true" />
-            <element signature="e#4948#4976#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="297" column="66" selection-start-line="297" selection-start-column="66" selection-end-line="297" selection-end-column="66" />
+        <state relative-caret-position="368">
+          <caret line="300" column="29" lean-forward="true" selection-start-line="300" selection-start-column="29" selection-end-line="300" selection-end-column="29" />
           <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

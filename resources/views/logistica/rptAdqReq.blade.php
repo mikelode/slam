@@ -22,6 +22,7 @@
   display: inline-block;
   align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: solid 1px;
 }
 .logo{
   width: 150px;
@@ -261,7 +262,7 @@ td.line {
 
 
 
-             <table  style="font-size: 9px; margin-left:5px; width:auto; " >
+ <table  style="font-size: 9px; margin-left:5px; width:auto; padding-bottom: 150px;" >
              <THEAD>
              <tr>
               <th ALIGN="center" class="dll" width="10px" style="background:#bbb;">Nº</th>
@@ -295,31 +296,65 @@ td.line {
                    <td ALIGN="center" class="dll" colspan="2">  </td>
 
                 </tr>
-              @foreach(str_split($ReturnData["Req"][0]->reqObsv,66) as $key => $row)
-                  @if($key == 0)
-                      <tr class="dll">
-                      <td ALIGN="center" class="dll">-</td>
-                      <td ALIGN="center" class="dll" >  </td>
-                      <td ALIGN="center" class="dll" >  </td>
-                      <td ALIGN="center" class="dll" > </td>
-                      <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >NOTA</td>
-                      <td ALIGN="center" class="dll" >  </td>
-                      <td ALIGN="right" class="dll rights" >  </td>
-                      </tr>
-                  @endif
+
+              <?php
+              $long = 65 - 1;
+
+              $itext = $long;
+              $text = 'NOTA.-' . $ReturnData["Req"][0]->reqObsv;
+              $ltext = strlen($text);
+              if($ltext < $long){
+                  $parrafo[] = $text;
+              }
+              else{
+                  while($itext <= $ltext){
+
+                      $letter = $text[$itext];
+
+                      if($letter == ' '){
+                          $text[$itext] = '|';
+                      }
+                      else{
+                          $nxtlet = $text[$itext + 1];
+
+                          if($nxtlet == ' '){
+                              $text[$itext + 1] = '|';
+                          }
+                          else{
+                              $prvlet = $text[$itext - 1];
+                              $count = 1;
+
+                              while($prvlet != ' '){
+                                  $count++;
+                                  $prvlet = $text[$itext - $count];
+                              }
+
+                              $text[$itext - $count] = '|';
+
+                          }
+                      }
+
+                      $itext = $itext + $long;
+                  }
+
+                  $parrafo = explode('|', $text);
+              }
+
+
+
+              ?>
+              @foreach($parrafo as $row)
                   <tr class="dll">
                       <td ALIGN="center" class="dll">-</td>
                       <td ALIGN="center" class="dll" >  </td>
                       <td ALIGN="center" class="dll" >  </td>
-                      <td ALIGN="center" class="dll" >
-
-                      </td>
+                      <td ALIGN="center" class="dll" ></td>
                       <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >{{ $row }}</td>
                       <td ALIGN="center" class="dll" >  </td>
                       <td ALIGN="right" class="dll rights" >  </td>
                   </tr>
               @endforeach
-			   @for ($i = 0; $i < 8-$Item ; $i++)
+              @for ($i = 0; $i < 25 - $Item - count($parrafo) ; $i++)
               <tr class="dll">
                                  <td ALIGN="center" class="dll">-</td>
                    <td ALIGN="center" class="dll" >  </td>
@@ -366,6 +401,6 @@ td.line {
               </tr>
 
           </tbody>
-          </table>
+  </table>
 </body>
 </html>
