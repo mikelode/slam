@@ -22,7 +22,6 @@
   display: inline-block;
   align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    border: solid 1px;
 }
 .logo{
   width: 150px;
