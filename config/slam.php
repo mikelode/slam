@@ -11,6 +11,6 @@ return array(
     'ANIO' => 2019,
     'AUTHOR' => '@copyright M.D.Q.',
     'VERSION' => 'logiSmart v.2019',
-    'PATH_SYNC' => 'M:\SIAF_PRESUPUESTO\DATA',
+    'PATH_SYNC' => 'D:\copia_seguridad',
     'UE_ENTIDAD' => '300753'
 );
