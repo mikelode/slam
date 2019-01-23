@@ -274,7 +274,7 @@ class ctrlCC extends Controller
             $ReturnData["CCDll"] = \DB::select('exec spLogGetCCD_Print ?',array(  $id ));
             $ReturnData["CCAdj"] = \DB::select('exec spLogGetFte ?,?,?,?', array('SI', $ReturnData["CC"][0]->cdrFteID  ,  $id, 'P'));
             $ReturnData["CCReq"] =\DB::select('exec spLogGetReq ?,?,?', array(  ' top 1 ',$anio," and reqctzid='".$ReturnData["CC"][0]->cdrOrgID."'"));
-            //$ReturnData["ReqAbsClasf"] = \DB::select('exec spLogGetReqAbsClasf ?',array(  $id ));
+            $ReturnData["FteAbsClasf"] = \DB::select('exec spLogGetFteAbsClasf ?, ?',array(  $id, $ReturnData["CC"][0]->cdrFteID ));
             $v = view("logistica.rptAdqCC",compact('ReturnData'))->render();
             $pdf=\App::make('dompdf.wrapper');
             $pdf->loadHTML($v)->setPaper('a4')->setOrientation('landscape')->setWarnings(false);

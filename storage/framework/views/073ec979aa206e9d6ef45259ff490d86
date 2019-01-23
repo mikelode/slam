@@ -22,7 +22,6 @@
   display: inline-block;
   align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    border: solid 1px;
 }
 .logo{
   width: 150px;
@@ -354,7 +353,7 @@ td.line {
                       <td ALIGN="right" class="dll rights" >  </td>
                   </tr>
               <?php endforeach; ?>
-              <?php for($i = 0; $i < 25 - $Item - count($parrafo) ; $i++): ?>
+              <?php for($i = 0; $i < 20 - $Item - count($parrafo) ; $i++): ?>
               <tr class="dll">
                                  <td ALIGN="center" class="dll">-</td>
                    <td ALIGN="center" class="dll" >  </td>

@@ -309,24 +309,35 @@ td.lineB {
                     </table>
               </td>
                <td colspan="3" class="dll rights"  valign="center" style="font-size: 8px">
-               Elb:{{  $ReturnData["CC"][0]->cdrUsrID  }}  -- Imp: {{$ReturnData["Usr"] }}<br>
+                   <div><strong>Resumen por Clasificador : </strong> </div>
+                   @foreach($ReturnData["FteAbsClasf"] as $key=>$FteDll)
+                       {{ $FteDll->Clasf }}  = {{ $FteDll->Total }}<br>
+                   @endforeach
+                   </div>
                </td>
               </tr>
           </tbody>
           </table>
+          <div style="font-size: 8px;margin-left:5px;">
+              Elb:{{  $ReturnData["CC"][0]->cdrUsrID  }} 46 -- Imp: {{$ReturnData["Usr"] }}
+          </div>
         <BR>
               
 		    
          <div style="font-size: 10px;margin-left: 15px;padding-top:0px;"  ><strong>ADJUDICACION : SE LE OTORGA LA BUENA PRO</strong></div>
           <div class="info" style="margin-top:0px;margin-right: 20px;  background: #f2f2f2;font-size:8px;" >
             @foreach($ReturnData["CCAdj"] as $key=>$nom)
-                <table  style="font-size: 11px; margin-top: 0px;" width="100%" cellspacing="0px" cellpadding="0">
-                <tr> <td width="100px"> RUC  </td>   <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td style="font-weight: bold; font-size: 13px;"  id="tbAdjRuc"  name="tbAdjRuc" >  {{ $nom->fteRuc }} </td> </tr>
+                <table  style="font-size: 11px; margin-top: 0px; table-layout: fixed;" width="100%" cellspacing="0px" cellpadding="0">
+                <tr>
+                    <td width="10%"> RUC  </td>
+                    <td WIDTH="3%" ALIGN="CENTER"> : </td>
+                    <td width="87%" style="font-weight: bold; font-size: 13px;"  id="tbAdjRuc"  name="tbAdjRuc" >  {{ $nom->fteRuc }} </td>
+                </tr>
                 <tr> <td> Razon Social  </td>     <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td id="tbAdjRSocial" > {{ $nom->fteRazon }} </td> </tr>
                 <tr> <td> Monto  </td>            <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td id="tbAdjMonto"> {{ $nom->fteTotal }} </td> </tr>
                 <tr> <td> Plazo de Entrega</td>   <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td id="tbAdjPlazo" > {{  $ReturnData["CC"][0]->cdrEntrega }} </td> </tr>
                <!-- <tr> <td> Garantia  </td>         <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td id="tbAdjGarantia" >  {{ $nom->fteGarantia }}  </td> </tr>  -->
-				<tr> <td> Plazo de Ejecucion </td>         <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td  id="tbAdjLugarEnt" >  {{ $ReturnData["CC"][0]->cdrEjecucion  }}  </td> </tr>
+				{{--<tr> <td> Plazo de Ejecución </td>         <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td  id="tbAdjLugarEnt" >  {{ $ReturnData["CC"][0]->cdrEjecucion  }}  </td> </tr>--}}
                 <tr> <td> Justificacion </td>         <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td id="tbAdjGarantia" >  {{ $ReturnData["CC"][0]->cdrJustf }}  </td> </tr>
                 <tr> <td> Lugar de Entrega </td>         <td WIDTH="20PX" ALIGN="CENTER"> : </td> <td  id="tbAdjLugarEnt" >  {{ $ReturnData["CC"][0]->cdrLugarEnt }}  </td> </tr>
                 @if ($nom->fteIgv=="RH")

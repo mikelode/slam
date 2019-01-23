@@ -1426,7 +1426,7 @@ $( document ).on( 'click' ,'#btnCCRucBUENAPRO',function(e){
                 */
                 $("#tbAdjRuc").html(ruc);
                 $("#tbAdjRSocial").text(rsocial);
-               // $("#tbAdjPlazo").text(plazo);
+                $("#txAdjPlazo").val(plazo);
                 $("#tbAdjGarantia").text(garantia);
                 $("#tbAdjMonto").text(monto);
                 if(igv =="SI" || igv =="NO")
