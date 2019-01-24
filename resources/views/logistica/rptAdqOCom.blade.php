@@ -219,8 +219,8 @@ td.lineB {
         </td>
   </tr>
   </table>
-      <div class="info" style="margin-bottom: 2px;">
-          <table style="table-layout: fixed;" width="100%">
+      <div class="info" style="">
+          <table style="table-layout: fixed;" width="100%" cellpadding="1">
               <tr>
                   <td colspan="6">{{  $ReturnData["OC"][0]->ocMotivo   }}</td>
               </tr>
@@ -229,7 +229,7 @@ td.lineB {
                   <td width="1%">:</td>
                   <td style="overflow: hidden;">
                       <label class="labels" style="font-size: 14px; font-weight:bold; white-space: nowrap;">
-                          {{  $ReturnData["OC"][0]->ocRazon    }}</label>
+                          {{  $ReturnData["OC"][0]->ocRazon  }}</label>
                   </td>
                   <td width="5%" align="right">
                       <label class="labels"> RUC </label>
@@ -243,14 +243,28 @@ td.lineB {
                   <td style="font-size:11px; font-weight:normal;">
                       <label class="labels">DIRECCION: </label>    </td>
                   <td>:</td>
-                  <td colspan="4" style="white-space: nowrap; overflow: hidden;">{{  $ReturnData["RUC"][0]->Direccion    }} </td>
+                  <td style="white-space: nowrap; overflow: hidden;">{{  $ReturnData["RUC"][0]->Direccion    }} </td>
+                  <td align="right">
+                      <label class="labels"> TEL. </label>
+                  </td>
+                  <td>:</td>
+                  <td>
+                      <label class="labels"> ..............................   </label>
+                  </td>
               </tr>
               <tr>
                   <td style="font-size:11px; font-weight:normal;"><label class="labels">
                           GLOSA</label>     </td>
                   <td>:</td>
-                  <td colspan="4">
+                  <td style="white-space: nowrap; overflow: hidden;">
                       {{  $ReturnData["OC"][0]->ocGlosa    }}
+                  </td>
+                  <td align="right">
+                      <label class="labels"> EMAIL </label>
+                  </td>
+                  <td>:</td>
+                  <td>
+                      <label class="labels"> ..............................   </label>
                   </td>
               </tr>
               @if (strlen(  $ReturnData["OC"][0]->ocMotivo ) < 4	)
@@ -369,7 +383,7 @@ td.lineB {
         <thead>
         <tr>
             <th colspan="6" class="dll">ARTÍCULOS</th>
-            <th colspan="2" class="dll">PRECIO</th>
+            <th colspan="2" class="dll">PRECIO S/.</th>
         </tr>
         <tr>
             <th ALIGN="center" class="dll" width="3%">Nro</th>
@@ -392,7 +406,7 @@ td.lineB {
                 <td ALIGN="center" class="dll" style="font-weight:normal;" > {{ $OSDll->dllClasfCod }}</td>
                 <td ALIGN="left" class="dll lefts" style="padding-left: 6px;"  >  <?php echo strtoupper ($OSDll->dllProdDsc )." - ".  strtoupper ($OSDll->dllProdEspf ) ?> </td>
                 <td ALIGN="center" class="dll " style="font-weight:normal;">  {{ $OSDll->dllMarca   }}</td>
-                <td ALIGN="right" class="dll rights" style="font-weight:normal;" >   <?php  echo floatval( $OSDll->dllPrecio ) ;?>    </td>
+                <td ALIGN="right" class="dll rights" style="font-weight:normal;" >   <?php  echo   number_format(floatval( $OSDll->dllPrecio ),2,'.',',')  ;?>    </td>
                 <td ALIGN="right" class="dll rights" style="font-weight:normal;">     <?php echo  number_format ($OSDll->dllTotal,2);?></td>
             </tr>
             <?php  $Condicion=$OSDll->dllTotal;  ?>
@@ -452,7 +466,7 @@ td.lineB {
         <table  style="font-size: 9px;" width="100%" >
             <tr style="text-align:left;">
                 <!-- <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" >  </td>-->
-                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL S/. {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
             </tr>
         </table>
 
@@ -487,7 +501,7 @@ td.lineB {
             <tbody>
             <tr style="text-align:left;">
                 <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: {{ numtoletras($ReturnData["OC"][0]->ocTotalSuper) }}  </td>
-                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+                <td   class="dll rights" align="right" style="font-size: 14px; font-weight: bold;" > TOTAL S/. {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
             </tr>
             </tbody>
         </TABLE>
