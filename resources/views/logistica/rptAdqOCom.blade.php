@@ -518,7 +518,7 @@ td.lineB {
             <tbody>
             <tr style="text-align:left;">
                 <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: {{ numtoletras($ReturnData["OC"][0]->ocTotalSuper) }}  </td>
-                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL S/. {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+                <td   class="dll rights" align="right" style="font-size: 13px; font-weight: bold;" > TOTAL S/. {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
             </tr>
             </tbody>
         </table>
