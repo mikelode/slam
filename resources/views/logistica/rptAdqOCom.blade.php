@@ -245,7 +245,7 @@ td.lineB {
                   <td>:</td>
                   <td style="white-space: nowrap; overflow: hidden;">{{  $ReturnData["RUC"][0]->Direccion    }} </td>
                   <td align="right">
-                      <label class="labels"> TEL. </label>
+                      <label class="labels" style="font-weight: normal"> TEL. </label>
                   </td>
                   <td>:</td>
                   <td>
@@ -260,7 +260,7 @@ td.lineB {
                       {{  $ReturnData["OC"][0]->ocGlosa    }}
                   </td>
                   <td align="right">
-                      <label class="labels"> EMAIL </label>
+                      <label class="labels" style="font-weight: normal"> EMAIL </label>
                   </td>
                   <td>:</td>
                   <td>
@@ -518,7 +518,7 @@ td.lineB {
             <tbody>
             <tr style="text-align:left;">
                 <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: {{ numtoletras($ReturnData["OC"][0]->ocTotalSuper) }}  </td>
-                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
+                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL S/. {{ number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' ) }}     </td>
             </tr>
             </tbody>
         </table>

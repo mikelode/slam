@@ -58,7 +58,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="150" />
-          <entry key="Blade" value="12407" />
+          <entry key="Blade" value="12429" />
           <entry key="CSS" value="24" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="1389" />
@@ -117,15 +117,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="222" column="73" selection-start-line="222" selection-start-column="73" selection-end-line="222" selection-end-column="73" />
+            <state relative-caret-position="479">
+              <caret line="262" column="71" selection-start-line="262" selection-start-column="71" selection-end-line="262" selection-end-column="71" />
               <folding>
                 <element signature="e#4619#4644#0#HTML" expanded="true" />
                 <element signature="e#4948#4976#0#HTML" expanded="true" />
                 <element signature="e#5937#5980#0#HTML" expanded="true" />
                 <element signature="e#6118#6164#0#HTML" expanded="true" />
+                <element signature="e#6512#6539#0#HTML" expanded="true" />
                 <element signature="e#6275#6318#0#HTML" expanded="true" />
                 <element signature="e#6979#7025#0#HTML" expanded="true" />
+                <element signature="e#7186#7213#0#HTML" expanded="true" />
                 <element signature="e#17517#17559#0#HTML" expanded="true" />
                 <element signature="e#17799#17823#0#HTML" expanded="true" />
                 <element signature="e#17872#17931#0#HTML" expanded="true" />
@@ -184,8 +186,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>printPdfModal</find>
-      <find>intDni</find>
       <find>spLogSetPrePto</find>
       <find>spSiafAsyn</find>
       <find>logistica/spLogSetPrePto</find>
@@ -214,6 +214,8 @@
       <find>rptAdqOCo</find>
       <find>rptAdqOCom</find>
       <find>precio</find>
+      <find>total</find>
+      <find>tel.</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -582,12 +584,12 @@
       <workItem from="1548126928890" duration="9564000" />
       <workItem from="1548178938794" duration="2782000" />
       <workItem from="1548271958307" duration="7995000" />
-      <workItem from="1548295059368" duration="4958000" />
+      <workItem from="1548295059368" duration="5129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258752000" />
+    <option name="totallyTimeSpent" value="258923000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -978,15 +980,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="222" column="73" selection-start-line="222" selection-start-column="73" selection-end-line="222" selection-end-column="73" />
+        <state relative-caret-position="479">
+          <caret line="262" column="71" selection-start-line="262" selection-start-column="71" selection-end-line="262" selection-end-column="71" />
           <folding>
             <element signature="e#4619#4644#0#HTML" expanded="true" />
             <element signature="e#4948#4976#0#HTML" expanded="true" />
             <element signature="e#5937#5980#0#HTML" expanded="true" />
             <element signature="e#6118#6164#0#HTML" expanded="true" />
+            <element signature="e#6512#6539#0#HTML" expanded="true" />
             <element signature="e#6275#6318#0#HTML" expanded="true" />
             <element signature="e#6979#7025#0#HTML" expanded="true" />
+            <element signature="e#7186#7213#0#HTML" expanded="true" />
             <element signature="e#17517#17559#0#HTML" expanded="true" />
             <element signature="e#17799#17823#0#HTML" expanded="true" />
             <element signature="e#17872#17931#0#HTML" expanded="true" />
