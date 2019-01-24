@@ -169,7 +169,7 @@ class ctrlOC extends Controller
         }
 
         $pdf=\App::make('dompdf.wrapper');
-        $pdf->loadHTML($v)->setPaper('letter')->setOrientation('portrait')->setWarnings(false);
+        $pdf->loadHTML($v)->setPaper('a4')->setOrientation('portrait')->setWarnings(false);
         return $pdf->stream();
     }
 
