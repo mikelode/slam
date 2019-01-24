@@ -777,7 +777,7 @@ function jsFunDBReqGetData(Tipo,valor)
         qry=" and reqid = '"+valor+"'";
     }
     var token= $('#tokenBtn').val();
-    var dataString = {'prRows':' top 1 ','prAnio': $(".txVarAnioEjec").val() ,'prQry':qry,'_token':token } ;
+    var dataString = {'prRows':' top 1 ','prAnio': $(".txVarAnioEjec").val() ,'prQry':qry,'_token':token, 'val': valor } ;
     $.ajax({
         type: "POST",
         url: "logistica/spLogGetCtzReq",
@@ -786,29 +786,34 @@ function jsFunDBReqGetData(Tipo,valor)
         error: function () {  jsFunReqClear(); jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
         success: function (VR)
         {
-            if(VR["Req"].length>0)
-            {
-                var tmpreq = $("#CTZ").attr("reqID");
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
-
-                $("#CTZ").attr("reqID", VR["Req"][0].reqID);
-                $('#txCodReq').val(VR["Req"][0].reqCodigo);
-                $('#txGlosa').val(VR["Req"][0].reqGlosa)
-                $('#txLugarEnt').val(VR["Req"][0].reqLugarEnt);
-                $("#divCtzProdBienes").html(VR["ReqDll"]);
-                if(tmpreq != $("#CTZ").attr("reqID")) { //VR["Req"][0].reqEtapa == "PROCESADO" ||
-                    if ( VR["Req"][0].reqEtapa == "RESERVADO" || VR["Req"][0].reqEtapa == "ANULADO" || VR["Req"][0].reqEtapa == "ELIMINADO") {
-                        jsFnDialogBox(400, 160, "ERROR", null, "RESULTADOS DE LA BUSQUEDA", "El Requerimiento se encuenta : <strong> " + VR["Req"][0].reqEtapa + "</strong> <br> Vuelva a intentarlo ");
-                        jsFunCtzClear();
-                        return;
-                    }
-                }
-               // $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos del Requerimiento Fueron Recuperados'));
-               // $('#dvAviso').modal('show');
+            if(typeof VR.msg !== 'undefined'){
+                    jsFunReqClear(); jsFnDialogBox(400, 160, "ERROR", null, "ATENCION", VR.msg);
             }
-            else
-            {    jsFunReqClear(); jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");}
+            else{
+                if(VR["Req"].length>0)
+                {
+                    var tmpreq = $("#CTZ").attr("reqID");
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+
+                    $("#CTZ").attr("reqID", VR["Req"][0].reqID);
+                    $('#txCodReq').val(VR["Req"][0].reqCodigo);
+                    $('#txGlosa').val(VR["Req"][0].reqGlosa)
+                    $('#txLugarEnt').val(VR["Req"][0].reqLugarEnt);
+                    $("#divCtzProdBienes").html(VR["ReqDll"]);
+                    if(tmpreq != $("#CTZ").attr("reqID")) { //VR["Req"][0].reqEtapa == "PROCESADO" ||
+                        if ( VR["Req"][0].reqEtapa == "RESERVADO" || VR["Req"][0].reqEtapa == "ANULADO" || VR["Req"][0].reqEtapa == "ELIMINADO") {
+                            jsFnDialogBox(400, 160, "ERROR", null, "RESULTADOS DE LA BUSQUEDA", "El Requerimiento se encuenta : <strong> " + VR["Req"][0].reqEtapa + "</strong> <br> Vuelva a intentarlo ");
+                            jsFunCtzClear();
+                            return;
+                        }
+                    }
+                    // $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos del Requerimiento Fueron Recuperados'));
+                    // $('#dvAviso').modal('show');
+                }
+                else
+                {    jsFunReqClear(); jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");}
+            }
         }
     });
 

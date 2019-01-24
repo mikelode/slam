@@ -4,6 +4,7 @@ namespace Logistica\Http\Controllers\Logistica;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use Logistica\Almacen\almTLogCtz;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
 use PhpParser\Node\Expr\Array_;
@@ -83,6 +84,17 @@ class ctrlCtz extends Controller
     }
     public function spLogGetCtzReq(Request $request)
     {
+        $reqID = 'RQ' . substr($request->prAnio, 2,2) . substr('0000000' . $request->val,-7);
+
+        $ctz = almTLogCtz::where('ctzCodReq',$reqID)->get();
+
+        if($ctz->count() > 0){
+            $msg = 'ATENCIÓN: EL REQUERIMIENTO YA TIENE COTIZACIÓN NRO: ' .substr($ctz[0]->ctzID, -5) ;
+            $msgId = '500';
+            return response()->json(compact('msg','msgId'));
+        }
+
+
         $ReturnData["Req"] = \DB::select('exec spLogGetReq ?,?,?', array(  $request->prRows, $request->prAnio, $request->prQry ));
         $result = \DB::select('exec spLogGetReqD ?',array(  $ReturnData["Req"][0]->reqID));      //  dd($dll);
         $ReturnData["ReqDll"] =   view ('logistica.Partials.logCtzDll',compact('result'))->render();
