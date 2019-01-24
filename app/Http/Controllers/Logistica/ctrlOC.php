@@ -163,6 +163,8 @@ class ctrlOC extends Controller
 
             $ReturnData["OCAbsClasf"] = \DB::select('exec spLogGetOCAbsClasf ?',array(  $id ));
             $ReturnData["RUC"] = \DB::select('exec spLogGetRuc ?',array(  " where ruc='".$ReturnData["OC"][0]->ocRUC ."'" ));
+            $ReturnData["SIAF"] = \DB::select('exec spLogGetCSExp ?',array($id));
+
             $v = view("logistica.rptAdqOCom",compact('ReturnData','txtcondicion'))->render();
         }
 
