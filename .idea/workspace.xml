@@ -2,48 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOS.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOS.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/almacen.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/almacen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsApp2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsApp2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevCdr2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevCdr2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevCtz2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevCtz2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevOC3.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevOC3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevOS2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevOS2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevReq2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevReq2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCdr.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCdr.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCtz.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCtz.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logCtzDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logCtzDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logOCDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logOCDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logOSDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logOSDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logReqDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logReqDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqCC.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqCC.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqCtz.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqCtz.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/2e40f22c4de9f8741b4b768d64c7fd3740167090" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/073ec979aa206e9d6ef45259ff490d86" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/073ec979aa206e9d6ef45259ff490d86" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/3927fd780de58c25619538a1c97e0689" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3927fd780de58c25619538a1c97e0689" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/3b327db32f001b46c9862613de01f510" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3b327db32f001b46c9862613de01f510" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/44d180d19b3efaa72597d726e37aafd5" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/44d180d19b3efaa72597d726e37aafd5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5cdde7a0f5e88a5e6278676429479f2a" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5cdde7a0f5e88a5e6278676429479f2a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/92c3cdfa16221f4b5a8fbcaa58becc12" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/92c3cdfa16221f4b5a8fbcaa58becc12" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/956df487023fe5735d6c7ba904b97cca" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/956df487023fe5735d6c7ba904b97cca" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/9909bb9577f7ee1b63fe87fb30c7b31c" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9909bb9577f7ee1b63fe87fb30c7b31c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/9957852b663e824d8f3ec200a76b8447" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9957852b663e824d8f3ec200a76b8447" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/a89e75d990e2e95293de8818520067f7" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/a89e75d990e2e95293de8818520067f7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c5b4a9d408328babf8381db52033ef03" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c5b4a9d408328babf8381db52033ef03" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c8eafb7e7348dd2321f3bc21808476a7" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c8eafb7e7348dd2321f3bc21808476a7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/dc1cd84c496c357d9c8ddfb0f448ca4e" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/dc1cd84c496c357d9c8ddfb0f448ca4e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/de8336d690422e2ed6c8d25749a962ea" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/de8336d690422e2ed6c8d25749a962ea" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,7 +57,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="150" />
-          <entry key="Blade" value="14467" />
+          <entry key="Blade" value="14468" />
           <entry key="CSS" value="121" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="5473" />
@@ -109,7 +68,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="22" />
-          <entry key="Blade" value="150" />
+          <entry key="Blade" value="151" />
           <entry key="CSS" value="4" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="46" />
@@ -127,7 +86,17 @@
     <favorites_list name="slam" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="195" column="25" lean-forward="true" selection-start-line="195" selection-start-column="25" selection-end-line="195" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -138,7 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logistica.rptAdqCC</find>
       <find>spLogGetOC_CCVal</find>
       <find>spLogSetOC</find>
       <find>spLogGetOCTmp</find>
@@ -168,6 +136,7 @@
       <find>nuevo item</find>
       <find>vwGetTable</find>
       <find>rpt|||</find>
+      <find>secu</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -224,7 +193,6 @@
         <option value="$PROJECT_DIR$/public/js/jsDevReq2.js" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReqSeg.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php" />
-        <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php" />
         <option value="$PROJECT_DIR$/app/Almacen/almTLogReq.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCtz.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/logCtzDll.blade.php" />
@@ -248,6 +216,7 @@
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/public/css/almacen.css" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php" />
       </list>
     </option>
   </component>
@@ -532,15 +501,16 @@
       <workItem from="1548178938794" duration="2782000" />
       <workItem from="1548271958307" duration="7995000" />
       <workItem from="1548295059368" duration="11538000" />
-      <workItem from="1548516544897" duration="63295000" />
+      <workItem from="1548516544897" duration="63909000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="328627000" />
+    <option name="totallyTimeSpent" value="329241000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21677852" />
       <window_info id="Structure" order="1" weight="0.24966443" />
@@ -829,13 +799,6 @@
           <folding>
             <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="396" column="27" selection-start-line="396" selection-start-column="27" selection-end-line="396" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1234,6 +1197,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="166" column="64" selection-start-line="166" selection-start-column="54" selection-end-line="166" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="195" column="25" lean-forward="true" selection-start-line="195" selection-start-column="25" selection-end-line="195" selection-end-column="25" />
         </state>
       </provider>
     </entry>
