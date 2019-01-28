@@ -217,7 +217,11 @@
 
 
 <div class="panel panel-default" style="margin-top: -15px" >
-<div class="panel-heading gs-panel-heading" > :::  Lista de Bienes o Servicios  </div>
+<div class="panel-heading gs-panel-heading" >
+    :::  Lista de Bienes o Servicios
+    <div class="pull-right" id="stxMontoReq" style="margin-right: 140px;">
+    </div>
+</div>
 <div id="dvBarraAdd" class="panel-heading gs-panel-heading" style="display: none;" >
      <table id="tbBarraBienes" style="height: 50px; table-layout: fixed;" width="100%">
 

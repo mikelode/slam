@@ -1100,6 +1100,7 @@ function jsFunReqGetData(Tipo,valor)
                 $('#txSolicitante').val(VR["Req"][0].reqSolDsc);
                 $('#txCondicion').val(VR["Req"][0].reqSolCond);
                 $('#txObsv').val(VR["Req"][0].reqObsv);
+                $('#stxMontoReq').html("MONTO REQUERIMIENTO: <span style='font-size: 14px;'>" + VR["Req"][0].reqMonto + "</span>");
 
                 $("#divProdBienes").html(VR["ReqDll"]);
                // $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
@@ -1158,6 +1159,7 @@ function jsFunReqClear()
             $(this).remove();
     });
     $('#txFecha').val(moment().format('YYYY-MM-DD'));
+    $('#stxMontoReq').html('');
 
 }
 function jsFunReqValidarDatos ()
