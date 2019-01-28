@@ -142,7 +142,7 @@ td.lineB {
 
 </style>
 
-<title>Reporte de Cuadro Comparativo</title>
+<title>Cuadro Comparativo</title>
 </head>
 
 <body style="margin-top: 105px;">
@@ -193,7 +193,18 @@ td.lineB {
 <div class="info" style="margin-right: 20px; margin-top: -5px;border:0;">
  <table cellpadding="0" cellspacing="0">
 <!-- <tr ><td > <label class="labels"> DEPENDENCIA : </label> ( {{  $ReturnData["CCReq"][0]->reqDepCod    }}  ) {{  $ReturnData["CCReq"][0]->reqDepDsc    }}  </td></tr> -->
- <tr ><td> <label class="labels"> SEC FUN : </label>  ( {{  $ReturnData["CCReq"][0]->reqSecFunCod    }}  ) {{  $ReturnData["CCReq"][0]->reqSecFunDsc    }}  </td></tr>
+ <tr >
+     <td>
+         <label class="labels"> SEC FUN : </label>
+         @if(substr($ReturnData["CCReq"][0]->reqSecFunCod,-1) == 'M')
+             @foreach($ReturnData["FteAbsClasf"] as $key=>$ReqDll)
+                 Sec.Fun. ({{ $ReqDll->secfun }}) - Rubro: {{ $ReqDll->rubro }},
+             @endforeach
+         @else
+             {{ '('.$ReturnData["CCReq"][0]->reqSecFunCod . ') ' }} {{  $ReturnData["CCReq"][0]->reqSecFunDsc     }}
+         @endif
+     </td>
+ </tr>
 </table>
 </div>
 
@@ -311,7 +322,7 @@ td.lineB {
                <td colspan="3" class="dll rights"  valign="center" style="font-size: 8px">
                    <div><strong>Resumen por Clasificador : </strong> </div>
                    @foreach($ReturnData["FteAbsClasf"] as $key=>$FteDll)
-                       {{ $FteDll->Clasf }}  = {{ $FteDll->Total }}<br>
+                       {{ $FteDll->sfrub .' | ' . $FteDll->Clasf }}  = {{ $FteDll->Total }}<br>
                    @endforeach
                    </div>
                </td>

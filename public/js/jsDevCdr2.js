@@ -116,9 +116,13 @@ $( document ).on( 'keydown',  '#txCC_CtzNo',function(e) {
             $("#divDialogCont").html( "Esta seguro de cambiar el Documento<br><strong>LOS BIENES DEL CUADRO SE ELIMINARAN</strong>");
             $("#divDialog").dialog({
             buttons: {
-                "Aceptar": function () { 
-                  if(TipoDoc=="CZ") jsFunDBCC_CtzSetData( "COD",$("#txCC_CtzNo").val()); 
-                  else  jsFunDBCC_ReqSetData( "COD",$("#txCC_CtzNo").val());
+                "Aceptar": function () {
+                  if(TipoDoc=="CZ") {
+                      jsFunDBCC_CtzSetData( "COD",$("#txCC_CtzNo").val());
+                  }
+                  else  {
+                      jsFunDBCC_ReqSetData( "COD",$("#txCC_CtzNo").val());
+                  }
                   $(this).dialog("close");
                      },
                 "Cancel": function () {   jsFnOrgDoc (tmpOrgDoc,tmpOrgRef);   $(this).dialog("close"); }    }
@@ -534,8 +538,32 @@ $( document ).on( 'click',  '#btnLogCCSave , #btnLogCCDel',function(e){
         var parentt = $(this);
 
         if (varCdr.cdrOPE=="ADD" || varCdr.cdrOPE =="UPD" || varCdr.cdrOPE=="DEL" ) {
+
+        var ItemArray = new Array();
+        $('#tbCdr_Dll tbody tr').each(function ()
+        {
+            if ($(this).attr("class")!="fila-Hide")  {
+                var fila = new Object();
+                fila.cdItm= $(this).find("td[name=tdCdItm]").html();
+                fila.czItm= $(this).find("td[name=tdCzItm]").html();
+                fila.rqItm= $(this).find("td[name=tdRqItm]").html();
+                fila.secfun = $(this).find("td[name=tdSF]").attr('codID');
+                fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
+                fila.cant= $(this).find("td[name=tdCant]").html();
+                fila.cant= $(this).find("td[name=tdCant]").html();
+                fila.cant= $(this).find("td[name=tdCant]").html();
+                fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
+                fila.prod = $(this).find("td[name=tdProd]").attr("codID");
+                fila.und = $(this).find("td[name=tdUnd]").attr("codID");
+                fila.espf = $(this).find("td[name=tdEspf]").html();
+                //fila.precioUnt = $(this).find("td[name=tdPrecio]").html();
+                ItemArray.push(fila);
+            }
+        });
+
         var fullData = {
             'varCdr': varCdr,
+            'varCdrDll' : JSON.parse(JSON.stringify(ItemArray)),
             '_token': $('#tokenBtn').val()
         }
         
@@ -1102,7 +1130,8 @@ $( document ).on( 'click' ,'#btnLogCdrRucSave ',function(e) {
                             fila.cdItm= $(this).find("td[name=tdCdItm]").html();
                             fila.czItm= $(this).find("td[name=tdCzItm]").html();
                             fila.rqItm= $(this).find("td[name=tdRqItm]").html();
-                            fila.cant= $(this).find("td[name=tdCant]").html();
+                            fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
+                            fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
                             fila.cant= $(this).find("td[name=tdCant]").html();                           
                             fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
                             fila.prod = $(this).find("td[name=tdProd]").attr("codID");
@@ -1635,7 +1664,6 @@ function jsFunDBCC_GetData(tmp , Tipo,valor)
                 
                 jsFnOrgDoc(VR["CC"][0].cdrOrgDoc , VR["CC"][0].cdrOrgRef   );
                 $('#txObsv').val(VR["CC"][0].cdrObsv);
-                
                 $("#tabBienesList").html(VR["CdrDll"]);
                 $('#aBns').click();
 
@@ -1822,8 +1850,8 @@ function jsFunDBCC_CtzSetData(Tipo,valor)
                                     fila.cdItm= $(this).find("td[name=tdCdItm]").html();
                                     fila.czItm= $(this).find("td[name=tdCzItm]").html();
                                     fila.rqItm= $(this).find("td[name=tdRqItm]").html();
-                                    fila.cant= $(this).find("td[name=tdCant]").html();
-                                    fila.cant= $(this).find("td[name=tdCant]").html();
+                                    fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
+                                    fila.rubro= $(this).find("td[name=tdRubro]").attr('codID');
                                     fila.cant= $(this).find("td[name=tdCant]").html();
                                     fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
                                     fila.prod = $(this).find("td[name=tdProd]").attr("codID");
@@ -1928,8 +1956,8 @@ function jsFunDBCC_ReqSetData(Tipo,valor)
                                     fila.cdItm= $(this).find("td[name=tdCdItm]").html();
                                     fila.czItm= $(this).find("td[name=tdCzItm]").html();
                                     fila.rqItm= $(this).find("td[name=tdRqItm]").html();
-                                    fila.cant= $(this).find("td[name=tdCant]").html();
-                                    fila.cant= $(this).find("td[name=tdCant]").html();
+                                    fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
+                                    fila.rubro= $(this).find("td[name=tdRubro]").attr('codID');
                                     fila.cant= $(this).find("td[name=tdCant]").html();
                                     fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
                                     fila.prod = $(this).find("td[name=tdProd]").attr("codID");

@@ -142,7 +142,7 @@ td.lineB {
 
 </style>
 
-<title>Reporte de Cuadro Comparativo</title>
+<title>Cuadro Comparativo</title>
 </head>
 
 <body style="margin-top: 105px;">
@@ -193,7 +193,19 @@ td.lineB {
 <div class="info" style="margin-right: 20px; margin-top: -5px;border:0;">
  <table cellpadding="0" cellspacing="0">
 <!-- <tr ><td > <label class="labels"> DEPENDENCIA : </label> ( <?php echo e($ReturnData["CCReq"][0]->reqDepCod); ?>  ) <?php echo e($ReturnData["CCReq"][0]->reqDepDsc); ?>  </td></tr> -->
- <tr ><td> <label class="labels"> SEC FUN : </label>  ( <?php echo e($ReturnData["CCReq"][0]->reqSecFunCod); ?>  ) <?php echo e($ReturnData["CCReq"][0]->reqSecFunDsc); ?>  </td></tr>
+ <tr >
+     <td>
+         <label class="labels"> SEC FUN : </label>
+         <?php if(substr($ReturnData["CCReq"][0]->reqSecFunCod,-1) == 'M'): ?>
+             <?php foreach($ReturnData["FteAbsClasf"] as $key=>$ReqDll): ?>
+                 Sec.Fun. (<?php echo e($ReqDll->secfun); ?>) - Rubro: <?php echo e($ReqDll->rubro); ?>,
+             <?php endforeach; ?>
+         <?php else: ?>
+             <?php echo e('('.$ReturnData["CCReq"][0]->reqSecFunCod . ') '); ?> <?php echo e($ReturnData["CCReq"][0]->reqSecFunDsc); ?>
+
+         <?php endif; ?>
+     </td>
+ </tr>
 </table>
 </div>
 
@@ -311,7 +323,7 @@ td.lineB {
                <td colspan="3" class="dll rights"  valign="center" style="font-size: 8px">
                    <div><strong>Resumen por Clasificador : </strong> </div>
                    <?php foreach($ReturnData["FteAbsClasf"] as $key=>$FteDll): ?>
-                       <?php echo e($FteDll->Clasf); ?>  = <?php echo e($FteDll->Total); ?><br>
+                       <?php echo e($FteDll->sfrub .' | ' . $FteDll->Clasf); ?>  = <?php echo e($FteDll->Total); ?><br>
                    <?php endforeach; ?>
                    </div>
                </td>

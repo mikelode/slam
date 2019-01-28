@@ -185,6 +185,8 @@
                                     <th WIDTH="0px" style="display: none" ></th>
                                     <th WIDTH="0px" style="display: none" ></th>
                                     <th WIDTH="0px" style="display: none" ></th>
+                                   <th width="0px" style="display: none">Sf</th>
+                                   <th width="0px" style="display: none">Rb</th>
                                     <th WIDTH="55px"  align="center"   valign="center">Cant</th>
                                      <th WIDTH="60px"  align="center"   valign="center">Unidad</th>
                                     <th WIDTH="80px"  align="center"   valign="center">Clasificador</th>
@@ -200,6 +202,8 @@
                                 <td name="tdCdItm" style="display: none" > 0 </td> ';
                                 <td name="tdCzItm" style="display: none" > 0 </td> ';
                                 <td name="tdRqItm" style="display: none" > 0</td> ';
+                                    <td name="tdSF" style="display: none;"></td>
+                                    <td name="tdRubro" style="display: none;"></td>
                                 <td name="tdCant"  > </td> ';
                                 <td name="tdUnd"   > </td>';
                                 <td name="tdClasf" > </td> ';

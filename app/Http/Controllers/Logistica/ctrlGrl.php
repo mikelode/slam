@@ -669,7 +669,12 @@ class ctrlGrl extends Controller
     {
         $qry ="";
 
-        if($request->tipo =="COD" || $request->tipo=="CID" )  {  $qry = " where cast ( RTRIM( lTRIM( cod))  as int) = " . $request->valor; }
+        if($request->tipo =="COD" || $request->tipo=="CID" ){
+            if($request->obj == 'SECFUN')
+                $qry = " where RTRIM( lTRIM( cod)) = '" . substr('0000'. trim($request->valor),-4) ."'" ;
+            else
+                $qry = " where CAST( RTRIM( lTRIM( cod)) AS INT) = " . $request->valor;
+        }
         else if($request->tipo == "STR")  {  $qry = " where RTRIM( lTRIM( cod)) = replace ( RTRIM( lTRIM('".$request->valor."')),' ','')"; } //$request->tipo
         else if($request->tipo =="DSC")  {  $qry = " where dsc like  '%" . $request->valor."%' "; }
         else { echo 'Error'; return; }

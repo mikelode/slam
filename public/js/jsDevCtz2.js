@@ -249,6 +249,8 @@ $( document ).on( 'click',  '#btnLogCtzSave , #btnLogCtzDel , #btnLogCtzTrsh',fu
                 var fila = new Object();
                 fila.czItm=$(this).find("td[name=tdCzItm]").html();
                 fila.rqItm=$(this).find("td[name=tdRqItm]").html();
+                fila.secfun = $(this).find("td[name=tdSF]").attr('codID');
+                fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
                 fila.cant= $(this).find("td[name=tdCant]").html();
                 fila.prod = $(this).find("td[name=tdProd]").attr("codID");
                 fila.und = $(this).find("td[name=tdUnd]").attr("codID");
@@ -260,7 +262,7 @@ $( document ).on( 'click',  '#btnLogCtzSave , #btnLogCtzDel , #btnLogCtzTrsh',fu
             'varCtz': varCtz,
             'varCtzDll': JSON.parse(JSON.stringify(ItemArray)),
             '_token': $('#tokenBtn').val()
-        }
+        };
 
         $("#divDialog").dialog(opt);
         $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
@@ -543,10 +545,15 @@ $(document).on('click','.btnCtzRowEDIT',function(e){
         trCurrent.html("").append(jsFunCtzGetRowTemplate("UPD")).css("background","#d9edf7").attr("trFocus","ACTIVE");
         trCurrent.find("td[name=tdCzItm]")      .html(trClone.find("td[name=tdCzItm]").text());
         trCurrent.find("td[name=tdRqItm]")      .html(trClone.find("td[name=tdRqItm]").text());
+        trCurrent.find("td[name=tdSF]")      .find('input[id=txProdSF]').val(trClone.find("td[name=tdSF]").text().trim());
+        trCurrent.find("td[name=tdRubro]")      .find('input[id=txProdRubro]').val(trClone.find("td[name=tdRubro]").text().trim());
         trCurrent.find("td[name=tdCant]")    .find('input[id=txProdCant]')      .val(trClone.find("td[name=tdCant]").text().trim());
         trCurrent.find("td[name=tdProd]")    .find('input[id=txProdProd]')      .val(trClone.find("td[name=tdProd]").text()) ;
         trCurrent.find("td[name=tdUnd]")     .find('input[id=txProdUnd]')       .val(trClone.find("td[name=tdUnd]").text())  ;
         trCurrent.find("td[name=tdEspf]")    .find('textarea[id=txProdEspf]')   .val(trClone.find("td[name=tdEspf]").text()) ;
+
+        trCurrent.find("td[name=tdSF]")      .find('input[id=txProdSF]').attr('codID',trClone.find("td[name=tdSF]").attr('codID'));
+        trCurrent.find("td[name=tdRubro]")      .find('input[id=txProdRubro]').attr('codID',trClone.find("td[name=tdSF]").attr('codID'));
         trCurrent.find("td[name=tdProd]")    .find('input[id=txProdProd]').attr("codID",trClone.find("td[name=tdProd]").attr ("codID"));
         trCurrent.find("td[name=tdUnd]")     .find('input[id=txProdUnd]') .attr("codID",trClone.find("td[name=tdUnd]").attr ("codID"));   
         varOCDll.OPE="UPD";
@@ -959,6 +966,8 @@ function jsFunCtzDllVal( tipo ,obj)
         var cant = parseFloat(obj.find("td[name=tdCant]").find('input[id=txProdCant]').val()).toFixed(2);
         var czItm = parseInt(obj.find("td[name=tdCzItm]").html().trim());
         var rqItm = parseInt(obj.find("td[name=tdRqItm]").html().trim());
+        var secfun = obj.find("td[name=tdSF]").find('input[id=txProdSF]').attr('codID');
+        var rubro = obj.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr('codID');
         var prodID = obj.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID");
         var prodDsc = obj.find("td[name=tdProd]").find('input[id=txProdProd]').val();
         var undID = parseInt(obj.find("td[name=tdUnd]").find('input[id=txProdUnd]').attr("codID"));
@@ -986,6 +995,8 @@ function jsFunCtzDllVal( tipo ,obj)
     //varCtzDll.OPE="ADD";
     varCtzDll.czItm= czItm ;
     varCtzDll.rqItm= rqItm ;
+    varCtzDll.prodSecfun = secfun;
+    varCtzDll.prodRubro = rubro;
     varCtzDll.prodCant= cant ;
     varCtzDll.prodID = prodID ;
     varCtzDll.prodDsc = prodDsc ;

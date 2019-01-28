@@ -59,7 +59,6 @@ class ctrlOC extends Controller
     public function spLogSetOC(Request $prRqsOC)
     {
         //sleep(1);
-       
 	    $dbResult = \DB::select('exec spLogSetOC ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,?  ,?   ,?,?,?,?',
             array(
                 $prRqsOC["varOC"]["ocOPE"],
@@ -103,7 +102,7 @@ class ctrlOC extends Controller
 		{
 			foreach ($prRqsOC["varOCDll"] as $key => $valor)
 			{
-				$dbResultDll = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,?,? ', array( 'ADD',$idOC , $valor["prod"], $valor["und"], $valor["clasf"],$valor["cant"],$valor["precio"],$valor["marca"],$valor["espf"],$valor["ocItm"], $valor["cdItm"]  ,$valor["czItm"],$valor["rqItm"],  Auth::user()->usrID , $valor["envio"]  ,$valor["secFun"] ));
+				$dbResultDll = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,? ', array( 'ADD',$idOC , $valor["prod"], $valor["und"], $valor["clasf"],$valor["cant"],$valor["precio"],$valor["marca"],$valor["espf"],$valor["ocItm"], $valor["cdItm"]  ,$valor["czItm"],$valor["rqItm"],  Auth::user()->usrID , $valor["envio"]  ,$valor["secFun"], $valor['secfund'], $valor['rubro'] ));
 				if ($dbResultDll[0]->OCNo == "NN")    {    array_push($ErrorDtll, array('OCNo' => $dbResultDll[0]->OCNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"])); }
 			}
 			if (count($ErrorDtll) > 0) {    return response()->json($ErrorDtll);      }
@@ -115,8 +114,8 @@ class ctrlOC extends Controller
     public function spLogSetOCD(Request $prRqsOC)
     {
         $Doc = "Odc" ;
-        $varReturn["varReturns"] = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,? ,? ,?,?,?,?,? ',
-            array( $prRqsOC["varBns"]["OPE"] , $prRqsOC["varBns"]["OCID"] , $prRqsOC["varBns"]["prodID"]  ,  $prRqsOC["varBns"]["prodUndID"],  $prRqsOC["varBns"]["prodClasfID"],$prRqsOC["varBns"]["prodCant"],$prRqsOC["varBns"]["prodPrecio"],$prRqsOC["varBns"]["prodMarca"],$prRqsOC["varBns"]["prodEspf"],$prRqsOC["varBns"]["ocItm"],$prRqsOC["varBns"]["cdItm"],$prRqsOC["varBns"]["czItm"],$prRqsOC["varBns"]["rqItm"], Auth::user()->usrID , 0, $prRqsOC["varBns"]["prodSecFun"]));
+        $varReturn["varReturns"] = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,? ,?,?,? ',
+            array( $prRqsOC["varBns"]["OPE"] , $prRqsOC["varBns"]["OCID"] , $prRqsOC["varBns"]["prodID"]  ,  $prRqsOC["varBns"]["prodUndID"],  $prRqsOC["varBns"]["prodClasfID"],$prRqsOC["varBns"]["prodCant"],$prRqsOC["varBns"]["prodPrecio"],$prRqsOC["varBns"]["prodMarca"],$prRqsOC["varBns"]["prodEspf"],$prRqsOC["varBns"]["ocItm"],$prRqsOC["varBns"]["cdItm"],$prRqsOC["varBns"]["czItm"],$prRqsOC["varBns"]["rqItm"], Auth::user()->usrID , 0, $prRqsOC["varBns"]["prodSecFun"],null,null));
         $result = \DB::select('exec spLogGetOCD ?',array( $prRqsOC["varBns"]["OCID"]));
         $varReturn["vwDll"] =  view ('logistica.Partials.logOCDll',compact( 'result','Doc'))->render();
         return  $varReturn;

@@ -128,7 +128,7 @@ td.line {
 }
 </style>
 
-<title>Reporte de Requerimientos</title>
+<title>Requerimiento</title>
 </head>
 
 <body style="padding-top: 245px;">
@@ -184,7 +184,17 @@ td.line {
             <div class="info">
             <table>
                 <tr > <td class="line"><label class="labels">  RUBRO : </label>  ( {{ $ReturnData["Req"][0]->reqRubroCod }} ) - {{  $ReturnData["Req"][0]->reqRubroDsc      }} </td>  </tr>
-                <tr > <td class="line"><label class="labels">  SEC FUN : </label> ( {{ $ReturnData["Req"][0]->reqSecFunCod }} ) - {{  $ReturnData["Req"][0]->reqSecFunDsc     }} </td>  </tr>
+                <tr >
+                    <td class="line"><label class="labels">  SEC FUN : </label>
+                        @if(substr($ReturnData["Req"][0]->reqSecFunCod,-1) == 'M')
+                            @foreach($ReturnData["ReqAbsClasf"] as $key=>$ReqDll)
+                                Sec.Fun. ({{ $ReqDll->secfun }}) - Rubro: {{ $ReqDll->rubro }},
+                            @endforeach
+                        @else
+                             {{ '('.$ReturnData["Req"][0]->reqSecFunCod . ')' }} - {{  $ReturnData["Req"][0]->reqSecFunDsc     }}
+                        @endif
+                    </td>
+                </tr>
             </table>
             </div>
 
@@ -380,10 +390,10 @@ td.line {
 
                <tr>
                <td colspan="4" class="dll lefts" >
-               <div style="display: inline-block; font-size: 9px; margin-left: 10px;">
+               <div style="display: inline-block; font-size: 9px; margin-left: 3px;">
                <div><strong>Resumen por Clasificador : </strong> </div>
                 @foreach($ReturnData["ReqAbsClasf"] as $key=>$ReqDll)
-                   {{ $ReqDll->Clasf }}  = {{ $ReqDll->Total }}<br>
+                   {{ $ReqDll->sfrub .' | ' . $ReqDll->Clasf }}  = {{ $ReqDll->Total }}<br>
                 @endforeach
                 </div>
                 <div style="margin-left: 10px"><strong>Total de Items :<?php echo --$Item;?> </strong> </div>

@@ -35,9 +35,11 @@ $(document).on('click , keydown','#btnLogItem',function(e) {
         return;
     }
 
+    var valsf = $('#txCodSecFun').val();
+
     $("#tbBarraBienes tr").html("");
     filaBase='<tr valign="top" trfocus="ACTIVE">';
-    filaBase+= jsFunGetRowTemplate("NEW") ;
+    filaBase+= jsFunGetRowTemplate("NEW",valsf) ;
     filaBase+="</tr>";
     $("#tbBarraBienes tr").each(function (index) { $(this).fadeOut(0, function(){  $(this).remove(); }) }) ;
     $("#tbBarraBienes").prepend(filaBase);
@@ -74,6 +76,8 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
                     var fila = new Object();
                     fila.ID=0;
                     fila.cant= $(this).find("td[name=tdCant]").html();
+                    fila.secfun = $(this).find("td[name=tdSF]").attr('codId');
+                    fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
                     fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
                     fila.prod = $(this).find("td[name=tdProd]").attr("codID");
                     fila.und = $(this).find("td[name=tdUnd]").attr("codID");
@@ -84,12 +88,14 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
             }
         });
        if(varDatosReq.reqOPE =="ADD" || varDatosReq.reqOPE =="UPD")  {
-        if(!flg){  jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Falta ingresar los detalles del requerimiento ( Bienes o Servicios )");return ; }
-        var fullData = {
-            'datos': varDatosReq,
-            'lista': JSON.parse(JSON.stringify(ItemArray)),
-            '_token': $('#tokenBtnMain').val()
-        }
+            if(!flg){
+                jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Falta ingresar los detalles del requerimiento ( Bienes o Servicios )");return ;
+            }
+            var fullData = {
+                'datos': varDatosReq,
+                'lista': JSON.parse(JSON.stringify(ItemArray)),
+                '_token': $('#tokenBtnMain').val()
+            }
        }
         else {
            var fullData = {
@@ -371,29 +377,72 @@ $( document ).on( 'keydown','#txCodDep, #txCodTipoReq ,#txCodSecFun , #txCodRubr
                     id = data[0].ID;
                     cod = data[0].Cod;
                     dsc = data[0].Dsc;
-                    if (id == null) {  Flg = false;   $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor 1'));  $('#dvAviso').modal('show');   }
+                    if (id == null)
+                    {
+                        Flg = false;
+                        $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor 1'));  $('#dvAviso').modal('show');
+                    }
                 }
-                else { Flg = false;   $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor'));  $('#dvAviso').modal('show'); }
+                else {
+                    Flg = false;
+                    $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor'));  $('#dvAviso').modal('show');
+                }
 
                 if(Evento=='txCodDep')
                 {
-                    if (Flg==false) {   $('#txCodDep').attr('depID','NN');  $('#txCodDep').val('');  $('#txDep').val('');    $( "#txCodDep" ).focus(); }
-                    else      {   $('#txCodDep').attr('depID',id);    $('#txCodDep').val(cod); $('#txDep').val(dsc);   $( "#txCodSecFun" ).focus();  }
+                    if (Flg==false) {
+                        $('#txCodDep').attr('depID','NN');  $('#txCodDep').val('');  $('#txDep').val('');    $( "#txCodDep" ).focus();
+                    }
+                    else{
+                        $('#txCodDep').attr('depID',id);    $('#txCodDep').val(cod); $('#txDep').val(dsc);   $( "#txCodSecFun" ).focus();
+                    }
                 }
                 else if(Evento=='txCodSecFun')
                 {
-                    if (Flg==false) {  $('#txCodSecFun').attr('secFunID','NN');  $('#txCodSecFun').val('');  $('#txSecFun').val('');    $( "#txCodSecFun" ).focus(); }
-                    else      {  $('#txCodSecFun').attr('secFunID',id);    $('#txCodSecFun').val(cod); $('#txSecFun').val(dsc);   $( "#txCodRubro" ).focus();  }
+                    if (Flg==false) {
+                        $('#txCodSecFun').attr('secFunID','NN');
+                        $('#txCodSecFun').val('');
+                        $('#txSecFun').val('');
+                        $( "#txCodSecFun" ).focus();
+                    }
+                    else{
+                        $('#txCodSecFun').attr('secFunID',id);
+                        $('#txCodSecFun').val(cod);
+                        $('#txSecFun').val(dsc);
+
+                        if(cod == '000M'){
+                            $('#tbProdBienes thead tr th:nth-child(2)').show();
+                            $('#tbProdBienes thead tr th:nth-child(3)').show();
+                            $('#tbProdBienes tbody tr td:nth-child(2)').show();
+                            $('#tbProdBienes tbody tr td:nth-child(3)').show();
+                        }
+                        else{
+                            $('#tbProdBienes thead tr th:nth-child(2)').hide();
+                            $('#tbProdBienes thead tr th:nth-child(3)').hide();
+                            $('#tbProdBienes tbody tr td:nth-child(2)').hide();
+                            $('#tbProdBienes tbody tr td:nth-child(3)').hide();
+                        }
+
+                        $( "#txCodRubro" ).focus();
+                    }
                 }
                 else if(Evento=='txCodRubro')
                 {
-                    if (Flg==false) {  $('#txCodRubro').attr('rubroID','NN');  $('#txCodRubro').val('');  $('#txRubro').val('');    $( "#txCodRubro" ).focus(); }
-                    else      {  $('#txCodRubro').attr('rubroID',id);    $('#txCodRubro').val(cod); $('#txRubro').val(dsc);   $( "#txGlosa" ).focus();  }
+                    if (Flg==false) {
+                        $('#txCodRubro').attr('rubroID','NN');  $('#txCodRubro').val('');  $('#txRubro').val('');    $( "#txCodRubro" ).focus();
+                    }
+                    else {
+                        $('#txCodRubro').attr('rubroID',id);    $('#txCodRubro').val(cod); $('#txRubro').val(dsc);   $( "#txGlosa" ).focus();
+                    }
                 }
                 else if(Evento=='txDNI')
                 {
-                    if (Flg==false) {  $('#txDNI').attr('dniID','NN');  $('#txDNI').val('');  $('#txSolicitante').val('');    $( "#txDNI" ).focus(); }
-                    else      {  $('#txDNI').attr('dniID',id);    $('#txDNI').val(cod); $('#txSolicitante').val(dsc);   $( "#txCondicion" ).focus();  }
+                    if (Flg==false) {
+                        $('#txDNI').attr('dniID','NN');  $('#txDNI').val('');  $('#txSolicitante').val('');    $( "#txDNI" ).focus();
+                    }
+                    else {
+                        $('#txDNI').attr('dniID',id);    $('#txDNI').val(cod); $('#txSolicitante').val(dsc);   $( "#txCondicion" ).focus();
+                    }
                 }
                 else {obj="NN";}
             }
@@ -401,11 +450,11 @@ $( document ).on( 'keydown','#txCodDep, #txCodTipoReq ,#txCodSecFun , #txCodRubr
 
         if($(this).attr('name')=='txCodTipoReq'){ $('#txTipoReq').val($(this).val()); $( "#txCodSecFun" ).focus();}
     }
-    if (event.keyCode == 46 || event.keyCode == 8  || event.keyCode == 37 || event.keyCode == 39    ){  }
-    else {
-        if (event.keyCode < 95) {   if (event.keyCode < 48 || event.keyCode > 57) {      event.preventDefault();      }     }
-        else {   if (event.keyCode < 96 || event.keyCode > 105) {     event.preventDefault();    }        }
-    }
+    // if (event.keyCode == 46 || event.keyCode == 8  || event.keyCode == 37 || event.keyCode == 39    ){  }
+    // else {
+    //     if (event.keyCode < 95) {   if (event.keyCode < 48 || event.keyCode > 57) {      event.preventDefault();      }     }
+    //     else {   if (event.keyCode < 96 || event.keyCode > 105) {     event.preventDefault();    }        }
+    // }
 });
 
 
@@ -613,10 +662,10 @@ $(document).on('click','.addRow',function(e){
             varDatosReqProd.OPE="ADD";
             varDatosReqProd.ID= 0 ;
             var fullData = {
-            'datos': varDatosReq,
-            'lista': varDatosReqProd,// JSON.parse(JSON.stringify(ItemArray)),
-            '_token': $('#tokenBtn').val()
-        }
+                'datos': varDatosReq,
+                'lista': varDatosReqProd,// JSON.parse(JSON.stringify(ItemArray)),
+                '_token': $('#tokenBtn').val()
+            };
 
         $.ajax({
             type: "POST",
@@ -643,6 +692,8 @@ $(document).on('click','.addRow',function(e){
     }
     else {
         fila.find("td[name=tdID]")      .html(varDatosReqProd.prodID);
+        fila.find("td[name=tdSF]")      .html(varDatosReqProd.prodSfDsc);
+        fila.find("td[name=tdRubro]")   .html(varDatosReqProd.prodRubroDsc);
         fila.find("td[name=tdCant]")    .html(varDatosReqProd.prodCant);
         fila.find("td[name=tdClasf]")   .html(varDatosReqProd.prodClasfCod);
         fila.find("td[name=tdProd]")    .html(varDatosReqProd.prodDsc);
@@ -650,6 +701,8 @@ $(document).on('click','.addRow',function(e){
         fila.find("td[name=tdEspf]")    .html(varDatosReqProd.prodEspf);
         fila.find("td[name=tdPrecio]")  .html(varDatosReqProd.prodPrecioUnt);
         fila.find("td[name=tdTotal]")   .html(varDatosReqProd.prodTotal);
+        fila.find("td[name=tdSF]")      .attr("codID",varDatosReqProd.prodSfID);
+        fila.find("td[name=tdRubro]")   .attr("codID",varDatosReqProd.prodRubroID);
         fila.find("td[name=tdClasf]")   .attr("codID",varDatosReqProd.prodClasfID);
         fila.find("td[name=tdProd]")    .attr("codID",varDatosReqProd.prodID);
         fila.find("td[name=tdUnd]")     .attr("codID",varDatosReqProd.prodUndID);
@@ -724,9 +777,11 @@ $( document ).on( 'click' ,'.editRow ',function(e) {
                 $(this).html("").append(trCloneHtml);
         });
 
-        trCurrent.html("").append(jsFunGetRowTemplate("EDIT")).css("background","#d9edf7").attr("trFocus","ACTIVE");
+        trCurrent.html("").append(jsFunGetRowTemplate("EDIT",$('#txCodSecFun').val())).css("background","#d9edf7").attr("trFocus","ACTIVE");
         trCurrent.find("td[name=tdID]")      .html( trClone.find("td[name=tdID]").text() );
         trCurrent.find("td[name=tdCant]")    .find('input[id=txProdCant]')    .val(trClone .find("td[name=tdCant]").text().trim());
+        trCurrent.find("td[name=tdSF]")      .find('input[id=txProdSF]') .val(trClone .find('td[name=tdSF]').text().trim());
+        trCurrent.find("td[name=tdRubro]")   .find('input[id=txProdRubro]') .val(trClone .find('td[name=tdRubro]').text().trim());
         trCurrent.find("td[name=tdClasf]")   .find('input[id=txProdClasf]')    .val(trClone .find("td[name=tdClasf]").text()) ;
         trCurrent.find("td[name=tdProd]")    .find('input[id=txProdProd]')    .val(trClone .find("td[name=tdProd]").text()) ;
         trCurrent.find("td[name=tdUnd]")     .find('input[id=txProdUnd]')    .val(trClone .find("td[name=tdUnd]").text())  ;
@@ -734,9 +789,11 @@ $( document ).on( 'click' ,'.editRow ',function(e) {
         trCurrent.find("td[name=tdPrecio]")  .find('input[id=txProdPrecio]')    .val(trClone .find("td[name=tdPrecio]").text().trim())  ;
         //trCurrent.find("td[name=tdMarca]")  .find('input[id=txProdMarca]')    .val(trClone .find("td[name=tdMarca]").text().trim());
 
-        trCurrent.find("td[name=tdClasf]")    .find('input[id=txProdClasf]').attr("codID",trClone .find("td[name=tdClasf]").attr ("codID"));
-        trCurrent.find("td[name=tdProd]")     .find('input[id=txProdProd]').attr("codID",trClone .find("td[name=tdProd]").attr ("codID"));
-        trCurrent.find("td[name=tdUnd]")      .find('input[id=txProdUnd]').attr("codID",trClone .find("td[name=tdUnd]").attr ("codID"));
+        trCurrent.find("td[name=tdSF]")      .find('input[id=txProdSF]').attr('codID', trClone .find('td[name=tdSF]').attr('codid'));
+        trCurrent.find("td[name=tdRubro]")  .find('input[id=txProdRubro]').attr('codID', trClone .find('td[name=tdRubro]').attr('codid'));
+        trCurrent.find("td[name=tdClasf]")    .find('input[id=txProdClasf]').attr("codID",trClone .find("td[name=tdClasf]").attr ("codid"));
+        trCurrent.find("td[name=tdProd]")     .find('input[id=txProdProd]').attr("codID",trClone .find("td[name=tdProd]").attr ("codid"));
+        trCurrent.find("td[name=tdUnd]")      .find('input[id=txProdUnd]').attr("codID",trClone .find("td[name=tdUnd]").attr ("codid"));
 
       }
     else { jsFnDialogBox(400, 160, "WARNING", null, "ADVERTENCIA", "Existe una fila ya esta modificando<br> <strong>Primero tiene que termina el proceso actual</strong>"); }
@@ -887,6 +944,8 @@ $(document).on('click','.updRow',function(e){
 
         fila = $("#tbProdBienes tr:last").clone(true).removeClass('fila-Hide');
         fila.find("td[name=tdID]").html(varDatosReqProd.ID);
+        fila.find("td[name=tdSF]").html(varDatosReqProd.prodSfDsc);
+        fila.find("td[name=tdRubro]").html(varDatosReqProd.prodRubroDsc);
         fila.find("td[name=tdCant]").html(varDatosReqProd.prodCant);
         fila.find("td[name=tdClasf]").html(varDatosReqProd.prodClasfCod);
         fila.find("td[name=tdProd]").html(varDatosReqProd.prodDsc);
@@ -894,6 +953,8 @@ $(document).on('click','.updRow',function(e){
         fila.find("td[name=tdEspf]").html(varDatosReqProd.prodEspf);
         fila.find("td[name=tdPrecio]").html(varDatosReqProd.prodPrecioUnt);
         fila.find("td[name=tdTotal]").html(varDatosReqProd.prodTotal);
+        fila.find("td[name=tdSF]").attr("codID",varDatosReqProd.prodSfID);
+        fila.find("td[name=tdRubro]").attr("codID",varDatosReqProd.prodRubroID);
         fila.find("td[name=tdClasf]").attr("codID", varDatosReqProd.prodClasfID);
         fila.find("td[name=tdProd]").attr("codID", varDatosReqProd.prodID);
         fila.find("td[name=tdUnd]").attr("codID", varDatosReqProd.prodUndID);
@@ -1167,6 +1228,10 @@ function jsFunReqValidarProd( tipo ,obj)
         var precioUnt = parseFloat(obj.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val()).toFixed(2)
         var total = parseFloat(cant * precioUnt).toFixed(4);
         var ID = parseInt(obj.find("td[name=tdID]").html().trim());
+        var secfunID = obj.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID");
+        var secfunDsc = obj.find("td[name=tdSF]").find('input[id=txProdSF]').val();
+        var rubroID = obj.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID");
+        var rubroDsc = obj.find("td[name=tdRubro]").find('input[id=txProdRubro]').val();
         var clasfID = obj.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID");
         var clasfCod = obj.find("td[name=tdClasf]").find('input[id=txProdClasf]').val();
         var prodID = obj.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID");
@@ -1182,6 +1247,10 @@ function jsFunReqValidarProd( tipo ,obj)
         var precioUnt   = parseFloat( obj.find("td[name=tdPrecio]").text()).toFixed(2)
         var total       = parseFloat( cant*precioUnt).toFixed(4);
         var ID          = parseInt(obj.find("td[name=tdID]").html().trim());
+        var secfunID    = obj.find("td[name=tdSF]").attr('codID');
+        var secfunDsc   = obj.find("td[name=tdSF]").text();
+        var rubroID     = obj.find("td[name=tdRubro]").attr('codID');
+        var rubroDsc    = obj.find("td[name=tdRubro]").text();
         var clasfID     = obj.find("td[name=tdClasf]").attr("codID");
         var clasfCod    = obj.find("td[name=tdClasf]").text();
         var prodID      = obj.find("td[name=tdProd]").attr("codID");
@@ -1207,6 +1276,10 @@ function jsFunReqValidarProd( tipo ,obj)
     varDatosReqProd.ID= ID ;
     varDatosReqProd.OPE="ADD";
     varDatosReqProd.prodCant= cant ;
+    varDatosReqProd.prodSfID = secfunID;
+    varDatosReqProd.prodSfDsc = secfunDsc;
+    varDatosReqProd.prodRubroID = rubroID;
+    varDatosReqProd.prodRubroDsc = rubroDsc;
     varDatosReqProd.prodClasfID = clasfID ;
     varDatosReqProd.prodClasfCod = clasfCod;
     varDatosReqProd.prodID = prodID ;

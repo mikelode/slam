@@ -177,8 +177,8 @@ class ctrlCC extends Controller
              {   
                 foreach ($prRqsCC["varCdrDll"] as $key => $valor)
                 {
-                    $resultDetalles = \DB::select('exec spLogSetCCD ?,?,?,?,?  ,?,?,?,?,? ,? ',
-                        array( $varOpe,$idCdr , 0, $valor["czItm"], $valor["rqItm"]  , $valor["prod"], $valor["und"],$valor["cant"],$valor["clasf"],$valor["espf"], Auth::user()->usrID ));
+                    $resultDetalles = \DB::select('exec spLogSetCCD ?,?,?,?,?  ,?,?,?,?,? ,?,?,? ',
+                        array( $varOpe,$idCdr , 0, $valor["czItm"], $valor["rqItm"]  , $valor["prod"], $valor["und"],$valor["cant"],$valor["clasf"],$valor["espf"], Auth::user()->usrID, $valor['secfun'], $valor['rubro'] ));
                     if ($resultDetalles[0]->CCNo == "NN")
                     {
                         array_push($ErrorDtll, array('CCNo' => $resultDetalles[0]->ReqNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"]));
@@ -206,8 +206,8 @@ class ctrlCC extends Controller
         
          foreach ($prRqsCC["varCdrDll"] as $key => $valor)
             {
-                $resultDetalles = \DB::select('exec spLogSetCCD ?,?,?,?,?  ,?,?,?,?,? ,? ',
-                    array( "ADD",$prRqsCC->prCdrID , 0, $valor["czItm"], $valor["rqItm"]  , $valor["prod"], $valor["und"],$valor["cant"],$valor["clasf"],$valor["espf"], Auth::user()->usrID ));
+                $resultDetalles = \DB::select('exec spLogSetCCD ?,?,?,?,?  ,?,?,?,?,? ,?,?,? ',
+                    array( "ADD",$prRqsCC->prCdrID , 0, $valor["czItm"], $valor["rqItm"]  , $valor["prod"], $valor["und"],$valor["cant"],$valor["clasf"],$valor["espf"], Auth::user()->usrID, $valor['secfun'], $valor['rubro'] ));
                 if ($resultDetalles[0]->CCNo == "NN")  {   array_push($ErrorDtll, array('CCNo' => $resultDetalles[0]->ReqNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"]));                 }
             }
          
@@ -223,8 +223,8 @@ class ctrlCC extends Controller
         $Doc="Cdr";
         $idCdr = $prRqsCC["varCdr"]["cdrID"];
         $varOpe = $prRqsCC["varCdrDll"]["OPE"];
-        $qry = \DB::select('exec spLogSetCCD ?,?,?,?,?  ,?,?,?,?,? ,? ',
-        array( $varOpe,$idCdr , $prRqsCC["varCdrDll"]["cdItm"], $prRqsCC["varCdrDll"]["czItm"], $prRqsCC["varCdrDll"]["rqItm"]  , $prRqsCC["varCdrDll"]["prodID"], $prRqsCC["varCdrDll"]["prodUndID"],$prRqsCC["varCdrDll"]["prodCant"],$prRqsCC["varCdrDll"]["prodClasfID"],$prRqsCC["varCdrDll"]["prodEspf"], Auth::user()->usrID ));
+        $qry = \DB::select('exec spLogSetCCD ?,?,?,?,?  ,?,?,?,?,? ,?,?,? ',
+        array( $varOpe,$idCdr , $prRqsCC["varCdrDll"]["cdItm"], $prRqsCC["varCdrDll"]["czItm"], $prRqsCC["varCdrDll"]["rqItm"]  , $prRqsCC["varCdrDll"]["prodID"], $prRqsCC["varCdrDll"]["prodUndID"],$prRqsCC["varCdrDll"]["prodCant"],$prRqsCC["varCdrDll"]["prodClasfID"],$prRqsCC["varCdrDll"]["prodEspf"], Auth::user()->usrID,null,null));
         $result = \DB::select('exec spLogGetCCD ?',array( $idCdr));
         
         $varReturn["CdrDll"]=  view ('logistica.Partials.logCdrDll',compact( 'result','Doc'))->render();

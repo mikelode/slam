@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use Logistica\Almacen\almTLogCtz;
+use Logistica\Almacen\almTLogReq;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
 use PhpParser\Node\Expr\Array_;
@@ -64,7 +65,7 @@ class ctrlCtz extends Controller
             {   
                 foreach ($prRqsCtz["varCtzDll"] as $key => $valor)
                 {
-                   $dbResultDll = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ', array( 'ADD',$prRqsCtz["varCtz"]["ctzReqID"],  $valor["czItm"] , $valor["rqItm"]  ,$idCtz  , $valor["prod"], $valor["und"],$valor["cant"],$valor["espf"], Auth::user()->usrID ));
+                   $dbResultDll = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?', array( 'ADD',$prRqsCtz["varCtz"]["ctzReqID"],  $valor["czItm"] , $valor["rqItm"]  ,$idCtz  , $valor["prod"], $valor["und"],$valor["cant"],$valor["espf"], Auth::user()->usrID, $valor['secfun'], $valor['rubro'] ));
                    if ($dbResultDll[0]->CtzNo == "NN")    {    array_push($ErrorDtll, array('CtzNo' => $dbResultDll[0]->CtzNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"])); }
                 }
                 if (count($ErrorDtll) > 0) {    return response()->json($ErrorDtll);      }
@@ -75,8 +76,8 @@ class ctrlCtz extends Controller
     {
         $codCtz = $prRqsCtz["varCtz"]["ctzID"];
         $varReturn["Flg"]="1";
-        $qry = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ',
-            array( $prRqsCtz["varCtzDll"]["OPE"] , $prRqsCtz["varCtz"]["ctzReqID"] , $prRqsCtz["varCtzDll"]["czItm"] , $prRqsCtz["varCtzDll"]["rqItm"]  ,$codCtz  ,$prRqsCtz["varCtzDll"]["prodID"],  $prRqsCtz["varCtzDll"]["prodUndID"],$prRqsCtz["varCtzDll"]["prodCant"],$prRqsCtz["varCtzDll"]["prodEspf"], Auth::user()->usrID ));
+        $qry = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
+            array( $prRqsCtz["varCtzDll"]["OPE"] , $prRqsCtz["varCtz"]["ctzReqID"] , $prRqsCtz["varCtzDll"]["czItm"] , $prRqsCtz["varCtzDll"]["rqItm"]  ,$codCtz  ,$prRqsCtz["varCtzDll"]["prodID"],  $prRqsCtz["varCtzDll"]["prodUndID"],$prRqsCtz["varCtzDll"]["prodCant"],$prRqsCtz["varCtzDll"]["prodEspf"], Auth::user()->usrID, $prRqsCtz["varCtzDll"]["prodSecfun"], $prRqsCtz["varCtzDll"]["prodRubro"] ));
         if ($qry[0]->Error=="0") { $varReturn["Flg"]=$qry[0]->Mensaje;}
         $result = \DB::select('exec spLogGetCtzD ?',array( $codCtz));
         $varReturn["CtzDll"] =  view ('logistica.Partials.logCtzDll',compact( 'result'))->render();
@@ -93,7 +94,6 @@ class ctrlCtz extends Controller
             $msgId = '500';
             return response()->json(compact('msg','msgId'));
         }
-
 
         $ReturnData["Req"] = \DB::select('exec spLogGetReq ?,?,?', array(  $request->prRows, $request->prAnio, $request->prQry ));
         $result = \DB::select('exec spLogGetReqD ?',array(  $ReturnData["Req"][0]->reqID));      //  dd($dll);
@@ -133,6 +133,7 @@ class ctrlCtz extends Controller
         $ReturnData["Ctz"] = \DB::select('exec spLogGetCtz ?,?,?', array(  ' top 1 ',$anio, " and ctzid = '".$id."' " ));
         $ReturnData["CtzDll"] = \DB::select('exec spLogGetCtzD ?',array(  $id ));
         $ReturnData["Req"] = \DB::select('exec spLogGetReq ?,?,?', array(  ' top 1 ',$anio, " AND reqid = '". $ReturnData["Ctz"][0]->ctzReqID."' " ));
+        $ReturnData["ReqAbsClasf"] = \DB::select('exec spLogGetReqAbsClasf ?',array(  $ReturnData["Ctz"][0]->ctzReqID ));
         $v = view("logistica.rptAdqCtz",compact('ReturnData'))->render();
         $pdf=\App::make('dompdf.wrapper');
         $pdf->loadHTML($v)->setPaper('a4')->setOrientation('horizontal')->setWarnings(false);

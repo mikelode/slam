@@ -82,7 +82,7 @@ class ctrlOS extends Controller
         {
             foreach ($prRqsOS["varOSDll"] as $key => $valor)
             {
-                $dbResultDll = \DB::select('exec spLogSetOSD ?,?,?,?,?  ,?,?,?,?,?  ,?  ,?,?,?', array( 'ADD',$idos , $valor["prod"], $valor["und"], $valor["clasf"],$valor["cant"],$valor["precio"],$valor["marca"],$valor["espf"],$valor["osItm"],$valor["cdItm"],$valor["czItm"],$valor["rqItm"] ,Auth::user()->usrID));
+                $dbResultDll = \DB::select('exec spLogSetOSD ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,?  ,?', array( 'ADD',$idos , $valor["prod"], $valor["und"], $valor["clasf"],$valor["cant"],$valor["precio"],$valor["marca"],$valor["espf"],$valor["osItm"],$valor["cdItm"],$valor["czItm"],$valor["rqItm"] ,Auth::user()->usrID, $valor['secfun'],$valor['rubro']));
                 if ($dbResultDll[0]->OSNo == "NN")    {    array_push($ErrorDtll, array('OSNo' => $dbResultDll[0]->osNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"])); }
             }
             if (count($ErrorDtll) > 0) {    return response()->json($ErrorDtll);      }
@@ -95,8 +95,8 @@ class ctrlOS extends Controller
     public function spLogSetOSD(Request $prRqsOS)
     {
         $Doc = "Ods";
-        $varReturn["varReturns"] = \DB::select('exec spLogSetOSD ?,?,?,?,?  ,?,?,?,?,? ,? ,?,?,? ',
-            array( $prRqsOS["varBns"]["OPE"] , $prRqsOS["varBns"]["osID"] , $prRqsOS["varBns"]["prodID"]  ,  $prRqsOS["varBns"]["prodUndID"],  $prRqsOS["varBns"]["prodClasfID"],$prRqsOS["varBns"]["prodCant"],$prRqsOS["varBns"]["prodPrecio"],$prRqsOS["varBns"]["prodMarca"],$prRqsOS["varBns"]["prodEspf"],$prRqsOS["varBns"]["osItm"], $prRqsOS["varBns"]["cdItm"], $prRqsOS["varBns"]["czItm"], $prRqsOS["varBns"]["rqItm"] ,Auth::user()->usrID ));
+        $varReturn["varReturns"] = \DB::select('exec spLogSetOSD ?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,?  ,? ',
+            array( $prRqsOS["varBns"]["OPE"] , $prRqsOS["varBns"]["osID"] , $prRqsOS["varBns"]["prodID"]  ,  $prRqsOS["varBns"]["prodUndID"],  $prRqsOS["varBns"]["prodClasfID"],$prRqsOS["varBns"]["prodCant"],$prRqsOS["varBns"]["prodPrecio"],$prRqsOS["varBns"]["prodMarca"],$prRqsOS["varBns"]["prodEspf"],$prRqsOS["varBns"]["osItm"], $prRqsOS["varBns"]["cdItm"], $prRqsOS["varBns"]["czItm"], $prRqsOS["varBns"]["rqItm"] ,Auth::user()->usrID, null, null ));
         $result = \DB::select('exec spLogGetOSD ?',array( $prRqsOS["varBns"]["osID"]));
         $varReturn["vwDll"] =  view ('logistica.Partials.logOSDll',compact( 'result','Doc'))->render();
         return  $varReturn;

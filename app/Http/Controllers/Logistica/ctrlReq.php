@@ -90,11 +90,14 @@ class ctrlReq extends Controller
         {
             $idReq = $result[0]->ReqNo ;
             $ErrorDtll =array();
-            if($idReq=="NN") { return response()->json($result); ; }
+            if($idReq=="NN") { return response()->json($result);}
             foreach ($request["lista"] as $key => $valor)
             {
-                $resultDetalles = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ',
-                    array( $varOpe, 0  ,$idReq  , $valor["prod"], $valor["und"],$valor["clasf"],$valor["cant"],$valor["precioUnt"],$valor["espf"], Auth::user()->usrID ));
+                $dllSecfun = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $valor['secfun'] : $request["datos"]["reqSecFun"];
+                $dllRubro = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $valor['rubro'] : $request["datos"]["reqRubro"];
+
+                $resultDetalles = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
+                    array( $varOpe, 0  ,$idReq  , $valor["prod"], $valor["und"],$valor["clasf"],$valor["cant"],$valor["precioUnt"],$valor["espf"], Auth::user()->usrID, $dllSecfun, $dllRubro ));
                 if ($resultDetalles[0]->ReqNo == "NN")
                 {
                     array_push($ErrorDtll, array('ReqNo' => $resultDetalles[0]->ReqNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"]));
@@ -107,10 +110,16 @@ class ctrlReq extends Controller
     public function spLogSetReqD(Request $request)
     {
         $idU = Auth::user()->usrID;
+
+        $dllSecfun = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $request["lista"]["prodSfID"] : $request["datos"]["reqSecFun"];
+        $dllRubro = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $request["lista"]["prodRubroID"] : $request["datos"]["reqRubro"];
+
         $codReq = $request["datos"]["reqID"];                
-        $varReturn["Msg"] = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ',    array( $request["lista"]["OPE"] , $request["lista"]["ID"]  ,$codReq  , $request["lista"]["prodID"],   $request["lista"]["prodUndID"],$request["lista"]["prodClasfID"],$request["lista"]["prodCant"],$request["lista"]["prodPrecioUnt"],$request["lista"]["prodEspf"], Auth::user()->usrID ));
+        $varReturn["Msg"] = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ,?,?',    array( $request["lista"]["OPE"] , $request["lista"]["ID"]  ,$codReq  , $request["lista"]["prodID"],   $request["lista"]["prodUndID"],$request["lista"]["prodClasfID"],$request["lista"]["prodCant"],$request["lista"]["prodPrecioUnt"],$request["lista"]["prodEspf"], Auth::user()->usrID, $dllSecfun, $dllRubro ));
+
         $result = \DB::select('exec spLogGetReqD ?',array( $codReq));
-        $varReturn["ReqDll"] =  view ('logistica.Partials.logReqDll',compact( 'result'))->render();
+        $secfun = $request["datos"]["reqSecFun"];
+        $varReturn["ReqDll"] =  view ('logistica.Partials.logReqDll',compact( 'result','secfun'))->render();
         return  $varReturn;
     }
     public function spLogSetReqBusy(Request $request )
@@ -129,7 +138,8 @@ class ctrlReq extends Controller
         $ReturnData["Req"] = \DB::select('exec spLogGetReq ?,?,?', array(  $request->prRows, $request->prAnio, $request->prQry ));
         if(isset ($ReturnData["Req"][0]->reqID)) {
             $result = \DB::select('exec spLogGetReqD ?', array($ReturnData["Req"][0]->reqID));      //  dd($dll);
-            $ReturnData["ReqDll"] = view('logistica.Partials.logReqDll', compact('result'))->render();
+            $secfun = $ReturnData["Req"][0]->reqSecFunCod;
+            $ReturnData["ReqDll"] = view('logistica.Partials.logReqDll', compact('result','secfun'))->render();
         }
         return  $ReturnData ;
     }
@@ -139,7 +149,8 @@ class ctrlReq extends Controller
         $ReturnData["Req"] = \DB::select('exec spLogGetReqTmp ?,?,?', array(  $request->prRows, $request->prAnio, $request->prQry ));
         if(isset ($ReturnData["Req"][0]->reqID)) {
             $result = \DB::select('exec spLogGetReqD ?', array($ReturnData["Req"][0]->reqID));      //  dd($dll);
-            $ReturnData["ReqDll"] = view('logistica.Partials.logReqDll', compact('result'))->render();
+            $secfun = $ReturnData["Req"][0]->reqSecFunCod;
+            $ReturnData["ReqDll"] = view('logistica.Partials.logReqDll', compact('result','secfun'))->render();
         }
         return  $ReturnData ;
     }

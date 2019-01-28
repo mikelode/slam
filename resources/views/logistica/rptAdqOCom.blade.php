@@ -145,7 +145,7 @@ td.lineB {
 }
 </style>
 
-<title>Orden de Servicio</title>
+<title>Orden de Compra</title>
 </head>
 
 <body style="padding-top: 257px;">
@@ -311,7 +311,15 @@ td.lineB {
                     <label class="labels"> SEC FUN</label>
                 </td>
                 <td>:</td>
-                <td style="white-space: nowrap; overflow: hidden;">( {{  $ReturnData["OC"][0]->ocSecFunCod    }}  ) {{  $ReturnData["OC"][0]->ocSecFunDsc    }}</td>
+                <td style="white-space: nowrap; overflow: hidden;">
+                    @if(substr($ReturnData["OC"][0]->ocSecFunCod,-1) == 'M')
+                        @foreach($ReturnData["OCAbsClasf"] as $key=>$ReqDll)
+                            Sec.Fun. ({{ $ReqDll->secfun }}) - Rubro: {{ $ReqDll->rubro }},
+                        @endforeach
+                    @else
+                        {{ '(' . $ReturnData["OC"][0]->ocSecFunCod  . ') '  }} {{  $ReturnData["OC"][0]->ocSecFunDsc    }}
+                    @endif
+                </td>
             </tr>
             @endif
             <tr>
@@ -529,7 +537,7 @@ td.lineB {
                         @if ( $ReturnData["prCant"][0]->Cant  <=1 )
                             <div><strong>Resumen por Clasificador: </strong> </div>
                             @foreach($ReturnData["OCAbsClasf"] as $key=>$ReqDll)
-                                <span style="font-size: 12px"> {{ $ReqDll->Clasf }}  = {{ $ReqDll->Total }} </span><br>
+                                <span style="font-size: 12px"> {{ $ReqDll->sfrub . ' | ' . $ReqDll->Clasf }}  = {{ $ReqDll->Total }} </span><br>
                             @endforeach
                         @endif
                     </div>

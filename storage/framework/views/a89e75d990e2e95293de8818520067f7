@@ -145,7 +145,7 @@ td.lineB {
 }
 </style>
 
-<title>Orden de Servicio</title>
+<title>Orden de Compra</title>
 </head>
 
 <body style="padding-top: 257px;">
@@ -318,7 +318,16 @@ td.lineB {
                     <label class="labels"> SEC FUN</label>
                 </td>
                 <td>:</td>
-                <td style="white-space: nowrap; overflow: hidden;">( <?php echo e($ReturnData["OC"][0]->ocSecFunCod); ?>  ) <?php echo e($ReturnData["OC"][0]->ocSecFunDsc); ?></td>
+                <td style="white-space: nowrap; overflow: hidden;">
+                    <?php if(substr($ReturnData["OC"][0]->ocSecFunCod,-1) == 'M'): ?>
+                        <?php foreach($ReturnData["OCAbsClasf"] as $key=>$ReqDll): ?>
+                            Sec.Fun. (<?php echo e($ReqDll->secfun); ?>) - Rubro: <?php echo e($ReqDll->rubro); ?>,
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php echo e('(' . $ReturnData["OC"][0]->ocSecFunCod  . ') '); ?> <?php echo e($ReturnData["OC"][0]->ocSecFunDsc); ?>
+
+                    <?php endif; ?>
+                </td>
             </tr>
             <?php endif; ?>
             <tr>
@@ -527,7 +536,7 @@ td.lineB {
             <tbody>
             <tr style="text-align:left;">
                 <td  class="dll"  align="left" style="font-size: 12px; font-weight: bold;text-align:left;" > Son: <?php echo e(numtoletras($ReturnData["OC"][0]->ocTotalSuper)); ?>  </td>
-                <td   class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL S/. <?php echo e(number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' )); ?>     </td>
+                <td   class="dll rights" align="right" style="font-size: 13px; font-weight: bold;" > TOTAL S/. <?php echo e(number_format ( (float)$ReturnData["OC"][0]->ocTotalSuper ,2,'.',',' )); ?>     </td>
             </tr>
             </tbody>
         </table>
@@ -538,7 +547,7 @@ td.lineB {
                         <?php if( $ReturnData["prCant"][0]->Cant  <=1 ): ?>
                             <div><strong>Resumen por Clasificador: </strong> </div>
                             <?php foreach($ReturnData["OCAbsClasf"] as $key=>$ReqDll): ?>
-                                <span style="font-size: 12px"> <?php echo e($ReqDll->Clasf); ?>  = <?php echo e($ReqDll->Total); ?> </span><br>
+                                <span style="font-size: 12px"> <?php echo e($ReqDll->sfrub . ' | ' . $ReqDll->Clasf); ?>  = <?php echo e($ReqDll->Total); ?> </span><br>
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>

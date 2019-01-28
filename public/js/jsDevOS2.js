@@ -327,6 +327,9 @@ $( document ).on( 'click',  '#btnLogOSSave , #btnLogOSDel',function(e){
                 fila.czItm=$(this).find("td[name=tdCzItm]").html();
                 fila.rqItm=$(this).find("td[name=tdRqItm]").html();
 
+                fila.secfun= $(this).find("td[name=tdSF]").attr("codID");
+                fila.rubro= $(this).find("td[name=tdRubro]").attr("codID");
+
                 fila.cant= $(this).find("td[name=tdCant]").html();
                 fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
                 fila.prod = $(this).find("td[name=tdProd]").attr("codID");
@@ -538,6 +541,9 @@ $( document ).on( 'click' ,'#btnLogOS_dllEDIT ',function(e) {
         trCurrent.find("td[name=tdCzItm]")      .html( trClone.find("td[name=tdCzItm]").text() );
         trCurrent.find("td[name=tdRqItm]")      .html( trClone.find("td[name=tdRqItm]").text() );
 
+        trCurrent.find("td[name=tdSF]") .find('input[id=txProdSF]').val(trClone.find("td[name=tdSF]").text().trim());
+        trCurrent.find("td[name=tdRubro]") .find('input[id=txProdRubro]').val(trClone.find("td[name=tdRubro]").text().trim());
+
         trCurrent.find("td[name=tdCant]")    .find('input[id=txProdCant]')      .val(trClone .find("td[name=tdCant]").text().trim());
         trCurrent.find("td[name=tdClasf]")   .find('input[id=txProdClasf]')     .val(trClone .find("td[name=tdClasf]").text()) ;
         trCurrent.find("td[name=tdProd]")    .find('input[id=txProdProd]')      .val(trClone .find("td[name=tdProd]").text()) ;
@@ -580,6 +586,9 @@ $( document ).on( 'click' ,'#btnLogOS_dllSAVE',function(e) {
         varOSDll.cdItm=trClone.find("td[name=tdCdItm]").html();
         varOSDll.czItm=trClone.find("td[name=tdCzItm]").html();
         varOSDll.rqItm=trClone.find("td[name=tdRqItm]").html();
+
+       varOSDll.prodSecfun = trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr('codID');
+       varOSDll.prodRubro = trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr('codID');
 
         varOSDll.prodCant=trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val( );
         varOSDll.prodID=trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID");
@@ -634,6 +643,9 @@ $( document ).on( 'click' ,'#btnLogOS_dllSAVE',function(e) {
         trCurrent.find("td[name=tdCdItm]").html(trClone.find("td[name=tdCdItm]").text());
         trCurrent.find("td[name=tdCzItm]").html(trClone.find("td[name=tdCzItm]").text());
         trCurrent.find("td[name=tdRqItm]").html(trClone.find("td[name=tdRqItm]").text());
+
+        trCurrent.find("td[name=tdSF]").html(trClone.find('td[name=tdSF]').find('input[id=txProdSF]').val());
+        trCurrent.find("td[name=tdRubro]").html(trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').val());
 
         trCurrent.find("td[name=tdCant]").html(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());
         trCurrent.find("td[name=tdClasf]").html(trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').val());

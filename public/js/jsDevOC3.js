@@ -311,10 +311,13 @@ $( document ).on( 'click',  '#btnLogOCSave , #btnLogOCDel',function(e){
         $('#tbOC_Dll tbody tr').each(function ()  {
                 if ($(this).attr("class")!="fila-Hide") {
                     var fila = new Object();
-                    fila.ocItm=$(this).find("td[name=tdOcItm]").html();;
-                    fila.cdItm=$(this).find("td[name=tdCdItm]").html();;
-                    fila.czItm=$(this).find("td[name=tdCzItm]").html();;
-                    fila.rqItm=$(this).find("td[name=tdRqItm]").html();;
+                    fila.ocItm=$(this).find("td[name=tdOcItm]").html();
+                    fila.cdItm=$(this).find("td[name=tdCdItm]").html();
+                    fila.czItm=$(this).find("td[name=tdCzItm]").html();
+                    fila.rqItm=$(this).find("td[name=tdRqItm]").html();
+
+                    fila.secfund=$(this).find("td[name=tdSF]").attr('codID');
+                    fila.rubro=$(this).find("td[name=tdRubro]").attr('codID');
 
                     fila.cant= $(this).find("td[name=tdCant]").html();
                     fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
@@ -536,6 +539,9 @@ $( document ).on( 'click' ,'#btnLogOC_dllEDIT ',function(e) {
         trCurrent.find("td[name=tdCzItm]")      .html( trClone.find("td[name=tdCzItm]").text() );
         trCurrent.find("td[name=tdRqItm]")      .html( trClone.find("td[name=tdRqItm]").text() );
 
+        trCurrent.find("td[name=tdSF]").find('input[id=txProdSF]').val(trClone.find("td[name=tdSF]").text().trim());
+        trCurrent.find("td[name=tdRubro]").find('input[id=txProdRubro]').val(trClone.find("td[name=tdRubro]").text().trim());
+
         trCurrent.find("td[name=tdSecFun]")    .find('input[id=txProdSecFun]')      .val(trClone .find("td[name=tdSecFun]").text().trim());
 
         trCurrent.find("td[name=tdCant]")    .find('input[id=txProdCant]')      .val(trClone .find("td[name=tdCant]").text().trim());
@@ -547,6 +553,9 @@ $( document ).on( 'click' ,'#btnLogOC_dllEDIT ',function(e) {
         trCurrent.find("td[name=tdPrecio]")  .find('input[id=txProdPrecio]')    .val(trClone .find("td[name=tdPrecio]").text().trim());
 		trCurrent.find("td[name=tdEnvio]")  .find('input[id=txProdEnvio]')    .val(trClone .find("td[name=tdEnvio]").text().trim());
         trCurrent.find("td[name=tdMarca]")  .find('input[id=txProdMarca]')    .val(trClone .find("td[name=tdMarca]").text().trim());
+
+        trCurrent.find("td[name=tdSF]")   .find('input[id=txProdSF]').attr("codID",trClone .find("td[name=tdSF]").attr ("codID"));
+        trCurrent.find("td[name=tdRubro]")   .find('input[id=txProdRubro]').attr("codID",trClone .find("td[name=tdRubro]").attr ("codID"));
 
         trCurrent.find("td[name=tdClasf]")   .find('input[id=txProdClasf]').attr("codID",trClone .find("td[name=tdClasf]").attr ("codID"));
         trCurrent.find("td[name=tdProd]")    .find('input[id=txProdProd]').attr("codID",trClone .find("td[name=tdProd]").attr ("codID"));
@@ -606,6 +615,9 @@ $( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) {
             varOCDll.cdItm=trClone.find("td[name=tdCdItm]").html();
             varOCDll.czItm=trClone.find("td[name=tdCzItm]").html();
             varOCDll.rqItm=trClone.find("td[name=tdRqItm]").html();
+
+            varOCDll.prodsf = trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID");
+            varOCDll.prorubro = trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID");
 
             varOCDll.prodSecFun=trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID");
             varOCDll.prodCant=trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val( );

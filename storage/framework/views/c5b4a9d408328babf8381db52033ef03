@@ -51,7 +51,7 @@
                                             <label class="col-sm-2 control-label">Año</label>
                                             <div class="col-sm-3">
                                                 <select class="form-control" name="nanioSecfun" id="anioSecfun">
-                                                    <option value="2018" selected>2018</option>
+                                                    <option value="2019" selected>2019</option>
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
@@ -156,7 +156,7 @@
                 },
                 url: url,
                 type: 'post',
-                data: {'periodo':2018, 'ejec':'000902'},
+                data: {'periodo':2019, 'ejec':'300753'},
                 success: function(data){
                     if(data.msgId == 500){
                         alert("Error al sincronizar las secuencias funcionales.\n" + data.msg);
@@ -279,7 +279,7 @@
                 },
                 url: 'sync/fullsyncclasif',
                 type: 'post',
-                data: {'periodo': 2018},
+                data: {'periodo': 2019},
                 success: function(data){
                     console.log(data);
                     if(data.msgId == 500){

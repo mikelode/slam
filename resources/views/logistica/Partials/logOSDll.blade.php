@@ -10,6 +10,9 @@ if($Doc == "Ods")
             <th WIDTH="0px" style="display: none" ></th>
             <th WIDTH="0px" style="display: none" ></th>
 
+            <th width="10px">S.F.</th>
+            <th width="10px">Rb</th>
+
             <th WIDTH="55px"  align="center"   valign="center">Cant</th>
             <th WIDTH="80px"  align="center"   valign="center">Clasificador</th>
             <th WIDTH="45px"  align="center"   valign="center">Und</th>
@@ -31,6 +34,9 @@ if($Doc == "Ods")
             <td name="tdCzItm"  style="display: none"  >{{ $nom->dllCzItm }}</td>
             <td name="tdRqItm"  style="display: none"   >{{ $nom->dllRqItm }}</td>
 
+            <td name="tdSF" codID="{{ $nom->dllSecfunID }}">{{ $nom->dllSecfun }}</td>
+            <td name="tdRubro" codID="{{ $nom->dllRubroID }}">{{ $nom->dllRubro }}</td>
+
             <td name="tdCant"  align="center" >{{  $nom->dllCant }}</td>
             <td name="tdClasf"  align="center" codID="{{  $nom->dllClasfID  }}" >{{ $nom->dllClasfCod }} </td>
             <td name="tdUnd"  align="center" codID="{{  $nom->dllUndID  }}"  >{{ $nom->dllUndAbrv }} </td>
@@ -50,6 +56,9 @@ if($Doc == "Ods")
                     <td name="tdCdItm"  style="display: none" >0</td>
                     <td name="tdCzItm"  style="display: none" >0</td>
                     <td name="tdRqItm"  style="display: none" >0</td>
+
+              <td name="tdSF"></td>
+              <td name="tdRubro"></td>
 
                     <td name="tdCant"  align="center" ></td>
                     <td name="tdClasf"  align="center" >3</td>
@@ -81,6 +90,9 @@ else if($Doc =="Cdr")
             <th WIDTH="0px" style="display: none" ></th>
             <th WIDTH="0px" style="display: none" ></th>
 
+            <th width="10px">S.F.</th>
+            <th width="10px">Rb</th>
+
             <th WIDTH="55px"  align="center"   valign="center">Cant</th>
             <th WIDTH="80px"  align="center"   valign="center">Clasificador</th>
             <th WIDTH="45px"  align="center"   valign="center">Und</th>
@@ -102,6 +114,9 @@ else if($Doc =="Cdr")
             <td name="tdCzItm"  style="display: none"  >{{ $nom->dllCzItm }}</td>
             <td name="tdRqItm"  style="display: none"   >{{ $nom->dllRqItm }}</td>
 
+            <td name="tdSF" codID="{{ $nom->dllSecfunID }}">{{ $nom->dllSecfun }}</td>
+            <td name="tdRubro" codID="{{ $nom->dllRubroID }}">{{ $nom->dllRubro }}</td>
+
             <td name="tdCant"  align="center" >{{  $nom->dllCant }}</td>
             <td name="tdClasf"  align="center" codID="{{  $nom->dllClasfID  }}" >{{ $nom->dllClasfCod }} </td>
             <td name="tdUnd"  align="center" codID="{{  $nom->dllUndID  }}"  >{{ $nom->dllUndAbrv }} </td>
@@ -121,6 +136,9 @@ else if($Doc =="Cdr")
                     <td name="tdCdItm"  style="display: none" >0</td>
                     <td name="tdCzItm"  style="display: none" >0</td>
                     <td name="tdRqItm"  style="display: none" >0</td>
+
+              <td name="tdSF"></td>
+              <td name="tdRubro"></td>
 
                     <td name="tdCant"  align="center" ></td>
                     <td name="tdClasf"  align="center" >3</td>
@@ -155,6 +173,9 @@ else if($Doc =="Req")
             <th WIDTH="0px" style="display: none" ></th>
             <th WIDTH="0px" style="display: none" ></th>
 
+            <th width="10px">S.F.</th>
+            <th width="10px">Rb</th>
+
             <th WIDTH="55px"  align="center"   valign="center">Cant</th>
             <th WIDTH="80px"  align="center"   valign="center">Clasificador</th>
             <th WIDTH="45px"  align="center"   valign="center">Und</th>
@@ -176,6 +197,9 @@ else if($Doc =="Req")
             <td name="tdCzItm"  style="display: none"  >0</td>
             <td name="tdRqItm"  style="display: none"   >{{ $nom->dllRqItm }}</td>
 
+            <td name="tdSF" codID="{{ $nom->dllSecfunID }}">{{ $nom->dllSecfun }}</td>
+            <td name="tdRubro" codID="{{ $nom->dllRubroID }}">{{ $nom->dllRubro }}</td>
+
             <td name="tdCant"  align="center" >{{  $nom->dllCant }}</td>
             <td name="tdClasf"  align="center" codID="{{  $nom->dllClasfID  }}" >{{ $nom->dllClasfCod }} </td>
             <td name="tdUnd"  align="center" codID="{{  $nom->dllUndID  }}"  >{{ $nom->dllUndAbrv }} </td>
@@ -195,6 +219,9 @@ else if($Doc =="Req")
                     <td name="tdCdItm"  style="display: none" >0</td>
                     <td name="tdCzItm"  style="display: none" >0</td>
                     <td name="tdRqItm"  style="display: none" >0</td>
+
+              <td name="tdSF"></td>
+              <td name="tdRubro"></td>
 
                     <td name="tdCant"  align="center" ></td>
                     <td name="tdClasf"  align="center" >3</td>
@@ -229,6 +256,9 @@ else if($Doc =="Null")
             <th WIDTH="0px" style="display: none" ></th>
             <th WIDTH="0px" style="display: none" ></th>
 
+            <th width="10px">S.F.</th>
+            <th width="10px">Rb</th>
+
             <th WIDTH="55px"  align="center"   valign="center">Cant</th>
             <th WIDTH="80px"  align="center"   valign="center">Clasificador</th>
             <th WIDTH="45px"  align="center"   valign="center">Und</th>
@@ -251,6 +281,9 @@ else if($Doc =="Null")
                     <td name="tdCdItm"  style="display: none" >0</td>
                     <td name="tdCzItm"  style="display: none" >0</td>
                     <td name="tdRqItm"  style="display: none" >0</td>
+
+              <td name="tdSF"></td>
+              <td name="tdRubro"></td>
 
                     <td name="tdCant"  align="center" ></td>
                     <td name="tdClasf"  align="center" >3</td>

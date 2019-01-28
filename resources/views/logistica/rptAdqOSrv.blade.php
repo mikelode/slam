@@ -68,6 +68,16 @@
             width: 10px;
         }
 
+        td.dll-wow{
+            border-style:solid;
+            border-width:1px;
+            border-color:#444444;
+            padding: 0px;
+            font-size: 12px;
+            text-align: center;
+            font-family:  Arial, sans-serif;
+        }
+
         td.lefts {
             text-align: left;
             padding-left: 2px;;
@@ -146,7 +156,7 @@
         }
     </style>
 
-    <title>Reporte de Orden de Servicio</title>
+    <title>Orden de Servicio</title>
 </head>
 
 <body style="margin-top: 275px;">
@@ -272,7 +282,15 @@
 
                 </td>
                 <td>:</td>
-                <td style="white-space: nowrap; overflow: hidden;">( {{  $ReturnData["OS"][0]->osSecFunCod    }}  ) {{  $ReturnData["OS"][0]->osSecFunDsc    }}</td>
+                <td style="white-space: nowrap; overflow: hidden;">
+                    @if(substr($ReturnData["OS"][0]->osSecFunCod,-1) == 'M')
+                        @foreach($ReturnData["OSAbsClasf"] as $key=>$ReqDll)
+                            Sec.Fun. ({{ $ReqDll->secfun }}) - Rubro: {{ $ReqDll->rubro }},
+                        @endforeach
+                    @else
+                        {{ '(' . $ReturnData["OS"][0]->osSecFunCod  . ') '  }} {{  $ReturnData["OS"][0]->osSecFunDsc    }}
+                    @endif
+                </td>
             </tr>
             <tr >
                 <td class="line" STYLE="font-size:11px;">
@@ -344,14 +362,14 @@
     <?php  $Total=0; $Item =1 ;?>
     @foreach($ReturnData["OSDll"] as $key=>$OSDll)
         <tr class="dll">
-            <td ALIGN="center" class="dll"><?php echo $Item++ ;?></td>
-            <td ALIGN="center" class="dll">  {{ $OSDll->dllCant     }}</td>
-            <td ALIGN="center" class="dll">  {{ $OSDll->dllUndAbrv  }}</td>
-            <td ALIGN="center" class="dll">  {{ $OSDll->dllClasfCod }}</td>
-            <td ALIGN="left" class="dll lefts" style="padding-left: 6px; "  >   <?php echo strtoupper ($OSDll->dllProdDsc )." --:".  strtoupper ($OSDll->dllProdEspf ) ?></td>
-            <td ALIGN="center" class="dll" >   {{ $OSDll->dllMarca   }}</td>
-            <td align="center" class="dll">  <?php  echo floatval( $OSDll->dllPrecio ) ;?></td>
-            <td ALIGN="right" class="dll rights">   {{ $OSDll->dllTotal    }}</td>
+            <td ALIGN="center" class="dll-wow"><?php echo $Item++ ;?></td>
+            <td ALIGN="center" class="dll-wow">  {{ $OSDll->dllCant     }}</td>
+            <td ALIGN="center" class="dll-wow">  {{ $OSDll->dllUndAbrv  }}</td>
+            <td ALIGN="center" class="dll-wow">  {{ $OSDll->dllClasfCod }}</td>
+            <td ALIGN="left" class="dll-wow lefts" style="padding-left: 6px; "  >   <?php echo strtoupper ($OSDll->dllProdDsc )." --:".  strtoupper ($OSDll->dllProdEspf ) ?></td>
+            <td ALIGN="center" class="dll-wow" >   {{ $OSDll->dllMarca   }}</td>
+            <td align="center" class="dll-wow">  <?php  echo number_format(floatval( $OSDll->dllPrecio ),2,'.',',') ;?></td>
+            <td ALIGN="right" class="dll-wow rights">   {{ number_format($OSDll->dllTotal,2,'.',',')     }}</td>
         </tr>
         <?php  $Condicion=$OSDll->dllTotal;  ?>
         <?php  $Total+=$OSDll->dllTotal;  ?>
@@ -371,7 +389,7 @@
     {!! $ReturnData["OS"][0]->osCondicion !!}
 </div>
 
-<table width="100%" border="1">
+<table style="table-layout: fixed;" width="100%" border="1">
     <tbody>
     <!-- <tr class="dll">
                    <td ALIGN="center" class="dll" colspan="4"></td>
@@ -390,41 +408,32 @@
          @endfor
             -->
 
-    <tr class="dll" style="text-align:left;">
-        <td   colspan="1" class="dll "  align="left" style="font-size: 12px; font-weight: bold;text-align:left; width:300px; " > Son: {{ numtoletras($Total) }}  </td>
-        <td colspan="3" class="dll rights" align="right" style="font-size: 15px; font-weight: bold;" > TOTAL : <?php echo  number_format ($Total ,2);?>  </td>
+    <tr style="text-align:left;">
+        <td  class="dll-wow" colspan="1" width="84%" align="left" style="font-size: 12px; font-weight: bold;text-align:left; padding-left: 3px;" > Son: {{ numtoletras($Total) }}  </td>
+        <td colspan="3" class="dll-wow rights" align="right" style="font-size: 13px; font-weight: bold;" > TOTAL S/. <?php echo  number_format ($Total ,2);?>  </td>
     </tr>
 
     </tbody>
 </table>
 
-<table width="100%" border="1">
-
-
-
-
-
+<table style="table-layout: fixed;" width="100%" border="1">
     <tr>
-        <td  class="dll lefts" >
-
+        <td width="24%" class="lefts dll-wow">
             <div style=" font-size: 10px; margin-left: 10px; font-weight:bold;">
                 <div><strong>Resumen por Clasificador : </strong> </div>
                 @foreach($ReturnData["OSAbsClasf"] as $key=>$ReqDll)
-                    {{ $ReqDll->Clasf }}  = {{ $ReqDll->Total }}<br>
+                    {{ $ReqDll->sfrub . ' | ' . $ReqDll->Clasf }}  = {{ $ReqDll->Total }}<br>
                 @endforeach
             </div>
             <div style="margin-left: 10px"><strong>Total de Items :<?php echo --$Item;?> </strong> </div>
         </td>
-
-        <td  class="dll lefts"  valign="top" >
-            <label  class="labels"> OBSV :</label> <label style="font-size: 13px; width:230px ">{{  $ReturnData["OS"][0]->osObsv  }} </label>
+        <td width="60%" class="lefts dll-wow"  valign="top">
+            <label  class="labels"> OBSV :</label> <label style="font-size: 13px;">{{  $ReturnData["OS"][0]->osObsv  }} </label>
         </td>
-        <td    class="dll rights"  valign="center" style="font-size:10px;  font-weight:bold;">
+        <td width="" class="rights dll-wow"  valign="center" style="font-size:10px;  font-weight:bold;">
             Elb:{{  $ReturnData["OS"][0]->osUsrID  }} <br> Imp: {{$ReturnData["Usr"] }}<br>
         </td>
     </tr>
-
-
 </table>
 </body>
 </html>

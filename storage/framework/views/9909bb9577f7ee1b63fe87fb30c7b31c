@@ -2,6 +2,13 @@
         <thead align="center">
         <tr CLASS="gsTh" >
             <th WIDTH="0px" style="display: none" ></th>
+            <?php if(substr($secfun,-1) == 'M'): ?>
+                <th align="center" valign="middle">Sec.Fun</th>
+                <th align="center" valign="middle">Rubro</th>
+            <?php else: ?>
+                <th align="center" valign="middle" style="display: none;">Sec.Fun</th>
+                <th align="center" valign="middle" style="display: none;">Rubro</th>
+            <?php endif; ?>
             <th WIDTH="55px"  align="center"   valign="center">Cant</th>
              <th WIDTH="60px"  align="center"   valign="center">Unidad</th>
             <th WIDTH="80px"  align="center"   valign="center">Clasificador</th>
@@ -15,24 +22,53 @@
         </tr>
         </thead>
         <tbody>
+        
+        <?php if(substr($secfun,-1) == 'M'): ?>
+            <?php foreach($result as $key=>$nom): ?>
+                <tr >
+                    <td name="tdID"  style="display: none" ><?php echo e($nom->dllRqItm); ?></td>
+                    <td name="tdSF" align="center" codID="<?php echo e($nom->dllSecfunID); ?>"><?php echo e($nom->dllSecfun); ?></td>
+                    <td name="tdRubro" align="center" codID="<?php echo e($nom->dllRubro); ?>"><?php echo e($nom->dllRubro); ?></td>
+                    <td name="tdCant"  align="center" ><?php echo e($nom->dllCant); ?></td>
+                    <td name="tdUnd"  align="center" codID="<?php echo e($nom->dllUndID); ?>"  ><?php echo e($nom->dllUndAbrv); ?> </td>
+                    <td name="tdClasf" align="center" codID="<?php echo e($nom->dllClasfID); ?>" ><?php echo e($nom->dllClasfCod); ?> </td>
+                    <td name="tdProd"  align="left"  codID="<?php echo e($nom->dllProdID); ?>"  ><?php echo e($nom->dllProdDsc); ?> </td>
 
-        <?php foreach($result as $key=>$nom): ?>
-        <tr >
-            <td name="tdID"  style="display: none" ><?php echo e($nom->dllRqItm); ?></td>
-            <td name="tdCant"  align="center" ><?php echo e($nom->dllCant); ?></td>
-            <td name="tdUnd"  align="center" codID="<?php echo e($nom->dllUndID); ?>"  ><?php echo e($nom->dllUndAbrv); ?> </td>
-            <td name="tdClasf" align="center" codID="<?php echo e($nom->dllClasfID); ?>" ><?php echo e($nom->dllClasfCod); ?> </td>
-            <td name="tdProd"  align="left"  codID="<?php echo e($nom->dllProdID); ?>"  ><?php echo e($nom->dllProdDsc); ?> </td>
-            
-            <td name="tdEspf"  align="left"   > <?php echo e($nom->dllProdEspf); ?> </td>
-            <td name="tdPrecio" align="center"> <?php echo e($nom->dllPrecio); ?> </td>
-            <td name="tdTotal"  align="center"> <?php echo e($nom->dllTotal); ?> </td>
-            <td BGCOLOR="#d9edf7"><button id="btnLogItemEDIT" class="btn btn-warning editRow" style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">EDIT</button> </td>
-            <td BGCOLOR="#d9edf7" ><button id="btnLogItemDEL" class="btn btn-danger deleteRow" style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>
-        </tr>
-        <?php endforeach; ?>
+                    <td name="tdEspf"  align="left"   > <?php echo e($nom->dllProdEspf); ?> </td>
+                    <td name="tdPrecio" align="center"> <?php echo e($nom->dllPrecio); ?> </td>
+                    <td name="tdTotal"  align="center"> <?php echo e($nom->dllTotal); ?> </td>
+                    <td BGCOLOR="#d9edf7"><button id="btnLogItemEDIT" class="btn btn-warning editRow" style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">EDIT</button> </td>
+                    <td BGCOLOR="#d9edf7" ><button id="btnLogItemDEL" class="btn btn-danger deleteRow" style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <?php foreach($result as $key=>$nom): ?>
+            <tr >
+                <td name="tdID"  style="display: none" ><?php echo e($nom->dllRqItm); ?></td>
+                <td name="tdSF" style="display: none;" align="center" codID="<?php echo e($nom->dllSecfunID); ?>"><?php echo e($nom->dllSecfun); ?></td>
+                <td name="tdRubro" style="display: none;" align="center" codID="<?php echo e($nom->dllRubro); ?>"><?php echo e($nom->dllRubro); ?></td>
+                <td name="tdCant"  align="center" ><?php echo e($nom->dllCant); ?></td>
+                <td name="tdUnd"  align="center" codID="<?php echo e($nom->dllUndID); ?>"  ><?php echo e($nom->dllUndAbrv); ?> </td>
+                <td name="tdClasf" align="center" codID="<?php echo e($nom->dllClasfID); ?>" ><?php echo e($nom->dllClasfCod); ?> </td>
+                <td name="tdProd"  align="left"  codID="<?php echo e($nom->dllProdID); ?>"  ><?php echo e($nom->dllProdDsc); ?> </td>
+                
+                <td name="tdEspf"  align="left"   > <?php echo e($nom->dllProdEspf); ?> </td>
+                <td name="tdPrecio" align="center"> <?php echo e($nom->dllPrecio); ?> </td>
+                <td name="tdTotal"  align="center"> <?php echo e($nom->dllTotal); ?> </td>
+                <td BGCOLOR="#d9edf7"><button id="btnLogItemEDIT" class="btn btn-warning editRow" style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">EDIT</button> </td>
+                <td BGCOLOR="#d9edf7" ><button id="btnLogItemDEL" class="btn btn-danger deleteRow" style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>
+            </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
           <tr class="fila-Hide">
                     <td name="tdID"  style="display: none" >1</td>
+              <?php if(substr($secfun,-1) == 'M'): ?>
+                  <td name="tdSF" align="center"></td>
+                  <td name="tdRubro" align="center"></td>
+              <?php else: ?>
+                  <td name="tdSF" align="center" style="display: none;"></td>
+                  <td name="tdRubro" align="center" style="display: none;"></td>
+              <?php endif; ?>
                     <td name="tdCant"  align="center" >2</td>
                     <td name="tdUnd"  align="center"  >5</td>
                     <td name="tdClasf" align="center" >3</td>

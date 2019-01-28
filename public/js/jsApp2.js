@@ -26,28 +26,38 @@
 //$('#txDep').val(); $( "#txCodTipoReq" ).focus();
 
 
-function jsFunGetRowTemplate(tipo)
+function jsFunGetRowTemplate(tipo, tiposf)
 {
     //rowTmp =' <tr id = "rowTemplate" codID="-"  valign="top" class="Base "> ';
-    rowTmp='    <td name="tdID" style="display: none" > </td> ';
-    rowTmp+='    <td name="tdCant"  style="padding: 3px 0px;" > <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px;" codID="NN" type="text"></td> ';
-    rowTmp+='    <td name="tdClasf" style="padding: 3px 0px;"> <input id="txProdClasf" name="txProdClasf"  class="form-control gs-input autoFindClasf " placeholder="Clasificador" style="width:80px; font-size:11px;" type="text" codID="NN" ></td> ';
-    rowTmp+='    <td name="tdProd" style="padding: 3px 0px;" > <input id="txProdProd" name="txProdProd" class="form-control gs-input autoProd " placeholder="Bien o Servicio" style="width:450px; font-size:11px;"codID="NN"  type="text"></td>';
-    rowTmp+='    <td name="tdUnd"  style="padding: 3px 0px;" > <input id="txProdUnd" name="txProdUnd" class="form-control gs-input" placeholder="Unidad" style="width:60px; font-size:11px;" codID="NN" type="text"></td>';
+    rowTmp='    <td width="1%" name="tdID" style="display: none" > </td> ';
+
+    if(tiposf == '000M'){
+        rowTmp += '<td width="3%" name="tdSF" style="padding: 3px 0px;"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="font-size:11px;" codID="NN" type="text"></td>';
+        rowTmp += '<td width="3%" name="tdRubro" style="padding: 3px 0px;"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rubro" style="font-size:11px;" codID="NN" type="text"></td>';
+    }
+    else{
+        rowTmp += '<td width="3%" name="tdSF" style="padding: 3px 0px; display: none;"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="font-size:11px;" codID="NN" type="text"></td>';
+        rowTmp += '<td width="3%" name="tdRubro" style="padding: 3px 0px; display: none;"><input id="txProdSF" name ="txProdRubro" class="form-control gs-input" placeholder="Rubro" style="font-size:11px;" codID="NN" type="text"></td>';
+    }
+
+    rowTmp+='    <td width="5%" name="tdCant"  style="padding: 3px 0px;" > <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="font-size:11px;" codID="NN" type="text"></td> ';
+    rowTmp+='    <td width="10%" name="tdClasf" style="padding: 3px 0px;"> <input id="txProdClasf" name="txProdClasf"  class="form-control gs-input autoFindClasf " placeholder="Clasificador" style="font-size:11px;" type="text" codID="NN" ></td> ';
+    rowTmp+='    <td width="30%" name="tdProd" style="padding: 3px 0px;" > <input id="txProdProd" name="txProdProd" class="form-control gs-input autoProd " placeholder="Bien o Servicio" style="font-size:11px;"codID="NN"  type="text"></td>';
+    rowTmp+='    <td width="8%" name="tdUnd"  style="padding: 3px 0px;" > <input id="txProdUnd" name="txProdUnd" class="form-control gs-input" placeholder="Unidad" style="font-size:11px;" codID="NN" type="text"></td>';
 
     if(tipo=="NEW") {
-        rowTmp+='    <td name="tdEspf"  style="padding: 3px 0px;"> <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="width:290px; font-size:11px;" ROWS="7"  ></textarea></td>';
-        rowTmp+='    <td name="tdPrecio" style="padding: 3px 0px;"> <input id="txProdPrecio" name="txProdPrecio" class="form-control gs-input" placeholder="S/. Precio" style="width:90px; font-size:11px; margin-left:0px;" type="number"> </td>';
-        rowTmp+='    <td width="10px"></td> ';
-        rowTmp += '    <td style="padding: 3px 0px;" align="center" width="70px"> <button id="btnLogItemNEW" class="btn btn-primary addRow" style="width: 50Px  ;height: 35px ; padding=0; font-size:10px; padding-left: 3px  " type="button">AÑADIR</button> </td>';
-        rowTmp += '    <td style="padding: 3px 0px;" align="center"> <button  id="btnLogItemCANCEL" class="btn btn-danger CancelRow" style="width: 30px  ;height: 35px ; padding=0; font-size:10px;  " type="button">X</button> </td>';
+        rowTmp+='    <td width="22%" name="tdEspf"  style="padding: 3px 0px;"> <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="font-size:11px;" ROWS="7"  ></textarea></td>';
+        rowTmp+='    <td width="8%" name="tdPrecio" style="padding: 3px 0px;"> <input id="txProdPrecio" name="txProdPrecio" class="form-control gs-input" placeholder="S/. Precio" style="font-size:11px; margin-left:0px;" type="number"> </td>';
+        // rowTmp+='    <td width="2%"></td> ';
+        rowTmp += '    <td width="5%" style="padding: 3px 0px;" align="center"> <button id="btnLogItemNEW" class="btn btn-primary addRow" style="height: 35px ; padding=0; font-size:10px; padding-left: 3px  " type="button">AÑADIR</button> </td>';
+        rowTmp += '    <td width="3%" style="padding: 3px 0px;" align="center"> <button  id="btnLogItemCANCEL" class="btn btn-danger CancelRow" style="height: 35px ; padding=0; font-size:10px;  " type="button">X</button> </td>';
     }
     if(tipo=="EDIT") {
-        rowTmp+='    <td name="tdEspf"  style="padding: 3px 0px;"> <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="width:200px; font-size:11px;" ROWS="4"  ></textarea></td>';
-        rowTmp+='    <td name="tdPrecio" style="padding: 3px 0px;"> <input id="txProdPrecio" name="txProdPrecio" class="form-control gs-input" placeholder="S/. Precio" style="width:90px; font-size:11px; margin-left:0px;" type="number"> </td>';
-        rowTmp+='    <td></td> ';
-        rowTmp += '    <td style="padding: 3px 0px;" align="center"> <button id="btnLogItemUPD" class="btn btn-primary updRow" style="width: 50Px  ;height: 35px ; padding=0; font-size:10px; padding-left: 3px;padding-right: 2px;  " type="button">Modificar</button> </td>';
-        rowTmp += '    <td style="padding: 3px 0px;" align="center"> <button  id="btnLogItemCANCEL" class="btn btn-danger atrasRow" style="width: 30px  ;height: 35px ; padding=0; font-size:10px; font-size: 9px;  " type="button"><<</button> </td>';
+        rowTmp+='    <td width="22%" name="tdEspf"  style="padding: 3px 0px;"> <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="font-size:11px;" ROWS="4"  ></textarea></td>';
+        rowTmp+='    <td width="8%" name="tdPrecio" style="padding: 3px 0px;"> <input id="txProdPrecio" name="txProdPrecio" class="form-control gs-input" placeholder="S/. Precio" style="font-size:11px; margin-left:0px;" type="number"> </td>';
+        // rowTmp+='    <td></td> ';
+        rowTmp += '    <td width="5%" style="padding: 3px 0px;" align="center"> <button id="btnLogItemUPD" class="btn btn-primary updRow" style="height: 35px ; padding=0; font-size:10px; padding-left: 3px;padding-right: 2px;  " type="button">Modificar</button> </td>';
+        rowTmp += '    <td width="3%" style="padding: 3px 0px;" align="center"> <button  id="btnLogItemCANCEL" class="btn btn-danger atrasRow" style="height: 35px ; padding=0; font-size:10px; font-size: 9px;  " type="button"><<</button> </td>';
     }
     //rowTmp+=' </tr> ';
     return rowTmp ;
@@ -71,25 +81,29 @@ function jsFunCtzGetRowTemplate( tipo)
     rowCtzTmp='';
     if(tipo=="ADD") {
     rowCtzTmp='<tr >';
-    rowCtzTmp+='    <td name="tdCzItm" style="display: none" > 0 </td> ';
-    rowCtzTmp+='    <td name="tdRqItm" style="display: none" > 0</td> ';
-    rowCtzTmp+='    <td name="tdCant"  > <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px;" codID="NN" type="text"></td> ';
-    rowCtzTmp+='    <td name="tdUnd"   > <input id="txProdUnd" name="txProdUnd" class="form-control gs-input" placeholder="Unidad" style="width:50px; font-size:11px;" codID="NN" type="text"></td>';
-    rowCtzTmp+='    <td name="tdProd"  > <input id="txProdProd" name="txProdProd" class="form-control gs-input autoProd " placeholder="Bien o Servicio" style="width:550px; font-size:11px;"codID="NN"  type="text"></td>';
-    rowCtzTmp+='    <td name="tdEspf"  > <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="width:365px; font-size:11px; margin-left:3px; " ROWS="2"   ></textarea></td>';
-    rowCtzTmp+= '   <td> <button class="btn btn-primary btnCtzRowADD" style="width: 70Px  ;height: 35px ; padding:0; margin-left:5px; font-size:11px;  " type="button">Añadir</button> </td>';
-    rowCtzTmp+= '   <td> <button   class="btn btn-primary btnCtzRowCANCEL" style="width: 30px  ;height: 35px ; padding:0 ; margin-left:5px; font-size:10px;  " type="button"> >>> </button> </td>';
+    rowCtzTmp+='    <td width="0%" name="tdCzItm" style="display: none" > 0 </td> ';
+    rowCtzTmp+='    <td width="0%" name="tdRqItm" style="display: none" > 0</td> ';
+    rowCtzTmp += '<td width="5%" name="tdSF"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="font-size:11px;" codID="NN" type="text"></td>';
+    rowCtzTmp += '<td width="5%" name="tdRubro"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rubro" style="font-size:11px;" codID="NN" type="text"></td>';
+    rowCtzTmp+='    <td width="10%" name="tdCant"  > <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="font-size:11px;" codID="NN" type="text"></td> ';
+    rowCtzTmp+='    <td width="10%" name="tdUnd"   > <input id="txProdUnd" name="txProdUnd" class="form-control gs-input" placeholder="Unidad" style="font-size:11px;" codID="NN" type="text"></td>';
+    rowCtzTmp+='    <td width="30%" name="tdProd"  > <input id="txProdProd" name="txProdProd" class="form-control gs-input autoProd " placeholder="Bien o Servicio" style="font-size:11px;"codID="NN"  type="text"></td>';
+    rowCtzTmp+='    <td width="30%" name="tdEspf"  > <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="font-size:11px;" ROWS="2"   ></textarea></td>';
+    rowCtzTmp+= '   <td width="5%"> <button class="btn btn-primary btnCtzRowADD" style="height: 35px ; margin-left:5px; font-size:11px;  " type="button">Añadir</button> </td>';
+    rowCtzTmp+= '   <td width="5%"> <button   class="btn btn-primary btnCtzRowCANCEL" style="height: 35px ; margin-left:5px; font-size:10px;  " type="button"> >>> </button> </td>';
     rowCtzTmp+='</tr>';
     }
     else if(tipo=="UPD") {
     rowCtzTmp+='    <td name="tdCzItm" style="display: none" > 0</td> ';
     rowCtzTmp+='    <td name="tdRqItm" style="display: none" >0 </td> ';
-    rowCtzTmp+='    <td name="tdCant"  > <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px;" codID="NN" type="text"></td> ';
-    rowCtzTmp+='    <td name="tdUnd"   > <input id="txProdUnd" name="txProdUnd" class="form-control gs-input" placeholder="Unidad" style="width:50px; font-size:11px;" codID="NN" type="text"></td>';
-    rowCtzTmp+='    <td name="tdProd"  > <input id="txProdProd" name="txProdProd" class="form-control gs-input autoProd " placeholder="Bien o Servicio" style="width:550px; font-size:11px;"codID="NN"  type="text"></td>';
-    rowCtzTmp+='    <td name="tdEspf"  > <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="width:365px; font-size:11px; margin-left:3px; " ROWS="3"   ></textarea></td>';
-    rowCtzTmp+= '   <td> <button class="btn btn-primary btnCtzRowUPD" style="width: 70Px  ;height: 25px ; padding:0; margin-left:5px; font-size:11px;  " type="button">Guardar</button> </td>';
-    rowCtzTmp+= '   <td> <button   class="btn btn-primary btnCtzRowATRAS" style="width: 30px  ;height: 25px ; padding:0 ; margin-left:5px; font-size:10px;  " type="button"> >>> </button> </td>';
+    rowCtzTmp += '<td name="tdSF"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="font-size:11px;" codID="NN" type="text"></td>';
+    rowCtzTmp += '<td name="tdRubro"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rubro" style="font-size:11px;" codID="NN" type="text"></td>';
+    rowCtzTmp+='    <td name="tdCant"  > <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="font-size:11px;" codID="NN" type="text"></td> ';
+    rowCtzTmp+='    <td name="tdUnd"   > <input id="txProdUnd" name="txProdUnd" class="form-control gs-input" placeholder="Unidad" style="font-size:11px;" codID="NN" type="text"></td>';
+    rowCtzTmp+='    <td name="tdProd"  > <input id="txProdProd" name="txProdProd" class="form-control gs-input autoProd " placeholder="Bien o Servicio" style="font-size:11px;"codID="NN"  type="text"></td>';
+    rowCtzTmp+='    <td name="tdEspf"  > <textarea id="txProdEspf" name="txProdEspf" class="form-control gs-textarea" placeholder="Especificaciones" style="font-size:11px;" ROWS="3"   ></textarea></td>';
+    rowCtzTmp+= '   <td> <button class="btn btn-primary btnCtzRowUPD" style="height: 25px ; margin-left:5px; font-size:11px;  " type="button">Guardar</button> </td>';
+    rowCtzTmp+= '   <td> <button   class="btn btn-primary btnCtzRowATRAS" style="height: 25px ; margin-left:5px; font-size:10px;  " type="button"> >>> </button> </td>';
     }
     return rowCtzTmp ;
 }
@@ -161,6 +175,9 @@ function jsFunOC_EditColumns(tipo)
     tmpTds +='    <td name="tdCzItm"  style="display: none" >0</td> ';
     tmpTds +='    <td name="tdRqItm"  style="display: none" >0</td> ';
 
+    tmpTds +='    <td name="tdSF"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
+    tmpTds +='    <td name="tdRubro"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rb" style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
+
     tmpTds+='    <td name="tdCant"  align="center"> <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px; font-weight: bold;color:#000;" codID="NN" type="text"></td>';
 
      tmpTds+='    <td name="tdSecFun" align="center"> <input id="txProdSecFun" name ="txProdSecFun" class="form-control gs-input" placeholder="SecFun" style="width:60px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"> </td>';
@@ -185,6 +202,9 @@ function jsFunOC_EditColumns(tipo)
     tmpTds +='    <td name="tdCdItm"  style="display: none" >0</td> ';
     tmpTds +='    <td name="tdCzItm"  style="display: none" >0</td> ';
     tmpTds +='    <td name="tdRqItm"  style="display: none" >0</td> ';
+
+   tmpTds +='    <td name="tdSF"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
+   tmpTds +='    <td name="tdRubro"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rb" style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
 
     tmpTds+='    <td name="tdCant"  align="center"> <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px; font-weight: bold;color:#000;" codID="NN" type="text"></td>';
 
@@ -219,6 +239,9 @@ function jsFunOS_EditColumns( tipo)
     tmpTds +='   <td name="tdCzItm"  style="display: none" ></td> ';
     tmpTds +='   <td name="tdRqItm"  style="display: none" ></td> ';
 
+        tmpTds +='    <td name="tdSF"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
+        tmpTds +='    <td name="tdRubro"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rb" style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
+
     tmpTds+='    <td name="tdCant"  align="center"> <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px; font-weight: bold;color:#000;" codID="NN" type="text"></td>';
 
    
@@ -243,6 +266,9 @@ function jsFunOS_EditColumns( tipo)
     tmpTds +='   <td name="tdCdItm"  style="display: none" ></td> ';
     tmpTds +='   <td name="tdCzItm"  style="display: none" ></td> ';
     tmpTds +='   <td name="tdRqItm"  style="display: none" ></td> ';
+
+    tmpTds +='    <td name="tdSF"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
+    tmpTds +='    <td name="tdRubro"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rb" style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
 
     tmpTds+='    <td name="tdCant"  align="center"> <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px; font-weight: bold;color:#000;" codID="NN" type="text"></td>';
 
@@ -1283,7 +1309,84 @@ $(document).on('focus','#txReqSgNro',function(){
 });
 */
 
+$(document).on('keydown','#txProdSF, #txProdRubro',function (evt) {
+   if(evt.shiftKey)     {        evt.preventDefault();      }
 
+   if(evt.keyCode == 13){
+       var valor = $(this).val();
+       if(valor.length<1) {return;}
+       var token = $('#tokenBtn').val();
+       var Evento = $(this).attr('name');
+       var Flg = false ;
+
+       if(Evento=='txProdSF' )   {  obj='SECFUN'; tipo='COD';  }
+       else if(Evento=='txProdRubro'){  obj='RUBRO'; tipo='COD'; }
+       else {  $(".modal-backdrop").remove();  obj="NN"; $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encuentra dentro de los parametros establecidos'));  $('#dvAviso').modal('show');   }
+
+       $("#loadModals").html(jsFunLoadWait());
+       var dataString = {'anio':$(".txVarAnioEjec").val() ,'obj':obj,'tipo': tipo ,'valor':valor,'_token':$('#tokenBtn').val() } ;
+
+       $.ajax({
+           type: "POST",
+           url: "logistica/spLogGetDatos",
+           data: dataString,
+           beforeSend: function () {  jsFnDialogBox(0,0,"LOAD",parent," PETICION EN PROCESO","Cargando, Espere un momento...") ;},
+           error: function ()      {  jsFnDialogBox(400,145, "WARNING",parent,"ERROR EN LA PETICION","Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>") ;},
+           success: function(data) {
+               $("#divDialog").dialog("close");
+               $('#dvWait').modal('hide');
+               $('#dvAviso').modal('hide');
+               $(".modal-backdrop").remove();
+               if( data.length>0 ) {
+                   Flg = true;
+                   id = data[0].ID;
+                   cod = data[0].Cod;
+                   dsc = data[0].Dsc;
+                   if (id == null)
+                   {
+                       Flg = false;
+                       $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor 1'));  $('#dvAviso').modal('show');
+                   }
+               }
+               else {
+                   Flg = false;
+                   $("#loadModals").html( jsFunLoadAviso('RESULTADO DE LA CONSULTA','No se encontro ningun registro relacionado con el valor'));  $('#dvAviso').modal('show');
+               }
+
+               if(Evento=='txProdSF')
+               {
+                   if (Flg==false) {
+                       $('#txProdSF').attr('codID','NN');
+                       $('#txProdSF').val('');
+                       $("#txProdSF").focus();
+                   }
+                   else{
+                       $('#txProdSF').attr('codID',id);
+                       alert(dsc);
+                       $( "#txProdRubro" ).focus();
+                   }
+               }
+               else if(Evento=='txProdRubro')
+               {
+                   if (Flg==false) {
+                       $('#txProdRubro').attr('codID','NN');
+                       $('#txProdRubro').val('');
+                       $("#txProdRubro").focus();
+                   }
+                   else {
+                       $('#txProdRubro').attr('codID',id);
+                       console.log($('#txCodRubro'));
+                       alert(dsc);
+                       $( "#txProdCant" ).focus();
+                   }
+               }
+               else {obj="NN";}
+           }
+       });
+   }
+
+
+});
 
 $(document).on('focus','#txProdClasf',function(){
     //alert("oo");
@@ -1417,4 +1520,17 @@ function fnComputeTotal(row, price) {
     var cant = $('#row' + row).find("td[name=tdCant]").html().trim();
     var total = price * cant;
     $('#row' + row).find('.dllTotal').val(total);
+}
+
+function fnChangeBtn(BS, btn){
+    console.log(btn);
+    if(BS == 'BB'){
+        btn.find('.btnTxt').html('AGREGAR BIEN');
+    }
+    else if(BS == 'SS'){
+        btn.find('.btnTxt').html('AGREGAR SERVICIO');
+    }
+    else{
+        btn.find('.btnTxt').html('NUEVO ITEM');
+    }
 }

@@ -129,7 +129,7 @@ td.line {
 }
 </style>
 
-<title>Reporte de Cotizacion</title>
+<title>Cotizacion</title>
 </head>
 
 <body style="margin-top: 290px;">
@@ -194,7 +194,18 @@ td.line {
             <?php if(isset($ReturnData["Req"][0]->reqSecFunCod))
             {
             ?>
-                 <tr ><td class="line" style="font-size: 9px;" > <label class="labels">  SEC FUN : </label>      (  {{  $ReturnData["Req"][0]->reqSecFunCod   }}  )  {{  $ReturnData["Req"][0]->reqSecFunDsc   }}           </td>  </tr>
+                 <tr >
+                     <td class="line" style="font-size: 9px;" >
+                         <label class="labels">  SEC FUN : </label>
+                         @if(substr($ReturnData["Req"][0]->reqSecFunCod,-1) == 'M')
+                             @foreach($ReturnData["ReqAbsClasf"] as $key=>$ReqDll)
+                                 Sec.Fun. ({{ $ReqDll->secfun }}) - Rubro: {{ $ReqDll->rubro }},
+                             @endforeach
+                         @else
+                             {{ '('. $ReturnData["Req"][0]->reqSecFunCod . ') '   }}  {{  $ReturnData["Req"][0]->reqSecFunDsc   }}
+                         @endif
+                     </td>
+                 </tr>
             <?php
            }
             else 
