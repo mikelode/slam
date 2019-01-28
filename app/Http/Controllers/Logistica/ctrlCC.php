@@ -91,6 +91,13 @@ class ctrlCC extends Controller
         $varReturn["varReturns"]=$qry ;
         $result = \DB::select('exec spLogGetFteD ?',array( $prRqsFte["varBns"]["dllFteID"]));
         $varReturn["FteDll"]=  view ('logistica.Partials.logCdrDll',compact( 'result','Doc'))->render();
+
+        $monto = 0;
+        foreach ($result as $res){
+            $monto = $monto + $res->dllTotal;
+        }
+
+        $varReturn["MontoDll"] = $monto;
         return  $varReturn;
     }
 

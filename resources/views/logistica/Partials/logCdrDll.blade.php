@@ -153,22 +153,28 @@ else if   ($Doc=="Fte")
 ?>
 
         <thead align="center">
+        <tr>
+            <th colspan="5"></th>
+            <th colspan="5" style="padding: 0px;" id="sthMontoCC">
+
+            </th>
+        </tr>
         <tr CLASS="gsTh" >
-            <th WIDTH="0px" style="display: none" ></th>
-            <th WIDTH="0px" style="display: none" ></th>
-            <th WIDTH="0px" style="display: none" ></th>
-            <th width="0px" style="display: none;">Sf</th>
-            <th width="0px" style="display: none;">Rb</th>
-            <th WIDTH="55px"  align="center"   valign="center">Cant Fte</th>
-            <th WIDTH="45px"  align="center"   valign="center">Und</th>
-            <th WIDTH="80px"   align="center"   valign="center">Clasificador</th>            
-            <th WIDTH="430px" align="left"     valign="center">Descripcion</th>
-            <th WIDTH="430px" align="left"     valign="center">Especificaciones</th>
-            <th WIDTH="90px"  align="left"     valign="center">Marca</th>
-            <th WIDTH="80px"  align="center"    valign="center">Precio Fte</th>
-            <th WIDTH="80px"  align="right"    valign="center">Total</th>
-            <th valign="right" >Editar</th>
-            <th align="right"></th>
+            <th WIDTH="0px" style="display: none" ROWSPAN="2" ></th>
+            <th WIDTH="0px" style="display: none" rowspan="2" ></th>
+            <th WIDTH="0px" style="display: none" rowspan="2" ></th>
+            <th width="0px" style="display: none;" rowspan="2">Sf</th>
+            <th width="0px" style="display: none;" rowspan="2">Rb</th>
+            <th WIDTH="55px"  align="center" rowspan="2"  valign="center">Cant Fte</th>
+            <th WIDTH="45px"  align="center"  rowspan="2" valign="center">Und</th>
+            <th WIDTH="80px"   align="center" rowspan="2"  valign="center">Clasificador</th>
+            <th WIDTH="430px" align="left" rowspan="2"  valign="center">Descripcion</th>
+            <th WIDTH="430px" align="left" rowspan="2" valign="center">Especificaciones</th>
+            <th WIDTH="90px"  align="left" rowspan="2" valign="center">Marca</th>
+            <th WIDTH="80px"  align="center" rowspan="2" valign="center">Precio Fte</th>
+            <th WIDTH="80px"  align="right" rowspan="2" valign="center">Total</th>
+            <th valign="right" rowspan="2" >Editar</th>
+            <th align="right" rowspan="2"></th>
         </tr>
         </thead>
         <tbody>
