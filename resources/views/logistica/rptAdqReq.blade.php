@@ -191,7 +191,7 @@ td.line {
                                 Sec.Fun. ({{ $ReqDll->secfun }}) - Rubro: {{ $ReqDll->rubro }},
                             @endforeach
                         @else
-                             {{ '('.$ReturnData["Req"][0]->reqSecFunCod . ') ' }} - {{  $ReturnData["Req"][0]->reqSecFunDsc     }}
+                             ( {{ $ReturnData["Req"][0]->reqSecFunCod }} ) {{  $ReturnData["Req"][0]->reqSecFunDsc     }}
                         @endif
                     </td>
                 </tr>
