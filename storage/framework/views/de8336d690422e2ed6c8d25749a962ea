@@ -415,7 +415,7 @@
             -->
 
     <tr style="text-align:left;">
-        <td  class="dll-wow" colspan="1" width="84%" align="left" style="font-size: 12px; font-weight: bold;text-align:left; padding-left: 3px;" > Son: <?php echo e(numtoletras($Total)); ?>  </td>
+        <td  class="dll-wow" colspan="1" width="80%" align="left" style="font-size: 12px; font-weight: bold;text-align:left; padding-left: 3px;" > Son: <?php echo e(numtoletras($Total)); ?>  </td>
         <td colspan="3" class="dll-wow rights" align="right" style="font-size: 13px; font-weight: bold;" > TOTAL S/. <?php echo  number_format ($Total ,2);?>  </td>
     </tr>
 
@@ -433,7 +433,7 @@
             </div>
             <div style="margin-left: 10px"><strong>Total de Items :<?php echo --$Item;?> </strong> </div>
         </td>
-        <td width="60%" class="lefts dll-wow"  valign="top">
+        <td width="56%" class="lefts dll-wow"  valign="top">
             <label  class="labels"> OBSV :</label> <label style="font-size: 13px;"><?php echo e($ReturnData["OS"][0]->osObsv); ?> </label>
         </td>
         <td width="" class="rights dll-wow"  valign="center" style="font-size:10px;  font-weight:bold;">

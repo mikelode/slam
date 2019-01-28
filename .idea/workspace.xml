@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevCdr2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevCdr2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/793108b3ee6120463dd505aea568622dd6365680" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/9957852b663e824d8f3ec200a76b8447" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9957852b663e824d8f3ec200a76b8447" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/d1c08897ef83938072eea5e2045c9fd13a42b238" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/de8336d690422e2ed6c8d25749a962ea" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/de8336d690422e2ed6c8d25749a962ea" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,7 +59,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="156" />
-          <entry key="Blade" value="14794" />
+          <entry key="Blade" value="14797" />
           <entry key="CSS" value="121" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="5825" />
@@ -72,13 +70,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="23" />
-          <entry key="Blade" value="156" />
+          <entry key="Blade" value="157" />
           <entry key="CSS" value="4" />
           <entry key="JSON" value="5" />
-          <entry key="JavaScript" value="49" />
+          <entry key="JavaScript" value="50" />
           <entry key="Less" value="1" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="163" />
+          <entry key="PHP" value="164" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="TypeScript" value="2" />
           <entry key="XML" value="1" />
@@ -100,65 +98,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrFteDll.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="127" column="69" lean-forward="true" selection-start-line="127" selection-start-column="69" selection-end-line="127" selection-end-column="69" />
+            <state relative-caret-position="520">
+              <caret line="429" column="21" selection-start-line="429" selection-start-column="21" selection-end-line="429" selection-end-column="21" />
               <folding>
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#2;n#table#0;n#!!top" expanded="true" />
+                <element signature="e#14956#14984#0#HTML" expanded="true" />
+                <element signature="e#15709#15733#0#HTML" expanded="true" />
+                <element signature="e#15801#15879#0#HTML" expanded="true" />
+                <element signature="e#15981#16024#0#HTML" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCdr.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3392">
-              <caret line="182" column="88" lean-forward="true" selection-start-line="182" selection-start-column="88" selection-end-line="182" selection-end-column="88" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="29" column="76" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/jsDevCdr2.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="1614" column="111" selection-start-line="1614" selection-start-column="111" selection-end-line="1614" selection-end-column="111" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="99" column="28" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -174,9 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fnGetViewTableNull</find>
-      <find>txOC_NroDoc</find>
-      <find>rptAdqOCom</find>
       <find>clasifi</find>
       <find>txOS_NroDoc</find>
       <find>spLogGetOS_CCVal</find>
@@ -204,6 +151,9 @@
       <find>tabRucBns</find>
       <find>btnLogCC_ItemSave</find>
       <find>spLogSetFteD</find>
+      <find>btnLogCtzDel</find>
+      <find>#btnLogCtzDel</find>
+      <find>spLogSetCtz</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -217,10 +167,10 @@
       <dir>D:\xampp\htdocs\slam\resources\views\logistica\Adq</dir>
       <dir>D:\xampp\htdocs\slam\resources\views\logistica\Partials</dir>
       <dir>D:\xampp\htdocs\slam\resources\views</dir>
-      <dir>D:\xampp\htdocs\slam\app\Http\Controllers\Logistica</dir>
       <dir>D:\xampp\htdocs\slam\app\Almacen</dir>
       <dir>D:\xampp\htdocs\slam\app\Http</dir>
       <dir>D:\xampp\htdocs\slam\public\js</dir>
+      <dir>D:\xampp\htdocs\slam\app\Http\Controllers\Logistica</dir>
     </dirStrings>
   </component>
   <component name="FindManager">
@@ -273,7 +223,6 @@
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/logOSDll.blade.php" />
         <option value="$PROJECT_DIR$/public/js/jsDevOS2.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOS.php" />
-        <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" />
         <option value="$PROJECT_DIR$/public/js/jsApp2.js" />
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/public/css/almacen.css" />
@@ -285,6 +234,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php" />
         <option value="$PROJECT_DIR$/public/js/jsDevCdr2.js" />
+        <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" />
       </list>
     </option>
   </component>
@@ -448,6 +398,12 @@
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
               <item name="slam" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slam" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -568,12 +524,12 @@
       <workItem from="1548178938794" duration="2782000" />
       <workItem from="1548271958307" duration="7995000" />
       <workItem from="1548295059368" duration="11538000" />
-      <workItem from="1548516544897" duration="73781000" />
+      <workItem from="1548516544897" duration="75472000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339113000" />
+    <option name="totallyTimeSpent" value="340804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -790,13 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="135" column="117" selection-start-line="135" selection-start-column="117" selection-end-line="135" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCtzDll.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -813,13 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="198" column="67" selection-start-line="198" selection-start-column="67" selection-end-line="198" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/jsDevCtz2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="259" column="11" selection-start-line="243" selection-start-column="8" selection-end-line="259" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -875,26 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
           <caret line="539" column="32" selection-start-line="539" selection-start-column="32" selection-end-line="539" selection-end-column="144" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="755">
-          <caret line="371" column="44" selection-start-line="371" selection-start-column="44" selection-end-line="371" selection-end-column="44" />
-          <folding>
-            <element signature="e#12141#12169#0#HTML" expanded="true" />
-            <element signature="e#14046#14178#0#HTML" expanded="true" />
-            <element signature="e#14614#14637#0#HTML" expanded="true" />
-            <element signature="e#14978#15002#0#HTML" expanded="true" />
-            <element signature="e#15718#15793#0#HTML" expanded="true" />
-            <element signature="e#15228#15271#0#HTML" expanded="true" />
-            <element signature="e#15767#15795#0#HTML" expanded="true" />
-            <element signature="e#15461#15523#0#HTML" expanded="true" />
-            <element signature="e#15800#15825#0#HTML" expanded="true" />
-            <element signature="e#16448#16485#0#HTML" expanded="true" />
-            <element signature="e#16158#16200#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1176,17 +1098,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrFteDll.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
-          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
           </folding>
@@ -1210,7 +1125,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCdr.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3392">
-          <caret line="182" column="88" lean-forward="true" selection-start-line="182" selection-start-column="88" selection-end-line="182" selection-end-column="88" />
+          <caret line="182" column="88" selection-start-line="182" selection-start-column="88" selection-end-line="182" selection-end-column="88" />
         </state>
       </provider>
     </entry>
@@ -1233,10 +1148,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrDll.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="127" column="69" lean-forward="true" selection-start-line="127" selection-start-column="69" selection-end-line="127" selection-end-column="69" />
+        <state relative-caret-position="432">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
           <folding>
             <element signature="n#style#0;n#th#1;n#tr#0;n#thead#2;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="41" column="43" lean-forward="true" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jsDevCtz2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="281" column="39" selection-start-line="281" selection-start-column="28" selection-end-line="281" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="429" column="21" selection-start-line="429" selection-start-column="21" selection-end-line="429" selection-end-column="21" />
+          <folding>
+            <element signature="e#14956#14984#0#HTML" expanded="true" />
+            <element signature="e#15709#15733#0#HTML" expanded="true" />
+            <element signature="e#15801#15879#0#HTML" expanded="true" />
+            <element signature="e#15981#16024#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
