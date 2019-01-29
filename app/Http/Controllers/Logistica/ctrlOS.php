@@ -119,7 +119,7 @@ class ctrlOS extends Controller
         }
 
         $pdf=\App::make('dompdf.wrapper');        
-        $pdf->loadHTML($v)->setPaper('letter')->setOrientation('portrait');
+        $pdf->loadHTML($v)->setPaper('a4')->setOrientation('portrait');
         return $pdf->stream();
 
         //$pdf->loadHTML($v)->setPaper('a4')->setOrientation('horizontal')->setWarnings(false);
