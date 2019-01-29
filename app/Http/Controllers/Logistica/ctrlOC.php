@@ -1,9 +1,11 @@
 <?php
 
 namespace Logistica\Http\Controllers\Logistica;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
 
@@ -59,56 +61,84 @@ class ctrlOC extends Controller
     public function spLogSetOC(Request $prRqsOC)
     {
         //sleep(1);
-	    $dbResult = \DB::select('exec spLogSetOC ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,?  ,?   ,?,?,?,?',
-            array(
-                $prRqsOC["varOC"]["ocOPE"],
-                $prRqsOC["varOC"]["ocID"],
-                $prRqsOC["varOC"]["ocAnio"],
-                $prRqsOC["varOC"]["ocFecha"],
-                $prRqsOC["varOC"]["ocTipoProcID"],
-                $prRqsOC["varOC"]["ocDepID"],
-                $prRqsOC["varOC"]["ocRubroID"],
-                $prRqsOC["varOC"]["ocSecFunID"],
-                $prRqsOC["varOC"]["ocRuc"],
-                $prRqsOC["varOC"]["ocPlazo"],
-                $prRqsOC["varOC"]["ocGarantia"],
-                $prRqsOC["varOC"]["ocIGV"],
-                $prRqsOC["varOC"]["ocGlosa"],
-                $prRqsOC["varOC"]["ocLugar"],
-                $prRqsOC["varOC"]["ocRef"],
-                $prRqsOC["varOC"]["ocObsv"],
-                $prRqsOC["varOC"]["ocCondicion"],
+        try{
 
-                $prRqsOC["varOC"]["ocSubTotal"],
-                $prRqsOC["varOC"]["ocDescuento"],
-                $prRqsOC["varOC"]["ocEnvio"],
-                $prRqsOC["varOC"]["ocTotal"],
+            $dbResult = null;
 
-                $prRqsOC["varOC"]["ocReqID"],
-                $prRqsOC["varOC"]["ocCtzID"],
-                $prRqsOC["varOC"]["ocCdrID"],
-                //$prRqsOC["varOC"]["ocUsrID"]
-                Auth::user()->usrID
-            ));
+            $exception = DB::transaction(function() use($prRqsOC, &$dbResult){
 
-			
-        // if( $prRqsOC["varOC"]["ocOPE"]=="ADD")
-        // {
-        // dd($prRqsOC["varOCDll"]);
-        $idOC= $dbResult[0]->OCNo ;
-        $ErrorDtll=array();
-        if($idOC=="NN") { return response()->json($dbResult);  }
-        if(  $prRqsOC["varOC"]["ocOPE"]=="ADD" || $prRqsOC["varOC"]["FlgADD"]=="ADD"  )
-		{
-			foreach ($prRqsOC["varOCDll"] as $key => $valor)
-			{
-				$dbResultDll = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,? ', array( 'ADD',$idOC , $valor["prod"], $valor["und"], $valor["clasf"],$valor["cant"],$valor["precio"],$valor["marca"],$valor["espf"],$valor["ocItm"], $valor["cdItm"]  ,$valor["czItm"],$valor["rqItm"],  Auth::user()->usrID , $valor["envio"]  ,$valor["secFun"], $valor['secfund'], $valor['rubro'] ));
-				if ($dbResultDll[0]->OCNo == "NN")    {    array_push($ErrorDtll, array('OCNo' => $dbResultDll[0]->OCNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"])); }
-			}
-			if (count($ErrorDtll) > 0) {    return response()->json($ErrorDtll);      }
-		}
-        // }
-        //        return  response()->json ($dbResult );
+                $dbResult = \DB::select('exec spLogSetOC ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,?  ,?   ,?,?,?,?',
+                    array(
+                        $prRqsOC["varOC"]["ocOPE"],
+                        $prRqsOC["varOC"]["ocID"],
+                        $prRqsOC["varOC"]["ocAnio"],
+                        $prRqsOC["varOC"]["ocFecha"],
+                        $prRqsOC["varOC"]["ocTipoProcID"],
+                        $prRqsOC["varOC"]["ocDepID"],
+                        $prRqsOC["varOC"]["ocRubroID"],
+                        $prRqsOC["varOC"]["ocSecFunID"],
+                        $prRqsOC["varOC"]["ocRuc"],
+                        $prRqsOC["varOC"]["ocPlazo"],
+                        $prRqsOC["varOC"]["ocGarantia"],
+                        $prRqsOC["varOC"]["ocIGV"],
+                        $prRqsOC["varOC"]["ocGlosa"],
+                        $prRqsOC["varOC"]["ocLugar"],
+                        $prRqsOC["varOC"]["ocRef"],
+                        $prRqsOC["varOC"]["ocObsv"],
+                        $prRqsOC["varOC"]["ocCondicion"],
+
+                        $prRqsOC["varOC"]["ocSubTotal"],
+                        $prRqsOC["varOC"]["ocDescuento"],
+                        $prRqsOC["varOC"]["ocEnvio"],
+                        $prRqsOC["varOC"]["ocTotal"],
+
+                        $prRqsOC["varOC"]["ocReqID"],
+                        $prRqsOC["varOC"]["ocCtzID"],
+                        $prRqsOC["varOC"]["ocCdrID"],
+                        //$prRqsOC["varOC"]["ocUsrID"]
+                        Auth::user()->usrID
+                    ));
+
+
+                // if( $prRqsOC["varOC"]["ocOPE"]=="ADD")
+                // {
+                // dd($prRqsOC["varOCDll"]);
+                $idOC= $dbResult[0]->OCNo ;
+                $ErrorDtll=array();
+                if($idOC=="NN") {
+                    throw new Exception('Error al intentar registrar datos de la OC');
+                    //return response()->json($dbResult);
+                }
+                if(  $prRqsOC["varOC"]["ocOPE"]=="ADD" || $prRqsOC["varOC"]["FlgADD"]=="ADD"  )
+                {
+                    foreach ($prRqsOC["varOCDll"] as $key => $valor)
+                    {
+                        $dbResultDll = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,? ', array( 'ADD',$idOC , $valor["prod"], $valor["und"], $valor["clasf"],$valor["cant"],$valor["precio"],$valor["marca"],$valor["espf"],$valor["ocItm"], $valor["cdItm"]  ,$valor["czItm"],$valor["rqItm"],  Auth::user()->usrID , $valor["envio"]  ,$valor["secFun"], $valor['secfund'], $valor['rubro'] ));
+                        if ($dbResultDll[0]->OCNo == "NN")
+                        {
+                            throw new Exception(' NO se registro : ' . $valor["prod"]);
+                            array_push($ErrorDtll, array('OCNo' => $dbResultDll[0]->OCNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"]));
+                        }
+                    }
+                    if (count($ErrorDtll) > 0) {
+                        throw new Exception('Error al registrar los productos');
+                        //return response()->json($ErrorDtll);
+                    }
+                }
+                // }
+                //        return  response()->json ($dbResult );
+
+            });
+
+            if(!is_null($exception))
+                throw new Exception($exception);
+
+        }catch(Exception $e){
+
+            $dbResult[0] = array('OCNo' => 'NN', 'Error' => '1', 'Mensaje' => ' Error al intentar guardar la OC : ' . $e->getMessage());
+
+        }
+
         return $dbResult;
     }
     public function spLogSetOCD(Request $prRqsOC)
