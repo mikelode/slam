@@ -206,8 +206,18 @@
                     </tr>
                 </table>
                 <table style="margin-top: 10px;" cellpadding="4px">
-                    <tr><td> REG.SIAF:</td><td> .......................  </td> </tr>
-                    <tr><td> CERTIFIC:</td><td>   .......................  </td></tr>
+                    <tr>
+                        <td> REG.SIAF:</td>
+                        @if(count($ReturnData['SIAF']) == 0)
+                            <td> .......................  </td>
+                        @else
+                            <td> {{ substr($ReturnData['SIAF'][0]->expExpCod,-5) }}  </td>
+                        @endif
+                    </tr>
+                    <tr>
+                        <td> CERTIFIC:</td>
+                        <td>   .......................  </td>
+                    </tr>
                 </table>
             </td>
         </tr>

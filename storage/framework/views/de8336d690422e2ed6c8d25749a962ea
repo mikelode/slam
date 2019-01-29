@@ -208,8 +208,18 @@
                     </tr>
                 </table>
                 <table style="margin-top: 10px;" cellpadding="4px">
-                    <tr><td> REG.SIAF:</td><td> .......................  </td> </tr>
-                    <tr><td> CERTIFIC:</td><td>   .......................  </td></tr>
+                    <tr>
+                        <td> REG.SIAF:</td>
+                        <?php if(count($ReturnData['SIAF']) == 0): ?>
+                            <td> .......................  </td>
+                        <?php else: ?>
+                            <td> <?php echo e(substr($ReturnData['SIAF'][0]->expExpCod,-5)); ?>  </td>
+                        <?php endif; ?>
+                    </tr>
+                    <tr>
+                        <td> CERTIFIC:</td>
+                        <td>   .......................  </td>
+                    </tr>
                 </table>
             </td>
         </tr>

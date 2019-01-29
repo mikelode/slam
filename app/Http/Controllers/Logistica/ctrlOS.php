@@ -115,6 +115,7 @@ class ctrlOS extends Controller
              $ReturnData["OSDll"] = \DB::select('exec spLogGetOSD ?',array(  $id ));
         $ReturnData["OSAbsClasf"] = \DB::select('exec spLogGetOSAbsClasf ?',array(  $id ));
         $ReturnData["RUC"] = \DB::select('exec spLogGetRuc ?',array(  " where ruc='".$ReturnData["OS"][0]->osRUC ."'" ));
+        $ReturnData["SIAF"] = \DB::select('exec spLogGetCSExp ?',array($id));
             $v = view("logistica.rptAdqOSrv",compact('ReturnData'))->render();
         }
 
