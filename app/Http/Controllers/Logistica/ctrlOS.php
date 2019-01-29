@@ -96,7 +96,7 @@ class ctrlOS extends Controller
     {
         $Doc = "Ods";
         $varReturn["varReturns"] = \DB::select('exec spLogSetOSD ?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,?  ,? ',
-            array( $prRqsOS["varBns"]["OPE"] , $prRqsOS["varBns"]["osID"] , $prRqsOS["varBns"]["prodID"]  ,  $prRqsOS["varBns"]["prodUndID"],  $prRqsOS["varBns"]["prodClasfID"],$prRqsOS["varBns"]["prodCant"],$prRqsOS["varBns"]["prodPrecio"],$prRqsOS["varBns"]["prodMarca"],$prRqsOS["varBns"]["prodEspf"],$prRqsOS["varBns"]["osItm"], $prRqsOS["varBns"]["cdItm"], $prRqsOS["varBns"]["czItm"], $prRqsOS["varBns"]["rqItm"] ,Auth::user()->usrID, null, null ));
+            array( $prRqsOS["varBns"]["OPE"] , $prRqsOS["varBns"]["osID"] , $prRqsOS["varBns"]["prodID"]  ,  $prRqsOS["varBns"]["prodUndID"],  $prRqsOS["varBns"]["prodClasfID"],$prRqsOS["varBns"]["prodCant"],$prRqsOS["varBns"]["prodPrecio"],$prRqsOS["varBns"]["prodMarca"],$prRqsOS["varBns"]["prodEspf"],$prRqsOS["varBns"]["osItm"], $prRqsOS["varBns"]["cdItm"], $prRqsOS["varBns"]["czItm"], $prRqsOS["varBns"]["rqItm"] ,Auth::user()->usrID, $prRqsOS["varBns"]['prodSecfun'], $prRqsOS['varBns']['prodRubro'] ));
         $result = \DB::select('exec spLogGetOSD ?',array( $prRqsOS["varBns"]["osID"]));
         $varReturn["vwDll"] =  view ('logistica.Partials.logOSDll',compact( 'result','Doc'))->render();
         return  $varReturn;
