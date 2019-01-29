@@ -309,11 +309,15 @@ $( document ).on( 'click',  '#btnLogOSSave , #btnLogOSDel',function(e){
         return;
     }
 
-     if( $('#tbOS_Dll').attr('doc') =="Cdr" || $('#tbOS_Dll').attr('doc') =="Req"  || $('#tbOS_Dll').attr('doc') =="Null" ) {  varOS.FlgADD = "ADD";  }
-    else {  varOS.FlgADD = "NOT";  }
+     if( $('#tbOS_Dll').attr('doc') =="Cdr" || $('#tbOS_Dll').attr('doc') =="Req"  || $('#tbOS_Dll').attr('doc') =="Null" ) {
+         varOS.FlgADD = "ADD";
+     }
+    else {
+        varOS.FlgADD = "NOT";
+    }
 
     var tmpOS = $("#tbOS_Dll").html();
-
+    console.log(tmpOS);
     var OsDlls = new Array();
     if ( typeof tmpOS != "undefined")
     {        
@@ -553,6 +557,9 @@ $( document ).on( 'click' ,'#btnLogOS_dllEDIT ',function(e) {
         trCurrent.find("td[name=tdPrecio]")  .find('input[id=txProdPrecio]')    .val(trClone .find("td[name=tdPrecio]").text().trim());
         trCurrent.find("td[name=tdMarca]")  .find('input[id=txProdMarca]')    .val(trClone .find("td[name=tdMarca]").text().trim());
 
+        trCurrent.find("td[name=tdSF]") .find('input[id=txProdSF]').attr('codID',trClone.find("td[name=tdSF]").attr('codID'));
+        trCurrent.find("td[name=tdRubro]") .find('input[id=txProdRubro]').attr('codID',trClone.find("td[name=tdRubro]").attr('codID'));
+
         trCurrent.find("td[name=tdClasf]")   .find('input[id=txProdClasf]').attr("codID",trClone .find("td[name=tdClasf]").attr ("codID"));
         trCurrent.find("td[name=tdProd]")    .find('input[id=txProdProd]').attr("codID",trClone .find("td[name=tdProd]").attr ("codID"));
         trCurrent.find("td[name=tdUnd]")     .find('input[id=txProdUnd]') .attr("codID",trClone .find("td[name=tdUnd]").attr ("codID"));
@@ -655,7 +662,9 @@ $( document ).on( 'click' ,'#btnLogOS_dllSAVE',function(e) {
 
         trCurrent.find("td[name=tdPrecio]").html(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());
         trCurrent.find("td[name=tdMarca]").html(trClone.find("td[name=tdMarca]").find('input[id=txProdMarca]').val());
-        
+
+       trCurrent.find("td[name=tdSF]").attr("codID",trClone.find('td[name=tdSF]').find('input[id=txProdSF]').attr("codID"));
+       trCurrent.find("td[name=tdRubro]").attr("codID",trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID"));
 
         trCurrent.find("td[name=tdClasf]").attr("codID", trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID"));
         trCurrent.find("td[name=tdProd]").attr("codID", trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID"));
@@ -1534,6 +1543,9 @@ $( document ).on( 'click' ,'#btnLogOS_dllADD',function(e) {
         filaADD.find("td[name=tdCzItm]").html(trClone.find("td[name=tdCzItm]").text());
         filaADD.find("td[name=tdRqItm]").html(trClone.find("td[name=tdRqItm]").text());
 
+        filaADD.find("td[name=tdSF]").html(trClone.find("td[name=tdSF]").find("input[id=txProdSF]").val());
+        filaADD.find("td[name=tdRubro]").html(trClone.find("td[name=tdRubro]").find("input[id=txProdRubro]").val());
+
         filaADD.find("td[name=tdCant]").html(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());
         filaADD.find("td[name=tdClasf]").html(trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').val());
         filaADD.find("td[name=tdProd]").html(trClone.find("td[name=tdProd]").find('input[id=txProdProd]').val());
@@ -1542,7 +1554,9 @@ $( document ).on( 'click' ,'#btnLogOS_dllADD',function(e) {
 
         filaADD.find("td[name=tdPrecio]").html(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());
         filaADD.find("td[name=tdMarca]").html(trClone.find("td[name=tdMarca]").find('input[id=txProdMarca]').val());
-      
+
+        filaADD.find("td[name=tdSF]").attr("codID", trClone.find("td[name=tdSF]").find("input[id=txProdSF]").attr("codID"));
+        filaADD.find("td[name=tdRubro]").attr("codID", trClone.find("td[name=tdRubro]").find("input[id=txProdRubro]").attr("codID"));
 
         filaADD.find("td[name=tdClasf]").attr("codID", trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID"));
         filaADD.find("td[name=tdProd]").attr("codID", trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID"));
