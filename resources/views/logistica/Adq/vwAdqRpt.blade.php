@@ -103,6 +103,7 @@
                                                           <button type="button" id="btnRptTipoRpt" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:200px; height: 30px;font-size: 12px;  ">    <span  id="txRpt_TipoRpt"  data-bind="label">Seleccione...</span> <span class="caret"></span></button>
                                                           <ul class="dropdown-menu menu-RptTipoRpt" role="menu" style="font-size: 12px; margin-top:-2px;  width:200px;">
                                                              <li  psrId="RQ"><a href="#">Requerimientos</a></li>
+                                                              <li psrID="RQP"><a href="#">Requerimientos Proceso</a></li>
                                                              <li  psrId="CTZ"><a href="#">Cotizaciones</a></li>
                                                              <li  psrId="CDR"><a href="#">Cuadro Comparativo</a></li>
                                                              <li  psrId="OC"><a href="#">Orden de Compra</a></li>

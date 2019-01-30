@@ -806,6 +806,9 @@ class ctrlGrl extends Controller
     {
       $Doc='XLS';
       if      ($TipoRpt=="RQ")  { $result["RQ"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array( $Anio, $TipoRpt.'-'.$Nivel,$FecIni,$FecFin,$SecFun,$Rubro,$TipoProc,$Ruc,'DLL' )); }
+      else if ($TipoRpt=="RQP"){
+          $result["RQP"] = \DB::select('exec spLogGetProcReq ?,?,?', array($Anio,$FecIni,$FecFin));
+      }
       else if ($TipoRpt=="CTZ")  { $result["CTZ"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array($Anio, $TipoRpt.'-'.$Nivel,$FecIni,$FecFin,$SecFun,$Rubro,$TipoProc,$Ruc,'DLL' )); }
       else if ($TipoRpt=="CDR")  { $result["CDR"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array($Anio, $TipoRpt.'-'.$Nivel,$FecIni,$FecFin,$SecFun,$Rubro,$TipoProc,$Ruc,'DLL' )); }
       else if ($TipoRpt=="OC")  { $result["OC"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array($Anio, $TipoRpt.'-'.$Nivel,$FecIni,$FecFin,$SecFun,$Rubro,$TipoProc,$Ruc,'DLL' )); }
@@ -826,7 +829,8 @@ class ctrlGrl extends Controller
       else if ($TipoRpt=="CS" && $Nivel=="DLL")       $varReturn =  view ('logistica.Rpt.logXlsCSDll',compact( 'result','Doc'));
       else if ($TipoRpt=="CDR" && $Nivel=="DLL")      $varReturn =  view ('logistica.Rpt.logXlsCDRDll',compact( 'result','Doc'));
       else if ($TipoRpt=="RQ" && $Nivel=="DLL")       $varReturn =  view ('logistica.Rpt.logXlsRQDll',compact( 'result','Doc'));
-      
+
+      else if($TipoRpt=="RQP") $varReturn = view('logistica.Rpt.logXlsRQProc', compact('result','Doc'));
 
       return $varReturn ;
     }
@@ -834,6 +838,9 @@ class ctrlGrl extends Controller
     {
         $Doc='SHOW';
         if      ($request->TipoRpt=="RQ")  { $result["RQ"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array( $request->Anio,$request->TipoRpt.'-'.$request->Nivel,$request->FecIni,$request->FecFin,$request->SecFun,$request->Rubro,$request->TipoProc,$request->Ruc,'DLL' )); }
+        else if ($request->TipoRpt=="RQP"){
+            $result["RQP"] = \DB::select('exec spLogGetProcReq ?,?,?', array($request->Anio,$request->FecIni,$request->FecFin));
+        }
         else if ($request->TipoRpt=="CTZ")  { $result["CTZ"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array( $request->Anio, $request->TipoRpt.'-'.$request->Nivel,$request->FecIni,$request->FecFin,$request->SecFun,$request->Rubro,$request->TipoProc,$request->Ruc,'DLL' )); }
         else if ($request->TipoRpt=="CDR")  { $result["CDR"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array($request->Anio,  $request->TipoRpt.'-'.$request->Nivel,$request->FecIni,$request->FecFin,$request->SecFun,$request->Rubro,$request->TipoProc,$request->Ruc,'DLL' )); }
         else if ($request->TipoRpt=="OC")  { $result["OC"] = \DB::select('exec spLogGetRptGrl  ?,?,?,?,?,? ,?,?,?',array($request->Anio,  $request->TipoRpt.'-'.$request->Nivel,$request->FecIni,$request->FecFin,$request->SecFun,$request->Rubro,$request->TipoProc,$request->Ruc,'DLL' )); }
@@ -855,6 +862,8 @@ class ctrlGrl extends Controller
         else if ($request->TipoRpt=="CS" && $request->Nivel=="DLL")       $varReturn =  view ('logistica.Rpt.logXlsCSDll',compact( 'result','Doc'));
         else if ($request->TipoRpt=="CDR" && $request->Nivel=="DLL")      $varReturn =  view ('logistica.Rpt.logXlsCDRDll',compact( 'result','Doc'));
         else if ($request->TipoRpt=="RQ" && $request->Nivel=="DLL")       $varReturn =  view ('logistica.Rpt.logXlsRQDll',compact( 'result','Doc'));
+
+        else if($request->TipoRpt=="RQP") $varReturn = view('logistica.Rpt.logXlsRQProc', compact('result','Doc'));
 
         return $varReturn ;
     }
