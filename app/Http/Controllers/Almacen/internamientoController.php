@@ -551,6 +551,7 @@ class internamientoController extends Controller
                 $pint->pint_conductor = $request->intNameDriver;
                 $pint->pint_dni_conductor = $request->intDniDriver;
                 $pint->pint_observacion = $request->intComment;
+                $pint->pint_guiaremision = $request->intGuiaRemision;
                 $pint->save();
 
                 $flagI = true;
@@ -719,7 +720,7 @@ class internamientoController extends Controller
             foreach ($cpi as $key => $pi) {
                 if($ingreso[0]->estado_validacion == 'C' || $ingreso[0]->estado_validacion == 'T')
                 {
-                    $html .= '<br><a href="pdfActa/'.$gi.'/'.$pi->pint_cpi.'" id="btnPreviewActa">Acta de Recepción Nro:'.substr($pi->pint_cpi, -3).'</a>';
+                    $html .= '';// '<br><a href="pdfActa/'.$gi.'/'.$pi->pint_cpi.'" id="btnPreviewActa">Acta de Recepción Nro:'.substr($pi->pint_cpi, -3).'</a>';
                 }
             }
         }

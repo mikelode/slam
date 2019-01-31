@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Logistica\Almacen\almInternamiento;
 use Logistica\Almacen\almInventario;
+use Logistica\Almacen\almProcesoInternamiento;
 use Logistica\Almacen\almProcesoSalida;
 use Logistica\Almacen\almProcesoSalidaB;
 use Logistica\Almacen\almRecyclePecosa;
@@ -211,14 +212,22 @@ class distribucionController extends Controller
     public function getDistribucionBienes($gi, Request $request)
     {
         $giu = almInternamiento::find($gi);
+
+        $giuproc = almProcesoInternamiento::where('cod_giu',$gi)->get();
+        $guiaremision = '';
+
+        foreach ($giuproc as $proc){
+            $guiaremision = $proc->pint_guiaremision . ', ' . $guiaremision;
+        }
+
         $bienes = almInternamiento::find($gi)->inventario;
         $applicant = DB::connection('dblogistica')->table('TLogOC')
                             ->join('TLogReq','orcReq','=','reqID')
                             ->join('TPerPrs','reqSolicitante','=','perID')
-                            ->select('*')
+                            ->select(DB::raw("*, dbo.fnLogGetGrlDat('DEP',reqDep,'') as depDsc"))
                             ->where('orcID',$giu->oc_cod)->get();
 
-        $view = view('almacen.salida.distribucion',['giu' => $giu, 'bienes' => $bienes, 'applicant' => $applicant]);
+        $view = view('almacen.salida.distribucion',['giu' => $giu, 'bienes' => $bienes, 'applicant' => $applicant, 'guiaremision' => $guiaremision]);
 
         return $view;
     }

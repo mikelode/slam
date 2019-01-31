@@ -78,7 +78,7 @@
                                            
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="disRole" placeholder="CARGO">
+                                            <input class="form-control alm-input" type="text" name="disRole" placeholder="CARGO" value="<?php echo e(isset($applicant[0]->reqCondicion)?$applicant[0]->reqCondicion:''); ?>">
                                         </div>                                        
                                     </div> 
 
@@ -100,7 +100,7 @@
                                             <input class="form-control alm-input" id="depSolicitante" type="text" data-aim="dep" name="disDependency" value="<?php echo e(isset($applicant[0]->orcDep)?$applicant[0]->orcDep:''); ?>" placeholder="DEP (F2)">
                                         </div>
                                         <div class="col-sm-7">
-                                        <input class="form-control alm-input" id="depDsc" type="text" name="depDscNameApplicant" value="" placeholder="DEPENDENCIA">
+                                        <input class="form-control alm-input" id="depDsc" type="text" name="depDscNameApplicant" value="<?php echo e(isset($applicant[0]->depDsc)?$applicant[0]->depDsc:''); ?>" placeholder="DEPENDENCIA">
                                           <!--  <input class="form-control alm-input" type="text" name="disRole" placeholder="CARGO">-->
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Guia de Remision</label>
                                         <div class="col-sm-3">
-                                            <input class="form-control alm-input" id="guiarem" type="text" data-aim="dep" name="guiarem" value="" placeholder="GUIA DE REMISION">
+                                            <input class="form-control alm-input" id="guiarem" type="text" data-aim="dep" name="guiarem" value="<?php echo e($guiaremision); ?>" placeholder="GUIA DE REMISION">
                                         </div>
                                          <label class="col-sm-1 control-label"> Factura</label>
                                         <div class="col-sm-3">

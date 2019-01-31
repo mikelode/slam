@@ -148,9 +148,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?php echo e(\Carbon\Carbon::now()->day); ?></td>
-                        <td><?php echo e(\Carbon\Carbon::now()->month); ?></td>
-                        <td><?php echo e(\Carbon\Carbon::now()->year); ?></td>
+                        <td><?php echo e(\Carbon\Carbon::parse($proceso[0]->pint_fecha)->day); ?></td>
+                        <td><?php echo e(\Carbon\Carbon::parse($proceso[0]->pint_fecha)->month); ?></td>
+                        <td><?php echo e(\Carbon\Carbon::parse($proceso[0]->pint_fecha)->year); ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -165,14 +165,14 @@
                 <div class="infoitem"><label>DOC. REF.</label>: <?php echo e($guia->oc_docRef); ?><br></div>
                 <div class="infoitem"><label>ORDEN DE COMPRA</label>: <?php echo e($guia->oc_cod); ?><br></div>
                 <div class="infoitem"><label>SECUENCIA FUNC.</label>: <?php echo e($guia->oc_obra_destino); ?> <br></div>
-                <div class="infoitem"><label>GUIA REMISION</label>: <?php echo e($guia->ing_guiaremision); ?><br></div>
+                <div class="infoitem"><label>GUIA REMISION</label>: <?php echo e($proceso[0]->pint_guiaremision); ?><br></div>
                 <div class="infoitem"><label>FACTURA</label>: <?php echo e($guia->ing_factura); ?><br></div>
                 <label><!-- fix --></label>
             </div>
         </div>
         <div class="footer">
             <div style="float: left; display: inline-block; width: 90%;">
-                Vilcabamba, <?php echo e(\Carbon\Carbon::now()->toDateTimeString()); ?>
+                <?php echo e(config('slam.ENTIDAD_PIE')); ?>, <?php echo e(\Carbon\Carbon::now()->toDateTimeString()); ?>
 
             </div>
             Página <span class="pagenum"></span>

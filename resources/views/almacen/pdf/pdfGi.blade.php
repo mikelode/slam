@@ -146,9 +146,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ \Carbon\Carbon::now()->day }}</td>
-                        <td>{{ \Carbon\Carbon::now()->month }}</td>
-                        <td>{{ \Carbon\Carbon::now()->year }}</td>
+                        <td>{{ \Carbon\Carbon::parse($proceso[0]->pint_fecha)->day }}</td>
+                        <td>{{ \Carbon\Carbon::parse($proceso[0]->pint_fecha)->month }}</td>
+                        <td>{{ \Carbon\Carbon::parse($proceso[0]->pint_fecha)->year }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -163,14 +163,14 @@
                 <div class="infoitem"><label>DOC. REF.</label>: {{ $guia->oc_docRef }}<br></div>
                 <div class="infoitem"><label>ORDEN DE COMPRA</label>: {{ $guia->oc_cod }}<br></div>
                 <div class="infoitem"><label>SECUENCIA FUNC.</label>: {{ $guia->oc_obra_destino }} <br></div>
-                <div class="infoitem"><label>GUIA REMISION</label>: {{ $guia->ing_guiaremision }}<br></div>
+                <div class="infoitem"><label>GUIA REMISION</label>: {{ $proceso[0]->pint_guiaremision }}<br></div>
                 <div class="infoitem"><label>FACTURA</label>: {{ $guia->ing_factura }}<br></div>
                 <label><!-- fix --></label>
             </div>
         </div>
         <div class="footer">
             <div style="float: left; display: inline-block; width: 90%;">
-                Vilcabamba, {{ \Carbon\Carbon::now()->toDateTimeString() }}
+                {{ config('slam.ENTIDAD_PIE') }}, {{ \Carbon\Carbon::now()->toDateTimeString() }}
             </div>
             Página <span class="pagenum"></span>
         </div>

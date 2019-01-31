@@ -138,7 +138,7 @@
                     $date = new DateTime($proceso->pint_hora);
                 ?>
                 <div class="parrafo">
-                    En <a href="#" class="modificar">LUGAR DE ENTREGA</a>, del Distrito de Vilcabamba, provincia de La Convención, Departamento de Cusco, siendo las horas
+                    En <a href="#" class="modificar">LUGAR DE ENTREGA</a>, del Distrito de Quellouno, provincia de La Convención, Departamento de Cusco, siendo las horas
                     <a href="#" class="modificar">{{ $date->format('H:i a')  }}</a> del día <a href="#" class="modificar">{{ date("d-m-Y",strtotime($proceso->pint_fecha)) }}</a>,  estando presente ante el suscrito las siguientes personas:
                     {{ $data[0]->jefe_profesion.' - '.$data[0]->jefe_nombres.' '.$data[0]->jefe_apaterno.' '.$data[0]->jefe_amaterno }} identificado con DNI N° {{ $data[0]->jefe_dni }}
                     (Jefe de {{ $data[0]->nombre }}), <a href="#" class="modificar"> {{ !$applicant->isEmpty()?$applicant[0]->perNombres.' '.$applicant[0]->perAPaterno.' '.$applicant[0]->perAMaterno:'NOMBRE SOLICITANTE' }} </a>

@@ -83,6 +83,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group alm-form-group">
+                                        <label class="col-sm-3 control-label">Guía de Remisión</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control alm-input" name="intGuiaRemision">
+                                        </div>
+                                    </div>
+                                    <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Observación</label>
                                         <div class="col-sm-9">
                                             <textarea class="form-control alm-input" name="intComment"></textarea>

@@ -135,7 +135,7 @@
                     $date = new DateTime($data[0]->ing_hora);
                 ?>
                 <div class="parrafo">
-                    En <a href="#" class="modificar">LUGAR DE ENTREGA</a>, del Distrito de Vilcabamba, provincia de La Convención, Departamento de Cusco,
+                    En <a href="#" class="modificar">LUGAR DE ENTREGA</a>, del {{ config('slam.ENTIDAD_PIE') }} provincia de La Convención, Departamento de Cusco,
                     siendo las horas <a href="#" class="modificar">{{ $date->format('H:i a')  }}</a>
                     del día <a href="#" class="modificar">{{ date("d-m-Y",strtotime($data[0]->ing_fecha)) }}</a>,
                     estando presente ante el suscrito las siguientes personas:

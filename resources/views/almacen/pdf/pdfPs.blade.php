@@ -167,7 +167,7 @@
             </div>
             <div class="infob">
                 <label class="fecha">Lugar y Fecha:</label><br>
-                    <div class="date">VILCABAMBA, {{ date("d-m-Y",strtotime($proceso[0]->psal_fecha)) }}</div>
+                    <div class="date">QUELLOUNO, {{ date("d-m-Y",strtotime($proceso[0]->psal_fecha)) }}</div>
                 <label class="fecha">-</label><br>
                 <label class="fecha">-</label><br>
                 <!--<label class="fecha">S. Prog:</label>-->
