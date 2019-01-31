@@ -164,7 +164,7 @@
             <div class="info">
                 <div class="infoitem"><label>DEPENDENCIA SOLICITANTE</label>: <?php echo e($proceso[0]->dependencia_solic); ?><br></div>
                 <?php /*<div class="infoitem"><label>NOMBRE DEL SOLICITANTE </label>: <?php echo e($proceso[0]->psal_solicitante); ?><br></div>*/ ?>
-                <div class="infoitem"><label>SOLICITO ENTREGAR A</label>: <?php echo e($proceso[0]->psal_receptor); ?><br></div>
+                <div class="infoitem"><label>SOLICITO ENTREGAR A</label>: <?php echo e($proceso[0]->psal_receptor); ?> - <?php echo e($proceso[0]->psal_solic_cargo); ?><br></div>
                 <div class="infoitem"><label>CON DESTINO A</label>: <?php echo e($proceso[0]->psal_destino); ?><br></div>
             </div>
             <div class="infob">

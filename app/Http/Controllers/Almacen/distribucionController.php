@@ -264,8 +264,8 @@ class distribucionController extends Controller
                 $pcs->psal_pecosa = $ps;
                 $pcs->ing_giu = $guia->ing_giu;
                 $pcs->psal_fecha = $request->disDateAttend;
-                $pcs->psal_dni_solicitante = $request->disDniApplicant;
-                $pcs->psal_solicitante =$request->disNameApplicant ;
+                $pcs->psal_dni_solicitante = $request->receportDniApplicant;//$request->disDniApplicant;
+                $pcs->psal_solicitante = $request->receptorNameApplicant;//$request->disNameApplicant ;
                 $pcs->psal_dependencia_solic = $request->disDependency;
                 $pcs->psal_solic_cargo = $request->disRole;
                 $pcs->psal_usu_despachador = $request->disNameServer;

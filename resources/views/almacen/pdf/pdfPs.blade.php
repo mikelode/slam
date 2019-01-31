@@ -162,7 +162,7 @@
             <div class="info">
                 <div class="infoitem"><label>DEPENDENCIA SOLICITANTE</label>: {{ $proceso[0]->dependencia_solic }}<br></div>
                 {{--<div class="infoitem"><label>NOMBRE DEL SOLICITANTE </label>: {{ $proceso[0]->psal_solicitante }}<br></div>--}}
-                <div class="infoitem"><label>SOLICITO ENTREGAR A</label>: {{ $proceso[0]->psal_receptor }}<br></div>
+                <div class="infoitem"><label>SOLICITO ENTREGAR A</label>: {{ $proceso[0]->psal_receptor }} - {{ $proceso[0]->psal_solic_cargo }}<br></div>
                 <div class="infoitem"><label>CON DESTINO A</label>: {{ $proceso[0]->psal_destino }}<br></div>
             </div>
             <div class="infob">
