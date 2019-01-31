@@ -26,8 +26,8 @@ class almStoreDistPostRequest extends Request
         return [
             'disDateAttend' => 'required',
             'disNameServer' => 'required | regex:/(^[A-Za-z ñáéíóú ÑÁÉÍÓÚ ]+$)+/',
-            'disDniApplicant' => 'required | digits:8',
-            'disNameApplicant' => 'required | regex:/(^[A-Za-z ñáéíóú ÑÁÉÍÓÚ ]+$)+/',
+//            'disDniApplicant' => 'required | digits:8',
+//            'disNameApplicant' => 'required | regex:/(^[A-Za-z ñáéíóú ÑÁÉÍÓÚ ]+$)+/',
             'disDependency' => 'required',
             'disRole' => 'required',
             'disTarget' => 'required',
@@ -40,8 +40,8 @@ class almStoreDistPostRequest extends Request
         return [
             'disDateAttend' => 'Fecha de Atención',
             'disNameServer' => 'Nombre Atiende',
-            'disDniApplicant' => 'DNI Solicitante',
-            'disNameApplicant' => 'Nombres Solicitante',
+//            'disDniApplicant' => 'DNI Solicitante',
+//            'disNameApplicant' => 'Nombres Solicitante',
             'disDependency' => 'Dependencia',
             'disRole' => 'Cargo',
             'disTarget' => 'Destino',

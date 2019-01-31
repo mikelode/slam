@@ -3,19 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/ingreso/internamiento.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/ingreso/internamiento.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade - copia.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade - copia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfGi.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfGi.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfNota.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfNota.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/sessions/06698c4d96b57a17be34f936100f6dd64ed4b898" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/06698c4d96b57a17be34f936100f6dd64ed4b898" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/2004790eb44a74aa8f16450749164b64" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/2004790eb44a74aa8f16450749164b64" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/5f8c32951bf34914d73bc43dd1578c76" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5f8c32951bf34914d73bc43dd1578c76" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/b17951d3519b567e6949744b20d824b9" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/b17951d3519b567e6949744b20d824b9" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/e439400cefee7d79d7ae459b420868c2" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e439400cefee7d79d7ae459b420868c2" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
@@ -72,24 +66,24 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="156" />
-          <entry key="Blade" value="15410" />
+          <entry key="Blade" value="16079" />
           <entry key="CSS" value="121" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="6151" />
-          <entry key="PHP" value="16042" />
+          <entry key="PHP" value="16219" />
           <entry key="SQL" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="24" />
-          <entry key="Blade" value="178" />
+          <entry key="Blade" value="183" />
           <entry key="CSS" value="4" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="59" />
           <entry key="Less" value="1" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="187" />
+          <entry key="PHP" value="195" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="TypeScript" value="2" />
           <entry key="XML" value="1" />
@@ -103,10 +97,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfNota.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="137" column="106" selection-start-line="137" selection-start-column="106" selection-end-line="137" selection-end-column="106" />
+            <state relative-caret-position="319">
+              <caret line="192" column="12" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="95" />
+              <folding>
+                <element signature="e#55#69#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,17 +111,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="38" column="97" selection-start-line="38" selection-start-column="74" selection-end-line="38" selection-end-column="97" />
+            <state relative-caret-position="335">
+              <caret line="54" column="94" selection-start-line="54" selection-start-column="72" selection-end-line="54" selection-end-column="94" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="553" column="69" selection-start-line="553" selection-start-column="69" selection-end-line="553" selection-end-column="69" />
+            <state relative-caret-position="239">
+              <caret line="252" column="60" selection-start-line="252" selection-start-column="60" selection-end-line="252" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="266" column="109" selection-start-line="266" selection-start-column="109" selection-end-line="266" selection-end-column="109" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="385">
+              <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="91" selection-start-line="91" selection-end-line="91" />
             </state>
           </provider>
         </entry>
@@ -139,55 +163,44 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade - copia.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="136" column="100" selection-start-line="136" selection-start-column="100" selection-end-line="136" selection-end-column="100" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfGi.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="161" column="38" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
+            <state relative-caret-position="431">
+              <caret line="65" column="152" selection-start-line="65" selection-start-column="149" selection-end-line="65" selection-end-column="152" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="227" column="65" selection-start-line="227" selection-start-column="65" selection-end-line="227" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="141" column="106" selection-start-line="141" selection-start-column="106" selection-end-line="141" selection-end-column="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="169" column="47" selection-start-line="169" selection-start-column="47" selection-end-line="169" selection-end-column="47" />
+            <state relative-caret-position="447">
+              <caret line="323" column="89" selection-start-line="323" selection-start-column="89" selection-end-line="323" selection-end-column="89" />
+              <folding>
+                <element signature="e#5881#5887#1#HTML" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#3;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#5;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#7;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#9;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#11;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#td#0;n#tr#1;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="535" column="111" selection-start-line="535" selection-start-column="111" selection-end-line="535" selection-end-column="111" />
             </state>
           </provider>
         </entry>
@@ -203,17 +216,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>spRptView</find>
-      <find>btnLogRptXls</find>
-      <find>rptExcel</find>
-      <find>spRptExcel</find>
-      <find>prCan</find>
-      <find>btnLogReqNew</find>
-      <find>spLogGetCodNext</find>
-      <find>btnLogReqSave</find>
-      <find>print</find>
-      <find>condicion</find>
-      <find>Vilcabamba</find>
       <find>pdfGi/</find>
       <find>getPdfGuiaSheet</find>
       <find>vilcab</find>
@@ -228,11 +230,22 @@
       <find>getInternamientoBienes</find>
       <find>saveInternamiento</find>
       <find>frmDataInternamiento</find>
-      <find>distribucion</find>
-      <find>saveDistribucion</find>
       <find>depSolicitante</find>
       <find>dependencia</find>
       <find>spLogGetDat</find>
+      <find>findName2</find>
+      <find>findNameDep</find>
+      <find>findDependency</find>
+      <find>autoFindDependency</find>
+      <find>dniReceptor</find>
+      <find>saveDistribucion</find>
+      <find>distribucion</find>
+      <find>dis</find>
+      <find>postDistribucionBienes</find>
+      <find>pdfps</find>
+      <find>print</find>
+      <find>clasifica</find>
+      <find>total de</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -265,9 +278,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/sync/listLocalClasif.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Tramite/tramiteController.php" />
         <option value="$PROJECT_DIR$/resources/views/sync/index.blade.php" />
         <option value="$PROJECT_DIR$/config/slam.php" />
         <option value="$PROJECT_DIR$/app/Almacen/almTLogCtz.php" />
@@ -307,15 +317,18 @@
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfNota.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade - copia.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/ingreso/internamiento.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfGi.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" />
+        <option value="$PROJECT_DIR$/resources/views/almacen/salida/findDependencyBox.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" />
+        <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" />
       </list>
     </option>
   </component>
@@ -477,11 +490,6 @@
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
               <item name="slam" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slam" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -531,6 +539,13 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="almacen" type="462c0819:PsiDirectoryNode" />
               <item name="salida" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slam" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="logistica" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -623,12 +638,12 @@
       <workItem from="1548295059368" duration="11538000" />
       <workItem from="1548516544897" duration="76076000" />
       <workItem from="1548724733989" duration="7559000" />
-      <workItem from="1548766667955" duration="31127000" />
+      <workItem from="1548766667955" duration="38609000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="380094000" />
+    <option name="totallyTimeSpent" value="387576000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -697,51 +712,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/almacen.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="731" column="12" selection-start-line="731" selection-start-column="12" selection-end-line="731" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/almacen.less">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqReq.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="197" column="20" lean-forward="true" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="142" column="9" lean-forward="true" selection-start-line="142" selection-start-column="9" selection-end-line="142" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrFteDll.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/jsDevCdr3Tmp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="1201" column="36" selection-start-line="1201" selection-start-column="24" selection-end-line="1201" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrRucList.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
@@ -1106,23 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="255" column="71" selection-start-line="255" selection-start-column="71" selection-end-line="255" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="196" column="43" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="43" />
-          <folding>
-            <element signature="e#55#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade - copia.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -1271,13 +1224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/slam.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -1285,31 +1231,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="169" column="47" selection-start-line="169" selection-start-column="47" selection-end-line="169" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade - copia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="136" column="100" selection-start-line="136" selection-start-column="100" selection-end-line="136" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Almacen/almProcesoInternamiento.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-302">
-          <caret line="33" column="72" selection-start-line="33" selection-start-column="72" selection-end-line="33" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -1336,24 +1261,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="38" column="97" selection-start-line="38" selection-start-column="74" selection-end-line="38" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/almacen/ingreso/internamiento.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="86" column="103" selection-start-line="86" selection-start-column="88" selection-end-line="86" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
           <caret line="553" column="69" selection-start-line="553" selection-start-column="69" selection-end-line="553" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfActa.blade - copia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="136" column="100" selection-start-line="136" selection-start-column="100" selection-end-line="136" selection-end-column="100" />
         </state>
       </provider>
     </entry>
@@ -1364,17 +1282,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php">
+    <entry file="file://$PROJECT_DIR$/app/Almacen/almTLogDep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="227" column="65" selection-start-line="227" selection-start-column="65" selection-end-line="227" selection-end-column="65" />
+        <state relative-caret-position="96">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/slam.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/ingreso/internamiento.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="86" column="103" selection-start-line="86" selection-start-column="88" selection-end-line="86" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/findPersonaBox.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="48" column="15" lean-forward="true" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/findDependencyBox.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/findPersonaBoxO.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="54" column="94" selection-start-line="54" selection-start-column="72" selection-end-line="54" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
-          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+          <caret line="65" column="152" selection-start-line="65" selection-start-column="149" selection-end-line="65" selection-end-column="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="252" column="60" selection-start-line="252" selection-start-column="60" selection-end-line="252" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="192" column="12" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="95" />
+          <folding>
+            <element signature="e#55#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="77" column="20" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="535" column="111" selection-start-line="535" selection-start-column="111" selection-end-line="535" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="266" column="109" selection-start-line="266" selection-start-column="109" selection-end-line="266" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="323" column="89" selection-start-line="323" selection-start-column="89" selection-end-line="323" selection-end-column="89" />
+          <folding>
+            <element signature="e#5881#5887#1#HTML" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#3;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#5;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#7;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#8;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#9;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#11;n#tbody#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#0;n#tr#1;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

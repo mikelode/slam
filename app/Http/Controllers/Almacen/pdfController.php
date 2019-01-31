@@ -262,7 +262,9 @@ class pdfController extends Controller
 */
         /******************************************************************/
 
-        $view = view('almacen.pdf.pdfPs',['guia'=>$guia, 'proceso'=>$proceso, 'orden'=>$orc]);
+        $resClasificador = \DB::connection('dblogistica')->select('exec spLogGetOCAbsClasf ?',array(  $oc->orcID ));
+
+        $view = view('almacen.pdf.pdfPs',['guia'=>$guia, 'proceso'=>$proceso, 'orden'=>$orc, 'resClasificador' => $resClasificador]);
         $pdf = App::make('dompdf.wrapper'); 
          
 

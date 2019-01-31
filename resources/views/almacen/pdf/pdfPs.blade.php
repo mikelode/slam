@@ -160,16 +160,15 @@
             </div>
             <h6 style="padding: 0; margin: 0; clear: both;">DATOS GENERALES</h6>
             <div class="info">
-                <div class="infoitem"><label>DEPENDENCIA SOLIC.</label>: {{ $proceso[0]->dependencia_solic }}<br></div>
-                <div class="infoitem"><label>NOMBRE DEL SOLICITANTE </label>: {{ $proceso[0]->psal_solicitante }}<br></div>
+                <div class="infoitem"><label>DEPENDENCIA SOLICITANTE</label>: {{ $proceso[0]->dependencia_solic }}<br></div>
+                {{--<div class="infoitem"><label>NOMBRE DEL SOLICITANTE </label>: {{ $proceso[0]->psal_solicitante }}<br></div>--}}
                 <div class="infoitem"><label>SOLICITO ENTREGAR A</label>: {{ $proceso[0]->psal_receptor }}<br></div>
-                <div class="infoitem"><label>CON DESTINO HACIA</label>: {{ $proceso[0]->psal_destino }}<br></div>
+                <div class="infoitem"><label>CON DESTINO A</label>: {{ $proceso[0]->psal_destino }}<br></div>
             </div>
             <div class="infob">
                 <label class="fecha">Lugar y Fecha:</label><br>
                     <div class="date">QUELLOUNO, {{ date("d-m-Y",strtotime($proceso[0]->psal_fecha)) }}</div>
-                <label class="fecha">-</label><br>
-                <label class="fecha">-</label><br>
+                <label class="fecha">&nbsp;</label><br>
                 <!--<label class="fecha">S. Prog:</label>-->
             </div>
         </div>
@@ -222,7 +221,6 @@
                         <td width="5%">UND</td>
                         <td width="7%">MARCA</td>
                         <td width="5%">PRECIO</td>
-                        <td width="5%">OBSV</td>
                         <td width="5%">COSTO</td>
                     </tr>
                 </thead>
@@ -236,7 +234,6 @@
                         <td>{{ $b->psalp_umedida }}</td>
                         <td>{{ $b->psalp_marca }}</td>
                         <td>  <?php  echo floatval( $b->psalp_precio ) ;?></td>
-                        <td style="font-size:8px" >{{ $b->psalp_observacion }}</td>
                       <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
                         <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
                     </tr>
@@ -246,68 +243,98 @@
                         $suma += ($b->psalp_costo)
                     ?>
                     @endforeach
+                    <tr>
+                        <td></td>
+                        <td colspan="1" style="text-align: left; padding-left: 5px;">
+                            {{ 'Referencia: '.$guia[0]->oc_docRef.' - Proviene de la OC N°: '.$guia[0]->oc_cod.' - Entregado por: '.$proceso[0]->psal_usu_despachador.' - Guía de Internamiento: '.$guia[0]->ing_giu.' - Guía de Remisión N°: '.$proceso[0]->psal_guiarem.' - Factura N°: '.$proceso[0]->psal_factura.' - Obs: '.$proceso[0]->psal_observacion }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="7"></td>
+                    </tr>
                     @if(!is_null($orden))
                         <tr>
-                            <td colspan="7" style="text-align: right">SUBTOTAL:</td>
+                            <td colspan="6" style="text-align: right">SUBTOTAL:</td>
                             <td>{{ number_format($suma,2,'.',',') }}</td>
                         </tr>
                         <?php
-                            $envio = $orden->orcEnvio;
-                            $descuento = $orden->orcDescuento;
-                            $sumDetail = $orden->orcDescuento + $orden->orcEnvio;
+                        $envio = $orden->orcEnvio;
+                        $descuento = $orden->orcDescuento;
+                        $sumDetail = $orden->orcDescuento + $orden->orcEnvio;
                         ?>
                         @if($orden->orcIGV == 'SI')
                             <?php
-                                $igv = ($suma + $envio - $descuento) * 0.18;
+                            $igv = ($suma + $envio - $descuento) * 0.18;
                             ?>
                             <tr>
-                                <td colspan="7" style="text-align: right">DESCUENTO:</td>
+                                <td colspan="6" style="text-align: right">DESCUENTO:</td>
                                 <td>{{ number_format($orden->orcDescuento,2,'.',',') }}</td>
                             </tr>
                             <tr>
-                                <td colspan="7" style="text-align: right">ENVIO:</td>
+                                <td colspan="6" style="text-align: right">ENVIO:</td>
                                 <td>{{ number_format($orden->orcEnvio,2,'.',',') }}</td>
                             </tr>
                             <tr>
-                                <td colspan="7" style="text-align: right">IGV(%)</td>
+                                <td colspan="6" style="text-align: right">IGV(%)</td>
                                 <td>{{ number_format($igv,2,'.',',') }}</td>
                             </tr>
                         @elseif($orden->orcIGV == 'NO')
                             <?php $igv = 0; ?>
                             @if($sumDetail > 0)
                                 <tr>
-                                    <td colspan="7" style="text-align: right">DESCUENTO:</td>
+                                    <td colspan="6" style="text-align: right">DESCUENTO:</td>
                                     <td>{{ number_format($orden->orcDescuento,2,'.',',') }}</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="7" style="text-align: right">ENVIO:</td>
+                                    <td colspan="6" style="text-align: right">ENVIO:</td>
                                     <td>{{ number_format($orden->orcEnvio,2,'.',',') }}</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="7" style="text-align: right">IGV(%)</td>
+                                    <td colspan="6" style="text-align: right">IGV(%)</td>
                                     <td>{{ number_format($igv,2,'.',',') }}</td>
                                 </tr>
                             @endif
                         @endif
                         <tr>
-                            <td style="text-align: left" colspan="7">TOTAL PECOSA: SON {{ $convert->to_word(number_format((float)($suma - $descuento +$envio + $igv),2,'.',''),'PEN') }}</td>
+                            <td style="text-align: left" colspan="6">TOTAL PECOSA: SON {{ $convert->to_word(number_format((float)($suma - $descuento +$envio + $igv),2,'.',''),'PEN') }}</td>
                             <td>{{ number_format($suma - $descuento +$envio + $igv,2,'.',',') }}</td>
                         </tr>
                     @else
                         <tr>
-                            <td style="text-align: left" colspan="7">TOTAL PECOSA: SON {{ $convert->to_word(number_format((float)$suma,2,'.',''),'PEN') }}</td>
+                            <td style="text-align: left" colspan="6">TOTAL PECOSA: SON {{ $convert->to_word(number_format((float)$suma,2,'.',''),'PEN') }}</td>
                             <td>{{ number_format((float)$suma,2,'.',',') }}</td>
                         </tr>
                     @endif
-                    <tr>
-                        <td colspan="7" style="text-align: left; padding-left: 5px;">
-                            {{ 'Referencia: '.$guia[0]->oc_docRef.' - Proviene de la OC N°: '.$guia[0]->oc_cod.' - Entregado por: '.$proceso[0]->psal_usu_despachador.' - Guía de Internamiento: '.$guia[0]->ing_giu.' - Guía de Remisión N°: '.$proceso[0]->psal_guiarem.' - Factura N°: '.$proceso[0]->psal_factura.' - Obs: '.$proceso[0]->psal_observacion }}
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="8"></td>
-                    </tr>
+                </tbody>
+            </table>
+            <table style="table-layout: fixed" width="100%">
+                <tbody>
+                <tr>
+                    <td width="45%">Resumen por Clasificador</td>
+                    <td width="45%">Resumen por Cuenta Patrimonial</td>
+                    <td width="10%"></td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p style="font-size: 10px; padding: 0px 5px 0px 5px; margin:0;">*Resumen total de OC</p>
+                        @foreach($resClasificador as $ReqDll)
+                            <span style="font-size: 10px"> {{ $ReqDll->sfrub . ' | ' . $ReqDll->Clasf }}  = {{ $ReqDll->Total }} </span><br>
+                        @endforeach
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+                        <div>
+                            Elab.
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>

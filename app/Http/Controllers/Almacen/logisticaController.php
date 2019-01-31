@@ -103,9 +103,7 @@ class logisticaController extends Controller
     public function autoFindDependency(Request $request)
     {
         $term = '%'.$request->term.'%';
-
-        $dependencia = almTLogDep::where('depDsc','LIKE',$term)->where('depid', 'like', '18DP%')->get();
-
+        $dependencia = almTLogDep::where('depDsc','LIKE',$term)->where('depID', 'like', '19DP%')->get();
         $result = array();
 
         foreach($dependencia as $dep)

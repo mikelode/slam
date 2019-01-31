@@ -61,40 +61,38 @@
                                             <input class="form-control alm-input" type="text" name="disNameServer" placeholder="DATOS DEL RESPONSABLE DE ENTREGA">
                                         </div>
                                     </div>
-                                    <div class="form-group alm-form-group">
-                                        <label class="col-sm-3 control-label">Nombre del Solicitante : </label>
-                                        <div class="col-sm-2">
-                                            <input class="form-control alm-input formatDni" id="dniSolicitante" type="text" data-aim="dni" name="disDniApplicant" value="<?php echo e(isset($applicant[0]->reqSolicitante)?$applicant[0]->reqSolicitante:''); ?>" placeholder="DNI (F2)">
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input class="form-control alm-input" id="fnameSolicitante" type="text" name="disNameApplicant" value="<?php echo e(isset($applicant[0]->perNombres)?$applicant[0]->perNombres.' '.$applicant[0]->perAPaterno.' '.$applicant[0]->perAMaterno:''); ?>" placeholder="NOMBRE COMPLETO">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group alm-form-group">
-                                        <label class="col-sm-3 control-label">Cargo : </label>
-                                        <div class="col-sm-2">
-                                           
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="disRole" placeholder="CARGO" value="<?php echo e(isset($applicant[0]->reqCondicion)?$applicant[0]->reqCondicion:''); ?>">
-                                        </div>                                        
-                                    </div> 
-
+                                    <?php /*<div class="form-group alm-form-group">*/ ?>
+                                        <?php /*<label class="col-sm-3 control-label">Nombre del Solicitante : </label>*/ ?>
+                                        <?php /*<div class="col-sm-2">*/ ?>
+                                            <?php /*<input class="form-control alm-input formatDni" id="dniSolicitante" type="text" data-aim="dni" name="disDniApplicant" value="<?php echo e(isset($applicant[0]->reqSolicitante)?$applicant[0]->reqSolicitante:''); ?>" placeholder="DNI (F2)">*/ ?>
+                                        <?php /*</div>*/ ?>
+                                        <?php /*<div class="col-sm-7">*/ ?>
+                                            <?php /*<input class="form-control alm-input" id="fnameSolicitante" type="text" name="disNameApplicant" value="<?php echo e(isset($applicant[0]->perNombres)?$applicant[0]->perNombres.' '.$applicant[0]->perAPaterno.' '.$applicant[0]->perAMaterno:''); ?>" placeholder="NOMBRE COMPLETO">*/ ?>
+                                        <?php /*</div>*/ ?>
+                                    <?php /*</div>*/ ?>
 
                                        <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Solicito Entregar A : </label>
                                         <div class="col-sm-2">
-                                            <input class="form-control alm-input formatDni" id="dniReceptor" type="text" data-aim="dniRecep" name="receportDniApplicant"  placeholder="DNI (F2)">
+                                            <input class="form-control alm-input formatDni" id="dniReceptor" type="text" data-aim="dniRecep" name="receportDniApplicant"  placeholder="DNI (F2)" value="<?php echo e(isset($applicant[0]->reqSolicitante)?$applicant[0]->reqSolicitante:''); ?>">
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" id="fnameReceptor" type="text" name="receptorNameApplicant" value="" placeholder="NOMBRE COMPLETO">
+                                            <input class="form-control alm-input" id="fnameReceptor" type="text" name="receptorNameApplicant" value="<?php echo e(isset($applicant[0]->perNombres)?$applicant[0]->perNombres.' '.$applicant[0]->perAPaterno.' '.$applicant[0]->perAMaterno:''); ?>" placeholder="NOMBRE COMPLETO">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group alm-form-group">
+                                        <label class="col-sm-3 control-label">Cargo : </label>
+                                        <div class="col-sm-2">
+
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <input class="form-control alm-input" type="text" name="disRole" placeholder="CARGO" value="<?php echo e(isset($applicant[0]->reqCondicion)?$applicant[0]->reqCondicion:''); ?>">
                                         </div>
                                     </div>
 
 
-                                     <div class="form-group alm-form-group">
+                                    <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Dependencia :</label>
                                         <div class="col-sm-2">
                                             <input class="form-control alm-input" id="depSolicitante" type="text" data-aim="dep" name="disDependency" value="<?php echo e(isset($applicant[0]->orcDep)?$applicant[0]->orcDep:''); ?>" placeholder="DEP (F2)">
@@ -250,6 +248,14 @@ $(document).ready(function(){
 
     $('#dniReceptor , #dniSolicitante, #depSolicitante, #tarSolicitante').keydown(function(e){
         if(e.shiftKey)     {        e.preventDefault();      }
+        if(e.keyCode == 13){
+            $.getJSON('findPersona',{'term':$(this).val(), 'tipo':'dni'},function(result){
+                if(result.length == 0)
+                    $('#fnameReceptor').val('Persona no registrada');
+                else
+                    $('#fnameReceptor').val(result[0].fullname);
+            });
+        }
         if (e.keyCode == 113) {
             var tipo = $(this).data('aim');
             if(tipo == 'dni')
