@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQProc.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/rpt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/rpt.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqRpt.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqRpt.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/73f98c0bdeefd246620f5d420cf4d29774af1026" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/73f98c0bdeefd246620f5d420cf4d29774af1026" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5c3359ed6f462d812f3eb256867c201c" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5c3359ed6f462d812f3eb256867c201c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/4c/e6/4ce64e10f7a16eaf48e3dfa2b7db3012" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/4c/e6/4ce64e10f7a16eaf48e3dfa2b7db3012" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/7e/d6/7ed6d0f3219b55efa9f5e406fe25fbe9" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/7e/d6/7ed6d0f3219b55efa9f5e406fe25fbe9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/73f98c0bdeefd246620f5d420cf4d29774af1026" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/b52afd552ca8cc9a8b326a2e4fb6b11f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/b52afd552ca8cc9a8b326a2e4fb6b11f" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,24 +64,24 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="156" />
-          <entry key="Blade" value="15087" />
+          <entry key="Blade" value="15106" />
           <entry key="CSS" value="121" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="6151" />
-          <entry key="PHP" value="15674" />
+          <entry key="PHP" value="15686" />
           <entry key="SQL" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="24" />
-          <entry key="Blade" value="167" />
+          <entry key="Blade" value="171" />
           <entry key="CSS" value="4" />
           <entry key="JSON" value="5" />
-          <entry key="JavaScript" value="57" />
+          <entry key="JavaScript" value="58" />
           <entry key="Less" value="1" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="175" />
+          <entry key="PHP" value="179" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="TypeScript" value="2" />
           <entry key="XML" value="1" />
@@ -95,40 +95,151 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqRpt.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-752">
-              <caret line="102" column="57" selection-start-line="102" selection-start-column="57" selection-end-line="102" selection-end-column="57" />
+            <state relative-caret-position="383">
+              <caret line="196" column="43" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="43" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#55#69#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/jsDevRpt2.js">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade - copia.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="190" column="39" selection-start-line="190" selection-start-column="31" selection-end-line="190" selection-end-column="39" />
+            <state relative-caret-position="352">
+              <caret line="291" column="17" lean-forward="true" selection-start-line="291" selection-start-column="17" selection-end-line="291" selection-end-column="17" />
+              <folding>
+                <element signature="e#10948#11121#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="172" column="148" selection-start-line="172" selection-start-column="138" selection-end-line="172" selection-end-column="148" />
+            <state relative-caret-position="5171">
+              <caret line="389" column="34" lean-forward="true" selection-start-line="389" selection-start-column="34" selection-end-line="389" selection-end-column="34" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#103#110#1" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="e#212#218#0" expanded="true" />
+                <element signature="e#219#225#0" expanded="true" />
+                <element signature="e#226#232#0" expanded="true" />
+                <element signature="e#233#239#0" expanded="true" />
+                <element signature="e#240#246#0" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="e#24#30#0" expanded="true" />
+                <element signature="e#31#37#0" expanded="true" />
+                <element signature="e#38#44#0" expanded="true" />
+                <element signature="e#45#51#0" expanded="true" />
+                <element signature="e#54#60#0" expanded="true" />
+                <element signature="e#61#67#0" expanded="true" />
+                <element signature="e#69#75#0" expanded="true" />
+                <element signature="e#76#82#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#19#25#0" expanded="true" />
+                <element signature="e#26#32#0" expanded="true" />
+                <element signature="e#34#40#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#1;n#!!top" expanded="true" />
+                <element signature="e#5#11#0" expanded="true" />
+                <element signature="e#12#18#0" expanded="true" />
+                <element signature="e#19#25#0" expanded="true" />
+                <element signature="e#26#32#0" expanded="true" />
+                <element signature="e#33#39#0" expanded="true" />
+                <element signature="e#40#46#0" expanded="true" />
+                <element signature="e#48#54#0" expanded="true" />
+                <element signature="e#55#61#0" expanded="true" />
+                <element signature="e#64#70#0" expanded="true" />
+                <element signature="e#71#77#0" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#td#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="314" column="34" lean-forward="true" selection-start-line="314" selection-start-column="34" selection-end-line="314" selection-end-column="34" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#103#110#1" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="e#212#218#0" expanded="true" />
+                <element signature="e#219#225#0" expanded="true" />
+                <element signature="e#226#232#0" expanded="true" />
+                <element signature="e#233#239#0" expanded="true" />
+                <element signature="e#240#246#0" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="e#24#30#0" expanded="true" />
+                <element signature="e#31#37#0" expanded="true" />
+                <element signature="e#38#44#0" expanded="true" />
+                <element signature="e#45#51#0" expanded="true" />
+                <element signature="e#54#60#0" expanded="true" />
+                <element signature="e#61#67#0" expanded="true" />
+                <element signature="e#69#75#0" expanded="true" />
+                <element signature="e#76#82#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#19#25#0" expanded="true" />
+                <element signature="e#26#32#0" expanded="true" />
+                <element signature="e#34#40#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#1;n#!!top" expanded="true" />
+                <element signature="e#5#11#0" expanded="true" />
+                <element signature="e#12#18#0" expanded="true" />
+                <element signature="e#19#25#0" expanded="true" />
+                <element signature="e#26#32#0" expanded="true" />
+                <element signature="e#33#39#0" expanded="true" />
+                <element signature="e#40#46#0" expanded="true" />
+                <element signature="e#48#54#0" expanded="true" />
+                <element signature="e#55#61#0" expanded="true" />
+                <element signature="e#64#70#0" expanded="true" />
+                <element signature="e#71#77#0" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#td#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/jsDevMenu2.js">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="352">
+              <caret line="199" column="22" selection-start-line="199" selection-start-column="22" selection-end-line="199" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/jsDevReq2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-464">
+              <caret line="71" column="19" lean-forward="true" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,28 +247,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="833" selection-start-line="833" selection-end-line="833" />
+            <state relative-caret-position="319">
+              <caret line="702" column="44" selection-start-line="702" selection-start-column="44" selection-end-line="702" selection-end-column="44" />
               <folding>
                 <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQProc.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
-              <folding>
-                <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-                <element signature="n#style#1;n#tr#0;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-                <element signature="e#7876#7918#0#HTML" expanded="true" />
-                <element signature="e#8061#8088#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,11 +270,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>spLogGetFteD</find>
-      <find>btnCCRucEDIT</find>
-      <find>tabRucBns</find>
-      <find>btnLogCC_ItemSave</find>
-      <find>spLogSetFteD</find>
       <find>btnLogCtzDel</find>
       <find>#btnLogCtzDel</find>
       <find>spLogSetCtz</find>
@@ -191,7 +282,6 @@
       <find>btnLogOS_dllSAVE</find>
       <find>spLogSetOSD</find>
       <find>siaf</find>
-      <find>print</find>
       <find>btnLogReqSgSearch</find>
       <find>spLogGetReqSg</find>
       <find>datos para gen</find>
@@ -204,6 +294,12 @@
       <find>btnLogRptXls</find>
       <find>rptExcel</find>
       <find>spRptExcel</find>
+      <find>prCan</find>
+      <find>btnLogReqNew</find>
+      <find>spLogGetCodNext</find>
+      <find>btnLogReqSave</find>
+      <find>print</find>
+      <find>condicion</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -217,10 +313,10 @@
       <dir>D:\xampp\htdocs\slam\app\Almacen</dir>
       <dir>D:\xampp\htdocs\slam\app\Http</dir>
       <dir>D:\xampp\htdocs\slam\resources\views\logistica</dir>
-      <dir>D:\xampp\htdocs\slam\app\Http\Controllers\Logistica</dir>
       <dir>D:\xampp\htdocs\slam\public</dir>
       <dir>D:\xampp\htdocs\slam\resources\views</dir>
       <dir>D:\xampp\htdocs\slam\public\js</dir>
+      <dir>D:\xampp\htdocs\slam\app\Http\Controllers\Logistica</dir>
     </dirStrings>
   </component>
   <component name="FindManager">
@@ -234,9 +330,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/logTbNotif.php" />
-        <option value="$PROJECT_DIR$/app/Almacen/logTbNotif.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/almStoreOcPostRequest.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwNotify.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/ingreso/panel-ingresoPage.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" />
@@ -282,9 +375,12 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOS.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqOSrv.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqRpt.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQProc.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" />
+        <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqRpt.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade - copia.php" />
+        <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php" />
       </list>
     </option>
   </component>
@@ -584,12 +680,12 @@
       <workItem from="1548295059368" duration="11538000" />
       <workItem from="1548516544897" duration="76076000" />
       <workItem from="1548724733989" duration="7559000" />
-      <workItem from="1548766667955" duration="16021000" />
+      <workItem from="1548766667955" duration="26576000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364988000" />
+    <option name="totallyTimeSpent" value="375543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -677,13 +773,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCSExp.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="356" column="111" selection-start-line="356" selection-start-column="95" selection-end-line="356" selection-end-column="111" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Almacen/almTLogDep.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -782,13 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="216" column="6" lean-forward="true" selection-start-line="216" selection-start-column="6" selection-end-line="216" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrFteDll.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -866,60 +948,6 @@
           <caret line="365" column="48" selection-start-line="365" selection-start-column="48" selection-end-line="365" selection-end-column="48" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4879">
-          <caret line="283" column="13" lean-forward="true" selection-start-line="283" selection-start-column="13" selection-end-line="283" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#103#110#1" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#212#218#0" expanded="true" />
-            <element signature="e#219#225#0" expanded="true" />
-            <element signature="e#226#232#0" expanded="true" />
-            <element signature="e#233#239#0" expanded="true" />
-            <element signature="e#240#246#0" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="e#24#30#0" expanded="true" />
-            <element signature="e#31#37#0" expanded="true" />
-            <element signature="e#38#44#0" expanded="true" />
-            <element signature="e#45#51#0" expanded="true" />
-            <element signature="e#54#60#0" expanded="true" />
-            <element signature="e#61#67#0" expanded="true" />
-            <element signature="e#69#75#0" expanded="true" />
-            <element signature="e#76#82#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="e#19#25#0" expanded="true" />
-            <element signature="e#26#32#0" expanded="true" />
-            <element signature="e#34#40#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#!!top" expanded="true" />
-            <element signature="e#5#11#0" expanded="true" />
-            <element signature="e#12#18#0" expanded="true" />
-            <element signature="e#19#25#0" expanded="true" />
-            <element signature="e#26#32#0" expanded="true" />
-            <element signature="e#33#39#0" expanded="true" />
-            <element signature="e#40#46#0" expanded="true" />
-            <element signature="e#48#54#0" expanded="true" />
-            <element signature="e#55#61#0" expanded="true" />
-            <element signature="e#64#70#0" expanded="true" />
-            <element signature="e#71#77#0" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#td#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade - copia.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logOSDll.blade.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -1145,16 +1173,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="194" column="78" selection-start-line="194" selection-start-column="75" selection-end-line="194" selection-end-column="78" />
-          <folding>
-            <element signature="e#55#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOS.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
@@ -1169,26 +1187,6 @@
           <folding>
             <element signature="e#6087#6112#0#HTML" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/jsDevReq2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="1465" column="37" selection-start-line="1465" selection-start-column="24" selection-end-line="1465" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="212" column="26" lean-forward="true" selection-start-line="212" selection-start-column="26" selection-end-line="212" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1221,19 +1219,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="833" selection-start-line="833" selection-end-line="833" />
-          <folding>
-            <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQ.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -1248,25 +1233,183 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQProc.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="33" column="73" selection-start-line="33" selection-start-column="73" selection-end-line="33" selection-end-column="73" />
+          <folding>
+            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#1;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#tr#0;n#tbody#0;n#table#1;n#!!top" expanded="true" />
+            <element signature="e#7876#7918#0#HTML" expanded="true" />
+            <element signature="e#8061#8088#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqRpt.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-752">
-          <caret line="102" column="57" selection-start-line="102" selection-start-column="57" selection-end-line="102" selection-end-column="57" />
+        <state relative-caret-position="553">
+          <caret line="105" column="112" selection-start-line="105" selection-start-column="112" selection-end-line="105" selection-end-column="112" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQProc.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+        <state relative-caret-position="624">
+          <caret line="255" column="71" selection-start-line="255" selection-start-column="71" selection-end-line="255" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqReq.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="199" column="22" selection-start-line="199" selection-start-column="22" selection-end-line="199" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="702" column="44" selection-start-line="702" selection-start-column="44" selection-end-line="702" selection-end-column="44" />
           <folding>
-            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-            <element signature="n#style#1;n#tr#0;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-            <element signature="e#7876#7918#0#HTML" expanded="true" />
-            <element signature="e#8061#8088#0#HTML" expanded="true" />
+            <element signature="n#STYLE#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jsDevReq2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-464">
+          <caret line="71" column="19" lean-forward="true" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlOC.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="196" column="43" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="43" />
+          <folding>
+            <element signature="e#55#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/rptAdqOCom.blade - copia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="291" column="17" lean-forward="true" selection-start-line="291" selection-start-column="17" selection-end-line="291" selection-end-column="17" />
+          <folding>
+            <element signature="e#10948#11121#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOCom.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5171">
+          <caret line="389" column="34" lean-forward="true" selection-start-line="389" selection-start-column="34" selection-end-line="389" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#103#110#1" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#212#218#0" expanded="true" />
+            <element signature="e#219#225#0" expanded="true" />
+            <element signature="e#226#232#0" expanded="true" />
+            <element signature="e#233#239#0" expanded="true" />
+            <element signature="e#240#246#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="e#24#30#0" expanded="true" />
+            <element signature="e#31#37#0" expanded="true" />
+            <element signature="e#38#44#0" expanded="true" />
+            <element signature="e#45#51#0" expanded="true" />
+            <element signature="e#54#60#0" expanded="true" />
+            <element signature="e#61#67#0" expanded="true" />
+            <element signature="e#69#75#0" expanded="true" />
+            <element signature="e#76#82#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#19#25#0" expanded="true" />
+            <element signature="e#26#32#0" expanded="true" />
+            <element signature="e#34#40#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#!!top" expanded="true" />
+            <element signature="e#5#11#0" expanded="true" />
+            <element signature="e#12#18#0" expanded="true" />
+            <element signature="e#19#25#0" expanded="true" />
+            <element signature="e#26#32#0" expanded="true" />
+            <element signature="e#33#39#0" expanded="true" />
+            <element signature="e#40#46#0" expanded="true" />
+            <element signature="e#48#54#0" expanded="true" />
+            <element signature="e#55#61#0" expanded="true" />
+            <element signature="e#64#70#0" expanded="true" />
+            <element signature="e#71#77#0" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#td#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqOServ.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="314" column="34" lean-forward="true" selection-start-line="314" selection-start-column="34" selection-end-line="314" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#103#110#1" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#212#218#0" expanded="true" />
+            <element signature="e#219#225#0" expanded="true" />
+            <element signature="e#226#232#0" expanded="true" />
+            <element signature="e#233#239#0" expanded="true" />
+            <element signature="e#240#246#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="e#24#30#0" expanded="true" />
+            <element signature="e#31#37#0" expanded="true" />
+            <element signature="e#38#44#0" expanded="true" />
+            <element signature="e#45#51#0" expanded="true" />
+            <element signature="e#54#60#0" expanded="true" />
+            <element signature="e#61#67#0" expanded="true" />
+            <element signature="e#69#75#0" expanded="true" />
+            <element signature="e#76#82#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#19#25#0" expanded="true" />
+            <element signature="e#26#32#0" expanded="true" />
+            <element signature="e#34#40#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#!!top" expanded="true" />
+            <element signature="e#5#11#0" expanded="true" />
+            <element signature="e#12#18#0" expanded="true" />
+            <element signature="e#19#25#0" expanded="true" />
+            <element signature="e#26#32#0" expanded="true" />
+            <element signature="e#33#39#0" expanded="true" />
+            <element signature="e#40#46#0" expanded="true" />
+            <element signature="e#48#54#0" expanded="true" />
+            <element signature="e#55#61#0" expanded="true" />
+            <element signature="e#64#70#0" expanded="true" />
+            <element signature="e#71#77#0" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#td#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

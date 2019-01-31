@@ -309,8 +309,11 @@ $("#txOS_Condicion").summernote(
      width:650,
      height:280,
  styleWithSpan: false,
-                        toolbar: [
-                        ]     
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline']],
+            ['para', ['ul']],
+            ['height', ['height']]
+        ]
 }
   );
 

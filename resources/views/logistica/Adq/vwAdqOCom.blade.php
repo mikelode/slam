@@ -388,7 +388,7 @@ $("#txOC_Condicion").summernote(
      height:250,
  styleWithSpan: false,
                         toolbar: [
-                        ]     
+                        ]
 }
   );
 </script>>

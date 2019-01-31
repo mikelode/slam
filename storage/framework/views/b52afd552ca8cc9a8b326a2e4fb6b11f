@@ -320,6 +320,9 @@ $("#txOS_Condicion").summernote(
      height:280,
  styleWithSpan: false,
                         toolbar: [
+                            ['style', ['bold', 'italic', 'underline']],
+                            ['para', ['ul']],
+                            ['height', ['height']]
                         ]     
 }
   );
