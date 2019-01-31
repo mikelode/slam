@@ -156,7 +156,7 @@
                 </div>
             </div>
             <div class="title">
-                <h3 style="text-align: center;">PEDIDO - COMPROBANTE DE SALIDA <br> {{ $proceso[0]->psal_pecosa }}</h3>
+                <h3 style="text-align: center;">PEDIDO - COMPROBANTE DE SALIDA <br> {{ ' NRO - ' . substr($proceso[0]->psal_pecosa,-4) }}</h3>
             </div>
             <h6 style="padding: 0; margin: 0; clear: both;">DATOS GENERALES</h6>
             <div class="info">
@@ -330,8 +330,9 @@
 
                     </td>
                     <td>
-                        <div>
-                            Elab.
+                        <div style="font-size: 7px">
+                            Elab. {{ $proceso[0]->usu_act }}/
+                            Imp. {{ auth()->user()->usrAbrv }}
                         </div>
                     </td>
                 </tr>
