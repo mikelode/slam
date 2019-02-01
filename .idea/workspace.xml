@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/06698c4d96b57a17be34f936100f6dd64ed4b898" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/06698c4d96b57a17be34f936100f6dd64ed4b898" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/056087d5c2c2fef8fe358779ab9b191e" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/056087d5c2c2fef8fe358779ab9b191e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/b52afd552ca8cc9a8b326a2e4fb6b11f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/b52afd552ca8cc9a8b326a2e4fb6b11f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/e439400cefee7d79d7ae459b420868c2" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e439400cefee7d79d7ae459b420868c2" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,8 +100,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/partials/mainheader.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="34" column="14" selection-start-line="34" selection-start-column="18" selection-end-line="37" selection-end-column="24" />
+            <state relative-caret-position="287">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
@@ -549,12 +541,12 @@
       <workItem from="1548516544897" duration="76076000" />
       <workItem from="1548724733989" duration="7559000" />
       <workItem from="1548766667955" duration="46792000" />
-      <workItem from="1549026336496" duration="922000" />
+      <workItem from="1549026336496" duration="1535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="396681000" />
+    <option name="totallyTimeSpent" value="397294000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -969,8 +961,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/mainheader.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="34" column="14" selection-start-line="34" selection-start-column="18" selection-end-line="37" selection-end-column="24" />
+        <state relative-caret-position="287">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
