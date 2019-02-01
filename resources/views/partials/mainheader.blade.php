@@ -32,10 +32,10 @@
         </div>
          <div class="ribbon-section">
               <span class="section-title">Requerimiento</span>
-              <div class="ribbon-button ribbon-button-large" id="btnMainLogReq">
-                  <span class="button-title"><b>Solicitud de <br>Requerimiento</b></span>
-              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconRq.png') }}" width="32px" height="32px" />
-              </div>
+              {{--<div class="ribbon-button ribbon-button-large" id="btnMainLogReq">--}}
+                  {{--<span class="button-title"><b>Solicitud de <br>Requerimiento</b></span>--}}
+              {{--<img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconRq.png') }}" width="32px" height="32px" />--}}
+              {{--</div>--}}
 
               <div class="ribbon-button ribbon-button-large" id="btnMainLogReqSg">
               <span class="button-title">Seguimiento</span>

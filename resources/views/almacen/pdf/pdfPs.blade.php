@@ -61,7 +61,7 @@
             .sign{
                 font-size: 12px;
                 font-family: Courier, "Courier new", monospace;
-                width: 200px;
+                width: 300px;
                 text-align: center;
                 float: left;
                 display: inline-block;

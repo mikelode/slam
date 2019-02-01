@@ -611,7 +611,7 @@ class distribucionController extends Controller
                         }
                         break;
 
-                     case 'receptorPs':
+                    case 'receptorPs':
                         $persona = almTPerPrs::find($value);
                         if(!is_null($persona))
                         {
@@ -623,6 +623,10 @@ class distribucionController extends Controller
                             throw new Exception('Error, el DNI del receptor no está registrado en el sistema');
                         }
                     break;
+
+                    case 'despachPs':
+                        $pecosa->psal_usu_despachador = $value;
+                        break;
 
                     default:
                         throw new Exception('Error en la selección del campo a editar');

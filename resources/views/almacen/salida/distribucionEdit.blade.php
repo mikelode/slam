@@ -63,24 +63,28 @@
                                 <div class="row">
                                     <label class="col-sm-3 control-label">Persona que Despacha</label>
                                     <div class="col-sm-9">
-                                        <div class="alm-input-frm">{{ $proceso[0]->psal_usu_despachador }}</div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-sm-3 control-label">Nombre del Solicitante</label>
-                                    <div class="col-sm-2">
                                         <div class="alm-input-frm">
-                                            <a href="#" class="updtGral" data-name="solicPs" data-pk="{{ $proceso[0]->psal_pecosa }}" data-type="text" data-placement="bottom">
-                                                {{ $proceso[0]->psal_dni_solicitante }}
+                                            <a href="#" class="updtGral" data-name="despachPs" data-pk="{{ $proceso[0]->psal_pecosa }}" data-type="text">
+                                            {{ $proceso[0]->psal_usu_despachador }}
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-sm-7">
-                                        <div class="alm-input-frm">
-                                            {{ $proceso[0]->psal_solicitante }}
-                                        </div>
-                                    </div>
                                 </div>
+                                {{--<div class="row">--}}
+                                    {{--<label class="col-sm-3 control-label">Nombre del Solicitante</label>--}}
+                                    {{--<div class="col-sm-2">--}}
+                                        {{--<div class="alm-input-frm">--}}
+                                            {{--<a href="#" class="updtGral" data-name="solicPs" data-pk="{{ $proceso[0]->psal_pecosa }}" data-type="text" data-placement="bottom">--}}
+                                                {{--{{ $proceso[0]->psal_dni_solicitante }}--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-sm-7">--}}
+                                        {{--<div class="alm-input-frm">--}}
+                                            {{--{{ $proceso[0]->psal_solicitante }}--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
                                 <div class="row">
                                     <label class="col-sm-3 control-label">Solicito Entregar A:</label>
@@ -98,33 +102,44 @@
                                     </div>
                                 </div>
 
-                               <!--
                                 <div class="row">
-                                    <label class="col-sm-3 control-label">Dependencia y Cargo</label>
+                                    <label class="col-sm-3 control-label">Cargo</label>
                                     <div class="col-sm-2">
-                                        <div class="alm-input-frm">{{ $proceso[0]->psal_dependencia_solic }}</div>
                                     </div>
                                     <div class="col-sm-7">
-                                        <div class="alm-input-frm">{{ $proceso[0]->psal_solic_cargo }}</div>
-                                    </div>
-                                </div>
-
-                                -->
-
-                                <!--
-                                
-                                 <div class="row">
-                                    <label class="col-sm-3 control-label">Solicito Entregar A:</label>
-                                    <div class="col-sm-9">
                                         <div class="alm-input-frm">
-                                            <a href="#" class="updtGral" data-name="recepPs" data-pk="{{ $proceso[0]->psal_pecosa }}" data-type="text" data-placement="bottom">
-                                                {{ $proceso[0]->psal_receptor }}
-                                            </a>
+                                            {{ $proceso[0]->psal_solic_cargo }}
                                         </div>
                                     </div>
-                                   
                                 </div>
-                                -->
+
+                               {{--<!----}}
+                                {{--<div class="row">--}}
+                                    {{--<label class="col-sm-3 control-label">Dependencia y Cargo</label>--}}
+                                    {{--<div class="col-sm-2">--}}
+                                        {{--<div class="alm-input-frm">{{ $proceso[0]->psal_dependencia_solic }}</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-sm-7">--}}
+                                        {{--<div class="alm-input-frm">{{ $proceso[0]->psal_solic_cargo }}</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+
+                                {{---->--}}
+
+                                {{--<!----}}
+                                {{----}}
+                                 {{--<div class="row">--}}
+                                    {{--<label class="col-sm-3 control-label">Solicito Entregar A:</label>--}}
+                                    {{--<div class="col-sm-9">--}}
+                                        {{--<div class="alm-input-frm">--}}
+                                            {{--<a href="#" class="updtGral" data-name="recepPs" data-pk="{{ $proceso[0]->psal_pecosa }}" data-type="text" data-placement="bottom">--}}
+                                                {{--{{ $proceso[0]->psal_receptor }}--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                   {{----}}
+                                {{--</div>--}}
+                                {{---->--}}
 
                                 <div class="row">
                                     <label class="col-sm-3 control-label">Destino</label>
@@ -175,6 +190,11 @@
             <div class="col-md-2">
                 <div class="panel panel-default alm-panel">
                     <div class="panel-body">
+                        <button type="button" class="btn btn-success alm-button" id="btnEditPs">
+                            <i class="glyphicon glyphicon-pencil"></i> EDITAR
+                        </button>
+                        <br>
+                        <br>
                         <button type="button" class="btn btn-primary alm-button" onclick="change_menu_to('internamiento/close')">
                             <i class="glyphicon glyphicon-log-out"></i> SALIR
                         </button>
@@ -247,6 +267,7 @@ $(document).ready(function(){
     var token = $('meta[name="csrf-token"]').attr('content');
 
     $('.updtGral').editable({
+        disabled: true,
         url: 'update/ps',
         emptytext: 'Vacío',
         params: {_token: token, control:'general'},
@@ -257,6 +278,7 @@ $(document).ready(function(){
     });
 
     $('.updtCant').editable({
+        disabled: true,
         url: 'update/ps',
         params: {_token: token, control:'quantity'},
         success:function(response){
@@ -277,6 +299,24 @@ $(document).ready(function(){
         modal.find('.modal-body #rmvPcs').val(pcs);
         modal.find('.modal-body #refGi').val(gi);
         modal.find('.modal-body #refOc').val(oc);
+    });
+
+    $('#btnEditPs').click(function (e) {
+        e.preventDefault();
+
+        var txt = $(this).text().trim();
+
+        if(txt == 'EDITAR'){
+            $(this).attr('class','btn btn-warning alm-button');
+            $(this).html('<i class="glyphicon glyphicon-arrow-down"></i> CANCELAR');
+        }
+        else {
+            $(this).attr('class','btn btn-success alm-button');
+            $(this).html('<i class="glyphicon glyphicon-pencil"></i> EDITAR');
+        }
+
+        $(document).find('.updtGral').editable('toggleDisabled');
+        $(document).find('.updtCant').editable('toggleDisabled');
     });
 });
 
