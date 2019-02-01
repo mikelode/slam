@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/06698c4d96b57a17be34f936100f6dd64ed4b898" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/06698c4d96b57a17be34f936100f6dd64ed4b898" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e439400cefee7d79d7ae459b420868c2" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e439400cefee7d79d7ae459b420868c2" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,24 +62,24 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="156" />
-          <entry key="Blade" value="16775" />
+          <entry key="Blade" value="16813" />
           <entry key="CSS" value="121" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="6151" />
-          <entry key="PHP" value="16291" />
+          <entry key="PHP" value="16403" />
           <entry key="SQL" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="25" />
-          <entry key="Blade" value="186" />
+          <entry key="Blade" value="188" />
           <entry key="CSS" value="4" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="59" />
           <entry key="Less" value="1" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="198" />
+          <entry key="PHP" value="199" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="TypeScript" value="2" />
           <entry key="XML" value="1" />
@@ -97,11 +101,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/partials/mainheader.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="656">
+              <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="267" column="160" lean-forward="true" selection-start-line="267" selection-start-column="160" selection-end-line="267" selection-end-column="160" />
             </state>
           </provider>
         </entry>
@@ -129,6 +142,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="9760">
               <caret line="625" selection-start-line="625" selection-end-line="625" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="539">
+              <caret line="334" column="36" selection-start-line="334" selection-start-column="36" selection-end-line="334" selection-end-column="36" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#td#1;n#tr#1;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -252,11 +278,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" />
-        <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" />
+        <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" />
       </list>
     </option>
   </component>
@@ -428,12 +454,6 @@
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
               <item name="slam" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slam" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -447,7 +467,15 @@
               <item name="slam" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="almacen" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slam" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="almacen" type="462c0819:PsiDirectoryNode" />
+              <item name="pdf" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -541,12 +569,12 @@
       <workItem from="1548516544897" duration="76076000" />
       <workItem from="1548724733989" duration="7559000" />
       <workItem from="1548766667955" duration="46792000" />
-      <workItem from="1549026336496" duration="1535000" />
+      <workItem from="1549026336496" duration="3744000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="397294000" />
+    <option name="totallyTimeSpent" value="399503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -882,20 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="266" column="109" selection-start-line="266" selection-start-column="109" selection-end-line="266" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -961,8 +975,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/mainheader.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="656">
+          <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="267" column="160" lean-forward="true" selection-start-line="267" selection-start-column="160" selection-end-line="267" selection-end-column="160" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="334" column="36" selection-start-line="334" selection-start-column="36" selection-end-line="334" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#td#1;n#tr#1;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#1;n#tr#1;n#tbody#0;n#table#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

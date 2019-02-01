@@ -326,13 +326,16 @@
                     <td align="left">
                         <p style="font-size: 10px; padding: 0px 5px 0px 5px; margin:0;">*Resumen total de OC</p>
                         <?php foreach($resClasificador as $ReqDll): ?>
-                            <span style="font-size: 10px"> <?php echo e($ReqDll->sfrub . ' | ' . $ReqDll->Clasf); ?>  = <?php echo e($ReqDll->Total); ?> </span><br>
+                            <span style="font-size: 10px"> <?php echo e($ReqDll->sfrub . ' | ' . $ReqDll->Clasf); ?>  : S/.<?php echo e($ReqDll->Total); ?> </span><br>
                         <?php endforeach; ?>
                     </td>
-                    <td>
-
+                    <td align="left">
+                        <p style="font-size: 10px; padding: 0px 5px 0px 5px; margin:0;">*Resumen total de OC</p>
+                        <?php foreach($resCuenta as $ReqDll): ?>
+                            <span style="font-size: 10px; padding: 0px 5px 0px 5px;"> <?php echo e($ReqDll->Cuenta); ?>  : S/.<?php echo e($ReqDll->Total); ?> </span><br>
+                        <?php endforeach; ?>
                     </td>
-                    <td>
+                    <td align="right">
                         <div style="font-size: 7px">
                             Elab. <?php echo e($proceso[0]->usu_act); ?>/
                             Imp. <?php echo e(auth()->user()->usrAbrv); ?>

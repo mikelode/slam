@@ -323,13 +323,16 @@
                     <td align="left">
                         <p style="font-size: 10px; padding: 0px 5px 0px 5px; margin:0;">*Resumen total de OC</p>
                         @foreach($resClasificador as $ReqDll)
-                            <span style="font-size: 10px"> {{ $ReqDll->sfrub . ' | ' . $ReqDll->Clasf }}  = {{ $ReqDll->Total }} </span><br>
+                            <span style="font-size: 10px"> {{ $ReqDll->sfrub . ' | ' . $ReqDll->Clasf }}  : S/.{{ $ReqDll->Total }} </span><br>
                         @endforeach
                     </td>
-                    <td>
-
+                    <td align="left">
+                        <p style="font-size: 10px; padding: 0px 5px 0px 5px; margin:0;">*Resumen total de OC</p>
+                        @foreach($resCuenta as $ReqDll)
+                            <span style="font-size: 10px; padding: 0px 5px 0px 5px;"> {{ $ReqDll->Cuenta }}  : S/.{{ $ReqDll->Total }} </span><br>
+                        @endforeach
                     </td>
-                    <td>
+                    <td align="right">
                         <div style="font-size: 7px">
                             Elab. {{ $proceso[0]->usu_act }}/
                             Imp. {{ auth()->user()->usrAbrv }}
