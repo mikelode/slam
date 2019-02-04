@@ -119,7 +119,7 @@
                 font-size: 12px;
             }
             .firmas table tbody tr td{
-                height: 40px;
+                height: 80px;
                 font-weight: bold;
             }
         </style>

@@ -22,8 +22,7 @@
                 font-family: "Courier New", Courier, monospace;
                 font-size: 12px;
                 display: inline-block;
-                height: 60px;
-
+                height: 100px;
             }
             body{
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -138,7 +137,7 @@
                 font-size: 12px;
             }
             .firmas table tbody tr td{
-                height: 50px;
+                height: 85px;
             }
 
         </style>
