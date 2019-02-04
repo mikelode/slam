@@ -23,7 +23,7 @@
            <td name="tdDepAnio"   align="center"     >{{ $nom->depAnio }}</td>
            <td name="tdDepCod"    align="center"    >{{ $nom->depCod }}</td>
             <td name="tdDepDsc"    >{{ $nom->depDsc }}</td>
-            <td BGCOLOR="#d9edf7"><button id="btnDepRowEDIT" class="btn btn-default " style="width:   55Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px; MARGIN-RIGHT:20px; " type="button">EDITAR</button> </td>
+            <td BGCOLOR="#d9edf7"><button class="btn btn-default btnDepRowEDIT" style="width:   55Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px; MARGIN-RIGHT:20px; " type="button">EDITAR</button> </td>
             <td BGCOLOR="#d9edf7" ><button  id="btnDepRowDEL" class="btn btn-danger " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>
         </tr>
         @endforeach

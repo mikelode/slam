@@ -496,10 +496,14 @@ $(document).on('click','.btnCtzRowADD',function(e){
     else {
         fila.find("td[name=tdCzItm]")      .html(0);
         fila.find("td[name=tdRqItm]")      .html(0);
+        fila.find("td[name=tdSF]") .html(parseInt(varCtzDll.prodSecfun.substr(-5)));
+        fila.find("td[name=tdRubro]") .html(varCtzDll.prodRubro);
         fila.find("td[name=tdCant]")    .html(varCtzDll.prodCant);
         fila.find("td[name=tdProd]")    .html(varCtzDll.prodDsc);
         fila.find("td[name=tdUnd]")     .html(varCtzDll.prodUndAbrv);
         fila.find("td[name=tdEspf]")    .html(varCtzDll.prodEspf);
+        fila.find("td[name=tdSF]") .attr("codID",varCtzDll.prodSecfun);
+        fila.find("td[name=tdRubro]") .attr("codID",varCtzDll.prodRubro);
         fila.find("td[name=tdProd]")    .attr("codID",varCtzDll.prodID);
         fila.find("td[name=tdUnd]")     .attr("codID",varCtzDll.prodUndID);
         objEvento.fadeOut(300, function () {      objEvento.remove();      });
@@ -687,10 +691,14 @@ $(document).on('click','.btnCtzRowUPD',function(e){
         objEvento.html("").append(tmp).css("background","#d9edf7").attr("trFocus","ACTIVE");
         objEvento.find("td[name=tdCzItm]").html(varCtzDll.czItm);
         objEvento.find("td[name=tdRqItm]").html(varCtzDll.rqItm);
+        objEvento.find("td[name=tdSF]").html(parseInt(varCtzDll.prodSecfun.substr(-5)));
+        objEvento.find("td[name=tdRubro]").html(varCtzDll.prodRubro);
         objEvento.find("td[name=tdCant]").html(varCtzDll.prodCant);
         objEvento.find("td[name=tdProd]").html(varCtzDll.prodDsc);
         objEvento.find("td[name=tdUnd]").html(varCtzDll.prodUndAbrv);
         objEvento.find("td[name=tdEspf]").html(varCtzDll.prodEspf);
+        objEvento.find("td[name=tdSF]").attr("codID",varCtzDll.prodSecfun);
+        objEvento.find("td[name=tdRubro]").attr("codID",varCtzDll.prodRubro);
         objEvento.find("td[name=tdProd]").attr("codID", varCtzDll.prodID);
         objEvento.find("td[name=tdUnd]").attr("codID", varCtzDll.prodUndID);
         objEvento.removeAttr("style").removeAttr("trFocus");

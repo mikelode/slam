@@ -37,7 +37,7 @@ function jsFunGetRowTemplate(tipo, tiposf)
     }
     else{
         rowTmp += '<td width="3%" name="tdSF" style="padding: 3px 0px; display: none;"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="font-size:11px;" codID="NN" type="text"></td>';
-        rowTmp += '<td width="3%" name="tdRubro" style="padding: 3px 0px; display: none;"><input id="txProdSF" name ="txProdRubro" class="form-control gs-input" placeholder="Rubro" style="font-size:11px;" codID="NN" type="text"></td>';
+        rowTmp += '<td width="3%" name="tdRubro" style="padding: 3px 0px; display: none;"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rubro" style="font-size:11px;" codID="NN" type="text"></td>';
     }
 
     rowTmp+='    <td width="5%" name="tdCant"  style="padding: 3px 0px;" > <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="font-size:11px;" codID="NN" type="text"></td> ';
@@ -480,6 +480,22 @@ $( document ).on( 'click','#btnSecFunRowNEW',function(e ) {
             $('#modalSecFun').modal('show');
             $("#txSecFun_Anio" ).val($(".txVarAnioEjec").val());
         });
+});
+
+$( document ).on( 'click','#btnDepRowNEW',function(e ) {
+    e.preventDefault();
+    $("#txDepAutoDsc").val("");
+    var url = 'logistica/vwDepNew';
+    $.get(url,function(data){
+        $("#loadModalsMain").html('');
+        $("#loadModalsMain").html(data);
+        $('#modalDep').modal('show');
+        $("#txDep_Anio").val($(".txVarAnioEjec").val());
+    });
+});
+
+$(document).on('click','.btnDepRowEDIT', function (e) {
+    e.preventDefault();
 });
 
 
@@ -1375,7 +1391,7 @@ $(document).on('keydown','#txProdSF, #txProdRubro',function (evt) {
                    }
                    else {
                        $('#txProdRubro').attr('codID',id);
-                       console.log($('#txCodRubro'));
+
                        alert(dsc);
                        $( "#txProdCant" ).focus();
                    }
@@ -1523,7 +1539,7 @@ function fnComputeTotal(row, price) {
 }
 
 function fnChangeBtn(BS, btn){
-    console.log(btn);
+
     if(BS == 'BB'){
         btn.find('.btnTxt').html('AGREGAR BIEN');
     }

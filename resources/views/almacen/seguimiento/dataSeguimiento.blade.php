@@ -41,9 +41,10 @@
                         <div class="form-group alm-form-group" style="overflow: hidden;">
                             <label class="control-label alm-label" style="float: left;">Nro Factura </label><span style="float: left;">:</span>
                             <div class="alm-input-frm" style="width: 50%; float: left;">
-                                <a href="#" class="updtField" data-name="editFactura" data-pk="{{ $internamiento->ing_giu }}" data-type="text">
-                                    {{ trim($internamiento->ing_factura) }}
-                                </a>
+                                {{ trim($internamiento->ing_factura) }}
+                                {{--<a href="#" class="updtField" data-name="editFactura" data-pk="{{ $internamiento->ing_giu }}" data-type="text">--}}
+                                    {{--{{ trim($internamiento->ing_factura) }}--}}
+                                {{--</a>--}}
                             </div>
                         </div>
                         {{--<div class="form-group alm-form-group">
@@ -53,9 +54,10 @@
                         <div class="form-group alm-form-group">
                             <label class="control-label alm-label" style="float: left;">Guía de Remisión </label><span style="float: left;">:</span>
                             <div class="alm-input-frm" style="width: 50%; float: left;">
-                                <a href="#" class="updtField" data-name="editRemision" data-pk="{{ $internamiento->ing_giu }}" data-type="text">
-                                    {{ trim($internamiento->ing_guiaremision) }}
-                                </a>
+                                {{ trim($internamiento->ing_guiaremision) }}
+                                {{--<a href="#" class="updtField" data-name="editRemision" data-pk="{{ $internamiento->ing_giu }}" data-type="text">--}}
+                                    {{----}}
+                                {{--</a>--}}
                             </div>
                         </div>
 
@@ -205,9 +207,10 @@
                             <div class="form-group alm-form-group">
                                 <label class="control-label alm-label" style="float: left">Fecha de Intern.</label><span style="float: left;">:</span>
                                 <div class="alm-input-frm" style="width: 50%; float: left;">
-                                    <a href="#" class="updtDateField" data-name="editFecIntern" data-pk="{{ $iCod->pint_cpi }}" data-type="date" data-format="dd-mm-yyyy">
-                                        {{ $iCod->pint_fecha }}
-                                    </a>
+                                    {{ $iCod->pint_fecha }}
+                                    {{--<a href="#" class="updtDateField" data-name="editFecIntern" data-pk="{{ $iCod->pint_cpi }}" data-type="date" data-format="dd-mm-yyyy">--}}
+                                        {{--{{ $iCod->pint_fecha }}--}}
+                                    {{--</a>--}}
                                 </div>
                             </div>
                         </div>
@@ -379,17 +382,6 @@ $(document).ready(function(){
     });*/
 
     var token = $('meta[name="csrf-token"]').attr('content');
-
-    $.fn.bdatepicker.dates['es'] = {
-        days: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-        daysShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
-        daysMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
-        months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'],
-        monthsShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Set','Oct','Nov','Dic'],
-        today: ['Hoy'],
-        clear: ['Limpiar'],
-        weekStart: 1
-    };
 
     $('.updtDateField').editable({
         url: 'update/gi',

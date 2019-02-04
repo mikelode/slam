@@ -307,6 +307,7 @@ class distribucionController extends Controller
                     $pcsb->psalp_costo = $distribuido * $item->prod_precio; //$item->prod_costo;
                     $pcsb->psalp_marca = $item->prod_marca;
                     $pcsb->psalp_observacion = $comentario; // $request['disC-' . $item->prod_cod];
+                    $pcsb->psalp_ord = $item->id;
                     $pcsb->save();
 
                     unset($pintb);

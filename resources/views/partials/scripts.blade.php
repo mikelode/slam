@@ -6,7 +6,7 @@
 <!-- X-Editable Field -->
 <script src="{{ asset('/plugins/x-editable/bootstrap3-editable/js/bootstrap-editable.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/x-editable/moment.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/plugins/x-editable/bootstrap-datepicker.es.js') }}" type="text/javascript"></script>
+{{--<script src="{{ asset('/plugins/x-editable/bootstrap-datepicker.es.js') }}" type="text/javascript"></script>--}}
 <!-- InputMask -->
 <script src="{{ asset('/plugins/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/input-mask/jquery.inputmask.date.extensions.js') }}" type="text/javascript"></script>

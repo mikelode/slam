@@ -57,28 +57,28 @@
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Persona que Entrega</label>
                                         <div class="col-sm-2">
-                                            <input class="form-control alm-input intDni" type="text" name="intDniGiver" placeholder="DNI">
+                                            <input class="form-control alm-input intDni" type="text" id="intDniGiver" name="intDniGiver" placeholder="DNI" data-tipo="giver">
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="intNameGiver" placeholder="NOMBRE COMPLETO DEL QUE ENTREGA">
+                                            <input class="form-control alm-input" type="text" id="intNameGiver" name="intNameGiver" placeholder="NOMBRE COMPLETO DEL QUE ENTREGA">
                                         </div>
                                     </div>
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Persona que Recibe</label>
                                         <div class="col-sm-2">
-                                            <input class="form-control alm-input intDni" type="text" name="intDniReceiver" placeholder="DNI">
+                                            <input class="form-control alm-input intDni" type="text" id="intDniReceiver" name="intDniReceiver" placeholder="DNI" data-tipo="receipter">
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="intNameReceiver" placeholder="NOMBRE COMPLETO DEL QUE RECIBE">
+                                            <input class="form-control alm-input" type="text" id="intNameReceiver" name="intNameReceiver" placeholder="NOMBRE COMPLETO DEL QUE RECIBE">
                                         </div>
                                     </div>
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Conductor que Traslado</label>
                                         <div class="col-sm-2">
-                                            <input class="form-control alm-input intDni" type="text" name="intDniDriver" placeholder="DNI">
+                                            <input class="form-control alm-input intDni" type="text" id="intDniDriver" name="intDniDriver" placeholder="DNI" data-tipo="driver">
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="intNameDriver" placeholder="NOMBRE COMPLETO DEL CONDUCTOR">
+                                            <input class="form-control alm-input" type="text" id="intNameDriver" name="intNameDriver" placeholder="NOMBRE COMPLETO DEL CONDUCTOR">
                                         </div>
                                     </div>
                                     <div class="form-group alm-form-group">
@@ -101,11 +101,11 @@
                 <div class="col-md-2">
                     <div class="panel panel-default alm-panel">
                         <div class="panel-body">
-                            <button type="button" class="btn btn-primary" id="saveInternamiento">
+                            <button type="button" class="btn btn-success" id="saveInternamiento">
                                 <i class="glyphicon glyphicon-floppy-save"></i> GUARDAR
                             </button>
                             <p></p>
-                            <button type="button" class="btn btn-primary alm-button" onclick="change_menu_to('internamiento/close')">
+                            <button type="button" class="btn btn-primary alm-button" onclick="getMenuInternamiento();">
                                 <i class="glyphicon glyphicon-remove-sign"></i> SALIR
                             </button>
                         </div>
@@ -128,7 +128,7 @@
                                     <th>Intern</th>
                                     <th>Und</th>
                                     <th>Recibir</th>
-                                    <th>Obs.</th>
+                                    <th>Estado</th>
                                     <th>
                                         <input type="checkbox" id="almCheckAll">
                                     </th>
@@ -137,7 +137,7 @@
                             <tbody>
                                 @foreach($bienes as $key=>$bn)
                                 <tr id="rowProduct{{ $key + 1 }}">
-                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $bn->prod_ord }}</td>
                                     <td>{{ $bn->prod_desc }}</td>
                                     <td>{{ $bn->prod_marca }}</td>
                                     <td>
@@ -160,7 +160,8 @@
                                         @if($bn->flagR == 1)
                                             Entregado Completamente
                                         @else
-                                            <input type="text" class="form-control alm-input-table" value="{{ $bn->prod_ingobs }}" name="{{ 'intC-'.$bn->prod_cod.'-'.$bn->id }}">
+                                            <input type="hidden" class="form-control alm-input-table" value="{{ $bn->prod_ingobs }}" name="{{ 'intC-'.$bn->prod_cod.'-'.$bn->id }}">
+                                            Pendiente
                                         @endif
                                     </td>
                                     <td>
@@ -255,6 +256,38 @@ $(document).ready(function(){
     });
 
     $('.intDni').inputmask({ mask: "99999999" });
+
+
+    $("#intDniGiver,#intDniReceiver,#intDniDriver").keydown(function(e){
+        if(e.shiftKey){
+            e.preventDefault();
+        }
+
+        if(e.keyCode == 13){
+            $this = $(this);
+            var tipo = $this.data('tipo');
+
+            $.get('findIntointernamiento',{'id': $this.val(), 'tipo': tipo}, function (data) {
+
+                if(data.msgId == 500){
+                    alert(data.msg);
+                }
+                else{
+                    if(tipo == 'giver'){
+                        $('#intNameGiver').val(data.fullname);
+                    }
+                    else if(tipo == 'receipter'){
+                        $('#intNameReceiver').val(data.fullname)
+                    }
+                    else if(tipo == 'driver'){
+                        $('#intNameDriver').val(data.fullname)
+                    }
+                }
+
+            })
+
+        }
+    });
 
 });
 

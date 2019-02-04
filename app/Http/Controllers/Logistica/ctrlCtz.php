@@ -38,7 +38,6 @@ class ctrlCtz extends Controller
     }
     public function spLogSetCtz(Request $prRqsCtz)
     {
-       //dd($prRqsCtz);
         $dbResult = \DB::select('exec spLogSetCtz ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?',
             array(
                 $prRqsCtz["varCtz"]["ctzOPE"],
@@ -65,7 +64,21 @@ class ctrlCtz extends Controller
             {   
                 foreach ($prRqsCtz["varCtzDll"] as $key => $valor)
                 {
-                   $dbResultDll = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?', array( 'ADD',$prRqsCtz["varCtz"]["ctzReqID"],  $valor["czItm"] , $valor["rqItm"]  ,$idCtz  , $valor["prod"], $valor["und"],$valor["cant"],$valor["espf"], Auth::user()->usrID, $valor['secfun'], $valor['rubro'] ));
+                   $dbResultDll = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
+                       array(
+                           'ADD',
+                           $prRqsCtz["varCtz"]["ctzReqID"],
+                           $valor["czItm"] , $valor["rqItm"]  ,
+                           $idCtz  ,
+                           $valor["prod"],
+                           $valor["und"],
+                           $valor["cant"],
+                           $valor["espf"],
+                           Auth::user()->usrID,
+                           $valor['secfun'],
+                           $valor['rubro']
+                       ));
+
                    if ($dbResultDll[0]->CtzNo == "NN")    {    array_push($ErrorDtll, array('CtzNo' => $dbResultDll[0]->CtzNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"])); }
                 }
                 if (count($ErrorDtll) > 0) {    return response()->json($ErrorDtll);      }
@@ -77,7 +90,20 @@ class ctrlCtz extends Controller
         $codCtz = $prRqsCtz["varCtz"]["ctzID"];
         $varReturn["Flg"]="1";
         $qry = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
-            array( $prRqsCtz["varCtzDll"]["OPE"] , $prRqsCtz["varCtz"]["ctzReqID"] , $prRqsCtz["varCtzDll"]["czItm"] , $prRqsCtz["varCtzDll"]["rqItm"]  ,$codCtz  ,$prRqsCtz["varCtzDll"]["prodID"],  $prRqsCtz["varCtzDll"]["prodUndID"],$prRqsCtz["varCtzDll"]["prodCant"],$prRqsCtz["varCtzDll"]["prodEspf"], Auth::user()->usrID, $prRqsCtz["varCtzDll"]["prodSecfun"], $prRqsCtz["varCtzDll"]["prodRubro"] ));
+            array(
+                $prRqsCtz["varCtzDll"]["OPE"] ,
+                $prRqsCtz["varCtz"]["ctzReqID"] ,
+                $prRqsCtz["varCtzDll"]["czItm"] ,
+                $prRqsCtz["varCtzDll"]["rqItm"]  ,
+                $codCtz  ,
+                $prRqsCtz["varCtzDll"]["prodID"],
+                $prRqsCtz["varCtzDll"]["prodUndID"],
+                $prRqsCtz["varCtzDll"]["prodCant"],
+                $prRqsCtz["varCtzDll"]["prodEspf"],
+                Auth::user()->usrID,
+                $prRqsCtz["varCtzDll"]["prodSecfun"],
+                $prRqsCtz["varCtzDll"]["prodRubro"]
+            ));
         if ($qry[0]->Error=="0") { $varReturn["Flg"]=$qry[0]->Mensaje;}
         $result = \DB::select('exec spLogGetCtzD ?',array( $codCtz));
         $varReturn["CtzDll"] =  view ('logistica.Partials.logCtzDll',compact( 'result'))->render();

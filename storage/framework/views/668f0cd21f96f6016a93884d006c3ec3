@@ -61,9 +61,9 @@
                                     <th>Vence en</th>
                                     <th>Fecha de Vencimiento</th>
                                     <th>Almacen</th>
-                                    <th>Anulado</th>
+                                    <?php /*<th>Anulado</th>*/ ?>
                                     <th>Internamiento</th>
-                                    <th></th>
+                                    <?php /*<th></th>*/ ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,17 +104,15 @@
                                     <?php endif; ?>
                                     </td>
                                     <td><?php echo e($item->nombre); ?></td>
-                                    <td>
-                                    <?php if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO'): ?>
-                                        <a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="<?php echo e($item->ing_giu); ?>" data-oc="<?php echo e($item->oc_cod); ?>">
-                                            <?php echo e($item->estado_anulacion); ?>
-
-                                        </a>
-                                    <?php else: ?>
-                                        <?php echo e($item->estado_anulacion); ?>
-
-                                    <?php endif; ?>
-                                    </td>
+                                    <?php /*<td>*/ ?>
+                                    <?php /*<?php if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO'): ?>*/ ?>
+                                        <?php /*<a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="<?php echo e($item->ing_giu); ?>" data-oc="<?php echo e($item->oc_cod); ?>">*/ ?>
+                                            <?php /*<?php echo e($item->estado_anulacion); ?>*/ ?>
+                                        <?php /*</a>*/ ?>
+                                    <?php /*<?php else: ?>*/ ?>
+                                        <?php /*<?php echo e($item->estado_anulacion); ?>*/ ?>
+                                    <?php /*<?php endif; ?>*/ ?>
+                                    <?php /*</td>*/ ?>
                                     <td>
                                     <?php if($hoy->diffInDays($limite, false) < 0): ?>
                                         <div class="bg-danger">
@@ -136,14 +134,13 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     </td>
-
-                                    <td>
-                                    <?php if($item->estado_salida == 'P' ): ?>
-                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#rmvGiModal" data-gi="<?php echo e($item->ing_giu); ?>" data-oc="<?php echo e($item->oc_cod); ?>">
-                                            <img src="<?php echo e(asset('img/cross.png')); ?>">
-                                        </a>
-                                    <?php endif; ?>
-                                    </td>
+                                    <?php /*<td>*/ ?>
+                                    <?php /*<?php if($item->estado_salida == 'P' ): ?>*/ ?>
+                                        <?php /*<a href="javascript:void(0)" data-toggle="modal" data-target="#rmvGiModal" data-gi="<?php echo e($item->ing_giu); ?>" data-oc="<?php echo e($item->oc_cod); ?>">*/ ?>
+                                            <?php /*<img src="<?php echo e(asset('img/cross.png')); ?>">*/ ?>
+                                        <?php /*</a>*/ ?>
+                                    <?php /*<?php endif; ?>*/ ?>
+                                    <?php /*</td>*/ ?>
 
                                 </tr>
                                 <?php endforeach; ?>

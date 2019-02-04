@@ -25,7 +25,6 @@ function showDocDetail(code)
 
 function showOperationDetail(codeId)
 {
-    console.log(codeId);
 
     $.getJSON('operation/detail/' + codeId, function(response){
         
@@ -60,8 +59,6 @@ function change_menu_to(path)
 {
     /*$('.preloader').show();*/
     var year = $('#periodSys').val();
-
-    console.log(year);
 
     $.get(path, {period : year}, function(data){
 
@@ -230,7 +227,7 @@ function open_chat_box(id, user)
     chatbox += '<span class="input-group-btn">';
     chatbox += '</span></div></form></div></div></div></div>';
 
-    //console.log('Antes de agregar el chat box');
+
 
     $('#chat-box-container').append(chatbox);
 }
@@ -241,7 +238,6 @@ function fillData(check, source, target, control, flag)
     var n = $(check).prop('id').split('-');
     var row = $(check).closest('tr#rowProduct' + n[1]);
     var p = $(check).data('prod');
-    console.log(row.find('#'+source+'-'+p).val());
 
     if(active)
     {

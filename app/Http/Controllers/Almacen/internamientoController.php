@@ -319,6 +319,7 @@ class internamientoController extends Controller
                     $ocDet->fecha_act = Carbon::now()->toDateString();
                     $ocDet->hora_act = Carbon::now()->toTimeString();
                     $ocDet->user_act = Auth::user()->usrID; // 'Usuario';
+                    $ocDet->prod_ord = $i+1;
 
                     $ocDet->save();
                     unset($ocDet);
@@ -459,6 +460,7 @@ class internamientoController extends Controller
                 $neaProd->fecha_act = Carbon::now()->toDateString();
                 $neaProd->hora_act = Carbon::now()->toTimeString();
                 $neaProd->user_act = Auth::user()->usrID; // 'Usuario Sesion';
+                $neaProd->prod_ord = $i;
                 $neaProd->save();
 
                 unset($neaProd);
@@ -504,6 +506,85 @@ class internamientoController extends Controller
         return $view;
     }
 
+    public function postUpdtInternamiento($gi, $pi, Request $request)
+    {
+        try{
+
+            $exception = DB::transaction(function () use($gi, $pi, $request){
+
+                $proceso = almProcesoInternamiento::find($pi);
+
+                $proceso->pint_fecha = $request->updDateReceipt;
+                $proceso->pint_pentrega = $request->updNameGiver;
+                $proceso->pint_dni_pentrega = $request->updDniGiver;
+                $proceso->pint_preceptor = $request->updNameReceiver;
+                $proceso->pint_dni_receptor = $request->updDniReceiver;
+                $proceso->pint_conductor = $request->updNameDriver;
+                $proceso->pint_dni_conductor = $request->updDniDriver;
+                $proceso->pint_observacion = $request->updComment;
+                $proceso->pint_guiaremision = $request->updGuiaRemision;
+
+                $proceso->save();
+
+                $flagConforme = true; // Para actualizar si la guia tiene internamiento conforme, pendiente o en transito
+
+
+                foreach ($request->articulos as $key=>$art){
+
+                    $producto = almProcesoInternamientoB::find($key);
+                    $inventario = almInventario::find($producto->pintp_ord);
+
+                    /* Comprobamos igualdades de recepcion */
+                    $newCantR = ($inventario->prod_recep - $producto->pintp_cantr) + $art; // generamos la nueva cantidad total recibida
+
+                    if($newCantR > $inventario->prod_cant)
+                        throw new Exception('La cantidad ingresada supera a la cantidad adquirida con la orden de compra');
+
+                    $producto->pintp_cantr = $art;
+                    $producto->save();
+
+                    $inventario->prod_recep = $newCantR;
+                    $inventario->prod_stock = $newCantR - $inventario->prod_distribuido;
+                    $inventario->conf_prod = $newCantR == $inventario->prod_cant ? 'C' : 'T';
+                    $inventario->flagR = $newCantR == $inventario->prod_cant ? true : false;
+                    $inventario->save();
+
+                    if(!$inventario->flagR)
+                        $flagConforme = false;
+
+                }
+
+                if(!$flagConforme){
+                    $guia = almInternamiento::find($gi);
+                    $guia->estado_validacion = 'T';
+                    $guia->flagI = false;
+                    $guia->save();
+                }
+                else{
+                    $guia = almInternamiento::find($gi);
+                    $guia->estado_validacion = 'C';
+                    $guia->flagI = true;
+                    $guia->save();
+                }
+
+            });
+
+            if(is_null($exception)){
+                $msg = 'Proceso de Intenamiento actualizado correctamente';
+                $msgId = 200;
+            }
+            else{
+                throw new Exception("No se pudieron guardar los cambios realizados \n");
+            }
+
+        }catch (Exception $e){
+            $msg = "Error: " . $e->getMessage() . "- Linea: " . $e->getLine();
+            $msgId = 500;
+        }
+
+        return response()->json(compact('msg','msgId'));
+    }
+
     public function getInternamientoBienes($gi, Request $request)
     {
         $guia = almInternamiento::find($gi);
@@ -520,7 +601,6 @@ class internamientoController extends Controller
 
                 $guia = almInternamiento::find($gi);
                 $bienes = almInternamiento::find($gi)->inventario;
-
                 /*
                  * GENERAMOS NUEVO CODIGO DE PROCESO DE INTERNAMIENTO
                  * */
@@ -581,6 +661,7 @@ class internamientoController extends Controller
                     $pintb->pintp_costo = $recibido * $item->prod_precio;//$item->prod_costo;
                     $pintb->pintp_marca = $item->prod_marca;
                     $pintb->pintp_observacion = $comentario;
+                    $pintb->pintp_ord = $item->id; // referencio al id del producto situado en inventario
                     $pintb->save();
 
                     unset($pintb);
@@ -870,110 +951,151 @@ class internamientoController extends Controller
     }
 
 
-
-
     public function postRemoveGuiaInternamiento(Request $request)
-        {
-            try{
-                $internamiento = almInternamiento::find($request->rmvGi);
-                $ingresos = almProcesoInternamiento::with('productos_ingresados')
-                    ->where('cod_giu',$request->rmvGi)
-                    ->get();
-                $message = '200';
+    {
+        try{
+            $internamiento = almInternamiento::find($request->rmvGi);
+            $ingresos = almProcesoInternamiento::with('productos_ingresados')
+                ->where('cod_giu',$request->rmvGi)
+                ->get();
+            $message = '200';
 
-                $exception = DB::transaction(function() use ($internamiento, $ingresos, $request){
+            $exception = DB::transaction(function() use ($internamiento, $ingresos, $request){
 
-                    if(count($ingresos) > 0)
+                if(count($ingresos) > 0)
+                {
+                    foreach($ingresos as $pguia)
                     {
-                        foreach($ingresos as $pguia)
+                        foreach($pguia->productos_ingresados as $item)
                         {
-                            foreach($pguia->productos_ingresados as $item)
-                            {
-                                $recycle = new almRecycleInternamiento();
+                            $recycle = new almRecycleInternamiento();
 
-                                $recycle->giCodigo = $internamiento->ing_giu;
-                                $recycle->giAlmacen = $internamiento->ing_almacen;
-                                $recycle->giGuiaRemision = $internamiento->ing_guiaremision;
-                                $recycle->giFactura = $internamiento->ing_factura;
-                                $recycle->giUsuInternamiento = $internamiento->conf_usu;
-                                $recycle->giFechaInternamiento = $internamiento->conf_fecha;
-                                $recycle->giNea = $internamiento->nea_cod;
-                                $recycle->giTipoInternamiento = $internamiento->tipo_internamiento;
-                                $recycle->giTipoDoc = $internamiento->tipo_doc;
-                                $recycle->giOrdenCompra = $internamiento->oc_cod;
-                                $recycle->giProcesoCodigo = $pguia->pint_cpi;
-                                $recycle->giProcesoFecha = $pguia->pint_fecha;
-                                $recycle->giProcesoNameEntrega = $pguia->pint_pentrega;
-                                $recycle->giProcesoDniEntrega = $pguia->pint_dni_pentrega;
-                                $recycle->giProcesoNameReceptor = $pguia->pint_receptor;
-                                $recycle->giProcesoDniReceptor = $pguia->pint_dni_receptor;
-                                $recycle->giProcesoObservacion = $pguia->pint_observacion;
-                                $recycle->giProcesoProdCod = $item->pintp_cod;
-                                $recycle->giProcesoProdDsc = $item->pintp_desc;
-                                $recycle->giProcesoProdCantr = $item->pintp_cantr;
-                                $recycle->giProcesoProdMedida = $item->pintp_umedida;
-                                $recycle->giProcesoProdPrecio = $item->pintp_precio;
-                                $recycle->giProcesoProdCosto = $item->pintp_costo;
-                                $recycle->giProcesoProdMarca = $item->pintp_marca;
-                                $recycle->giRemoveAt = Carbon::now()->format('d/m/Y h:i:s A');
-                                $recycle->giRemoveBy = Auth::user()->usrID;
-                                $recycle->giRemoveFor = $request->rmvCause;
+                            $recycle->giCodigo = $internamiento->ing_giu;
+                            $recycle->giAlmacen = $internamiento->ing_almacen;
+                            $recycle->giGuiaRemision = $internamiento->ing_guiaremision;
+                            $recycle->giFactura = $internamiento->ing_factura;
+                            $recycle->giUsuInternamiento = $internamiento->conf_usu;
+                            $recycle->giFechaInternamiento = $internamiento->conf_fecha;
+                            $recycle->giNea = $internamiento->nea_cod;
+                            $recycle->giTipoInternamiento = $internamiento->tipo_internamiento;
+                            $recycle->giTipoDoc = $internamiento->tipo_doc;
+                            $recycle->giOrdenCompra = $internamiento->oc_cod;
+                            $recycle->giProcesoCodigo = $pguia->pint_cpi;
+                            $recycle->giProcesoFecha = $pguia->pint_fecha;
+                            $recycle->giProcesoNameEntrega = $pguia->pint_pentrega;
+                            $recycle->giProcesoDniEntrega = $pguia->pint_dni_pentrega;
+                            $recycle->giProcesoNameReceptor = $pguia->pint_receptor;
+                            $recycle->giProcesoDniReceptor = $pguia->pint_dni_receptor;
+                            $recycle->giProcesoObservacion = $pguia->pint_observacion;
+                            $recycle->giProcesoProdCod = $item->pintp_cod;
+                            $recycle->giProcesoProdDsc = $item->pintp_desc;
+                            $recycle->giProcesoProdCantr = $item->pintp_cantr;
+                            $recycle->giProcesoProdMedida = $item->pintp_umedida;
+                            $recycle->giProcesoProdPrecio = $item->pintp_precio;
+                            $recycle->giProcesoProdCosto = $item->pintp_costo;
+                            $recycle->giProcesoProdMarca = $item->pintp_marca;
+                            $recycle->giRemoveAt = Carbon::now()->format('d/m/Y h:i:s A');
+                            $recycle->giRemoveBy = Auth::user()->usrID;
+                            $recycle->giRemoveFor = $request->rmvCause;
 
-                                $recycle->save();
-                                unset($recycle);
-                            }
+                            $recycle->save();
+                            unset($recycle);
                         }
                     }
-                    else
-                    {
-                        $recycle = new almRecycleInternamiento();
-
-                        $recycle->giCodigo = $internamiento->ing_giu;
-                        $recycle->giAlmacen = $internamiento->ing_almacen;
-                        $recycle->giGuiaRemision = $internamiento->ing_guiaremision;
-                        $recycle->giFactura = $internamiento->ing_factura;
-                        $recycle->giUsuInternamiento = $internamiento->conf_usu;
-                        $recycle->giFechaInternamiento = $internamiento->conf_fecha;
-                        $recycle->giNea = $internamiento->nea_cod;
-                        $recycle->giTipoInternamiento = $internamiento->tipo_internamiento;
-                        $recycle->giTipoDoc = $internamiento->tipo_doc;
-                        $recycle->giOrdenCompra = $internamiento->oc_cod;
-                        $recycle->giRemoveAt = Carbon::now()->format('d/m/Y h:i:s A');
-                        $recycle->giRemoveBy = Auth::user()->usrID;
-                        $recycle->giRemoveFor = '';
-
-                        $recycle->save();
-                        unset($recycle);
-                    }
-
-                });
-
-                if(is_null($exception))
-                {
-                    almInternamiento::destroy($request->rmvGi);
-
-                    $seguimiento = new almSeguimiento();
-
-                    $seguimiento->seg_giu = $request->rmvGi;
-                    $seguimiento->seg_operacion = 'Eliminacion';
-                    $seguimiento->seg_usuario = Auth::user()->usrID; // 'usuario';
-                    $seguimiento->seg_fecha = Carbon::now()->format('d/m/Y h:i:s A');
-                    $seguimiento->seg_hora = Carbon::now()->toTimeString();
-                    $seguimiento->seg_descripcion = "Eliminación del registro de la OC:".$request->refOc." como la GI:".$request->rmvGi;
-
-                    $seguimiento->save();
                 }
                 else
                 {
-                    $message = $exception;
+                    $recycle = new almRecycleInternamiento();
+
+                    $recycle->giCodigo = $internamiento->ing_giu;
+                    $recycle->giAlmacen = $internamiento->ing_almacen;
+                    $recycle->giGuiaRemision = $internamiento->ing_guiaremision;
+                    $recycle->giFactura = $internamiento->ing_factura;
+                    $recycle->giUsuInternamiento = $internamiento->conf_usu;
+                    $recycle->giFechaInternamiento = $internamiento->conf_fecha;
+                    $recycle->giNea = $internamiento->nea_cod;
+                    $recycle->giTipoInternamiento = $internamiento->tipo_internamiento;
+                    $recycle->giTipoDoc = $internamiento->tipo_doc;
+                    $recycle->giOrdenCompra = $internamiento->oc_cod;
+                    $recycle->giRemoveAt = Carbon::now()->format('d/m/Y h:i:s A');
+                    $recycle->giRemoveBy = Auth::user()->usrID;
+                    $recycle->giRemoveFor = '';
+
+                    $recycle->save();
+                    unset($recycle);
                 }
 
-                return $message;
+            });
 
-            }catch(Exception $e){
-                return 'Excepción capturada: '.$e->getMessage().' \n ';
+            if(is_null($exception))
+            {
+                almInternamiento::destroy($request->rmvGi);
+
+                $seguimiento = new almSeguimiento();
+
+                $seguimiento->seg_giu = $request->rmvGi;
+                $seguimiento->seg_operacion = 'Eliminacion';
+                $seguimiento->seg_usuario = Auth::user()->usrID; // 'usuario';
+                $seguimiento->seg_fecha = Carbon::now()->format('d/m/Y h:i:s A');
+                $seguimiento->seg_hora = Carbon::now()->toTimeString();
+                $seguimiento->seg_descripcion = "Eliminación del registro de la OC:".$request->refOc." como la GI:".$request->rmvGi;
+
+                $seguimiento->save();
             }
+            else
+            {
+                $message = $exception;
+            }
+
+            return $message;
+
+        }catch(Exception $e){
+            return 'Excepción capturada: '.$e->getMessage().' \n ';
         }
+    }
+
+    public function getPersonData(Request $request)
+    {
+        try{
+            $tipo = $request->tipo;
+
+            if($tipo == 'giver'){
+                $persona = almProcesoInternamiento::where('pint_dni_pentrega',$request->id)->first();
+            }
+            else if($tipo == 'receipter'){
+                $persona = almProcesoInternamiento::where('pint_dni_receptor',$request->id)->first();
+            }
+            else if($tipo == 'driver'){
+                $persona = almProcesoInternamiento::where('pint_dni_conductor',$request->id)->first();
+            }
+            else{
+                throw new Exception('No se especifico el tipo de persona a buscar');
+            }
+
+            if(is_null($persona)){
+                $msg = "Los datos de la persona no estan registrados. \n Registre manualmente dicha información.";
+                $msgId = 500;
+            }
+            else{
+                $msg = "Datos encontrados";
+                $msgId = 200;
+                $fullname = null;
+
+                if($tipo == 'giver') $fullname = $persona->pint_pentrega;
+                if($tipo == 'receipter') $fullname = $persona->pint_preceptor;
+                if($tipo == 'driver') $fullname = $persona->pint_conductor;
+            }
+
+
+        }catch (Exception $e){
+            $msg = $e->getMessage();
+            $msgId = 500;
+            $fullname = null;
+        }
+
+        return response()->json(compact('fullname','msg','msgId'));
+
+    }
 
 
 }

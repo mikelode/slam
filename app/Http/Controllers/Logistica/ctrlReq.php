@@ -97,7 +97,20 @@ class ctrlReq extends Controller
                 $dllRubro = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $valor['rubro'] : $request["datos"]["reqRubro"];
 
                 $resultDetalles = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
-                    array( $varOpe, 0  ,$idReq  , $valor["prod"], $valor["und"],$valor["clasf"],$valor["cant"],$valor["precioUnt"],$valor["espf"], Auth::user()->usrID, $dllSecfun, $dllRubro ));
+                    array(
+                        $varOpe,
+                        0  ,
+                        $idReq  ,
+                        $valor["prod"],
+                        $valor["und"],
+                        $valor["clasf"],
+                        $valor["cant"],
+                        $valor["precioUnt"],
+                        $valor["espf"],
+                        Auth::user()->usrID,
+                        $dllSecfun,
+                        $dllRubro
+                    ));
                 if ($resultDetalles[0]->ReqNo == "NN")
                 {
                     array_push($ErrorDtll, array('ReqNo' => $resultDetalles[0]->ReqNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"]));
@@ -115,7 +128,21 @@ class ctrlReq extends Controller
         $dllRubro = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $request["lista"]["prodRubroID"] : $request["datos"]["reqRubro"];
 
         $codReq = $request["datos"]["reqID"];                
-        $varReturn["Msg"] = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ,?,?',    array( $request["lista"]["OPE"] , $request["lista"]["ID"]  ,$codReq  , $request["lista"]["prodID"],   $request["lista"]["prodUndID"],$request["lista"]["prodClasfID"],$request["lista"]["prodCant"],$request["lista"]["prodPrecioUnt"],$request["lista"]["prodEspf"], Auth::user()->usrID, $dllSecfun, $dllRubro ));
+        $varReturn["Msg"] = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
+            array(
+                $request["lista"]["OPE"] ,
+                $request["lista"]["ID"]  ,
+                $codReq  ,
+                $request["lista"]["prodID"],
+                $request["lista"]["prodUndID"],
+                $request["lista"]["prodClasfID"],
+                $request["lista"]["prodCant"],
+                $request["lista"]["prodPrecioUnt"],
+                $request["lista"]["prodEspf"],
+                Auth::user()->usrID,
+                $dllSecfun,
+                $dllRubro
+            ));
 
         $result = \DB::select('exec spLogGetReqD ?',array( $codReq));
         $secfun = $request["datos"]["reqSecFun"];

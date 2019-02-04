@@ -226,11 +226,12 @@
                             <tr>
                                 <th style="width: 15px;">#</th>
                                 <th>Producto</th>
-                                <th>Cantidad Internada</th>
+                                <th>Cant. Contratada</th>
+                                <th>Cant. Internada</th>
                                 <?php foreach($pecosas as $ps): ?>
                                     <th class="info"><?php echo e($ps->shortPs); ?></th>
                                 <?php endforeach; ?>
-                                <th>Cantidad Distribuida</th>
+                                <th>Cant. Distribuida</th>
                                 <th>Stock</th>
                             </tr>
                         </thead>
@@ -241,6 +242,7 @@
                                 <td><?php echo e($key + 1); ?></td>
                                 <td><?php echo e($bn->prod_desc); ?></td>
                                 <td><?php echo e($bn->prod_cant); ?></td>
+                                <td><?php echo e($bn->prod_recep); ?></td>
                                 <?php foreach($pecosas as $ipcs => $ps): ?>
                                     <?php foreach($pecosas as $p): ?>
                                         <?php foreach($p->productos_distribuidos as $ipatern => $pp): ?>

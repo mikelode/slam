@@ -219,11 +219,12 @@
                             <tr>
                                 <th style="width: 15px;">#</th>
                                 <th>Producto</th>
-                                <th>Cantidad Internada</th>
+                                <th>Cant. Contratada</th>
+                                <th>Cant. Internada</th>
                                 @foreach($pecosas as $ps)
                                     <th class="info">{{ $ps->shortPs }}</th>
                                 @endforeach
-                                <th>Cantidad Distribuida</th>
+                                <th>Cant. Distribuida</th>
                                 <th>Stock</th>
                             </tr>
                         </thead>
@@ -234,6 +235,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $bn->prod_desc }}</td>
                                 <td>{{ $bn->prod_cant }}</td>
+                                <td>{{ $bn->prod_recep }}</td>
                                 @foreach($pecosas as $ipcs => $ps)
                                     @foreach($pecosas as $p)
                                         @foreach($p->productos_distribuidos as $ipatern => $pp)

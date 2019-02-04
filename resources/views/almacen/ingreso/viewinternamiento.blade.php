@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <form class="form-horizontal" action="internamiento/bienes/{{ $guia->ing_giu }}" id="frmDataInternamiento">
+        <form class="form-horizontal" action="internamiento/edit/{{ $guia->ing_giu }}/{{ $proceso->pint_cpi }}" id="frmDataUpdateInternamiento">
             {!! csrf_field() !!}
             <div class="row" style="margin-bottom: 10px">
                 <div class="col-md-2">
@@ -50,41 +50,47 @@
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Fecha de Recepción</label>
                                         <div class="col-sm-3">
-                                            <input class="form-control alm-input" type="date" name="intDateReceipt" value="{{ $proceso->pint_fecha }}">
+                                            <input class="form-control alm-input" type="date" name="updDateReceipt" value="{{ $proceso->pint_fecha }}" readonly>
                                         </div>
                                         <div class="col-sm-6"></div>
                                     </div>
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Persona que Entrega</label>
                                         <div class="col-sm-2">
-                                            <input class="form-control alm-input intDni" type="text" name="intDniGiver" placeholder="DNI" value="{{ $proceso->pint_dni_pentrega }}">
+                                            <input class="form-control alm-input intDni" type="text" id="updDniGiver" name="updDniGiver" placeholder="DNI" value="{{ $proceso->pint_dni_pentrega }}" data-tipo="giver" readonly>
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="intNameGiver" placeholder="NOMBRE COMPLETO DEL QUE ENTREGA" value="{{ $proceso->pint_pentrega }}">
+                                            <input class="form-control alm-input" type="text" id="updNameGiver" name="updNameGiver" placeholder="NOMBRE COMPLETO DEL QUE ENTREGA" value="{{ $proceso->pint_pentrega }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Persona que Recibe</label>
                                         <div class="col-sm-2">
-                                            <input class="form-control alm-input intDni" type="text" name="intDniReceiver" placeholder="DNI" value="{{ $proceso->pint_dni_receptor }}">
+                                            <input class="form-control alm-input intDni" type="text" id="updDniReceiver" name="updDniReceiver" placeholder="DNI" value="{{ $proceso->pint_dni_receptor }}" data-tipo="receipter" readonly>
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="intNameReceiver" placeholder="NOMBRE COMPLETO DEL QUE RECIBE" value="{{ $proceso->pint_preceptor }}">
+                                            <input class="form-control alm-input" type="text" id="updNameReceiver" name="updNameReceiver" placeholder="NOMBRE COMPLETO DEL QUE RECIBE" value="{{ $proceso->pint_preceptor }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Conductor que Traslado</label>
                                         <div class="col-sm-2">
-                                            <input class="form-control alm-input intDni" type="text" name="intDniDriver" placeholder="DNI" value="{{ $proceso->pint_dni_conductor }}">
+                                            <input class="form-control alm-input intDni" type="text" id="updDniDriver" name="updDniDriver" placeholder="DNI" value="{{ $proceso->pint_dni_conductor }}" data-tipo="driver" readonly>
                                         </div>
                                         <div class="col-sm-7">
-                                            <input class="form-control alm-input" type="text" name="intNameDriver" placeholder="NOMBRE COMPLETO DEL CONDUCTOR" value="{{ $proceso->pint_conductor }}">
+                                            <input class="form-control alm-input" type="text" id="updNameDriver" name="updNameDriver" placeholder="NOMBRE COMPLETO DEL CONDUCTOR" value="{{ $proceso->pint_conductor }}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group alm-form-group">
+                                        <label class="col-sm-3 control-label">Guía de Remisión</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control alm-input" name="updGuiaRemision" readonly="readonly" value="{{ $proceso->pint_guiaremision }}">
                                         </div>
                                     </div>
                                     <div class="form-group alm-form-group">
                                         <label class="col-sm-3 control-label">Observación</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control alm-input" name="intComment">{{ $proceso->pint_observacion }}</textarea>
+                                            <textarea class="form-control alm-input" name="updComment" readonly="readonly">{{ $proceso->pint_observacion }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -95,15 +101,19 @@
                 <div class="col-md-2">
                     <div class="panel panel-default alm-panel">
                         <div class="panel-body">
-                            <button type="button" class="btn btn-primary" id="saveInternamiento">
-                                <i class="glyphicon glyphicon-floppy-save"></i> EDITAR
+                            <button type="button" class="btn btn-primary alm-button" id="editInternamiento">
+                                <i class="glyphicon glyphicon-pencil"></i> EDITAR
+                            </button>
+                            <p></p>
+                            <button type="button" class="btn btn-success alm-button" id="updtInternamiento" style="display: none;">
+                                <i class="glyphicon glyphicon-floppy-save"></i> GUARDAR
                             </button>
                             <p></p>
                             <button type="button" class="btn btn-danger alm-button" onclick="">
                                 <i class="glyphicon glyphicon-erase"></i> BORRAR
                             </button>
                             <p></p>
-                            <button type="button" class="btn btn-default alm-button" onclick="change_menu_to('internamiento/close')">
+                            <button type="button" class="btn btn-default alm-button" onclick="change_menu_to('internamiento/period/' + $('#periodSys').val())">
                                 <i class="glyphicon glyphicon-remove-sign"></i> SALIR
                             </button>
                         </div>
@@ -116,21 +126,20 @@
                         <div class="panel-heading alm-panel-heading">
                             DETALLE DE BIENES
                         </div>
-                        <table class="table alm-table">
+                        <table class="table alm-table" style="table-layout: fixed;" width="100%">
                             <thead>
                             <tr>
                                 <th style="width: 15px;">#</th>
-                                <th>Producto</th>
+                                <th width="50%">Producto</th>
                                 <th>Marca</th>
                                 <th>Cant. Total</th>
                                 <th>Und</th>
                                 <th>Cant. Recibida</th>
-                                <th>Obs.</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($bienes as $key=>$bn)
-                                <tr id="rowProduct{{ $key + 1 }}">
+                                <tr class="row-product" id="rowProduct{{ $key + 1 }}">
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $bn->pintp_desc }}</td>
                                     <td>{{ $bn->pintp_marca }}</td>
@@ -140,15 +149,11 @@
                                     </td>
                                     <td>
                                         <input type="hidden" id="{{ 'stoQ-'.$bn->pintp_cod }}" value="">
-                                    </td>
-                                    <td>{{ $bn->pintp_umedida }}</td>
-                                    <td>
-                                            <input type="number" min="0" class="form-control alm-input-table alm-control" style="width: 50px" name="{{ 'intQ-'.$bn->pintp_cod.'-'.$bn->id }}" id="{{ 'intQ-'.$bn->pintp_cod }}" value="{{ $bn->pintp_cantr }}" onclick="this.select();" data-prod="{{ $bn->pintp_cod }}">
+                                        {{ $bn->pintp_umedida }}
                                     </td>
                                     <td>
-
-                                            <input type="text" class="form-control alm-input-table" value="{{ $bn->pintp_observacion }}" name="{{ 'intC-'.$bn->pintp_cod.'-'.$bn->id }}">
-                                    <td>
+                                        <input readonly type="number" min="0" class="form-control alm-input-table alm-control" style="width: 80px" name="articulos[{{ $bn->id }}]" value="{{ $bn->pintp_cantr }}" onclick="this.select();" data-prod="{{ $bn->pintp_cod }}">
+                                    </td>
                                     </td>
                                 </tr>
                             @endforeach
@@ -166,49 +171,37 @@
 
     $(document).ready(function(){
 
-        /*var numInput = document.querySelector('input.alm-control');
-        numInput.addEventListener('input',function(){
-            var num = this.value.match(/^\d+$/);
-            if(num === null)
-            {
-                this.value = '';
-            }
-        },false);*/
+        $('#editInternamiento').click(function (e) {
+            e.preventDefault();
+            $this = $(this);
 
-        $('#saveInternamiento').click(function(e){
+            if($this.text().trim() == 'EDITAR'){
+                $('.alm-input').prop('readonly',false);
+                $('.alm-input-table').prop('readonly',false);
+                $this.attr('class','btn btn-warning alm-button');
+                $this.html('<i class="glyphicon glyphicon-pencil"></i> CANCELAR');
+                $('#updtInternamiento').show();
+            }
+            else{
+                $('.alm-input').prop('readonly',true);
+                $('.alm-input-table').prop('readonly',true);
+                $this.attr('class','btn btn-primary alm-button');
+                $this.html('<i class="glyphicon glyphicon-pencil"></i> EDITAR');
+                $('#updtInternamiento').hide();
+            }
+        });
+
+        $('#updtInternamiento').click(function(e){
             e.preventDefault();
 
-            var msg = true;
-            var atd = 0;
-            $('input.alm-control').each(function(i){
-
-                atd += parseFloat($(this).val());
-                var row = $(this).closest('tr');
-                var p = $(this).data('prod');
-                var result = validar_cantidad(p,'proQ','stoQ','int',row);
-                /*  if(!result)
-                  {
-                      alert('Atención: verifique la cantidad a ser recibida que ha ingresado en el detalle de los bienes');
-                      msg = false;
-                      return false;
-                  }
-                  */
-            });
-
-            if(!msg) return false;
-            if(atd==0)
-            {
-                alert('No esta registrando ninguna cantidad de bienes ingresados, revise por favor.');
-                return false;
-            }
-            var ok = confirm('¿Esta seguro de registrar el internamiento de los bienes?');
+            var ok = confirm('¿Esta seguro de guardar los cambios?');
             if(!ok) return false;
 
-            var url = $('#frmDataInternamiento').attr('action');
-            var data = $('#frmDataInternamiento').serialize();
+            var url = $('#frmDataUpdateInternamiento').attr('action');
+            var data = $('#frmDataUpdateInternamiento').serialize();
 
             $.post(url, data, function(response){
-                alert(response);
+                alert(response.msg);
                 getMenuInternamiento();
             }).fail(function(dataError){
                 var error = $.parseJSON(dataError.responseText);
@@ -222,18 +215,38 @@
 
         });
 
-        $('#almCheckAll').change(function(){
-            $('input:checkbox').prop('checked', $(this).prop('checked'));
-            $('.fill-receipt').each(function(i){
-                fillData(this,'proQ','intQ','stoQ','int');
-            });
-        });
-
-        $('.fill-receipt').change(function(){
-            fillData(this,'proQ','intQ','stoQ','int');
-        });
-
         $('.intDni').inputmask({ mask: "99999999" });
+
+        $("#updDniGiver,#updDniReceiver,#updDniDriver").keydown(function(e){
+            if(e.shiftKey){
+                e.preventDefault();
+            }
+
+            if(e.keyCode == 13){
+                $this = $(this);
+                var tipo = $this.data('tipo');
+
+                $.get('findIntointernamiento',{'id': $this.val(), 'tipo': tipo}, function (data) {
+
+                    if(data.msgId == 500){
+                        alert(data.msg);
+                    }
+                    else{
+                        if(tipo == 'giver'){
+                            $('#updNameGiver').val(data.fullname);
+                        }
+                        else if(tipo == 'receipter'){
+                            $('#updNameReceiver').val(data.fullname)
+                        }
+                        else if(tipo == 'driver'){
+                            $('#updNameDriver').val(data.fullname)
+                        }
+                    }
+
+                })
+
+            }
+        });
 
     });
 

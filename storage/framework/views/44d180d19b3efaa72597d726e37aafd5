@@ -199,7 +199,7 @@
                  </td>
                  <td  align="right"> </td>
                  <td  align="left">
-                     <button id="btnLogItem" class="btn btn-primary" style="height: 35px ; padding=0; font-size:11px; margin-left:65px;">
+                     <button id="btnLogItem" class="btn btn-primary" style="height: 35px; padding:0 3px 0 3px; font-size:11px; margin-left:65px;">
                          <span class="glyphicon glyphicon-plus-sign"></span>
                          <span class="btnTxt">NUEVO ITEM</span>
                      </button>

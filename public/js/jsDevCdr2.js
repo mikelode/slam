@@ -1613,7 +1613,7 @@ $( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) {
             // $("#aRucBns").click();
          //   $("#divOC_Dll").html(VR["vwDll"]);
             document.getElementById('sthMontoCC').innerHTML = "MONTO TOTAL:<span style='font-size: 14px; color:blue;'> " + VR["MontoDll"] + "</span>";
-            console.log(VR["MontoDll"]);
+
             $('#row' + nxtrow).find("input[name=txProdMarca]").focus();
         }
     });

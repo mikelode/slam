@@ -61,9 +61,9 @@
                                     <th>Vence en</th>
                                     <th>Fecha de Vencimiento</th>
                                     <th>Almacen</th>
-                                    <th>Anulado</th>
+                                    {{--<th>Anulado</th>--}}
                                     <th>Internamiento</th>
-                                    <th></th>
+                                    {{--<th></th>--}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,15 +101,15 @@
                                     @endif
                                     </td>
                                     <td>{{ $item->nombre }}</td>
-                                    <td>
-                                    @if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO')
-                                        <a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">
-                                            {{ $item->estado_anulacion }}
-                                        </a>
-                                    @else
-                                        {{ $item->estado_anulacion }}
-                                    @endif
-                                    </td>
+                                    {{--<td>--}}
+                                    {{--@if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO')--}}
+                                        {{--<a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">--}}
+                                            {{--{{ $item->estado_anulacion }}--}}
+                                        {{--</a>--}}
+                                    {{--@else--}}
+                                        {{--{{ $item->estado_anulacion }}--}}
+                                    {{--@endif--}}
+                                    {{--</td>--}}
                                     <td>
                                     @if($hoy->diffInDays($limite, false) < 0)
                                         <div class="bg-danger">
@@ -131,14 +131,13 @@
                                         @endif
                                     @endif
                                     </td>
-
-                                    <td>
-                                    @if($item->estado_salida == 'P' )
-                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#rmvGiModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">
-                                            <img src="{{ asset('img/cross.png') }}">
-                                        </a>
-                                    @endif
-                                    </td>
+                                    {{--<td>--}}
+                                    {{--@if($item->estado_salida == 'P' )--}}
+                                        {{--<a href="javascript:void(0)" data-toggle="modal" data-target="#rmvGiModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">--}}
+                                            {{--<img src="{{ asset('img/cross.png') }}">--}}
+                                        {{--</a>--}}
+                                    {{--@endif--}}
+                                    {{--</td>--}}
 
                                 </tr>
                                 @endforeach

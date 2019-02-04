@@ -15,9 +15,9 @@
                 <th>Vence en</th>
                 <th>Fecha de Vencimiento</th>
                 <th>Almacen</th>
-                <th>Anulado</th>
+                {{--<th>Anulado</th>--}}
                 <th>Internamiento</th>
-                <th></th>
+                {{--<th></th>--}}
             </tr>
         </thead>
         <tbody>
@@ -38,56 +38,60 @@
                 <td style="font-size: 9px;">{{ $item->ocProcTipo }}</td>
                 <td>{{ $item->oc_plazo_dias }}</td>
                 <td>
-                <?php
+                    <?php
                     $hoy = \Carbon\Carbon::today();
                     $limite = \Carbon\Carbon::parse($item->oc_fecha_limite);
-                ?>
-                @if($hoy->diffInDays($limite, false) >= 0)
+                    ?>
                     {{ $hoy->diffInDays($limite, false)==0?'Hoy':$hoy->diffInDays($limite, false).' Dias' }}
-                @else
-                    Vencido
-                @endif
                 </td>
                 <td>
-                @if($item->estado_validacion == 'P' )
-                    <a href="#" data-toggle="modal" data-target="#limitDateModal" data-gi="{{ $item->ing_giu }}" data-limitdate="{{ $item->oc_fecha_limite }}">
+                    @if($item->estado_validacion == 'P' && $item->estado_anulacion == 'NO')
+                        {{--<a href="#" data-toggle="modal" data-target="#limitDateModal" data-gui="{{ $item->ing_giu }}" data-limitdate="{{ $item->oc_fecha_limite }}" data-orc="{{ $item->oc_cod }}">--}}
                         {{ isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):'' }}
-                    </a>
-                @else
-                    {{ isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):'' }}
-                @endif
+                        {{--</a>--}}
+                    @else
+                        {{ isset($item->oc_fecha_limite)?date("d-m-Y", strtotime($item->oc_fecha_limite)):'' }}
+                    @endif
                 </td>
                 <td style="font-size: 9px;">{{ $item->nombre }}</td>
+                {{--<td>--}}
+                {{--@if($item->estado_validacion == 'P')--}}
+                    {{--<a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">--}}
+                        {{--{{ $item->estado_anulacion }}--}}
+                    {{--</a>--}}
+                {{--@else--}}
+                    {{--{{ $item->estado_anulacion }}--}}
+                {{--@endif--}}
+                {{--</td>--}}
                 <td>
-                @if($item->estado_validacion == 'P')
-                    <a href="#" data-toggle="modal" data-target="#cancelOcModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">
-                        {{ $item->estado_anulacion }}
-                    </a>
-                @else
-                    {{ $item->estado_anulacion }}
-                @endif
-                </td>
-                <td>
-                @if($item->estado_validacion == 'C')
-                    CONFORME
-                @elseif($item->estado_validacion == 'P')
-                    <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
-                        PENDIENTE
-                    </a>
-                @else
-                    <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
-                        EN TRANSITO
-                    </a>
-                @endif
+                    @if($hoy->diffInDays($limite, false) < 0)
+                        <div class="bg-danger">
+                            FUERA DE PLAZO
+                        </div>
+                    @else
+                        @if($item->estado_anulacion == 'NO')
+                            @if($item->estado_validacion == 'C')
+                                CONFORME
+                            @elseif($item->estado_validacion == 'P')
+                                <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
+                                    PENDIENTE
+                                </a>
+                            @else
+                                <a href="javascript:void(0)" onclick="change_to_submenu('{{ 'internamiento/bienes/'.$item->ing_giu }}')">
+                                    EN TRANSITO
+                                </a>
+                            @endif
+                        @endif
+                    @endif
                 </td>
 
-                <td>
-                @if($item->estado_salida == 'P' )
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#rmvGiModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">
-                        <img src="{{ asset('img/cross.png') }}">
-                    </a>
-                @endif
-            </td>
+                {{--<td>--}}
+                {{--@if($item->estado_salida == 'P' )--}}
+                    {{--<a href="javascript:void(0)" data-toggle="modal" data-target="#rmvGiModal" data-gi="{{ $item->ing_giu }}" data-oc="{{ $item->oc_cod }}">--}}
+                        {{--<img src="{{ asset('img/cross.png') }}">--}}
+                    {{--</a>--}}
+                {{--@endif--}}
+                {{--</td>--}}
             
             </tr>
             @endforeach

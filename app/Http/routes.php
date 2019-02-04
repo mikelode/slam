@@ -44,7 +44,7 @@ Route::get('findNea/{nea}','Almacen\internamientoController@getFindNota');
 Route::post('task/{operation}','Almacen\internamientoController@postMakeTask');
 
 Route::get('internamiento/view/{gi}/{pi}','Almacen\internamientoController@getViewInternamiento');
-
+Route::post('internamiento/edit/{gi}/{pi}','Almacen\internamientoController@postUpdtInternamiento');
 /*
  * DISTRIBUCION O SALIDA
  * */
@@ -95,6 +95,7 @@ Route::get('findPersona','Almacen\logisticaController@autoFindPersona');
 Route::get('findDependency','Almacen\logisticaController@autoFindDependency');
 Route::get('findSecuencia','Almacen\logisticaController@autoFindSecuencia');
 Route::get('findSecFun','Almacen\logisticaController@autoFindSecFun');
+Route::get('findIntointernamiento','Almacen\internamientoController@getPersonData');
 
 
 /*

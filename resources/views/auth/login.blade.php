@@ -51,12 +51,12 @@
                 <form class="login-form" method="POST" name="login-form" action="{{ asset('/auth/login') }}">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-uppercase">Usuario</label>
-                        <input name="usrID" autocomplete="off" autofocus type="text" class="form-control" placeholder="" onfocus="this.value=''">
+                        <input name="usrID" autocomplete="off" autofocus type="text" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1" class="text-uppercase">Contraseña</label>
-                        <input name="password" autocomplete="off" type="password" class="form-control" placeholder="" onfocus="this.value=''">
+                        <input name="password" autocomplete="off" type="password" class="form-control" placeholder="">
                     </div>
 
 
@@ -95,6 +95,28 @@
         </div>
     </div>
 </section>
+
+<script>
+
+    $.extend($.expr[':'],{
+        focusable: function (el, index, selector) {
+            return $(el).is('a, button, :input, [tabindex]');
+        }
+    });
+
+    $(document).on('keypress', 'input,select', function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            // Get all focusable elements on the page
+            var $canfocus = $(':focusable');
+            var pindex = $canfocus.index(document.activeElement) * 1;
+            var index = $canfocus.index(document.activeElement) + 1;
+            // alert('act: ' + pindex + ' - next: ' + index);
+            if (index >= $canfocus.length) index = 0;
+            $canfocus.eq(index).focus();
+        }
+    });
+</script>
 
 </body>
 </html>
