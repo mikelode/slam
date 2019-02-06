@@ -55,12 +55,12 @@
                                         </div>
                                         <div class="col-sm-6"></div>
                                     </div>
-                                    <div class="form-group alm-form-group">
-                                        <label class="col-sm-3 control-label">Persona que Despacha</label>
-                                        <div class="col-sm-9">
-                                            <input class="form-control alm-input" type="text" name="disNameServer" placeholder="DATOS DEL RESPONSABLE DE ENTREGA">
-                                        </div>
-                                    </div>
+                                    <?php /*<div class="form-group alm-form-group">*/ ?>
+                                        <?php /*<label class="col-sm-3 control-label">Persona que Despacha</label>*/ ?>
+                                        <?php /*<div class="col-sm-9">*/ ?>
+                                            <?php /*<input class="form-control alm-input" type="text" name="disNameServer" placeholder="DATOS DEL RESPONSABLE DE ENTREGA">*/ ?>
+                                        <?php /*</div>*/ ?>
+                                    <?php /*</div>*/ ?>
                                     <?php /*<div class="form-group alm-form-group">*/ ?>
                                         <?php /*<label class="col-sm-3 control-label">Nombre del Solicitante : </label>*/ ?>
                                         <?php /*<div class="col-sm-2">*/ ?>

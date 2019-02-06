@@ -61,17 +61,16 @@
                                     </div>
                                     <div class="col-sm-6"></div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-sm-3 control-label">Persona que Despacha</label>
-                                    <div class="col-sm-9">
-                                        <div class="alm-input-frm">
-                                            <a href="#" class="updtGral" data-name="despachPs" data-pk="<?php echo e($proceso[0]->psal_pecosa); ?>" data-type="text">
-                                            <?php echo e($proceso[0]->psal_usu_despachador); ?>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php /*<div class="row">*/ ?>
+                                    <?php /*<label class="col-sm-3 control-label">Persona que Despacha</label>*/ ?>
+                                    <?php /*<div class="col-sm-9">*/ ?>
+                                        <?php /*<div class="alm-input-frm">*/ ?>
+                                            <?php /*<a href="#" class="updtGral" data-name="despachPs" data-pk="<?php echo e($proceso[0]->psal_pecosa); ?>" data-type="text">*/ ?>
+                                            <?php /*<?php echo e($proceso[0]->psal_usu_despachador); ?>*/ ?>
+                                            <?php /*</a>*/ ?>
+                                        <?php /*</div>*/ ?>
+                                    <?php /*</div>*/ ?>
+                                <?php /*</div>*/ ?>
                                 <?php /*<div class="row">*/ ?>
                                     <?php /*<label class="col-sm-3 control-label">Nombre del Solicitante</label>*/ ?>
                                     <?php /*<div class="col-sm-2">*/ ?>

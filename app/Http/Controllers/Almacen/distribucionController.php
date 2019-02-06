@@ -268,7 +268,7 @@ class distribucionController extends Controller
                 $pcs->psal_solicitante = $request->receptorNameApplicant;//$request->disNameApplicant ;
                 $pcs->psal_dependencia_solic = $request->disDependency;
                 $pcs->psal_solic_cargo = $request->disRole;
-                $pcs->psal_usu_despachador = $request->disNameServer;
+                $pcs->psal_usu_despachador = 'usuario almacen';// $request->disNameServer;
                 $pcs->psal_destino = $request->disTarget;
                 $pcs->psal_receptor = $request->receptorNameApplicant;
                 $pcs->psal_receptordni = $request->receportDniApplicant;

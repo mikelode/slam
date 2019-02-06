@@ -60,16 +60,16 @@
                                     </div>
                                     <div class="col-sm-6"></div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-sm-3 control-label">Persona que Despacha</label>
-                                    <div class="col-sm-9">
-                                        <div class="alm-input-frm">
-                                            <a href="#" class="updtGral" data-name="despachPs" data-pk="{{ $proceso[0]->psal_pecosa }}" data-type="text">
-                                            {{ $proceso[0]->psal_usu_despachador }}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--<div class="row">--}}
+                                    {{--<label class="col-sm-3 control-label">Persona que Despacha</label>--}}
+                                    {{--<div class="col-sm-9">--}}
+                                        {{--<div class="alm-input-frm">--}}
+                                            {{--<a href="#" class="updtGral" data-name="despachPs" data-pk="{{ $proceso[0]->psal_pecosa }}" data-type="text">--}}
+                                            {{--{{ $proceso[0]->psal_usu_despachador }}--}}
+                                            {{--</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                                 {{--<div class="row">--}}
                                     {{--<label class="col-sm-3 control-label">Nombre del Solicitante</label>--}}
                                     {{--<div class="col-sm-2">--}}

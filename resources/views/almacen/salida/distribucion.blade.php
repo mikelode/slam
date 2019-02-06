@@ -54,12 +54,12 @@
                                         </div>
                                         <div class="col-sm-6"></div>
                                     </div>
-                                    <div class="form-group alm-form-group">
-                                        <label class="col-sm-3 control-label">Persona que Despacha</label>
-                                        <div class="col-sm-9">
-                                            <input class="form-control alm-input" type="text" name="disNameServer" placeholder="DATOS DEL RESPONSABLE DE ENTREGA">
-                                        </div>
-                                    </div>
+                                    {{--<div class="form-group alm-form-group">--}}
+                                        {{--<label class="col-sm-3 control-label">Persona que Despacha</label>--}}
+                                        {{--<div class="col-sm-9">--}}
+                                            {{--<input class="form-control alm-input" type="text" name="disNameServer" placeholder="DATOS DEL RESPONSABLE DE ENTREGA">--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
                                     {{--<div class="form-group alm-form-group">--}}
                                         {{--<label class="col-sm-3 control-label">Nombre del Solicitante : </label>--}}
                                         {{--<div class="col-sm-2">--}}
