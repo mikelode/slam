@@ -2,7 +2,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <style>
-            @page { margin: 10px 20px 40px 20px; }
+            @media print{
+                html, body{
+                    display: block;
+                    font-family: Calibri;
+                    margin: 0;
+                }
+            }
+            @page {
+                size: 27.94cm 21.59cm;
+            }
             .header {
                 height: 220px;
                 position: fixed;
@@ -12,12 +21,11 @@
             }
             .content{
                 top: 215px;
-                margin-bottom: 30px;
+                margin-bottom: 85px;
             }
             .footer {
                 position: fixed;
-                bottom: 0;
-                /*border-top: solid 1px;*/
+                bottom: 0.75cm;
                 width: 100%;
                 font-family: "Courier New", Courier, monospace;
                 font-size: 12px;
@@ -30,7 +38,7 @@
             }
             table, th, td {
                 border: 1px solid black;
-                font-size: 13px;
+                font-size: 12px;
                 border-collapse: collapse;
                 text-align: center;
                 font-family: monospace, serif;
@@ -232,7 +240,7 @@
                         <td>{{ $b->psalp_cant_atend }}</td>
                         <td>{{ $b->psalp_umedida }}</td>
                         <td>{{ $b->psalp_marca }}</td>
-                        <td>  <?php  echo floatval( $b->psalp_precio ) ;?></td>
+                        <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
                       <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
                         <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
                     </tr>
@@ -241,6 +249,142 @@
                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
                         $suma += ($b->psalp_costo)
                     ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
+                    @endforeach
+                    @foreach($proceso[0]->productos_distribuidos as $key=>$b)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td style="text-align: left; padding-left: 5px;">{{ $b->psalp_desc }}</td>
+                            <td>{{ $b->psalp_cant_atend }}</td>
+                            <td>{{ $b->psalp_umedida }}</td>
+                            <td>{{ $b->psalp_marca }}</td>
+                            <td>{{ number_format(floatval( $b->psalp_precio ),2,'.',',')  }}</td>
+                        <!--  <td>{{ number_format($b->psalp_cant_atend * $b->psalp_precio,2,'.',',')}}</td>-->
+                            <td>{{ number_format($b->psalp_costo,2,'.',',')}}</td>
+                        </tr>
+                        <?php
+                        $convert = new \Logistica\Custom\NumberToLetterConverter();
+                        //$suma += ($b->psalp_cant_atend * $b->psalp_precio)
+                        $suma += ($b->psalp_costo)
+                        ?>
                     @endforeach
                     <tr>
                         <td></td>
