@@ -245,7 +245,7 @@
                     <tr>
                         <td></td>
                         <td colspan="1" style="text-align: left; padding-left: 5px;">
-                            {{ 'Referencia: '.$guia[0]->oc_docRef.' - Proviene de la OC N°: '.$guia[0]->oc_cod.' - Entregado por: '.$proceso[0]->psal_usu_despachador.' - Guía de Internamiento: '.$guia[0]->ing_giu.' - Guía de Remisión N°: '.$proceso[0]->psal_guiarem.' - Factura N°: '.$proceso[0]->psal_factura.' - Obs: '.$proceso[0]->psal_observacion }}
+                            {{ 'Referencia: '.$guia[0]->oc_docRef.' - Proviene de la OC N°: '.$guia[0]->oc_cod.' - Guía de Internamiento: '.$guia[0]->ing_giu.' - Guía de Remisión N°: '.$proceso[0]->psal_guiarem.' - Factura N°: '.$proceso[0]->psal_factura.' - Obs: '.$proceso[0]->psal_observacion }}
                         </td>
                         <td></td>
                         <td></td>

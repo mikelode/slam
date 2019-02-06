@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/almStoreDistPostRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/salida/distribucion.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5f8c32951bf34914d73bc43dd1578c76" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5f8c32951bf34914d73bc43dd1578c76" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/383691bc85cc3b3c8c937bfcf58be40618d14833" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/383691bc85cc3b3c8c937bfcf58be40618d14833" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,7 +37,7 @@
     <session id="509610203">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
@@ -133,8 +128,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="71" column="46" lean-forward="true" selection-start-line="71" selection-start-column="46" selection-end-line="71" selection-end-column="46" />
+            <state relative-caret-position="264">
+              <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -564,12 +559,12 @@
       <workItem from="1548766667955" duration="46792000" />
       <workItem from="1549026336496" duration="27897000" />
       <workItem from="1549230085001" duration="22507000" />
-      <workItem from="1549461033376" duration="1275000" />
+      <workItem from="1549461033376" duration="1882000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="447438000" />
+    <option name="totallyTimeSpent" value="448045000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -978,8 +973,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="71" column="46" lean-forward="true" selection-start-line="71" selection-start-column="46" selection-end-line="71" selection-end-column="46" />
+        <state relative-caret-position="264">
+          <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
         </state>
       </provider>
     </entry>
