@@ -987,6 +987,8 @@ function jsFunCtzDllVal( tipo ,obj)
         var cant        = parseFloat(obj.find("td[name=tdCant]").text()).toFixed(2) ;
         var czItm          = parseInt(obj.find("td[name=tdCzItm]").html().trim());
         var rqItm          = parseInt(obj.find("td[name=tdRqItm]").html().trim());
+        var secfun      = obj.find("td[name=tdSF]").text() ;
+        var rubro      = obj.find("td[name=tdRubro]").text() ;
         var prodID      = obj.find("td[name=tdProd]").attr("codID");
         var prodDsc     = obj.find("td[name=tdProd]").text();
         var undID       = parseInt( obj.find("td[name=tdUnd]").attr("codID"));
@@ -1039,6 +1041,8 @@ var varCtzDll = jQuery.parseJSON('{  ' +
 '"czItm":"0",' +
 '"rqItm":"0",' +
 '"OPE":"0",'+
+'"prodSecfun":"NN",'+
+'"prodRubro":"NN",'+
 '"prodCant":"NN",' +
 '"prodID":"NN" ,' +
 '"prodUndID":"NN" ,' +
