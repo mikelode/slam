@@ -2,7 +2,7 @@
 if($Doc=="Odc")
 {
 ?>
-        <table    id="tbOC_Dll" doc ="Odc" class="suggest-element table table-striped gs-table-item gs-table-hover " style="font-size:11px; padding:0px; margin-top:-15px; line-height:12px; border-spacing: 0px; " cellpadding="0px" cellspacing="0px">
+        <table    id="tbOC_Dll" doc ="Odc" class="suggest-element table table-striped gs-table-item gs-table-hover" style="font-size:11px; padding:0px; margin-top:-15px; line-height:12px; border-spacing: 0px; " cellpadding="0px" cellspacing="0px">
         <thead align="center">
         <tr CLASS="gsTh" >
             <th WIDTH="0px" style="display: none" ></th>
@@ -35,19 +35,20 @@ if($Doc=="Odc")
             <td name="tdCdItm"  style="display: none"   >{{ $nom->dllCdItm }}</td>
             <td name="tdCzItm"  style="display: none"   >{{ $nom->dllCzItm }}</td>
             <td name="tdRqItm"  style="display: none"   >{{ $nom->dllRqItm }}</td>
-
             <td name="tdSF" codID="{{ $nom->dllSecfunIDd }}">{{ $nom->dllSecfun }}</td>
-            <td name="tdRubro" codID="{{ $nom->dllRubroID }}">{{ $nom->dllRubro }}</td>
 
+            <td name="tdRubro" codID="{{ $nom->dllRubroID }}">{{ $nom->dllRubro }}</td>
             <td name="tdCant"  align="center" >{{  $nom->dllCant }}</td>
             <td name="tdSecFun"  align="center" codID="{{  $nom->dllSecFunID  }}"  > {{  $nom->dllSecFunCod }} </td>
             <td name="tdClasf"  align="center" codID="{{  $nom->dllClasfID  }}" >{{ $nom->dllClasfCod }} </td>
             <td name="tdUnd"  align="center" codID="{{  $nom->dllUndID  }}"  >{{ $nom->dllUndAbrv }} </td>
+
             <td name="tdProd"  align="left"  codID="{{  $nom->dllProdID  }}"  >{{ $nom->dllProdDsc }}  </td>
             <td name="tdEspf"  align="left"   > {{  $nom->dllProdEspf  }} </td>
             <td name="tdMarca"  align="center"   > {{  $nom->dllMarca }} </td>
             <td name="tdPrecio" align="center"> {{  $nom->dllPrecio  }} </td>
 			<td name="tdEnvio" align="center"  > {{  $nom->dllEnvio  }} </td>
+
             <td name="tdTotal"  align="center"> {{  $nom->dllTotal  }} </td>
             <td BGCOLOR="#d9edf7"><button id="btnLogOC_dllEDIT" class="btn btn-default " style="width:   45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">EDIT</button> </td>
             <td BGCOLOR="#d9edf7" ><button  id="btnLogOC_dllDEL" class="btn btn-default " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">X</button> </td>

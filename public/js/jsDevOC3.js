@@ -617,7 +617,7 @@ $( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) {
             varOCDll.rqItm=trClone.find("td[name=tdRqItm]").html();
 
             varOCDll.prodsf = trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID");
-            varOCDll.prorubro = trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID");
+            varOCDll.prodrubro = trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID");
 
             varOCDll.prodSecFun=trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID");
             varOCDll.prodCant=trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val( );
@@ -678,8 +678,11 @@ $( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) {
         trCurrent.find("td[name=tdCdItm]").html(trClone.find("td[name=tdCdItm]").text());
         trCurrent.find("td[name=tdCzItm]").html(trClone.find("td[name=tdCzItm]").text());
         trCurrent.find("td[name=tdRqItm]").html(trClone.find("td[name=tdRqItm]").text());
-
         trCurrent.find("td[name=tdCant]").html(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());
+
+        trCurrent.find("td[name=tdSF]").html(trClone.find("td[name=tdSF]").find('input[id=txProdSF]').val());
+        trCurrent.find("td[name=tdRubro]").html(trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').val());
+
         trCurrent.find("td[name=tdClasf]").html(trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').val());
         trCurrent.find("td[name=tdProd]").html(trClone.find("td[name=tdProd]").find('input[id=txProdProd]').val());
         trCurrent.find("td[name=tdUnd]").html(trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').val());
@@ -690,14 +693,18 @@ $( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) {
         trCurrent.find("td[name=tdMarca]").html(trClone.find("td[name=tdMarca]").find('input[id=txProdMarca]').val());
         trCurrent.find("td[name=tdEnvio]").html(trClone.find("td[name=tdEnvio]").find('input[id=txProdEnvio]').val());
 
+        trCurrent.find("td[name=tdSF]").attr("codID",trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID"));
+        trCurrent.find("td[name=tdRubro]").attr("codID",trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID"));
+
         trCurrent.find("td[name=tdClasf]").attr("codID", trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID"));
         trCurrent.find("td[name=tdProd]").attr("codID", trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID"));
+
         trCurrent.find("td[name=tdUnd]").attr("codID", trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').attr("codID"));
         trCurrent.find("td[name=tdSecFun]").attr("codID", trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID"));
 
-        var cant = parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val()).toFixed(2);
-        var precioUnt = parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val()).toFixed(2)
-        var total       = parseFloat( cant*precioUnt).toFixed(4);
+        var cant = parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());//.toFixed(2);
+        var precioUnt = parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());//.toFixed(2)
+        var total       = parseFloat( cant*precioUnt).toFixed(2);
         trCurrent.find("td[name=tdTotal]").html(total);
         trCurrent.removeAttr("style").removeAttr("trFocus");          
         $("#tbOC_Dll").append(trCurrent);
@@ -708,7 +715,14 @@ $( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) {
     $("#dvBarraOCAdd").css({'display': 'none'});
 });
 
+function fnSetUnitario(el){
 
+    if(el.value.trim() == '') return;
+
+    var row = $(el).closest('tr');
+    var txCant = row.find('input#txProdCant').val();
+    var txPrecio = row.find('input#txProdPrecio').val(Math.round(el.value / txCant * 1000000) / 1000000);
+}
 
 
 $(document).on('click , keydown','#btnLogOCItem',function(e) {
@@ -1607,6 +1621,10 @@ $( document ).on( 'click' ,'#btnLogOC_dllADD',function(e) {
 
         if ( trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID")== "NN") {  reqErrores+=' <br> * Secuencia Funcional '; }
 
+    if ( trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID")== "NN") {  reqErrores+=' <br> * Secuencia Funcional del item '; }
+
+    if ( trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID")== "NN") {  reqErrores+=' <br> * Rubro del item '; }
+
         reqErrores+="</p>";
         if(reqErrores.length>10){    $("#loadModals").html( jsFunLoadAviso('VERIFIQUE LOS DATOS DEL PRODUCTO A INGRESAR',reqErrores));  $('#dvAviso').modal('show');   return false; }
 
@@ -1619,6 +1637,9 @@ $( document ).on( 'click' ,'#btnLogOC_dllADD',function(e) {
         filaADD.find("td[name=tdCzItm]").html(trClone.find("td[name=tdCzItm]").text());
         filaADD.find("td[name=tdRqItm]").html(trClone.find("td[name=tdRqItm]").text());
 
+        filaADD.find("td[name=tdSF]").html(trClone.find("td[name=tdSF]").find('input[id=txProdSF]').val());
+        filaADD.find("td[name=tdRubro]").html(trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').val());
+
         filaADD.find("td[name=tdCant]").html(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());
         filaADD.find("td[name=tdClasf]").html(trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').val());
         filaADD.find("td[name=tdProd]").html(trClone.find("td[name=tdProd]").find('input[id=txProdProd]').val());
@@ -1628,15 +1649,17 @@ $( document ).on( 'click' ,'#btnLogOC_dllADD',function(e) {
         filaADD.find("td[name=tdPrecio]").html(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());
         filaADD.find("td[name=tdMarca]").html(trClone.find("td[name=tdMarca]").find('input[id=txProdMarca]').val());
         filaADD.find("td[name=tdEnvio]").html(trClone.find("td[name=tdEnvio]").find('input[id=txProdEnvio]').val());
-      
+
+        filaADD.find("td[name=tdSF]").attr("codID",trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID"));
+        filaADD.find("td[name=tdRubro]").attr("codID",trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID"));
 
         filaADD.find("td[name=tdClasf]").attr("codID", trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID"));
         filaADD.find("td[name=tdProd]").attr("codID", trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID"));
         filaADD.find("td[name=tdUnd]").attr("codID", trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').attr("codID"));
         filaADD.find("td[name=tdSecFun]").attr("codID", trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID"));
 
-        var cant = parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val()).toFixed(2);
-        var precioUnt = parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val()).toFixed(6)
+        var cant = parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());//.toFixed(2);
+        var precioUnt = parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());//.toFixed(6)
         var total       = parseFloat( cant*precioUnt).toFixed(2);
         filaADD.find("td[name=tdTotal]").html(total);
 

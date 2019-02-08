@@ -142,7 +142,7 @@ class logisticaController extends Controller
     {
         $anio99 = Input::get('txAnioFinal');
         //.substr($anio,-2).
-        $anioFin = 'SF1800%';
+        $anioFin = 'SF'.substr(config('slam.ANIO'),-2).'00%';
         $term = '%'.$request->term.'%';
         $secuencia = almTPreSF::where('secID','LIKE',$term)->where('secID','LIKE',$anioFin)->get();
         $result = array();

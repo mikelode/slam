@@ -174,25 +174,22 @@ function jsFunOC_EditColumns(tipo)
     tmpTds +='    <td name="tdCdItm"  style="display: none" >0</td> ';
     tmpTds +='    <td name="tdCzItm"  style="display: none" >0</td> ';
     tmpTds +='    <td name="tdRqItm"  style="display: none" >0</td> ';
-
     tmpTds +='    <td name="tdSF"><input id="txProdSF" name ="txProdSF" class="form-control gs-input" placeholder="S.F." style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
+
     tmpTds +='    <td name="tdRubro"><input id="txProdRubro" name ="txProdRubro" class="form-control gs-input" placeholder="Rb" style="width:30px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td> ';
-
     tmpTds+='    <td name="tdCant"  align="center"> <input id="txProdCant" name ="txProdCant" class="form-control gs-input" placeholder="Cant" style="width:55px; font-size:11px; font-weight: bold;color:#000;" codID="NN" type="text"></td>';
-
      tmpTds+='    <td name="tdSecFun" align="center"> <input id="txProdSecFun" name ="txProdSecFun" class="form-control gs-input" placeholder="SecFun" style="width:60px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"> </td>';
-
-
     tmpTds+='    <td name="tdClasf" align="center"> <input id="txProdClasf" name ="txProdClasf" class="form-control gs-input" placeholder="Clasificador" style="width:80px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"> </td>';
     tmpTds+='    <td name="tdUnd"   align="center" > <input id="txProdUnd" name ="txProdUnd" class="form-control gs-input" placeholder="Und" style="width:45px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td>';
+
     tmpTds+='    <td name="tdProd"  align="left"  > <input id="txProdProd" name ="txProdProd" class="form-control gs-input" placeholder="Descripcion" style="width:310px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"></td>';
     tmpTds+='    <td name="tdEspf"  align="left"  > <textarea id="txProdEspf" name ="txProdEspf" class="form-control gs-input" placeholder="Especificaciones" style="width:250px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text" rows="3"></textarea>  </td>';
-
     tmpTds+='    <td name="tdMarca"  align="left"> <input id="txProdMarca" name ="txProdMarca" class="form-control gs-input" placeholder="Marca" style="width:100px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"> </td>';
     tmpTds+='    <td name="tdPrecio" align="center"> <input id="txProdPrecio" name ="txProdPrecio" class="form-control gs-input" placeholder="Precio" style="width:70px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text">  </td>';
     tmpTds+='    <td name="tdEnvio" align="center"> <input id="txProdEnvio" name ="txProdEnvio" class="form-control gs-input" placeholder="Envio" style="width:50px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text">  </td>';
-    //tmpTds+='    <td name="tdTotal"   align="center">  </td>';
-    tmpTds+='    <td BGCOLOR="#d9edf7" width="50px" colspan="2"><button id="btnLogOC_dllSAVE" class="btn btn-primary " style="width:85Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">Guardar</button> </td>';
+
+    tmpTds+='    <td name="tdTotal"   align="center"> <input id="txProdTotal" name ="txProdTotal" class="form-control gs-input" placeholder="Total" style="width:50px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text" onblur="fnSetUnitario(this)"> </td>';
+    tmpTds+='    <td BGCOLOR="#d9edf7"><button id="btnLogOC_dllSAVE" class="btn btn-primary " style="height: 25px; padding-top: 3px" type="button"><i class="glyphicon glyphicon-save"></i></button> </td>';
     tmpTds+='    <td BGCOLOR="#d9edf7" ><button id="btnLogOC_dllCANCEL" class="btn btn-primary " style="width:30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">< <</button> </td>';
    }
    else
@@ -219,8 +216,8 @@ function jsFunOC_EditColumns(tipo)
     tmpTds+='    <td name="tdMarca"  align="left"> <input id="txProdMarca" name ="txProdMarca" class="form-control gs-input" placeholder="Marca" style="width:100px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text"> </td>';
     tmpTds+='    <td name="tdPrecio" align="center"> <input id="txProdPrecio" name ="txProdPrecio" class="form-control gs-input" placeholder="Precio" style="width:80px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text">  </td>';
     tmpTds+='    <td name="tdEnvio" align="center"> <input id="txProdEnvio" name ="txProdEnvio" class="form-control gs-input" placeholder="Envio" style="width:50px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text">  </td>';
-    tmpTds+='    <td name="tdTotal"   align="center">  </td>';
-    tmpTds+='    <td BGCOLOR="#d9edf7" width="50px"><button id="btnLogOC_dllADD" class="btn btn-primary " style="width:45Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px;  " type="button">Guardar</button> </td>';
+    tmpTds+='    <td name="tdTotal"   align="center"> <input id="txProdTotal" name ="txProdTotal" class="form-control gs-input" placeholder="Total" style="width:50px; font-size:11px;font-weight: bold;color:#000;" codID="NN" type="text" onblur="fnSetUnitario(this)"> </td>';
+    tmpTds+='    <td BGCOLOR="#d9edf7"><button id="btnLogOC_dllADD" class="btn btn-success" style="height: 25px; padding-top: 3px" type="button"><i class="glyphicon glyphicon-save"></i></button> </td>';
     tmpTds+='    <td BGCOLOR="#d9edf7" ><button id="btnLogOC_dllCLOSE" class="btn btn-primary " style="width:30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">< <</button> </td>';
     tmpTds+='</tr>';
 
@@ -1420,7 +1417,7 @@ $(document).on('focus','#txProdClasf',function(){
             $(this).val(data.item.label);
             $(this).attr('codID',data.item.value);
            // $(this).attr('codID',data.item.value);
-            $('#txProdProd').focus();
+            //$('#txProdProd').focus();
         }
     });
 });
@@ -1440,7 +1437,7 @@ $(document).on('focus','#txProdProd',function(){
             $(this).val(data.item.label);
             $(this).attr('codID',data.item.value);
 
-            $('#txProdUnd').focus();
+            //$('#txProdUnd').focus();
         }
     });
 });
@@ -1460,7 +1457,7 @@ $(document).on('focus','#txProdUnd',function(){
             $(this).val(data.item.abrv);
             $(this).attr('codID',data.item.value);
 
-            $('#txProdEspf').focus();
+            //$('#txProdEspf').focus();
         }
     });
 });
@@ -1483,7 +1480,7 @@ $(document).on('focus','#txProdSecFun',function(){
             $(this).val(data.item.label);
             $(this).attr('codID',data.item.value);
            // $(this).attr('codID',data.item.value);
-            $('#txProdClasf').focus();
+            //$('#txProdClasf').focus();
         }
     });
 });

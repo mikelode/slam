@@ -1,4 +1,4 @@
-<div class="container" style="width: 1200px">
+<div class="container" style="width: 1300px">
 <div class="panel panel-default" style="border-radius: 7px;margin-top: -5px;  background: #fdfdfd; border-top-width: 2px; border-top-color: #337ab7;  ">
 <div class="panel-body">
 

@@ -438,7 +438,7 @@ td.lineB {
         </tbody>
     </table>
 
-    @if($ReturnData["OC"][0]->ocTipoProcID=="009"  &&   $ReturnData["OC"][0]->ocIGV=="SI")
+    @if($ReturnData["OC"][0]->ocTipoProcID=="999"  &&   $ReturnData["OC"][0]->ocIGV=="SI")
 
         <table  style="font-size: 9px; margin-top:-13px; table-layout: fixed;" width="100%"  >
             <thead>
@@ -497,7 +497,7 @@ td.lineB {
 
     {{--</div>--}}
 
-    @if(  $ReturnData["OC"][0]->ocTipoProcID=="009"  &&   $ReturnData["OC"][0]->ocIGV=="SI")
+    @if(  $ReturnData["OC"][0]->ocTipoProcID=="999"  &&   $ReturnData["OC"][0]->ocIGV=="SI")
 
         <table  style="font-size: 9px; margin-top:-13px; " width="100%" >
             <thead>

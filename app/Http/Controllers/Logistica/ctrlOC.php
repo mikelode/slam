@@ -145,7 +145,26 @@ class ctrlOC extends Controller
     {
         $Doc = "Odc" ;
         $varReturn["varReturns"] = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,? ,?,?,? ',
-            array( $prRqsOC["varBns"]["OPE"] , $prRqsOC["varBns"]["OCID"] , $prRqsOC["varBns"]["prodID"]  ,  $prRqsOC["varBns"]["prodUndID"],  $prRqsOC["varBns"]["prodClasfID"],$prRqsOC["varBns"]["prodCant"],$prRqsOC["varBns"]["prodPrecio"],$prRqsOC["varBns"]["prodMarca"],$prRqsOC["varBns"]["prodEspf"],$prRqsOC["varBns"]["ocItm"],$prRqsOC["varBns"]["cdItm"],$prRqsOC["varBns"]["czItm"],$prRqsOC["varBns"]["rqItm"], Auth::user()->usrID , 0, $prRqsOC["varBns"]["prodSecFun"],null,null));
+            array(
+                $prRqsOC["varBns"]["OPE"] ,
+                $prRqsOC["varBns"]["OCID"] ,
+                $prRqsOC["varBns"]["prodID"]  ,
+                $prRqsOC["varBns"]["prodUndID"],
+                $prRqsOC["varBns"]["prodClasfID"],
+                $prRqsOC["varBns"]["prodCant"],
+                $prRqsOC["varBns"]["prodPrecio"],
+                $prRqsOC["varBns"]["prodMarca"],
+                $prRqsOC["varBns"]["prodEspf"],
+                $prRqsOC["varBns"]["ocItm"],
+                $prRqsOC["varBns"]["cdItm"],
+                $prRqsOC["varBns"]["czItm"],
+                $prRqsOC["varBns"]["rqItm"],
+                Auth::user()->usrID ,
+                0,
+                $prRqsOC["varBns"]["prodSecFun"],
+                $prRqsOC["varBns"]["prodsf"],
+                $prRqsOC["varBns"]["prodrubro"]
+            ));
         $result = \DB::select('exec spLogGetOCD ?',array( $prRqsOC["varBns"]["OCID"]));
         $varReturn["vwDll"] =  view ('logistica.Partials.logOCDll',compact( 'result','Doc'))->render();
         return  $varReturn;
