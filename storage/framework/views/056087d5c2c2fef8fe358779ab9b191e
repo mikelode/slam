@@ -201,7 +201,7 @@
                         </button>
                         <br>
                         <br>
-                        <button type="button" class="btn btn-primary alm-button" onclick="change_menu_to('internamiento/close')">
+                        <button type="button" class="btn btn-primary alm-button" onclick="getMenuDistribucion()">
                             <i class="glyphicon glyphicon-log-out"></i> SALIR
                         </button>
                         <br>

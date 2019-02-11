@@ -23,6 +23,7 @@
         </div>
         <form class="form-horizontal" action="internamiento/edit/{{ $guia->ing_giu }}/{{ $proceso->pint_cpi }}" id="frmDataUpdateInternamiento">
             {!! csrf_field() !!}
+            <input type="hidden" id="urlDelete" value="{{ 'internamiento/delete/' . $guia->ing_giu . '/' . $proceso->pint_cpi }}">
             <div class="row" style="margin-bottom: 10px">
                 <div class="col-md-2">
                     <div class="panel panel-default alm-panel">
@@ -109,8 +110,8 @@
                                 <i class="glyphicon glyphicon-floppy-save"></i> GUARDAR
                             </button>
                             <p></p>
-                            <button type="button" class="btn btn-danger alm-button" onclick="">
-                                <i class="glyphicon glyphicon-erase"></i> BORRAR
+                            <button type="button" class="btn btn-danger alm-button" id="delInternamiento">
+                                <i class="glyphicon glyphicon-erase"></i> ELIMINAR
                             </button>
                             <p></p>
                             <button type="button" class="btn btn-default alm-button" onclick="change_menu_to('internamiento/period/' + $('#periodSys').val())">
@@ -213,6 +214,22 @@
                 alert('Se identificó un ERROR, por favor revise: \n' + msg);
             });
 
+        });
+
+        $('#delInternamiento').click(function (e) {
+            e.preventDefault();
+
+            var ok = confirm("¿Esta seguro de eliminar el proceso de internamiento elegido? \n-Al eliminar el registro, este no podra ser recuperado");7
+            if(!ok) return false;
+
+            var url = $('#urlDelete').val();
+
+            $.get(url, function(response){
+
+                alert(response.msg);
+                getMenuInternamiento();
+
+            });
         });
 
         $('.intDni').inputmask({ mask: "99999999" });

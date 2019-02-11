@@ -491,10 +491,124 @@ $( document ).on( 'click','#btnDepRowNEW',function(e ) {
     });
 });
 
-$(document).on('click','.btnDepRowEDIT', function (e) {
+$(document).on('click','#btnDepRowADD', function(e){
+
     e.preventDefault();
+
+    if($('#txDep_Dsc').val().trim() == '') return;
+
+    $.ajax({
+        type: "post",
+        url: "logistica/spLogSetDep",
+        data: $('#frmDepAdd').serialize(),
+        beforeSend: function () {        $("#dvHeadModal").html( jsFunSetModalHead ("WAIT","ESTA OPERACION PUEDE TARDAR VARIOS MINUTOS","Espere Por Favor. Cargando....!")); },
+        error: function () {     jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");  },
+        success: function (VR) {
+            //   $("#divDialog").dialog("close");
+            $("#divDepDll").html(VR["vwDep"]);
+            $("#dvHeadModal").html(jsFunSetModalHead("SHOW","RESULTADOS DE LA OPERACION",VR["Result"][0].Mensaje ));
+            $("#dvHeadModal").attr("align",'center')
+
+        }
+    });
 });
 
+$(document).on('click','.btnDepRowEDIT', function (e) {
+
+    var row = $(this).closest('tr');
+
+    row.css("background","#d9edf7").attr("trFocus","ACTIVE");
+
+    $('td', row).each(function(i,el){
+
+        $("#tbDepDll tfoot tr:first").find('td[name=' + $(el).attr('name') + ']').html($(this).html());
+
+        if($(el).hasClass('txEditDep')){
+            if($(el).attr('name') == 'tdDepDsc'){
+                $(this).html("<input type='text' id='txDepDesc' class='form-control gs-input' style='' value='" + $(this).text() + "' />");
+            }
+            if($(el).data('ope') == 'edit'){
+                $(this).html('<button class="btn btn-success" id="btnDepRowSAVE" style="width: 55Px  ;height: 25px ; padding:0px; padding-left: -10px; font-size:9px; MARGIN-RIGHT:20px; " type="button">GUARDAR</button>');
+            }
+            if($(el).data('ope') == 'delete'){
+                $(this).html('<button  id="btnDepRowCANCEL" class="btn btn-info " style="width: 30px  ;height: 25px ; padding:0px; font-size:10px;  " type="button">< <</button>');
+            }
+        }
+    })
+
+});
+
+$(document).on('click','#btnDepRowSAVE', function(e){
+
+    var row = $(this).closest('tr');
+
+    var datos = {
+        'txDep_OPE':"UPD",
+        'txDep_Id':row.find("td[name=tdDepItm]").html().trim(),
+        'txDep_Anio':row.find("td[name=tdDepAnio]").html().trim(),
+        'txDep_Dsc':row.find("td[name=tdDepDsc]").find('input[id=txDepDesc]').val(),
+        '_token': $('#tokenBtn').val()
+    };
+
+    $.ajax({
+        type: "post",
+        url: "logistica/spLogSetDep",
+        data: datos,
+        beforeSend: function () {      jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
+        error: function () {     jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");  },
+        success: function (VR) {
+            $("#divDialog").dialog("close");
+            $(".modal-backdrop").remove();
+            $("#divDepDll").html(VR["vwDep"]);
+            $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["Result"][0].Mensaje ));
+            $('#dvAviso').modal('show');
+
+        }
+    });
+});
+
+$( document ).on( 'click' ,'#btnDepRowCANCEL',function(e) {
+
+    filaHide="";
+    $("#tbDepDll tfoot tr").each(function () {
+        if ($(this).attr("Class") == "fila-Hide" && $(this).attr("Class") != "gsTh")
+            filaHide = $(this).html();
+    });
+    $(this).parent().parent().html("").append(filaHide).removeAttr("style").removeAttr("trFocus");
+
+
+});
+
+$( document ).on( 'click' ,'.btnDepRowDEL',function(e) {
+    row = $(this).closest('tr');
+
+    var msg= confirm("ESTA SEGURO QUE DESEA ELIMINAR EL REGISTRO");
+    if(msg)
+    {
+        var datos = {
+            'txDep_OPE':"DEL",
+            'txDep_Id':row.find("td[name=tdDepItm]").html().trim(),
+            'txDep_Anio':row.find("td[name=tdDepAnio]").html().trim(),
+            'txDep_Dsc':row.find("td[name=tdDepDsc]").html().trim(),
+            '_token': $('#tokenBtn').val()
+        };
+        $.ajax({
+            type: "post",
+            url: "logistica/spLogSetDep",
+            data: datos,
+            beforeSend: function () {      jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
+            error: function () {     jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");  },
+            success: function (VR) {
+                $("#divDialog").dialog("close");
+                $(".modal-backdrop").remove();
+                $("#divDepDll").html(VR["vwDep"]);
+                $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["Result"][0].Mensaje ));
+                $('#dvAviso').modal('show');
+
+            }
+        });
+    }
+});
 
 $( document ).on( 'click' ,'#btnSecFunRowADD',function(e) {
  

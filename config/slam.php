@@ -11,6 +11,7 @@ return array(
     'ANIO' => 2019,
     'AUTHOR' => '@copyright M.D.Q.',
     'VERSION' => 'logiSmart v.2019',
-    'PATH_SYNC' => 'D:\copia_seguridad',
-    'UE_ENTIDAD' => '300753'
+    'PATH_SYNC' => env('SLAM_PATHSIAF','D:\copia_seguridad'),
+    'UE_ENTIDAD' => env('SLAM_UEENTIDAD',''),
+    'APP_MENSAJE' => env('SLAM_MENSAJE','')
 );

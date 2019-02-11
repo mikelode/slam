@@ -45,6 +45,7 @@ Route::post('task/{operation}','Almacen\internamientoController@postMakeTask');
 
 Route::get('internamiento/view/{gi}/{pi}','Almacen\internamientoController@getViewInternamiento');
 Route::post('internamiento/edit/{gi}/{pi}','Almacen\internamientoController@postUpdtInternamiento');
+Route::get('internamiento/delete/{gi}/{pi}','Almacen\internamientoController@getDelInternamiento');
 /*
  * DISTRIBUCION O SALIDA
  * */
@@ -199,7 +200,7 @@ Route::post('logistica/spLogGetPrice',    'Logistica\ctrlGrl@spLogGetPrice');
 Route::get('logistica/vwPass',           'Logistica\ctrlGrl@fnGetViewPass');
 Route::Post('logistica/vwPassVal',       'Logistica\ctrlGrl@fnGetViewPassVal');
 Route::Post('logistica/spLogSetUsrPss',  'Logistica\ctrlGrl@spLogSetUsrPss');
-Route::Post('logistica/spLogSetUsrPss',  'Logistica\ctrlGrl@spLogSetUsrPss');
+//Route::Post('logistica/spLogSetUsrPss',  'Logistica\ctrlGrl@spLogSetUsrPss');
 Route::Post('logistica/spLogGetBusy',    'Logistica\ctrlGrl@spLogGetBusy');
 Route::Post('logistica/spLogGetCodNext', 'Logistica\ctrlGrl@spLogGetCodNext');
 Route::get('logistica/vwLogRpt',        'Logistica\ctrlGrl@fnGetViewRpt');
@@ -352,10 +353,12 @@ Route::get('logistica/vwActDoc',            'Logistica\ctrlGrl@fnGetViewActDoc')
 Route::Post('logistica/spLogGetActDll',     'Logistica\ctrlGrl@spLogGetActDocDll');
 Route::Post('logistica/spLogSetActDll',     'Logistica\ctrlGrl@spLogSetActDocDll');
 
-
+/*  Usuarios */
 Route::get('logistica/vwActUser',            'Logistica\ctrlGrl@fnGetViewActUser');
 Route::Post('logistica/spLogGetActUserDll',     'Logistica\ctrlGrl@spLogGetActUserDll');
 Route::Post('logistica/spLogSetActUserDll',     'Logistica\ctrlGrl@spLogSetActUserDll');
+
+Route::post('logistica/spLogSetUsrPssReset', 'Logistica\ctrlGrl@spLogSetUsrPssReset');
 
 Route::Post('logistica/spLogGetUsrPerz',     'Logistica\ctrlGrl@spLogGetUsrPerz');
 Route::Post('logistica/spLogSetUsrPerz',     'Logistica\ctrlGrl@spLogSetUsrPerz');

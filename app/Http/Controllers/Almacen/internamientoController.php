@@ -16,6 +16,7 @@ use Logistica\Almacen\almInventario;
 use Logistica\Almacen\almNeaInternamiento;
 use Logistica\Almacen\almProcesoInternamiento;
 use Logistica\Almacen\almProcesoInternamientoB;
+use Logistica\Almacen\almProcesoSalida;
 use Logistica\Almacen\almRecycleInternamiento;
 use Logistica\Almacen\almSeguimiento;
 use Logistica\Almacen\almTLogOC;
@@ -578,7 +579,93 @@ class internamientoController extends Controller
             }
 
         }catch (Exception $e){
-            $msg = "Error: " . $e->getMessage() . "- Linea: " . $e->getLine();
+            $msg = "Error: " . $e->getMessage() . "\n- Linea: " . $e->getLine();
+            $msgId = 500;
+        }
+
+        return response()->json(compact('msg','msgId'));
+    }
+
+    public function getDelInternamiento($gi, $pi)
+    {
+        try{
+
+            $exception = DB::transaction(function () use($gi, $pi){
+
+                $nro_procesos = almProcesoInternamiento::where('cod_giu',$gi)->count();
+
+                $pecosas = almProcesoSalida::where('ing_giu',$gi)->count();
+
+                if($pecosas != 0)
+                    throw new Exception("No es posible eliminar el proceso de internamiento porque existen PECOSAS registradas para la guía de internamiento.");
+
+                if($nro_procesos > 1){
+                    $max_proceso = almProcesoInternamiento::where('cod_giu',$gi)->max('pint_cpi');
+
+                    if($pi != $max_proceso){
+                        throw new Exception("Para eliminar el proceso de internamiento elegido, primero debe eliminar el proceso de internamiento " . $max_proceso);
+                    }
+                    else{
+                        $proceso_items = almProcesoInternamiento::find($pi)->productos_ingresados;
+
+                        foreach ($proceso_items as $item){
+                            $inventario = almInventario::find($item->pintp_ord);
+                            $inventario->prod_ingobs = null;
+                            $inventario->prod_recep = $inventario->prod_recep - $item->pintp_cantr;
+                            $inventario->conf_prod = 'T';
+                            $inventario->flagR = false;
+                            $inventario->prod_stock = $inventario->prod_recep - $inventario->prod_distribuido;
+                            $inventario->save();
+                        }
+
+                        $internamiento = almInternamiento::find($gi);
+                        $internamiento->estado_validacion = 'T';
+                        $internamiento->conf_fecha = null;
+                        $internamiento->conf_hora = null;
+                        $internamiento->conf_usu = null;
+                        $internamiento->flagI = false;
+                        $internamiento->save();
+
+                        almProcesoInternamiento::destroy($pi);
+                    }
+                }
+                else{
+
+                    $proceso_items = almProcesoInternamiento::find($pi)->productos_ingresados;
+
+                    foreach ($proceso_items as $item){
+                        $inventario = almInventario::find($item->pintp_ord);
+                        $inventario->prod_ingobs = null;
+                        $inventario->prod_recep = 0;
+                        $inventario->conf_prod = 'P';
+                        $inventario->flagR = false;
+                        $inventario->prod_stock = 0;
+                        $inventario->save();
+                    }
+
+                    $internamiento = almInternamiento::find($gi);
+                    $internamiento->estado_validacion = 'P';
+                    $internamiento->conf_fecha = null;
+                    $internamiento->conf_hora = null;
+                    $internamiento->conf_usu = null;
+                    $internamiento->flagI = false;
+                    $internamiento->save();
+
+                    almProcesoInternamiento::destroy($pi);
+                }
+
+            });
+
+            if(is_null($exception)){
+                $msg = "El proceso de internamiento fuel eliminado correctamente, y el inventario de de productos fue actualizad";
+                $msgId = 200;
+            }
+            else{
+                throw new Exception($exception);
+            }
+        }
+        catch (Exception $e){
+            $msg = "Error: " . $e->getMessage() . "\n- Linea: " . $e->getLine();
             $msgId = 500;
         }
 

@@ -152,7 +152,7 @@
                                 <i class="glyphicon glyphicon-floppy-save"></i> GUARDAR
                             </button>
                             <p></p>
-                            <button type="button" class="btn btn-primary alm-button" onclick="change_menu_to('internamiento/close')">
+                            <button type="button" class="btn btn-default alm-button" onclick="getMenuDistribucion()">
                                 <i class="glyphicon glyphicon-remove-sign"></i> SALIR
                             </button>
                         </div>

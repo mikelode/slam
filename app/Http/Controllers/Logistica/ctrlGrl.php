@@ -21,6 +21,7 @@ use Logistica\Almacen\almTPreSF;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
 use Logistica\Almacen\logTbNotif;
+use Logistica\User;
 use Maatwebsite\Excel\Facades\Excel;
 use TCPDF;
 
@@ -59,11 +60,17 @@ class ctrlGrl extends Controller
         if( isset ($Access[0]->NEW ))
         {
             if( $Access[0]->NEW =="1") {
-                $varReturn["Result"]= \DB::select('exec spLogSetDep ?,?,?,?,?', array(  $request["varRqs"]["depOPE"], $request["varRqs"]["depID"], $request["varRqs"]["depAnio"],  $request["varRqs"]["depNom"]  , Auth::user()->usrID ));
-                $result = \DB::select(' exec spLogGetDep ?,? ', array ($request["varRqs"]["depAnio"],''));
+                $varReturn["Result"]= \DB::select('exec spLogSetDep ?,?,?,?,?', array(
+                    $request->txDep_OPE,
+                    $request->txDep_OPE == 'ADD' ? '' : $request->txDep_Id,
+                    $request->txDep_Anio,
+                    $request->txDep_Dsc  ,
+                    Auth::user()->usrID
+                ));
+                $result = \DB::select(' exec spLogGetDep ?,? ', array ($request->txDep_Anio,''));
                 $varReturn["vwDep"]= view ('logistica.Partials.logDepDll',compact('result'))->render();
                 $varReturn["Flag"]= "0";
-                if($request["varRqs"]["depOPE"]=="ADD") sleep(1);
+                if($request->txDep_OPE=="ADD") sleep(1);
                 return $varReturn ;
             }
             else  {
@@ -611,11 +618,19 @@ class ctrlGrl extends Controller
         $result = \DB::connection('dblogistica')-> select(' exec spLogGetRUC ? ',   array(" where ruc='".$request->qry."'"));
         return  $result;
     }
+
     public function spLogSetUsrPss(Request $request)
     {
         $varReturn ["Result"]= \DB::select('exec spLogSetUsrPs ? ,? ', array(Auth::user()->usrID,\Hash::make(   $request->Pass)));
         return $varReturn;
     }
+
+    public function spLogSetUsrPssReset(Request $request)
+    {
+        $varReturn ["Result"]= \DB::select('exec spLogSetUsrPs ? ,? ', array($request->idUser,\Hash::make($request->idUser)));
+        return $varReturn;
+    }
+
     public function spLogSetRuc(Request $request)
     {
         $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_CNF_RUC'  ));

@@ -1,0 +1,75 @@
+
+<table    id="tbAUDll" class="suggest-element table table-striped gs-table-item gs-table-hover " style="font-size:11px; padding:0px; margin-top:5px; line-height:12px; border-spacing: 0px; " cellpadding="0px" cellspacing="0px">
+
+        <thead align="center">
+        <tr CLASS="gsTh" >
+            <th WIDTH="20px"  align="center"   valign="center">Item</th>
+            <th WIDTH="20px"  align="center"   valign="center">-</th>
+            <th WIDTH="60px"  align="center"   valign="center">Año</th>
+            
+            <th WIDTH="120px"  align="center"   valign="center">Estado</th>
+            <th WIDTH="90px"  align="center"   valign="center">Codigo</th>
+            <th WIDTH="80px"  align="center"   valign="center">Fecha</th>
+            <th WIDTH="450px"  align="center"   valign="center">Glosa</th>
+            
+            <th valign="right" ><SPAN id="EDIT" >Usuario<br> Actual </SPAN></th>  
+            <th valign="right" ><SPAN id="EDIT" >Resultado </SPAN></th>            
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+        $i=0;
+        if(isset($result))
+        {
+            
+        ?>
+
+         <?php foreach($result as $key=>$nom): ?>
+        <tr >
+           <td name="tdAdNro"  align="center"  >  <?php  echo ++$i; ?> </td>
+           <td name="tdAdCheck"  align="center"  codID="<?php echo e($nom->adID); ?>" style=" height:30px;"> 
+              <?php if( $nom->adEstado<> '** ANULADO **' ): ?>
+              <input type="checkbox" class="chxAUDll" style="width:20px; height:20px;" > 
+              <?php endif; ?>
+            </td>
+           <td name="tdAdAnio"  align="center"  ><?php echo e($nom->adAnio); ?></td>
+           
+           <td name="tdAdEstado"   align="center"     ><?php echo e($nom->adEstado); ?></td>
+           <td name="tdAdCodigo"    align="center"    ><?php echo e($nom->adCodigo); ?></td>
+           <td name="tdAdFecha"    align="center"    ><?php echo e($nom->adFecha); ?></td>
+           <td name="tdAdGlosa"    align="left"    ><?php echo e($nom->adGlosa); ?></td>
+           
+           <td name="tdAdUsuario"    ><?php echo e($nom->adUsuario); ?></td>
+           <td name="tdAdResult"    ></td>
+           
+        </tr>
+        <?php endforeach; ?>
+
+      <?php
+      }
+      if(isset($resultRow))
+      {
+      ?>
+       <tr >
+       <td colspan="11"><br> <h4><?php foreach($resultRow as $key=>$nom): ?>  <?php echo e($nom->Mensaje); ?>   <?php endforeach; ?>  </h4>       </td>
+       </tr>
+
+      <?php
+      }
+      if ($i==0 && isset($result) )
+      {
+      ?>
+       <tr >
+       <td colspan="11"><br> <h4> NO se encontro resultados, es posible que el documento  No existe</h4>       </td>
+       </tr>
+      <?php       
+       }
+       ?>
+
+        </tbody>
+
+       
+</table>
+
+

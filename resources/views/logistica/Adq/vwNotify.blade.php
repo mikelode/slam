@@ -70,15 +70,15 @@
                                 </div>
                             </div>
                             <div class="form-group alm-form-group">
-                                <label class="col-sm-5 control-label">Tipo de Entrega</label>
+                                <label class="col-sm-5 control-label">Entrega</label>
                                 <div class="col-sm-7">
                                     <select class="form-control alm-input" name="ocDeliveryType" id="notEntrega">
-                                        <option value="A" selected>En Almacén</option>
-                                        <option value="O">En Obra</option>
+                                        <option value="A" selected>En Almacén Central</option>
+                                        <option value="O">En Almacén de Obra</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group alm-form-group">
+                            <div class="form-group alm-form-group" style="display: none;">
                                 <label class="col-sm-5 control-label">Almacén</label>
                                 <div class="col-sm-7">
                                     <select class="form-control alm-input" name="ocAlmacen" id="notAlmacen">

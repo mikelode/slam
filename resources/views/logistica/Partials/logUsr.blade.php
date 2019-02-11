@@ -255,8 +255,8 @@ $(document).ready(function(){
                         data: dataString,
                         //beforeSend: function () {  $("#pnlUsrAction").html('<p>  Espere un momento.... Cargando.... </p>');    },
                         error: function () { $("#pnlUsrAction").html('<p> Se Produjo un ERROR en el proceso </p>');    },
-                        success: function (datos) {                            
-                        alert(datos[0].Mensaje);
+                        success: function (datos) {
+                            alert(datos.Result[0].Mensaje);
                         }
         });
     });

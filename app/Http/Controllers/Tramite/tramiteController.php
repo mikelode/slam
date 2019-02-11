@@ -1027,8 +1027,9 @@ class tramiteController extends Controller
     public function testSiaf()
     {
         $test = new OleDbConnection();
-        $test->openDataOleDb('E:\Data_SIAF_Seguimiento');
-        $rs = $test->makeQueryOleDb('SELECT Ano_eje, Sec_ejec,Expediente,Ciclo,Fase,Secuencia,Correlativo,Cod_doc,Num_doc,Fecha_doc,Moneda,Monto,Ano_proceso,Mes_proceso,Dia_proceso,Fecha_autorizacion,Estado_envio from expediente_secuencia WHERE cod_doc in ("032") AND Ano_eje in ("2016","2017")');
+        //$test->openDataOleDb("\\\\192.168.1.90\data");
+        $test->openDataOleDb(config('slam.PATH_SYNC'));
+        $rs = $test->makeQueryOleDb('SELECT Ano_eje, Sec_ejec,Expediente,Ciclo,Fase,Secuencia,Correlativo,Cod_doc,Num_doc,Fecha_doc,Moneda,Monto,Ano_proceso,Mes_proceso,Dia_proceso,Fecha_autorizacion,Estado_envio from expediente_secuencia WHERE cod_doc in ("032") AND Ano_eje in ("2018")');
 
         while(!$rs->EOF)
         {

@@ -12,13 +12,28 @@
 
                     
                             <div  class="panel panel-default" style=" border-radius: 8px;padding-left: 10px; padding-top: 10px; ;margin-top: -5px;  background: #FCFCFC; border-top-width: 1px; border-top-color: #E2E2E2;  " >
-
+                                <form id="frmDepAdd">
+                                    <input type="hidden" value="ADD" name="txDep_OPE">
                                 <table>
                                 <tr>
                                 <td>
                                  <table class="gs-table" border="0">
-                                 <tr><td> <label class="gs-label">Anio:          </label> </td> <td width="100px;">  <input disabled="true" id="txDep_Anio" OPE="ADD" name="txDep_Anio" class="form-control gs-input" style="width: 100px; font-weight: bold; font-size: 16px;  "  type="text" placeholder="Año" > </td></tr>
-                                 <tr><td> <label class="gs-label">Nombres:      </label> </td> <td >     <input id="txDep_Dsc" codID="CID" name="txDep_Dsc" class="form-control gs-input" style="width: 500px;  font-size: 12px;  "  type="text" placeholder="Dependencia" > </td> </tr>
+                                 <tr>
+                                     <td>
+                                         <label class="gs-label">Año:          </label>
+                                     </td>
+                                     <td width="100px;">
+                                         <input readonly="true" id="txDep_Anio" OPE="ADD" name="txDep_Anio" class="form-control gs-input" style="width: 100px; font-weight: bold; font-size: 16px;  "  type="text" placeholder="Año" >
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td>
+                                         <label class="gs-label">Nombres:      </label>
+                                     </td>
+                                     <td >
+                                         <input id="txDep_Dsc" codID="CID" name="txDep_Dsc" class="form-control gs-input" style="width: 500px;  font-size: 12px;  "  type="text" placeholder="Dependencia" >
+                                     </td>
+                                 </tr>
 
                                  <tr ><td colspan="3" style=" height: 10px;">  </td> </tr>
                                  </table>
@@ -30,6 +45,7 @@
                                 </TD>
                                 </tr>
                                 </table>
+                                </form>
                              </div>
                    
                          <table>
