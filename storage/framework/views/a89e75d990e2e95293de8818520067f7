@@ -377,9 +377,24 @@ td.lineB {
                     </table>
                 </td>
             </tr>
-            <tr><td colspan="3" style="font-size: 9px;">
+            <tr>
+                <td colspan="2" style="font-size: 9px;">
              NOTA: Esta Orden es nula sin la firma del Jefe de Logística y Jefe de Adquisiciones; cada Orden de Compra debe tener su guía de Remisión y factura correpondiente en original y copia, luego remitirlas a la Unidad de Almacén. Nos reservamos el derecho de devolver los  Bienes que no estén de acuerdo a nuestras especificaciones, en conformidad a la Ley 30225 y su Reglamento con sus modificatorias.
-             </td></tr>
+                </td>
+                <td height="50px" align="center" style="padding-top: 1px; margin: 0px;">
+                    <table>
+                        <tr>
+                            <td width="15px"> </td>
+                            <td style="height: 40px;"> <strong>ÁREA USUARIA</strong></td>
+                            <td>  </td>
+                        </tr>
+                        <tr>
+                            <td width="15px"> </td>
+                            <td > ........./............/........... </td>
+                            <td > ............................................. </td></tr>
+                    </table>
+                </td>
+            </tr>
             </tbody>
             </table>
 
