@@ -112,9 +112,15 @@
                                     {{--</td>--}}
                                     <td>
                                     @if($hoy->diffInDays($limite, false) < 0)
+                                        @if($item->estado_validacion == 'C')
+                                                <div class="bg-success">
+                                                    INTERNADO
+                                                </div>
+                                        @else
                                         <div class="bg-danger">
                                             FUERA DE PLAZO
                                         </div>
+                                        @endif
                                     @else
                                         @if($item->estado_anulacion == 'NO')
                                             @if($item->estado_validacion == 'C')

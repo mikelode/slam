@@ -115,9 +115,15 @@
                                     <?php /*</td>*/ ?>
                                     <td>
                                     <?php if($hoy->diffInDays($limite, false) < 0): ?>
+                                        <?php if($item->estado_validacion == 'C'): ?>
+                                                <div class="bg-success">
+                                                    INTERNADO
+                                                </div>
+                                        <?php else: ?>
                                         <div class="bg-danger">
                                             FUERA DE PLAZO
                                         </div>
+                                        <?php endif; ?>
                                     <?php else: ?>
                                         <?php if($item->estado_anulacion == 'NO'): ?>
                                             <?php if($item->estado_validacion == 'C'): ?>
