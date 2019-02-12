@@ -371,119 +371,131 @@ class internamientoController extends Controller
 
     public function postRegisterNea(almStoreNeaPostRequest $request)
     {
-        $productos = count($request->neaProd);
-        if($productos <= 1) throw new Exception('Error debe registrar los productos',1);
+        try{
+            $productos = count($request->neaProd);
+            if($productos <= 1) throw new Exception('Error debe registrar los productos');
 
-        DB::transaction(function($request) use ($request) {
+            $exception = DB::transaction(function($request) use ($request) {
 
-            /*
-             * GENERAMOS NUEVO CODIGO PARA LA NOTA DE ENTRADA
-             * */
+                /*
+                 * GENERAMOS NUEVO CODIGO PARA LA NOTA DE ENTRADA
+                 * */
 
-            $nea = '';
-            $pref = 'NE';
-            $anio = $request->almAnio;
-            $result = \DB::connection('dbalmacen')->select('exec generar_codigoFin ?,?',  array( $anio ,  $pref));  
-            $nea= $result[0]->codigo ;
-            /*$stmt = DB::connection('dbalmacen')->getPdo()->prepare('SET NOCOUNT ON; EXEC generar_codigo ?,?');
-            $stmt->bindParam(1, $pref);
-            $stmt->bindParam(2, $nea, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 11);
-            $stmt->execute();
-            unset($stmt);
-*/
-            /*
-             * REGISTRAMOS DATOS DE LA NEA EN LA TABLA INTERNAMIENTO
-             * */
+                $nea = '';
+                $pref = 'NE';
+                $anio = $request->almAnio;
+                $result = \DB::connection('dbalmacen')->select('exec generar_codigoFin ?,?',  array( $anio ,  $pref));
+                $nea= $result[0]->codigo ;
+                /*$stmt = DB::connection('dbalmacen')->getPdo()->prepare('SET NOCOUNT ON; EXEC generar_codigo ?,?');
+                $stmt->bindParam(1, $pref);
+                $stmt->bindParam(2, $nea, \PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 11);
+                $stmt->execute();
+                unset($stmt);
+    */
+                /*
+                 * REGISTRAMOS DATOS DE LA NEA EN LA TABLA INTERNAMIENTO
+                 * */
 
-            $int = new almInternamiento();
-            $int->ing_giu = $nea;
-            $int->ing_almacen = $request->neaAlmacen;
-            $int->ing_fecha = $request->neaDateInput;
-            $int->ing_hora = Carbon::now()->toTimeString();
-            $int->ing_usu = Auth::user()->usrID; // 'Usuario Sesion';
-            $int->ing_obs = $request->neaComment;
-            $int->estado_validacion = 'C';
-            $int->estado_salida = 'P';
-            $int->conf_fecha = $request->neaDateInput;
-            $int->conf_hora = Carbon::now()->toTimeString();
-            $int->conf_usu = Auth::user()->usrID; // 'Usuario Sesion';
-            $int->flagI = true;
-            $int->flagS = false;
-            $int->nea_cod = null;
-            $int->tipo_internamiento = 'A';
-            $int->tipo_doc = $request->neaNeaType;
-            $int->oc_cod = null;
-            $int->oc_plazo_dias = 0;
-            $int->oc_costotal = 0;
-            $int->oc_proveedor = 'Area Usuaria';
-            $int->oc_fecha = Carbon::now()->toDateString();
-            $int->usu_act = Auth::user()->usrID; // 'Usuario Sesion';
-            $int->fec_act = Carbon::now()->toDateString();
-            $int->hor_act = Carbon::now()->toTimeString();
-            $int->estado_anulacion = 'NO';
-            $int->oc_secFuncional = $request->neaSecGiver;
-            $int->oc_obra_destino = $request->neaDescSecGiver;
-            $int->save();
+                $int = new almInternamiento();
+                $int->ing_giu = $nea;
+                $int->ing_almacen = $request->neaAlmacen;
+                $int->ing_fecha = $request->neaDateInput;
+                $int->ing_hora = Carbon::now()->toTimeString();
+                $int->ing_usu = Auth::user()->usrID; // 'Usuario Sesion';
+                $int->ing_obs = $request->neaComment;
+                $int->estado_validacion = 'C';
+                $int->estado_salida = 'P';
+                $int->conf_fecha = $request->neaDateInput;
+                $int->conf_hora = Carbon::now()->toTimeString();
+                $int->conf_usu = Auth::user()->usrID; // 'Usuario Sesion';
+                $int->flagI = true;
+                $int->flagS = false;
+                $int->nea_cod = null;
+                $int->tipo_internamiento = 'A';
+                $int->tipo_doc = $request->neaNeaType;
+                $int->oc_cod = null;
+                $int->oc_plazo_dias = 0;
+                $int->oc_costotal = 0;
+                $int->oc_proveedor = 'Area Usuaria';
+                $int->oc_fecha = Carbon::now()->toDateString();
+                $int->usu_act = Auth::user()->usrID; // 'Usuario Sesion';
+                $int->fec_act = Carbon::now()->toDateString();
+                $int->hor_act = Carbon::now()->toTimeString();
+                $int->estado_anulacion = 'NO';
+                $int->oc_secFuncional = $request->neaSecGiver;
+                $int->oc_obra_destino = $request->neaDescSecGiver;
+                $int->save();
 
-            $neaInt = new almNeaInternamiento();
-            $neaInt->ing_nea = $nea;
-            $neaInt->nea_dniRecepcionista = $request->neaDniReceipt;
-            $neaInt->nea_recepcionista = $request->neaNameReceipt;
-            $neaInt->nea_dniDador = $request->neaDniGiver;
-            $neaInt->nea_dador = $request->neaNameGiver;
-            $neaInt->nea_sfDador = $request->neaSecGiver;
-            $neaInt->save();
+                $neaInt = new almNeaInternamiento();
+                $neaInt->ing_nea = $nea;
+                $neaInt->nea_dniRecepcionista = $request->neaDniReceipt;
+                $neaInt->nea_recepcionista = $request->neaNameReceipt;
+                $neaInt->nea_dniDador = '99999999'; $request->neaDniGiver;
+                $neaInt->nea_dador = 'usuario almacen'; $request->neaNameGiver;
+                $neaInt->nea_sfDador = $request->neaSecGiver;
+                $neaInt->save();
 
-            /*
-             * REGISTRO DE LOS PRODUCTOS INGRESADOS EN LA TABLA INVENTARIO
-             * */
+                /*
+                 * REGISTRO DE LOS PRODUCTOS INGRESADOS EN LA TABLA INVENTARIO
+                 * */
 
-            $rows = count($request->neaProd);
+                $rows = count($request->neaProd);
 
-            for($i = 1;$i < $rows; $i++)
-            {
-                $neaProd = new almInventario();
-                $neaProd->cod_giu = $nea;
-                $neaProd->prod_cod = $request->neaProd[$i];
-                $neaProd->prod_desc = $request->neaDesc[$i];
-                $neaProd->prod_marca = $request->neaMarca[$i];
-                $neaProd->prod_cant = $request->neaCant[$i];
-                $neaProd->prod_medida = $request->neaUnd[$i];
-                $neaProd->prod_precio = $request->neaPrecio[$i];
-                $neaProd->prod_costo = $request->neaCosto[$i];
-                $neaProd->prod_ingobs = $request->neaProdComment[$i];
-                $neaProd->prod_recep = $request->neaCant[$i];
-                $neaProd->conf_prod = 'C';
-                $neaProd->flagR = true;
-                $neaProd->prod_distribuido = 0;
-                $neaProd->prod_stock = $request->neaCant[$i];
-                $neaProd->flagD = false;
-                $neaProd->fecha_act = Carbon::now()->toDateString();
-                $neaProd->hora_act = Carbon::now()->toTimeString();
-                $neaProd->user_act = Auth::user()->usrID; // 'Usuario Sesion';
-                $neaProd->prod_ord = $i;
-                $neaProd->save();
+                for($i = 1;$i < $rows; $i++)
+                {
+                    $neaProd = new almInventario();
+                    $neaProd->cod_giu = $nea;
+                    $neaProd->prod_cod = $request->neaProd[$i];
+                    $neaProd->prod_desc = $request->neaDesc[$i];
+                    $neaProd->prod_marca = $request->neaMarca[$i];
+                    $neaProd->prod_cant = $request->neaCant[$i];
+                    $neaProd->prod_medida = $request->neaUnd[$i];
+                    $neaProd->prod_precio = $request->neaPrecio[$i];
+                    $neaProd->prod_costo = $request->neaCosto[$i];
+                    $neaProd->prod_ingobs = $request->neaProdComment[$i];
+                    $neaProd->prod_recep = $request->neaCant[$i];
+                    $neaProd->conf_prod = 'C';
+                    $neaProd->flagR = true;
+                    $neaProd->prod_distribuido = 0;
+                    $neaProd->prod_stock = $request->neaCant[$i];
+                    $neaProd->flagD = false;
+                    $neaProd->fecha_act = Carbon::now()->toDateString();
+                    $neaProd->hora_act = Carbon::now()->toTimeString();
+                    $neaProd->user_act = Auth::user()->usrID; // 'Usuario Sesion';
+                    $neaProd->prod_ord = $i;
+                    $neaProd->save();
 
-                unset($neaProd);
+                    unset($neaProd);
+                }
+
+                /*
+                 * REGISTRO DEL SEGUIMIENTO EN LA TABLA SEGUIMIENTO
+                 * */
+
+                $seguimiento = new almSeguimiento();
+                $seguimiento->seg_giu = $nea;
+                $seguimiento->seg_operacion = 'Registro';
+                $seguimiento->seg_usuario = Auth::user()->usrID; // 'usuario';
+                $seguimiento->seg_fecha = Carbon::now()->format('d/m/Y h:i:s A');
+                $seguimiento->seg_hora = Carbon::now()->toTimeString();
+                $seguimiento->seg_descripcion = "Registro de la NEA: ".$nea;
+                $seguimiento->save();
+            });
+
+            if(is_null($exception)){
+                $msg = 'Nota de Entrada registrada con éxito';
+                $msgId = 200;
+            }
+            else{
+                throw new Exception($exception);
             }
 
-            /*
-             * REGISTRO DEL SEGUIMIENTO EN LA TABLA SEGUIMIENTO
-             * */
+        }catch(Exception $e){
+            $msg = "Error: " . $e->getMessage();
+            $msgId = 500;
+        }
 
-            $seguimiento = new almSeguimiento();
-            $seguimiento->seg_giu = $nea;
-            $seguimiento->seg_operacion = 'Registro';
-            $seguimiento->seg_usuario = Auth::user()->usrID; // 'usuario';
-            $seguimiento->seg_fecha = Carbon::now()->format('d/m/Y h:i:s A');
-            $seguimiento->seg_hora = Carbon::now()->toTimeString();
-            $seguimiento->seg_descripcion = "Registro de la NEA: ".$nea;
-            $seguimiento->save();
-        });
-
-        $status = 'Nota de Entrada registrada con éxito';
-
-        return $status;
+        return response()->json(compact('msg','msgId'));
     }
 
     public function getShowAllRegister(Request $request)

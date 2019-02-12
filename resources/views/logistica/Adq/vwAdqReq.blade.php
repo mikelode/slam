@@ -89,10 +89,11 @@
                               <tr>
                               <td>
                                  <div class="btn-group btn-input clearfix" id="txCodTipoReq">
-                                    <button type="button" id="btnTipoReq" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:130px; height: 30px;font-size: 12px;  ">    <span  id="txTipoReq"  data-bind="label">Seleccione...</span> <span class="caret"></span></button>
+                                    <button type="button" id="btnTipoReq" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "min-width:130px; height: 30px;font-size: 12px;  ">    <span  id="txTipoReq"  data-bind="label">Seleccione...</span> <span class="caret"></span></button>
                                     <ul class="dropdown-menu menu-TipoReq" role="menu" style="font-size: 12px; ">
                                        <li  psrId="BB"><a href="#" onclick="fnChangeBtn('BB', $('#btnLogItem'))">BIENES</a></li>
                                        <li  psrId="SS"><a href="#" onclick="fnChangeBtn('SS', $('#btnLogItem'))">SERVICIOS</a></li>
+                                        <li psrId="PA"><a href="#" onclick="fnChangeBtn('PA', $('#btnLogItem'))">PEDIDO ALMACEN</a></li>
                                     </ul>
                                  </div>
                               </td>

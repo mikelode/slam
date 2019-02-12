@@ -36,7 +36,7 @@
                                         <option value="NEA-DA">NEA - Devolución a Almacén</option>
                                         <option value="NEA-DI">NEA - Diferencia de Inventario</option>
                                         <option value="NEA-DO">NEA - Donación</option>
-                                        <option value="NEA-TE">NEA - Transferencia Externa</option>
+                                        <option value="NEA-TE">NEA - Transferencia</option>
                                         <option value="NEA-OT">NEA - Otros</option>
                                     </select>
                                 </div>
@@ -60,15 +60,15 @@
                                     <input class="form-control alm-input" id="nameReceipt" type="text" name="neaNameReceipt" placeholder="NOMBRE DEL QUE RECIBE">
                                 </div>
                             </div>
-                            <div class="form-group alm-form-group">
-                                <label class="col-sm-2 control-label">Persona que Entrega</label>
-                                <div class="col-md-2">
-                                    <input class="form-control alm-input neaDni" id="dniGiver" data-aim="giver" type="text" name="neaDniGiver" placeholder="DNI (F2)"/>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input class="form-control alm-input" id="nameGiver" type="text" name="neaNameGiver" placeholder="NOMBRE DEL QUE ENTREGA">
-                                </div>
-                            </div>
+                            {{--<div class="form-group alm-form-group">--}}
+                                {{--<label class="col-sm-2 control-label">Persona que Entrega</label>--}}
+                                {{--<div class="col-md-2">--}}
+                                    {{--<input class="form-control alm-input neaDni" id="dniGiver" data-aim="giver" type="text" name="neaDniGiver" placeholder="DNI (F2)"/>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-sm-7">--}}
+                                    {{--<input class="form-control alm-input" id="nameGiver" type="text" name="neaNameGiver" placeholder="NOMBRE DEL QUE ENTREGA">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="form-group alm-form-group">
                                 <label class="col-sm-2 control-label">Secuencia Funcional</label>
                                 <div class="col-md-2">
@@ -252,8 +252,9 @@ $(document).ready(function(){
             var data = $('#frmDataNea').serialize();
 
             $.post(url,data,function(result){
-                alert(result);
-                getMenuInternamiento();
+                alert(result.msg);
+                if(result.msgId == 200)
+                    getMenuDistribucion();
             }).fail(function(dataError){
                 var error = $.parseJSON(dataError.responseText);
                 var msg = '';
