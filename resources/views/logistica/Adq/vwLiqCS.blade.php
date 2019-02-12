@@ -36,14 +36,14 @@
                                     <button type="button" id="btnLiqCSAnio" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:140px; height: 40px;font-size: 14px;  ">    <span  id="txRptLiqCSAnio"  data-bind="label">Seleccione</span> <span class="caret"></span></button>
                                     <ul class="dropdown-menu menu-RptLiqCSAnio" role="menu" style="font-size: 16px; font-weight:bold;">
 
-                                        <li  psrId="2018"><a href="#">2018</a></li>
-                                        <li  psrId="2017"><a href="#">2017</a></li>
-                                        <li  psrId="2016"><a href="#">2016</a></li>
-                                       <li  psrId="2015"><a href="#">2015</a></li>
-                                       <li  psrId="2014"><a href="#">2014</a></li>
-                                       <li  psrId="2013"><a href="#">2013</a></li>
-                                       <li  psrId="2012"><a href="#">2012</a></li>
-                                       <li  psrId="2011"><a href="#">2011</a></li>
+                                        <li  psrId="2018"><a href="#" class="liqcsAnio" data-anio="2018">2018</a></li>
+                                        <li  psrId="2017"><a href="#" class="liqcsAnio" data-anio="2017">2017</a></li>
+                                        <li  psrId="2016"><a href="#" class="liqcsAnio" data-anio="2016">2016</a></li>
+                                       <li  psrId="2015"><a href="#" class="liqcsAnio" data-anio="2015">2015</a></li>
+                                       <li  psrId="2014"><a href="#" class="liqcsAnio" data-anio="2014">2014</a></li>
+                                       <li  psrId="2013"><a href="#" class="liqcsAnio" data-anio="2013">2013</a></li>
+                                       <li  psrId="2012"><a href="#" class="liqcsAnio" data-anio="2012">2012</a></li>
+                                       <li  psrId="2011"><a href="#" class="liqcsAnio" data-anio="2011">2011</a></li>
                                     </ul>
                                  </div>
                             
@@ -83,8 +83,7 @@
                           <td align="right">  </td>
                           
                           <td>
-                            
-                              <table class="gs-table" >           
+                              <table class="gs-table" id="btnSiadeg" style="display: none;">
                                 <tr>
                                 <td><button class="btn btn-primary" id = "btnLiqCSMostrar" data-ordn="oc" style="HEIGHT:45PX;"> Mostrar ( OC ) </button> </td>
                                 <td width="50px"> &nbsp;</td>
@@ -95,6 +94,17 @@
                                 <td><button class="btn btn-default" style="width:120px; HEIGHT:45PX;" data-dismiss="modal"> Cancelar </button></td>
                               </tr>
                             </table>
+                              <table class="gs-table" id="btnSvlogistica" style="display: none;" >
+                                  <tr>
+                                      <td><button class="btn btn-primary" id = "btnLiqCSMostrar" data-ordn="oc" style="HEIGHT:45PX;"> Mostrar ( OC / OS ) </button> </td>
+                                      <td width="50px"> &nbsp;</td>
+                                      <td>
+
+                                      </td>
+                                      <td width="50px"> &nbsp;</td>
+                                      <td><button class="btn btn-default" style="width:120px; HEIGHT:45PX;" data-dismiss="modal"> Cancelar </button></td>
+                                  </tr>
+                              </table>
                           </td>
                         </tr>
                                            
@@ -142,3 +152,25 @@
 <div id="divDialogCont"></div>
 </div>
 
+<script>
+    $(document).ready(function(){
+
+        $('.liqcsAnio').click(function (e) {
+            e.preventDefault();
+
+            var anio = $(this).data('anio');
+
+            if(anio == '2013' || anio == '2012' || anio == '2011'){
+                $('#btnSvlogistica').show();
+                $('#btnSiadeg').hide();
+            }
+            else{
+                $('#btnSvlogistica').hide();
+                $('#btnSiadeg').show();
+            }
+
+
+        });
+
+    });
+</script>
