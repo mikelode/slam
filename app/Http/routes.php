@@ -251,6 +251,9 @@ Route::post('logistica/spLogSetReqD', 'Logistica\ctrlReq@spLogSetReqD');
 Route::post('logistica/spLogSetReqBusy', 'Logistica\ctrlReq@spLogSetReqBusy');
 Route::post('logistica/spLogGetReqLR',   'Logistica\ctrlReq@spLogGetReqLR');
 
+/* REQUERIMIENTOS POR USUARIO */
+Route::get('logistica/vwreqs','Requerimiento\lsmReq@spLogListReq');
+
 /* *  COTIZACION ************* */
 Route::get('logistica/vwCtz',           'Logistica\ctrlCtz@fnGetViewCtz');
 Route::post('logistica/spLogSetCtz',    'Logistica\ctrlCtz@spLogSetCtz');

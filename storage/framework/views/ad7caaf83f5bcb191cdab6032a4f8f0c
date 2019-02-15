@@ -239,8 +239,8 @@
                 var url = 'internamiento/oc';
                 var data = $('#frmDataOc').serialize();
 
-                $.post(url,data,function(result){
-                    alert(result);
+                $.post(url,data,function(response){
+                    alert(response.msg);
                     fnDisplayInfo($('#txtOcnotify').val(), $('#periodSys').val())
                 }).fail(function(dataError){
                     console.log(dataError);

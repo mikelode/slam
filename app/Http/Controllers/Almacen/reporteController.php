@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Logistica\Almacen\almAlmacen;
 use Logistica\Almacen\almInternamiento;
+use Logistica\Almacen\almTLogContPlan;
 use Logistica\Almacen\almTPreSF;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
@@ -37,8 +38,9 @@ class reporteController extends Controller
         {
             if( $result[0]->NEW =="1") {
 
+                $cuentas = almTLogContPlan::where('pcgActivo', true)->get();
                 $almacen = almAlmacen::all();
-                return view('almacen.reporte.panel-reporte',['almacen' => $almacen]);
+                return view('almacen.reporte.panel-reporte',compact('almacen','cuentas'));
 
             }
             else {
@@ -166,204 +168,263 @@ class reporteController extends Controller
         $analysis = $request->repAnalysis;
         $filter = $request->repFilter;
         $detail = $request->repDetail;
+        $subcuenta = $request->repSubcta;
 
-        if($analysis == 'PCS')
-        {
-            switch($filter)
+        $tiporpt = 'rpt1';// $request->tiporpt;
+
+        if($tiporpt == 'rpt1'){
+
+            if($analysis == 'PCS')
             {
-                case 'SF':
-                    $data = $this->create_report_pecosa_secfun($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteSecuenciaPdfPcs',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteSecuenciaPcs',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteSecuenciaPcs';
-                    }
-                    break;
+                switch($filter)
+                {
+                    case 'SF':
+                        $data = $this->create_report_pecosa_secfun($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaPdfPcs',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaPcs',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteSecuenciaPcs';
+                        }
+                        break;
+                }
             }
-        }
-        else if($analysis == 'NEA')
-        {
-            switch($filter)
+            else if($analysis == 'NEA')
             {
-                case 'SF':
-                    $data = $this->create_report_neas_secfun($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteSecuenciaNeaPdf',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteSecuenciaNea',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteSecuenciaNea';
-                    }
-                    break;
+                switch($filter)
+                {
+                    case 'SF':
+                        $data = $this->create_report_neas_secfun($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaNeaPdf',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaNea',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteSecuenciaNea';
+                        }
+                        break;
+                }
             }
-        }
-        else if($analysis == 'GIU')
-        {
-            switch($filter)
+            else if($analysis == 'GIU')
             {
-                case 'SF':
-                    $data = $this->create_report_gius_secfun($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteSecuenciaGiuPdf',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteSecuenciaGiu',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteSecuenciaGiu';
-                    }
-                    break;
+                switch($filter)
+                {
+                    case 'SF':
+                        $data = $this->create_report_gius_secfun($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaGiuPdf',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaGiu',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteSecuenciaGiu';
+                        }
+                        break;
+                }
             }
-        }
-        else if($analysis == 'IYS')
-        {
-            switch($filter)
+            else if($analysis == 'IYS')
             {
-                case 'CP':
-                    $data = $this->create_report_producto($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteProductoPdf',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteProducto',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteProducto';
-                    }
-                    break;
-                case 'CL':
-                    $data = $this->create_report_clasificador($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteClasificadorPdf',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteClasificador',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteClasificador';
-                    }
-                    break;
-                case 'FF':
-                    $data = $this->create_report_financiamiento($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteFinanciamientoPdf',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteFinanciamiento',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteFinanciamiento';
-                    }
-                    break;
-                case 'SF':
-                    $data = $this->create_report_secuencia($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteSecuenciaPdf',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteSecuencia',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteSecuencia';
-                    }
-                    break;
-                case 'TP':
-                    $data = $this->create_report_proceso($almacen,$dateFrom,$dateTo,$detail);
-                    if($type == 'pdf')
-                    {
-                        $view = view('almacen.reporte.reporteProcesoPdf',['data' => $data]);
-                    }
-                    else if($type == 'html')
-                    {
-                        $view = view('almacen.reporte.reporteProceso',['data' => $data]);
-                    }
-                    else if($type == 'xls')
-                    {
-                        $view = 'almacen.reporte.reporteProceso';
-                    }
-                    break;
+                switch($filter)
+                {
+                    case 'CP':
+                        $data = $this->create_report_producto($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteProductoPdf',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteProducto',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteProducto';
+                        }
+                        break;
+                    case 'CL':
+                        $data = $this->create_report_clasificador($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteClasificadorPdf',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteClasificador',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteClasificador';
+                        }
+                        break;
+                    case 'FF':
+                        $data = $this->create_report_financiamiento($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteFinanciamientoPdf',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteFinanciamiento',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteFinanciamiento';
+                        }
+                        break;
+                    case 'SF':
+                        $data = $this->create_report_secuencia($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaPdf',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteSecuencia',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteSecuencia';
+                        }
+                        break;
+                    case 'TP':
+                        $data = $this->create_report_proceso($almacen,$dateFrom,$dateTo,$detail);
+                        if($type == 'pdf')
+                        {
+                            $view = view('almacen.reporte.reporteProcesoPdf',['data' => $data]);
+                        }
+                        else if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteProceso',['data' => $data]);
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteProceso';
+                        }
+                        break;
+                }
             }
+
+            if($type == 'xls')
+            {
+                /*Excel::create('Reporte Excel', function($excel) use ($data){
+                    $excel->sheet('Reporte',function($sheet) use ($data){
+                        $sheet->setFontFamily('Arial Narrow');
+                        $sheet->setFontSize(10);
+                        $sheet->setColumnFormat(array(
+                            'H' => '0.00'
+                        ));
+                        $sheet->fromArray($data);
+                    });
+                })->download('xlsx');*/
+                Excel::create('Reporte Excel', function($excel) use ($view,$data){
+                    $excel->sheet('Reporte',function($sheet) use ($view,$data){
+                        $sheet->loadView($view)->with('data',$data);
+                    });
+                })->export('xlsx');
+            }
+            else if($type == 'pdf')
+            {
+                $optionsHeader = array('header-html' => 'http://slam.mdv.net/header', 'header-spacing' => -20);
+                $optionsFooter = array('footer-html' => 'http://slam.mdv.net/footer', 'footer-line' => true, 'footer-spacing' => 5);
+                $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
+
+                $snappy = App::make('snappy.pdf.wrapper');
+                //$snappy->setOptions($optionsHeader);
+                $snappy->setOptions($optionsPage);
+                $snappy->setOptions($optionsFooter);
+                $snappy->loadHTML($view)->setPaper('a4')->setOrientation('landscape');
+
+                return $snappy->stream('reporte-productos.pdf');
+
+                /*$pdf = new MYPDF('L','mm','A4',true,'UTF-8',false);
+
+                $pdf->SetTitle('REPORTE DE ALMACEN POR PRODUCTOS');
+
+                $pdf->setAttributesHeader('PRODUCTOS');
+                $pdf->Header();
+                $pdf->SetFont('times','',8);
+                $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+                $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+                $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+                $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+                $pdf->AddPage();
+                $pdf->writeHTML($view->render());
+                $pdf->Output('hello_world.pdf');*/
+            }
+            else if($type == 'html')
+            {
+                return $view;
+            }
+
         }
+        else if($tiporpt == 'rpt2'){
 
-        if($type == 'xls')
-        {
-            /*Excel::create('Reporte Excel', function($excel) use ($data){
-                $excel->sheet('Reporte',function($sheet) use ($data){
-                    $sheet->setFontFamily('Arial Narrow');
-                    $sheet->setFontSize(10);
-                    $sheet->setColumnFormat(array(
-                        'H' => '0.00'
-                    ));
-                    $sheet->fromArray($data);
-                });
-            })->download('xlsx');*/
-            Excel::create('Reporte Excel', function($excel) use ($view,$data){
-                $excel->sheet('Reporte',function($sheet) use ($view,$data){
-                    $sheet->loadView($view)->with('data',$data);
-                });
-            })->export('xlsx');
+            /*if($subcuenta == 'ALL'){
+
+            }
+            else{
+                $anio = explode('-', $subcuenta)[0];
+                $subcta = explode('-', $subcuenta)[1];
+
+                if($type == 'pdf')
+                {
+                    $view = view('almacen.reporte.reporteSecuenciaPdfPcs',['data' => $data]);
+                }
+                else if($type == 'html')
+                {
+                    $view = view('almacen.reporte.reporteSecuenciaPcs',['data' => $data]);
+                }
+                else if($type == 'xls')
+                {
+                    $view = 'almacen.reporte.reporteSecuenciaPcs';
+                }
+            }
+
+            if($type == 'xls')
+            {
+                Excel::create('Reporte Excel', function($excel) use ($view,$data){
+                    $excel->sheet('Reporte',function($sheet) use ($view,$data){
+                        $sheet->loadView($view)->with('data',$data);
+                    });
+                })->export('xlsx');
+            }
+            else if($type == 'pdf')
+            {
+                $optionsHeader = array('header-html' => 'http://slam.mdv.net/header', 'header-spacing' => -20);
+                $optionsFooter = array('footer-html' => 'http://slam.mdv.net/footer', 'footer-line' => true, 'footer-spacing' => 5);
+                $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
+
+                $snappy = App::make('snappy.pdf.wrapper');
+                //$snappy->setOptions($optionsHeader);
+                $snappy->setOptions($optionsPage);
+                $snappy->setOptions($optionsFooter);
+                $snappy->loadHTML($view)->setPaper('a4')->setOrientation('landscape');
+
+                return $snappy->stream('reporte-productos.pdf');
+            }
+            else if($type == 'html')
+            {
+                return $view;
+            }*/
         }
-        else if($type == 'pdf')
-        {
-            $optionsHeader = array('header-html' => 'http://slam.mdv.net/header', 'header-spacing' => -20);
-            $optionsFooter = array('footer-html' => 'http://slam.mdv.net/footer', 'footer-line' => true, 'footer-spacing' => 5);
-            $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
-
-            $snappy = App::make('snappy.pdf.wrapper');
-            //$snappy->setOptions($optionsHeader);
-            $snappy->setOptions($optionsPage);
-            $snappy->setOptions($optionsFooter);
-            $snappy->loadHTML($view)->setPaper('a4')->setOrientation('landscape');
-
-            return $snappy->stream('reporte-productos.pdf');
-
-            /*$pdf = new MYPDF('L','mm','A4',true,'UTF-8',false);
-
-            $pdf->SetTitle('REPORTE DE ALMACEN POR PRODUCTOS');
-
-            $pdf->setAttributesHeader('PRODUCTOS');
-            $pdf->Header();
-            $pdf->SetFont('times','',8);
-            $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-            $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-            $pdf->AddPage();
-            $pdf->writeHTML($view->render());
-            $pdf->Output('hello_world.pdf');*/
+        else{
+            return null;
         }
-        else if($type == 'html')
-        {
-            return $view;
-        }
-
     }
 
     public function postMakePreview_temp(Request $request)

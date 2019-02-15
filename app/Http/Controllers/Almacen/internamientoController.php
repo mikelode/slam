@@ -21,6 +21,7 @@ use Logistica\Almacen\almRecycleInternamiento;
 use Logistica\Almacen\almSeguimiento;
 use Logistica\Almacen\almTLogOC;
 use Logistica\Almacen\almTLogOCD;
+use Logistica\Almacen\almTPreCta;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
 use Logistica\Http\Requests\almStoreInterPostRequest;
@@ -191,169 +192,207 @@ class internamientoController extends Controller
 
     public function postRegisterOc(almStoreOcPostRequest $request)
     {
-        $status = 'Error en el registro de la orden de compra';
-        $findOc = almInternamiento::where('oc_cod',$request->ocCodigo)->count();
-        $nullOc = almInternamiento::where('oc_cod',$request->ocCodigo)->where('estado_anulacion','SI')->count();
+        try{
 
-        if($findOc == 0 || $nullOc != 0)
-        {
-            DB::transaction(function($request) use ($request){
+            $findOc = almInternamiento::where('oc_cod',$request->ocCodigo)->count();
+            $nullOc = almInternamiento::where('oc_cod',$request->ocCodigo)->where('estado_anulacion','SI')->count();
 
-                $giu = '';
-                $pref = 'GI';
-                $anio = $request->almAnio;
-                $result = \DB::connection('dbalmacen')->select('exec generar_codigoFin ?,?',  array( $anio ,  $pref));  
-                $giu= $result[0]->codigo ;
-               /* $stmt = DB::connection('dbalmacen')->getPdo()->prepare('SET NOCOUNT ON; EXEC generar_codigoFin ?,?');
-                $stmt->bindParam(1,$pref);
-                $stmt->bindParam(2,$giu,\PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 11);
-                $stmt->execute();
-                unset($stmt);
-                */
+            if($findOc == 0 || $nullOc != 0)
+            {
+                $exception = DB::transaction(function($request) use ($request){
 
-                //$oc = almTLogOC::find($request->ocCodigo);
-                $oc = DB::connection('dblogistica')->table('TLogOC')
-                    ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('DEP',orcDep,'') as ocDepdesc"))
-                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('RUC',orcRuc,'') as ocProv"))
-                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('ADQTIP',orcProcTip,'') as ocProcTipo"))
-                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('SECFUN',orcSecFun,'') as ocSecFuncDesc"))
-                    ->where('orcID',$request->ocCodigo)->get();
+                    $giu = '';
+                    $pref = 'GI';
+                    $anio = $request->almAnio;
+                    $result = \DB::connection('dbalmacen')->select('exec generar_codigoFin ?,?',  array( $anio ,  $pref));
+                    $giu= $result[0]->codigo ;
+                    /* $stmt = DB::connection('dbalmacen')->getPdo()->prepare('SET NOCOUNT ON; EXEC generar_codigoFin ?,?');
+                     $stmt->bindParam(1,$pref);
+                     $stmt->bindParam(2,$giu,\PDO::PARAM_STR | \PDO::PARAM_INPUT_OUTPUT, 11);
+                     $stmt->execute();
+                     unset($stmt);
+                     */
 
-                $ocInt = new almInternamiento();
+                    //$oc = almTLogOC::find($request->ocCodigo);
+                    $oc = DB::connection('dblogistica')->table('TLogOC')
+                        ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('DEP',orcDep,'') as ocDepdesc"))
+                        ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('RUC',orcRuc,'') as ocProv"))
+                        ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('ADQTIP',orcProcTip,'') as ocProcTipo"))
+                        ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('SECFUN',orcSecFun,'') as ocSecFuncDesc"))
+                        ->where('orcID',$request->ocCodigo)->get();
 
-                $ocInt->ing_giu = $giu;
-                $ocInt->ing_almacen = $request->ocAlmacen;
-                $ocInt->ing_guiaremision = $request->ocNroGuiaRemision;
-                $ocInt->ing_factura =  $request->ocNroFactura;
-                $ocInt->ing_fecha = Carbon::now()->toDateString();  /*FECHA Y HORA DE REGISTRO DE LA OC*/
-                $ocInt->ing_hora = Carbon::now()->toTimeString();
-                $ocInt->ing_usu = Auth::user()->usrID;//'usuario';
-                $ocInt->ing_obs = $request->ocComment;
-                $ocInt->estado_validacion = 'P';
-                $ocInt->estado_salida = 'P';
-                $ocInt->flagI = false;
-                $ocInt->flagS = false;
-                $ocInt->tipo_internamiento = $request->ocDeliveryType;
-                $ocInt->tipo_doc = 'OdC';
-                $ocInt->oc_cod = $oc[0]->orcID;
-                $ocInt->oc_plazo_dias = $oc[0]->orcPlazo;
-                $ocInt->oc_costotal = $this->costoTotalOC($oc[0]->orcID); //Hallar el costo total
-                $ocInt->oc_proveedor = $oc[0]->ocProv;
-                $ocInt->oc_rucprovee = $oc[0]->orcRuc;
-                $ocInt->oc_fecha = $oc[0]->orcFecha;
-                $ocInt->oc_dep_destino = $oc[0]->ocDepdesc;
-                $ocInt->oc_obra_destino = $oc[0]->ocSecFuncDesc;
-                $ocInt->usu_act = Auth::user()->usrID; // 'usuario';
-                $ocInt->fec_act = Carbon::now()->toDateString();;
-                $ocInt->hor_act = Carbon::now()->toTimeString();;
-                $ocInt->oc_fecha_limite = $request->ocDateExpiration;
-                $ocInt->estado_anulacion = 'NO';
-                $ocInt->oc_tipoProceso = $oc[0]->orcProcTip;
-                $ocInt->oc_FteFto = $oc[0]->orcFteFto;
-                $ocInt->oc_rubro = $oc[0]->orcRubro;
-                $ocInt->oc_secFuncional = $oc[0]->orcSecFun;
-                $ocInt->oc_subSecFuncional = $oc[0]->orcSubSec;
-                $ocInt->oc_docRef = $oc[0]->orcRef;
-                $ocInt->oc_glosa = $oc[0]->orcGlosa;
-                $ocInt->oc_expSiaf = 'siaf'; //$oc[0]->orcExpSiaf;
-                $ocInt->oc_fecha_notificacion = $request->ocDateNotification;
-                $ocInt->oc_medio_notificacion = $request->ocMedioNotificacion;
+                    $ocInt = new almInternamiento();
 
-                $ocInt->save();
+                    $ocInt->ing_giu = $giu;
+                    $ocInt->ing_almacen = $request->ocAlmacen;
+                    $ocInt->ing_guiaremision = $request->ocNroGuiaRemision;
+                    $ocInt->ing_factura =  $request->ocNroFactura;
+                    $ocInt->ing_fecha = Carbon::now()->toDateString();  /*FECHA Y HORA DE REGISTRO DE LA OC*/
+                    $ocInt->ing_hora = Carbon::now()->toTimeString();
+                    $ocInt->ing_usu = Auth::user()->usrID;//'usuario';
+                    $ocInt->ing_obs = $request->ocComment;
+                    $ocInt->estado_validacion = 'P';
+                    $ocInt->estado_salida = 'P';
+                    $ocInt->flagI = false;
+                    $ocInt->flagS = false;
+                    $ocInt->tipo_internamiento = $request->ocDeliveryType;
+                    $ocInt->tipo_doc = 'OdC';
+                    $ocInt->oc_cod = $oc[0]->orcID;
+                    $ocInt->oc_plazo_dias = $oc[0]->orcPlazo;
+                    $ocInt->oc_costotal = $this->costoTotalOC($oc[0]->orcID); //Hallar el costo total
+                    $ocInt->oc_proveedor = $oc[0]->ocProv;
+                    $ocInt->oc_rucprovee = $oc[0]->orcRuc;
+                    $ocInt->oc_fecha = $oc[0]->orcFecha;
+                    $ocInt->oc_dep_destino = $oc[0]->ocDepdesc;
+                    $ocInt->oc_obra_destino = $oc[0]->ocSecFuncDesc;
+                    $ocInt->usu_act = Auth::user()->usrID; // 'usuario';
+                    $ocInt->fec_act = Carbon::now()->toDateString();;
+                    $ocInt->hor_act = Carbon::now()->toTimeString();;
+                    $ocInt->oc_fecha_limite = $request->ocDateExpiration;
+                    $ocInt->estado_anulacion = 'NO';
+                    $ocInt->oc_tipoProceso = $oc[0]->orcProcTip;
+                    $ocInt->oc_FteFto = $oc[0]->orcFteFto;
+                    $ocInt->oc_rubro = $oc[0]->orcRubro;
+                    $ocInt->oc_secFuncional = $oc[0]->orcSecFun;
+                    $ocInt->oc_subSecFuncional = $oc[0]->orcSubSec;
+                    $ocInt->oc_docRef = $oc[0]->orcRef;
+                    $ocInt->oc_glosa = $oc[0]->orcGlosa;
+                    $ocInt->oc_expSiaf = 'siaf'; //$oc[0]->orcExpSiaf;
+                    $ocInt->oc_fecha_notificacion = $request->ocDateNotification;
+                    $ocInt->oc_medio_notificacion = $request->ocMedioNotificacion;
 
-                /*VERIFICAMOS SI PERTENECE AL CONVENIO MARCO*/
+                    $ocInt->save();
 
-                $flagCMarco = false;
-                if($oc[0]->orcProcTip == '009' && trim($oc[0]->orcIGV) == 'SI')
-                {
-                    $checkCMarco = array();
-                    if(in_array($oc[0]->orcID,$checkCMarco))
+                    /*VERIFICAMOS SI PERTENECE AL CONVENIO MARCO*/
+
+                    $flagCMarco = false;
+                    if($oc[0]->orcProcTip == '009' && trim($oc[0]->orcIGV) == 'SI')
                     {
-                        $flagCMarco = false;
+                        $checkCMarco = array();
+                        if(in_array($oc[0]->orcID,$checkCMarco))
+                        {
+                            $flagCMarco = false;
+                        }
+                        else
+                        {
+                            $flagCMarco = true;
+                        }
                     }
-                    else
+
+                    /*******************************************/
+
+                    //$ocd = almTLogOCD::where('cdtCodOC',$request->ocCodigo)->get();
+                    $ocd = DB::connection('dblogistica')->table('TLogOCD')
+                        ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('PROD',cdtCodProd,'') AS ocdProd"))
+                        ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('UNDABRV',cdtCodUnd,'') AS ocdUnd"))
+                        ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('CLASF',cdtCodClsf,'') AS ocdClsf"))
+                        ->where('cdtCodOC',$request->ocCodigo)->get();
+
+                    //dd($ocd);
+
+                    foreach ($ocd as $i => $prodOc)
                     {
-                        $flagCMarco = true;
+                        $ocDet = new almInventario();
+
+                        $ocDet->cod_giu = $giu;
+                        $ocDet->prod_oc = $prodOc->cdtCodOC;
+                        $ocDet->prod_cod = $prodOc->cdtCodProd;
+                        $ocDet->prod_desc = $prodOc->ocdProd.': '.$prodOc->cdtEspecif;
+                        $ocDet->prod_marca = $prodOc->cdtMarca;
+                        $ocDet->prod_cant = $prodOc->cdtCant;
+                        $ocDet->prod_medida = $prodOc->ocdUnd;
+                        $ocDet->prod_precio = $prodOc->cdtPrecio;
+                        if($flagCMarco)
+                        {
+                            //$ocDet->prod_costo = $this->getMountCMarco($prodOc->cdtSubTotal,$prodOc->cdtEnvio,$prodOc->cdtIgv);
+                            $ocDet->prod_costo = $prodOc->cdtCant * $prodOc->cdtPrecio;
+                        }
+                        else
+                        {
+                            $ocDet->prod_costo = $prodOc->cdtCant * $prodOc->cdtPrecio;
+                        }
+                        $ocDet->prod_ingobs = null;
+                        $ocDet->prod_recep = 0;
+                        $ocDet->conf_prod = 'P';
+                        $ocDet->flagR = false;
+                        $ocDet->prod_distribuido = 0;
+                        $ocDet->prod_stock = 0;
+                        $ocDet->flagD = false;
+                        $ocDet->prod_salobs = null;
+                        $ocDet->prod_clasif = $prodOc->cdtCodClsf;
+                        $ocDet->fecha_act = Carbon::now()->toDateString();
+                        $ocDet->hora_act = Carbon::now()->toTimeString();
+                        $ocDet->user_act = Auth::user()->usrID; // 'Usuario';
+                        $ocDet->prod_ord = $i+1;
+
+                        $cuenta = almTPreCta::where('ctaTipo','PARTIDA_GASTOS')->where('ctaCgp',$prodOc->ocdClsf)->first();
+
+                        $ocDet->prod_cta = is_null($cuenta) ? '' : $cuenta->ctaPatrimd;
+                        $ocDet->prod_secfun = $prodOc->cdtSecFun;
+                        $ocDet->prod_rubro = $prodOc->cdtRubro;
+
+                        $ocDet->save();
+
+                        unset($ocDet);
                     }
+
+                    $seguimiento = new almSeguimiento();
+
+                    $seguimiento->seg_giu = $giu;
+                    $seguimiento->seg_operacion = 'Registro';
+                    $seguimiento->seg_usuario = Auth::user()->usrID; // 'usuario';
+                    $seguimiento->seg_fecha = Carbon::now()->format('d/m/Y h:i:s A');
+                    $seguimiento->seg_hora = Carbon::now()->toTimeString();
+                    $seguimiento->seg_descripcion = "Registro de la OC:".$oc[0]->orcID." como la GI:".$giu;
+
+                    $seguimiento->save();
+                });
+
+                if(is_null($exception)){
+                    $msg = 'Notificación de Orden de compra registrada con éxito';
+                    $msgId = 200;
+                }
+                else{
+                    throw new Exception($exception);
+                }
+            }
+            else
+            {
+
+                $internamiento = almInternamiento::where('oc_cod',$request->ocCodigo)->with('ingresos')->get();
+
+                if(count($internamiento[0]->ingresos) > 0){
+                    throw new Exception('No es posible realizar cambios, porque la orden de compra YA REGISTRA PROCESOS DE INTERNAMIENTO en almacen');
                 }
 
-                /*******************************************/
 
-                //$ocd = almTLogOCD::where('cdtCodOC',$request->ocCodigo)->get();
-                $ocd = DB::connection('dblogistica')->table('TLogOCD')
-                    ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('PROD',cdtCodProd,'') AS ocdProd"))
-                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('UNDABRV',cdtCodUnd,'') AS ocdUnd"))
-                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('CLASF',cdtCodClsf,'') AS ocdClsf"))
-                    ->where('cdtCodOC',$request->ocCodigo)->get();
+                $exception = DB::transaction(function() use($request){
 
-                //dd($ocd);
+                    $intern = almInternamiento::find($request->guiId);
+                    $intern->ing_almacen = $request->ocAlmacen;
+                    $intern->ing_obs = $request->ocComment;
+                    $intern->tipo_internamiento = $request->ocDeliveryType;
+                    $intern->oc_fecha_limite = $request->ocDateExpiration;
+                    $intern->oc_fecha_notificacion = $request->ocDateNotification;
+                    $intern->oc_medio_notificacion = $request->ocMedioNotificacion;
+                    $intern->save();
 
-                for($i = 0; $i < count($ocd); $i++)
-                {
-                    $ocDet = new almInventario();
+                });
 
-                    $ocDet->cod_giu = $giu;
-                    $ocDet->prod_oc = $ocd[$i]->cdtCodOC;
-                    $ocDet->prod_cod = $ocd[$i]->cdtCodProd;
-                    $ocDet->prod_desc = $ocd[$i]->ocdProd.': '.$ocd[$i]->cdtEspecif;
-                    $ocDet->prod_marca = $ocd[$i]->cdtMarca;
-                    $ocDet->prod_cant = $ocd[$i]->cdtCant;
-                    $ocDet->prod_medida = $ocd[$i]->ocdUnd;
-                    $ocDet->prod_precio = $ocd[$i]->cdtPrecio;
-                    if($flagCMarco)
-                    {
-                        $ocDet->prod_costo = $this->getMountCMarco($ocd[$i]->cdtSubTotal,$ocd[$i]->cdtEnvio,$ocd[$i]->cdtIgv);
-                    }
-                    else
-                    {
-                        $ocDet->prod_costo = $ocd[$i]->cdtCant * $ocd[$i]->cdtPrecio;
-                    }
-                    $ocDet->prod_ingobs = null;
-                    $ocDet->prod_recep = 0;
-                    $ocDet->conf_prod = 'P';
-                    $ocDet->flagR = false;
-                    $ocDet->prod_distribuido = 0;
-                    $ocDet->prod_stock = 0;
-                    $ocDet->flagD = false;
-                    $ocDet->prod_salobs = null;
-                    $ocDet->prod_clasif = $ocd[$i]->cdtCodClsf;
-                    $ocDet->fecha_act = Carbon::now()->toDateString();
-                    $ocDet->hora_act = Carbon::now()->toTimeString();
-                    $ocDet->user_act = Auth::user()->usrID; // 'Usuario';
-                    $ocDet->prod_ord = $i+1;
-
-                    $ocDet->save();
-                    unset($ocDet);
+                if(is_null($exception)){
+                    $msg = 'La orden de compra seleccionada ya fue registrada anteriormente, y se actualizaron sus datos correctamente';
+                    $msgId = 200;
                 }
-
-                $seguimiento = new almSeguimiento();
-
-                $seguimiento->seg_giu = $giu;
-                $seguimiento->seg_operacion = 'Registro';
-                $seguimiento->seg_usuario = Auth::user()->usrID; // 'usuario';
-                $seguimiento->seg_fecha = Carbon::now()->format('d/m/Y h:i:s A');
-                $seguimiento->seg_hora = Carbon::now()->toTimeString();
-                $seguimiento->seg_descripcion = "Registro de la OC:".$oc[0]->orcID." como la GI:".$giu;
-
-                $seguimiento->save();
-            });
-
-            $status = 'Notificación de Orden de compra registrada con éxito';
-        }
-        else
-        {
-            $status = 'La orden de compra seleccionada ya fue registrada anteriormente, y se actualizaron sus datos correctamente';
-            $intern = almInternamiento::find($request->guiId);
-            $intern->ing_almacen = $request->ocAlmacen;
-            $intern->ing_obs = $request->ocComment;
-            $intern->tipo_internamiento = $request->ocDeliveryType;
-            $intern->oc_fecha_limite = $request->ocDateExpiration;
-            $intern->oc_fecha_notificacion = $request->ocDateNotification;
-            $intern->oc_medio_notificacion = $request->ocMedioNotificacion;
-            $intern->save();
+                else{
+                    throw new Exception($exception);
+                }
+            }
+        }catch (Exception $e){
+            $msg = "Error: " . $e->getMessage();
+            $msgId = 500;
         }
 
-        return $status;
+        return response()->json(compact('msg','msgId'));
     }
 
     public function getMountCMarco($subTotal, $cenvio, $cigv)
