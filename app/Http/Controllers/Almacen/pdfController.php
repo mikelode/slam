@@ -209,6 +209,8 @@ class pdfController extends Controller
             }
         }
 
+       $orc = null;
+
         /******************************************************************/
 
         $view = view('almacen.pdf.pdfGi',['guia'=>$guia, 'proceso'=>$proceso, 'bienes'=>$bienes, 'orden'=>$orc]);

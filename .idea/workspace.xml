@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/almacen/reporte/reporteConta.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/almacen/reporte/reporteContaPdf.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/almacen/reporte/panel-reporte.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/almacen/reporte/panel-reporte.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/707672f817d05ac216bba5b28e5bf38d85c4659e" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/707672f817d05ac216bba5b28e5bf38d85c4659e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/1b324b8f67e144c6e29f4d1cdedc26a5" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/1b324b8f67e144c6e29f4d1cdedc26a5" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,17 +50,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="309" column="28" lean-forward="true" selection-start-line="309" selection-start-column="28" selection-end-line="309" selection-end-column="28" />
+            <state relative-caret-position="127">
+              <caret line="248" column="47" selection-start-line="248" selection-start-column="47" selection-end-line="248" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="211" column="19" lean-forward="true" selection-start-line="211" selection-start-column="19" selection-end-line="211" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfGi.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="263" column="20" lean-forward="true" selection-start-line="263" selection-start-column="20" selection-end-line="263" selection-end-column="20" />
+            <state relative-caret-position="32">
+              <caret line="209" column="41" lean-forward="true" selection-start-line="209" selection-start-column="41" selection-end-line="209" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -483,12 +485,12 @@
       <workItem from="1549888894113" duration="16927000" />
       <workItem from="1549976554968" duration="13835000" />
       <workItem from="1550076930135" duration="10766000" />
-      <workItem from="1550150738168" duration="41034000" />
+      <workItem from="1550150738168" duration="41753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="590895000" />
+    <option name="totallyTimeSpent" value="591614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -554,13 +556,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/almacen/salida/distribucionEdit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="197" column="90" lean-forward="true" selection-start-line="197" selection-start-column="90" selection-end-line="197" selection-end-column="111" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/test.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -913,15 +908,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="309" column="28" lean-forward="true" selection-start-line="309" selection-start-column="28" selection-end-line="309" selection-end-column="28" />
+        <state relative-caret-position="127">
+          <caret line="248" column="47" selection-start-line="248" selection-start-column="47" selection-end-line="248" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="263" column="20" lean-forward="true" selection-start-line="263" selection-start-column="20" selection-end-line="263" selection-end-column="20" />
+        <state relative-caret-position="416">
+          <caret line="211" column="19" lean-forward="true" selection-start-line="211" selection-start-column="19" selection-end-line="211" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfGi.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="209" column="41" lean-forward="true" selection-start-line="209" selection-start-column="41" selection-end-line="209" selection-end-column="41" />
         </state>
       </provider>
     </entry>
