@@ -167,10 +167,9 @@ class reporteController extends Controller
         $dateTo = $request->repDateTo;
         $analysis = $request->repAnalysis;
         $filter = $request->repFilter;
-        $detail = $request->repDetail;
-        $subcuenta = $request->repSubcta;
+        $detail = $request->repDetail; // secuencias funcionales
 
-        $tiporpt = 'rpt1';// $request->tiporpt;
+        $tiporpt = $request->repTipo;
 
         if($tiporpt == 'rpt1'){
 
@@ -374,37 +373,92 @@ class reporteController extends Controller
         }
         else if($tiporpt == 'rpt2'){
 
-            /*if($subcuenta == 'ALL'){
+            $subcuenta = $request->repSubcta;
 
+            $query = "select b.prod_cta as rptCta,  SUBSTRING(c.orcSecFun,5,5) as rptSf, '' as rptSiaf, 
+                                    b.prod_desc as rptDscprod, 
+                                    ISNULL(SUBSTRING(d.pint_cpi,5,5) + '-' + SUBSTRING(d.pint_cpi,11,3),'S.I.') as rptIngreso, 
+                                    SUBSTRING(c.orcID, 5, 5) as rptOC, 
+                                    b.prod_recep as rptCantI, (b.prod_recep * b.prod_precio) as rptMontoI,
+                                    ISNULL(SUBSTRING(e.psal_pecosa, 5, 5),'S.P.') as rptSalida, 
+                                    b.prod_distribuido as rptCantS, (b.prod_distribuido * b.prod_precio) as rptMontoS
+                                    from Internamiento a 
+                                    left join Inventario b on a.ing_giu = b.cod_giu
+                                    inner join DB_Logistica..TLogOC c on c.orcID = a.OC_COD
+                                    left join procesos_intern d on d.cod_giu = a.ing_giu
+                                    left join procesos_salida e on e.ing_giu = a.ing_giu";
+
+            if($subcuenta == 'ALL'){
+
+                $subcta = $subcuenta;
+
+                if($detail == 'ALL'){
+                    $query = $query . "
+                                    WHERE 
+                                    c.orcFecha BETWEEN ? AND ?";
+                    $data = DB::connection('dbalmacen')->select(DB::raw($query), [$dateFrom, $dateTo]);
+                }
+                else{
+                    $query = $query . "
+                                    WHERE 
+                                    c.orcFecha BETWEEN ? AND ? AND
+                                    b.prod_secfun = ?";
+
+                    $data = DB::connection('dbalmacen')->select(DB::raw($query), [$dateFrom, $dateTo, $detail]);
+                }
             }
             else{
                 $anio = explode('-', $subcuenta)[0];
                 $subcta = explode('-', $subcuenta)[1];
 
-                if($type == 'pdf')
-                {
-                    $view = view('almacen.reporte.reporteSecuenciaPdfPcs',['data' => $data]);
+                if($detail == 'ALL'){
+                    $query = $query . "
+                                    WHERE 
+                                    c.orcFecha BETWEEN ? AND ? AND
+                                    b.prod_cta like ?";
+                    $data = DB::connection('dbalmacen')->select(DB::raw($query), [$dateFrom, $dateTo, $subcta.'%']);
                 }
-                else if($type == 'html')
-                {
-                    $view = view('almacen.reporte.reporteSecuenciaPcs',['data' => $data]);
-                }
-                else if($type == 'xls')
-                {
-                    $view = 'almacen.reporte.reporteSecuenciaPcs';
+                else{
+                    $query = $query . "
+                                    WHERE 
+                                    c.orcFecha BETWEEN ? AND ? AND
+                                    b.prod_secfun = ? AND
+                                    b.prod_cta like ?";
+                    $data = DB::connection('dbalmacen')->select(DB::raw($query), [$dateFrom, $dateTo, $detail, $subcta.'%']);
                 }
             }
 
             if($type == 'xls')
             {
-                Excel::create('Reporte Excel', function($excel) use ($view,$data){
-                    $excel->sheet('Reporte',function($sheet) use ($view,$data){
-                        $sheet->loadView($view)->with('data',$data);
+                $view = 'almacen.reporte.reporteConta';
+                Excel::create('Reporte Excel', function($excel) use ($view,$data,$subcta){
+                    $excel->sheet('Reporte',function($sheet) use ($view,$data,$subcta){
+                        $sheet->loadView($view)->with('data',$data)->with('subcta',$subcta);
                     });
                 })->export('xlsx');
             }
             else if($type == 'pdf')
             {
+                $query = "select b.prod_cta as rptCt from Internamiento a 
+                                    left join Inventario b on a.ing_giu = b.cod_giu
+                                    inner join DB_Logistica..TLogOC c on c.orcID = a.OC_COD
+                                    left join procesos_intern d on d.cod_giu = a.ing_giu
+                                    left join procesos_salida e on e.ing_giu = a.ing_giu 
+                                    WHERE 
+                                    c.orcFecha BETWEEN ? AND ?  ";
+
+                $query = $query . ($detail == 'ALL' ? "" : " AND b.prod_secfun = " . $detail . " ");
+                $query = $query . ($subcta == 'ALL' ? "" : " AND b.prod_cta like ? ");
+                $query = $query . " GROUP BY b.prod_cta ORDER BY b.prod_cta ASC";
+
+//                $grupo = DB::connection('dbalmacen')->select(DB::raw($query))
+
+
+
+
+
+
+                $view = view('almacen.reporte.reporteContaPdf',['data' => $data]);
                 $optionsHeader = array('header-html' => 'http://slam.mdv.net/header', 'header-spacing' => -20);
                 $optionsFooter = array('footer-html' => 'http://slam.mdv.net/footer', 'footer-line' => true, 'footer-spacing' => 5);
                 $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
@@ -419,8 +473,9 @@ class reporteController extends Controller
             }
             else if($type == 'html')
             {
+                $view = view('almacen.reporte.reporteConta', compact('data','subcta'));
                 return $view;
-            }*/
+            }
         }
         else{
             return null;

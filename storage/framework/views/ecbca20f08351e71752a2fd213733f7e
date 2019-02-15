@@ -1,0 +1,55 @@
+<div class="panel panel-default alm-panel">
+    <div class="panel-heading alm-panel-heading">
+        REPORTE DE CONCILIACIÓN - SUBCUENTA: <?php echo e($subcta == 'ALL' ? 'TODOS' : $subcta); ?>
+
+    </div>
+    <div class="table-responsive">
+        <table class="table table-condensed table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th colspan="4">ENTRADA</th>
+                <th colspan="3">SALIDA</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>N°</th>
+                <th>SUBCUENTA</th>
+                <th>META</th>
+                <th>EXP SIAF</th>
+                <th>DESCRIPCION PRODUCTO</th>
+                <th>GI</th>
+                <th>OC</th>
+                <th>CANT</th>
+                <th>C.T.</th>
+                <th>PECOSA</th>
+                <th>CANT</th>
+                <th>C.T.</th>
+                <th>SALDO TOTAL</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($data as $key=>$item): ?>
+                <tr>
+                    <td><?php echo e($key + 1); ?></td>
+                    <td><?php echo e(substr($item->rptCta,0,4) . '.' . substr($item->rptCta,4)); ?></td>
+                    <td><?php echo e($item->rptSf); ?></td>
+                    <td><?php echo e($item->rptSiaf); ?></td>
+                    <td><?php echo e($item->rptDscprod); ?></td>
+                    <td><?php echo e($item->rptIngreso); ?></td>
+                    <td><?php echo e($item->rptOC); ?></td>
+                    <td><?php echo e($item->rptCantI); ?></td>
+                    <td><?php echo e(number_format($item->rptMontoI,2)); ?></td>
+                    <td><?php echo e($item->rptSalida); ?></td>
+                    <td><?php echo e($item->rptCantS); ?></td>
+                    <td><?php echo e(number_format($item->rptMontoS,2)); ?></td>
+                    <td><?php echo e($item->rptMontoI - $item->rptMontoS); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

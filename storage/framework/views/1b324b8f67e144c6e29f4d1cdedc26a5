@@ -57,47 +57,56 @@
                             </fieldset>
                         </div>
                         <div class="col-md-4">
-                            <fieldset>
-                                <legend>Movimientos en almacén</legend>
-                                <div class="form-group alm-form-group">
-                                    <label class="col-sm-4 control-label" for="repAnalysis">Analizar</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control alm-input" name="repAnalysis" id="itemAnalysis">
-                                            <option value="NA" >-- SELECCIONAR --</option>
-                                            <option value="PCS" >PECOSAS</option>
-                                            <option value="IYS">INGRESO Y SALIDA</option>
-                                            <option value="NEA">NEAs</option>
-                                            <option value="GIU">INTERNAMIENTOS</option>
-                                        </select>
+                            <div class="row">
+                                <fieldset>
+                                    <legend><input type="radio" name="repTipo" id="reqTipoRpt1" value="rpt1" checked> <label
+                                                for="reqTipoRpt1">Movimientos en almacén</label></legend>
+                                    <div class="form-group alm-form-group">
+                                        <label class="col-sm-4 control-label" for="repAnalysis">Analizar</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control alm-input" name="repAnalysis" id="repAnalysis">
+                                                <option value="NA" >-- SELECCIONAR --</option>
+                                                <option value="PCS" >PECOSAS</option>
+                                                <option value="IYS">INGRESO Y SALIDA</option>
+                                                <option value="NEA">NEAs</option>
+                                                <option value="GIU">INTERNAMIENTOS</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12" style="text-align: center">
-                                    <a class="btn btn-primary btnPrintReport" data-tipo="rpt1">Vista Previa</a>
-                                    <a class="btn btn-danger" href="#" id="pdfExportPreview" data-tipo="rpt1">PDF</a>
-                                    <a class="btn btn-success" href="#" id="xlsExportPreview" data-tipo="rpt1">EXCEL</a>
-                                </div>
-                            </fieldset>
+                                </fieldset>
+                            </div>
+                            <div class="row">
+                                <fieldset>
+                                    <legend><input type="radio" name="repTipo" id="reqTipoRpt2" value="rpt2"> <label
+                                                for="reqTipoRpt2">Conciliación contable</label></legend>
+                                    <div class="form-group alm-form-group">
+                                        <label class="col-sm-4 control-label" for="repAnalysis">Sub-cuenta</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control alm-input" name="repSubcta" id="repSubcta">
+                                                <option value="SN" selected>-- SELECCIONAR --</option>
+                                                <option value="ALL" > TODOS </option>
+                                                <?php foreach($cuentas as $cuenta): ?>
+                                                    <option value="<?php echo e($cuenta->pcgAnio . '-' . $cuenta->pcgSubcta); ?>">
+                                                        <?php echo e($cuenta->pcgSubcta . ' - ' . strtoupper($cuenta->pcgSubctadsc)); ?>
+
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
                         </div>
                         <div class="col-md-4">
-                            <fieldset>
-                                <legend>Conciliación contable</legend>
-                                <div class="form-group alm-form-group">
-                                    <label class="col-sm-4 control-label" for="repAnalysis">Sub-cuenta</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control alm-input" name="repSubcta" id="repSubcta">
-                                            <option value="ALL" >-- TODOS --</option>
-                                            <?php foreach($cuentas as $cuenta): ?>
-                                                <option value="<?php echo e($cuenta->pcgAnio . '-' . $cuenta->pcgSubcta); ?>"><?php echo e($cuenta->pcgSubcta . ' - ' . strtoupper($cuenta->pcgSubctadsc)); ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="row">
                                 <div class="col-sm-12" style="text-align: center">
-                                    <a class="btn btn-primary btnPrintReport" data-tipo="rpt2">Vista Previa</a>
-                                    <a class="btn btn-danger" href="#" id="pdfExportPreview" data-tipo="rpt2">PDF</a>
-                                    <a class="btn btn-success" href="#" id="xlsExportPreview" data-tipo="rpt2">EXCEL</a>
+                                    <a class="btn btn-primary" id="btnPrintReport">Vista Previa</a>
+                                    <a class="btn btn-danger" href="#" id="pdfExportPreview">PDF</a>
+                                    <a class="btn btn-success" href="#" id="xlsExportPreview">EXCEL</a>
                                 </div>
-                            </fieldset>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -119,11 +128,18 @@
 
 $(document).ready(function(){
 
-    $('.btnPrintReport').click(function(e){
-        e.preventDefault();
+    $('#repAnalysis').change(function(){
+        $('#reqTipoRpt1').prop('checked', true);
+    });
 
+    $('#repSubcta').change(function () {
+        $('#reqTipoRpt2').prop('checked', true);
+    });
+
+    $('#btnPrintReport').click(function(e){
+        e.preventDefault();
         var url = 'reporte/html';
-        var data = $('#frmMakeReport').serialize() + '&tiporpt=' + $(this).data('tipo');
+        var data = $('#frmMakeReport').serialize();
 
         $.post(url, data, function(result){
             $('.alm-sub-content').html(result);

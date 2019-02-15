@@ -56,55 +56,56 @@
                             </fieldset>
                         </div>
                         <div class="col-md-4">
-                            <fieldset>
-                                <legend>Movimientos en almacén</legend>
-                                <div class="form-group alm-form-group">
-                                    <label class="col-sm-4 control-label" for="repAnalysis">Analizar</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control alm-input" name="repAnalysis" id="itemAnalysis">
-                                            <option value="NA" >-- SELECCIONAR --</option>
-                                            <option value="PCS" >PECOSAS</option>
-                                            <option value="IYS">INGRESO Y SALIDA</option>
-                                            <option value="NEA">NEAs</option>
-                                            <option value="GIU">INTERNAMIENTOS</option>
-                                        </select>
+                            <div class="row">
+                                <fieldset>
+                                    <legend><input type="radio" name="repTipo" id="reqTipoRpt1" value="rpt1" checked> <label
+                                                for="reqTipoRpt1">Movimientos en almacén</label></legend>
+                                    <div class="form-group alm-form-group">
+                                        <label class="col-sm-4 control-label" for="repAnalysis">Analizar</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control alm-input" name="repAnalysis" id="repAnalysis">
+                                                <option value="NA" >-- SELECCIONAR --</option>
+                                                <option value="PCS" >PECOSAS</option>
+                                                <option value="IYS">INGRESO Y SALIDA</option>
+                                                <option value="NEA">NEAs</option>
+                                                <option value="GIU">INTERNAMIENTOS</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12" style="text-align: center">
-                                    <a class="btn btn-primary" id="btnPrintReport">Vista Previa</a>
-                                    <a class="btn btn-danger" href="#" id="pdfExportPreview">PDF</a>
-                                    <a class="btn btn-success" href="#" id="xlsExportPreview">EXCEL</a>
-                                </div>
-                            </fieldset>
+                                </fieldset>
+                            </div>
+                            <div class="row">
+                                <fieldset>
+                                    <legend><input type="radio" name="repTipo" id="reqTipoRpt2" value="rpt2"> <label
+                                                for="reqTipoRpt2">Conciliación contable</label></legend>
+                                    <div class="form-group alm-form-group">
+                                        <label class="col-sm-4 control-label" for="repAnalysis">Sub-cuenta</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control alm-input" name="repSubcta" id="repSubcta">
+                                                <option value="SN" selected>-- SELECCIONAR --</option>
+                                                <option value="ALL" > TODOS </option>
+                                                @foreach($cuentas as $cuenta)
+                                                    <option value="{{ $cuenta->pcgAnio . '-' . $cuenta->pcgSubcta }}">
+                                                        {{ $cuenta->pcgSubcta . ' - ' . strtoupper($cuenta->pcgSubctadsc) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
                         </div>
                         <div class="col-md-4">
-                            <fieldset>
-                                <legend>Conciliación contable</legend>
-                                <div class="form-group alm-form-group">
-                                    <label class="col-sm-4 control-label" for="repAnalysis">Sub-cuenta</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control alm-input" name="nrepSubcta" id="repSubcta">
-                                            <option value="ALL" >-- TODOS --</option>
-                                            @foreach($cuentas as $cuenta)
-                                                <option value="{{ $cuenta->pcgAnio . '-' . $cuenta->pcgSubcta }}">{{ $cuenta->pcgSubcta . ' - ' . strtoupper($cuenta->pcgSubctadsc) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="row">
                                 <div class="col-sm-12" style="text-align: center">
                                     <a class="btn btn-primary" id="btnPrintReport">Vista Previa</a>
                                     <a class="btn btn-danger" href="#" id="pdfExportPreview">PDF</a>
                                     <a class="btn btn-success" href="#" id="xlsExportPreview">EXCEL</a>
                                 </div>
-                            </fieldset>
+                            </div>
                         </div>
-
-
-
-
-
-
-
                     </form>
                 </div>
             </div>
@@ -124,6 +125,14 @@
 <script>
 
 $(document).ready(function(){
+
+    $('#repAnalysis').change(function(){
+        $('#reqTipoRpt1').prop('checked', true);
+    });
+
+    $('#repSubcta').change(function () {
+        $('#reqTipoRpt2').prop('checked', true);
+    });
 
     $('#btnPrintReport').click(function(e){
         e.preventDefault();

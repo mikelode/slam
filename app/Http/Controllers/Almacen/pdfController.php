@@ -261,6 +261,7 @@ class pdfController extends Controller
         }
 */
         /******************************************************************/
+        $orc = null;
 
         $resClasificador = \DB::connection('dblogistica')->select('exec spLogGetOCAbsClasf ?',array(  $oc->orcID ));
         $resCuenta = \DB::connection('dblogistica')->select('exec spLogGetOCAbsCta ?', array($oc->orcID));
