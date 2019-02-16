@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
-        @page { margin: 30px 50px 50px 50px; }
+        @page  { margin: 30px 50px 50px 50px; }
         .header {
             height: 220px;
             position: fixed;
@@ -110,34 +110,35 @@
 <body>
 <div style="position: fixed; top: 10px">
     <div style="display: inline-block; text-align: center;">
-        {{ config('slam.ENTIDAD_PROV') }}<br>
-        {{ config('slam.APP_ENTIDAD') }}<bR>
-        {{ config('slam.ENTIDAD_RUC') }}<br>
+        <?php echo e(config('slam.ENTIDAD_PROV')); ?><br>
+        <?php echo e(config('slam.APP_ENTIDAD')); ?><bR>
+        <?php echo e(config('slam.ENTIDAD_RUC')); ?><br>
     </div>
 </div>
 <div style="position: absolute; right: 10px;">
-    <img src="{{ asset(config('slam.APP_LOGO')) }}" alt="">
+    <img src="<?php echo e(asset(config('slam.APP_LOGO'))); ?>" alt="">
 </div>
 <table style="width:100%">
     <thead>
     <tr>
         <td>
             <h1>REPORTE DE CONCILIACIÓN - DETALLADO</h1>
-            <h3>DEL {{ $dateFrom }} AL {{ $dateTo }}</h3>
+            <h3>DEL <?php echo e($dateFrom); ?> AL <?php echo e($dateTo); ?></h3>
         </td>
     </tr>
     </thead>
 </table>
 
 
-@foreach($cuentas as $i => $cuenta)
+<?php foreach($cuentas as $i => $cuenta): ?>
 
-    @if(!is_null($cuenta->rptCta))
+    <?php if(!is_null($cuenta->rptCta)): ?>
     <table class="table" style="table-layout: fixed; width:100%">
         <caption style="padding-top: 5px">
             <h5 style="text-align: left; font-size: 1.2em;">
-                {{ substr($cuenta->rptCta,0,4) . '.' . substr($cuenta->rptCta,4) }} -
-                {{ strtoupper( $cuenta->rptCtadsc ) }}
+                <?php echo e(substr($cuenta->rptCta,0,4) . '.' . substr($cuenta->rptCta,4)); ?> -
+                <?php echo e(strtoupper( $cuenta->rptCtadsc )); ?>
+
             </h5>
         </caption>
         <thead>
@@ -170,40 +171,40 @@
             $totali = 0;
             $totals = 0;
         ?>
-        @foreach($data[$cuenta->rptCta] as $key=>$item)
+        <?php foreach($data[$cuenta->rptCta] as $key=>$item): ?>
             <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item->rptSf }}</td>
-                <td>{{ $item->rptSiaf }}</td>
-                <td style="text-align: left">{{ $item->rptDscprod }}</td>
-                <td>{{ $item->rptIngreso }}</td>
-                <td>{{ $item->rptOC }}</td>
-                <td>{{ $item->rptCantI }}</td>
-                <td>{{ number_format($item->rptMontoI,2) }}</td>
-                <td>{{ $item->rptSalida }}</td>
-                <td>{{ $item->rptCantS }}</td>
-                <td>{{ number_format($item->rptMontoS,2) }}</td>
-                <td>{{ $item->rptMontoI - $item->rptMontoS }}</td>
+                <td><?php echo e($key + 1); ?></td>
+                <td><?php echo e($item->rptSf); ?></td>
+                <td><?php echo e($item->rptSiaf); ?></td>
+                <td style="text-align: left"><?php echo e($item->rptDscprod); ?></td>
+                <td><?php echo e($item->rptIngreso); ?></td>
+                <td><?php echo e($item->rptOC); ?></td>
+                <td><?php echo e($item->rptCantI); ?></td>
+                <td><?php echo e(number_format($item->rptMontoI,2)); ?></td>
+                <td><?php echo e($item->rptSalida); ?></td>
+                <td><?php echo e($item->rptCantS); ?></td>
+                <td><?php echo e(number_format($item->rptMontoS,2)); ?></td>
+                <td><?php echo e($item->rptMontoI - $item->rptMontoS); ?></td>
             </tr>
             <?php
             $totali = $totali + $item->rptMontoI;
             $totals = $totals + $item->rptMontoS;
             ?>
-        @endforeach
+        <?php endforeach; ?>
         </tbody>
         <tfoot>
         <tr>
             <td colspan="6"></td>
             <td>Total:</td>
-            <td>{{ number_format($totali,2) }}</td>
+            <td><?php echo e(number_format($totali,2)); ?></td>
             <td></td>
             <td>Total:</td>
-            <td>{{ number_format($totals,2) }}</td>
+            <td><?php echo e(number_format($totals,2)); ?></td>
             <td></td>
         </tr>
         </tfoot>
     </table>
-    @endif
-@endforeach
+    <?php endif; ?>
+<?php endforeach; ?>
 </body>
 </html>

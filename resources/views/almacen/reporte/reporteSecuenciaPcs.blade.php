@@ -2,8 +2,9 @@
     <div class="panel-heading alm-panel-heading">
         REPORTE DE ALMACEN - PECOSAS
     </div>
-    <table class="table" style="font-size: 8px">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-condensed table-striped">
+            <thead>
             <tr>
                 <th colspan="4">SECUENCIA FUNCIONAL</th>
                 <th colspan="10">{{ !$data->isEmpty()?$data[0]->secDsc:'SIN PECOSAS'  }}</th>
@@ -24,26 +25,26 @@
                 <th>COSTO</th>
                 <th>CLASIF</th>
             </tr>
-        </thead>
-        <tbody>
-        <?php $total = 0; ?>
+            </thead>
+            <tbody>
+            <?php $total = 0; ?>
             @foreach($data as $key=>$item)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item->SF }}</td>
-                <td>{{ $item->PECOSA }}</td>
-                <td>{{ $item->Fecha }}</td>
-                <td>{{ $item->GI }}</td>
-                <td>{{ $item->OC }}</td>
-                <td style="text-align: left">{{ $item->Codigo }}</td>
-                <td>{{ $item->Producto }}</td>
-                <td>{{ $item->Cantidad }}</td>
-                <td>{{ $item->Atendido }}</td>
-                <td>{{ $item->Medida }}</td>
-                <td>{{ $item->Precio }}</td>
-                <td>{{ $item->Costo }}</td>
-                <td>{{ $item->Clasificador }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $item->SF }}</td>
+                    <td>{{ $item->PECOSA }}</td>
+                    <td>{{ $item->Fecha }}</td>
+                    <td>{{ $item->GI }}</td>
+                    <td>{{ $item->OC }}</td>
+                    <td style="text-align: left">{{ $item->Codigo }}</td>
+                    <td>{{ $item->Producto }}</td>
+                    <td>{{ $item->Cantidad }}</td>
+                    <td>{{ $item->Atendido }}</td>
+                    <td>{{ $item->Medida }}</td>
+                    <td>{{ $item->Precio }}</td>
+                    <td>{{ $item->Costo }}</td>
+                    <td>{{ $item->Clasificador }}</td>
+                </tr>
                 <?php $total = $total + $item->Costo; ?>
             @endforeach
             <tr>
@@ -51,6 +52,8 @@
                 <td>{{ $total }}</td>
                 <td></td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
 </div>

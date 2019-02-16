@@ -2,8 +2,9 @@
     <div class="panel-heading alm-panel-heading">
         REPORTE DE ALMACEN - PRODUCTOS
     </div>
-    <table class="table" style="font-size: 8px">
-        <thead>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
             <tr>
                 <th colspan="3">TIPO DE PROCESO</th>
                 <th colspan="3"></th>
@@ -28,27 +29,29 @@
                 <th>C.U</th>
                 <th>C.T.</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @foreach($data as $key=>$item)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item->Proceso }}</td>
-                <td>{{ $item->Fecha }}</td>
-                <td>{{ $item->Internamiento }}</td>
-                <td>{{ $item->Orden }}</td>
-                <td style="text-align: left">{{ $item->Producto }}</td>
-                <td>{{ $item->Ingresado }}</td>
-                <td>{{ $item->Precio }}</td>
-                <td>{{ $item->Costo }}</td>
-                <td>{{ $item->Distribuido }}</td>
-                <td>{{ $item->Precio }}</td>
-                <td>{{ $item->costoDistrib }}</td>
-                <td>{{ $item->Stock }}</td>
-                <td>{{ $item->Precio }}</td>
-                <td>{{ $item->costoSaldo }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $item->Proceso }}</td>
+                    <td>{{ $item->Fecha }}</td>
+                    <td>{{ $item->Internamiento }}</td>
+                    <td>{{ $item->Orden }}</td>
+                    <td style="text-align: left">{{ $item->Producto }}</td>
+                    <td>{{ $item->Ingresado }}</td>
+                    <td>{{ $item->Precio }}</td>
+                    <td>{{ $item->Costo }}</td>
+                    <td>{{ $item->Distribuido }}</td>
+                    <td>{{ $item->Precio }}</td>
+                    <td>{{ $item->costoDistrib }}</td>
+                    <td>{{ $item->Stock }}</td>
+                    <td>{{ $item->Precio }}</td>
+                    <td>{{ $item->costoSaldo }}</td>
+                </tr>
             @endforeach
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
 </div>

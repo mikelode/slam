@@ -338,8 +338,8 @@ class reporteController extends Controller
             }
             else if($type == 'pdf')
             {
-                $optionsHeader = array('header-html' => 'http://slam.mdv.net/header', 'header-spacing' => -20);
-                $optionsFooter = array('footer-html' => 'http://slam.mdv.net/footer', 'footer-line' => true, 'footer-spacing' => 5);
+                $optionsHeader = array('header-html' => 'http://localhost/slam/public/header', 'header-spacing' => -20);
+                $optionsFooter = array('footer-html' => 'http://localhost/slam/public/footer', 'footer-line' => true, 'footer-spacing' => 5);
                 $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
 
                 $snappy = App::make('snappy.pdf.wrapper');
@@ -439,28 +439,50 @@ class reporteController extends Controller
             }
             else if($type == 'pdf')
             {
-                $query = "select b.prod_cta as rptCt from Internamiento a 
+                $query = "select b.prod_cta as rptCta, DB_Logistica.dbo.fnLogGetGrlDat('CTACONT', b.prod_cta, '2019') as rptCtadsc from Internamiento a 
                                     left join Inventario b on a.ing_giu = b.cod_giu
                                     inner join DB_Logistica..TLogOC c on c.orcID = a.OC_COD
                                     left join procesos_intern d on d.cod_giu = a.ing_giu
                                     left join procesos_salida e on e.ing_giu = a.ing_giu 
                                     WHERE 
-                                    c.orcFecha BETWEEN ? AND ?  ";
+                                    c.orcFecha BETWEEN '" . $dateFrom . "' AND '" . $dateTo . "'  ";
 
-                $query = $query . ($detail == 'ALL' ? "" : " AND b.prod_secfun = " . $detail . " ");
-                $query = $query . ($subcta == 'ALL' ? "" : " AND b.prod_cta like ? ");
+
+                $query_grouped = $query;
+
+                $query = $query . ($detail == 'ALL' ? "" : " AND b.prod_secfun = '" . $detail . "' ");
+                $query = $query . ($subcta == 'ALL' ? "" : " AND b.prod_cta like '" . $subcta . "%' ");
                 $query = $query . " GROUP BY b.prod_cta ORDER BY b.prod_cta ASC";
 
-//                $grupo = DB::connection('dbalmacen')->select(DB::raw($query))
+                $cuentas = DB::connection('dbalmacen')->select(DB::raw($query));
 
+                foreach ($cuentas as $cta){
 
+                    if($cta->rptCta != null){
 
+                        $data[$cta->rptCta] = DB::connection('dbalmacen')->select(DB::raw("select b.prod_cta as rptCta,  
+                                    SUBSTRING(c.orcSecFun,5,5) as rptSf, '' as rptSiaf, 
+                                    b.prod_desc as rptDscprod, 
+                                    ISNULL(SUBSTRING(d.pint_cpi,5,5) + '-' + SUBSTRING(d.pint_cpi,11,3),'S.I.') as rptIngreso, 
+                                    SUBSTRING(c.orcID, 5, 5) as rptOC, 
+                                    b.prod_recep as rptCantI, (b.prod_recep * b.prod_precio) as rptMontoI,
+                                    ISNULL(SUBSTRING(e.psal_pecosa, 5, 5),'S.P.') as rptSalida, 
+                                    b.prod_distribuido as rptCantS, (b.prod_distribuido * b.prod_precio) as rptMontoS
+                                    from Internamiento a 
+                                    left join Inventario b on a.ing_giu = b.cod_giu
+                                    inner join DB_Logistica..TLogOC c on c.orcID = a.OC_COD
+                                    left join procesos_intern d on d.cod_giu = a.ing_giu
+                                    left join procesos_salida e on e.ing_giu = a.ing_giu
+                                    WHERE 
+                                    c.orcFecha BETWEEN ? AND ? AND
+                                    b.prod_cta = ?"),[$dateFrom, $dateTo, $cta->rptCta]);
 
+                    }
+                }
 
-
-                $view = view('almacen.reporte.reporteContaPdf',['data' => $data]);
-                $optionsHeader = array('header-html' => 'http://slam.mdv.net/header', 'header-spacing' => -20);
-                $optionsFooter = array('footer-html' => 'http://slam.mdv.net/footer', 'footer-line' => true, 'footer-spacing' => 5);
+                $view = view('almacen.reporte.reporteContaPdf',compact('data','cuentas', 'dateFrom', 'dateTo'));
+                $optionsHeader = array('header-html' => 'http://localhost/slam/public/header', 'header-spacing' => -20);
+                $optionsFooter = array('footer-html' => 'http://localhost/slam/public/footer', 'footer-line' => true, 'footer-spacing' => 5);
                 $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
 
                 $snappy = App::make('snappy.pdf.wrapper');

@@ -2,8 +2,9 @@
     <div class="panel-heading alm-panel-heading">
         REPORTE DE ALMACEN - PECOSAS
     </div>
-    <table class="table" style="font-size: 8px">
-        <thead>
+    <div class="table-responsive">
+        <table class="table table-condensed table-striped">
+            <thead>
             <tr>
                 <th colspan="4">SECUENCIA FUNCIONAL</th>
                 <th colspan="10"><?php echo e(!$data->isEmpty()?$data[0]->secDsc:'SIN PECOSAS'); ?></th>
@@ -24,26 +25,26 @@
                 <th>COSTO</th>
                 <th>CLASIF</th>
             </tr>
-        </thead>
-        <tbody>
-        <?php $total = 0; ?>
+            </thead>
+            <tbody>
+            <?php $total = 0; ?>
             <?php foreach($data as $key=>$item): ?>
-            <tr>
-                <td><?php echo e($key + 1); ?></td>
-                <td><?php echo e($item->SF); ?></td>
-                <td><?php echo e($item->PECOSA); ?></td>
-                <td><?php echo e($item->Fecha); ?></td>
-                <td><?php echo e($item->GI); ?></td>
-                <td><?php echo e($item->OC); ?></td>
-                <td style="text-align: left"><?php echo e($item->Codigo); ?></td>
-                <td><?php echo e($item->Producto); ?></td>
-                <td><?php echo e($item->Cantidad); ?></td>
-                <td><?php echo e($item->Atendido); ?></td>
-                <td><?php echo e($item->Medida); ?></td>
-                <td><?php echo e($item->Precio); ?></td>
-                <td><?php echo e($item->Costo); ?></td>
-                <td><?php echo e($item->Clasificador); ?></td>
-            </tr>
+                <tr>
+                    <td><?php echo e($key + 1); ?></td>
+                    <td><?php echo e($item->SF); ?></td>
+                    <td><?php echo e($item->PECOSA); ?></td>
+                    <td><?php echo e($item->Fecha); ?></td>
+                    <td><?php echo e($item->GI); ?></td>
+                    <td><?php echo e($item->OC); ?></td>
+                    <td style="text-align: left"><?php echo e($item->Codigo); ?></td>
+                    <td><?php echo e($item->Producto); ?></td>
+                    <td><?php echo e($item->Cantidad); ?></td>
+                    <td><?php echo e($item->Atendido); ?></td>
+                    <td><?php echo e($item->Medida); ?></td>
+                    <td><?php echo e($item->Precio); ?></td>
+                    <td><?php echo e($item->Costo); ?></td>
+                    <td><?php echo e($item->Clasificador); ?></td>
+                </tr>
                 <?php $total = $total + $item->Costo; ?>
             <?php endforeach; ?>
             <tr>
@@ -51,6 +52,8 @@
                 <td><?php echo e($total); ?></td>
                 <td></td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
 </div>
