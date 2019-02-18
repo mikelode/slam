@@ -338,8 +338,8 @@ class reporteController extends Controller
             }
             else if($type == 'pdf')
             {
-                $optionsHeader = array('header-html' => 'http://localhost/slam/public/header', 'header-spacing' => -20);
-                $optionsFooter = array('footer-html' => 'http://localhost/slam/public/footer', 'footer-line' => true, 'footer-spacing' => 5);
+                $optionsHeader = array('header-html' => 'http://192.168.0.2:8081/slam/public/header', 'header-spacing' => -20);
+                $optionsFooter = array('footer-html' => 'http://192.168.0.2:8081/slam/public/footer', 'footer-line' => true, 'footer-spacing' => 5);
                 $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
 
                 $snappy = App::make('snappy.pdf.wrapper');
@@ -481,8 +481,8 @@ class reporteController extends Controller
                 }
 
                 $view = view('almacen.reporte.reporteContaPdf',compact('data','cuentas', 'dateFrom', 'dateTo'));
-                $optionsHeader = array('header-html' => 'http://localhost/slam/public/header', 'header-spacing' => -20);
-                $optionsFooter = array('footer-html' => 'http://localhost/slam/public/footer', 'footer-line' => true, 'footer-spacing' => 5);
+                $optionsHeader = array('header-html' => 'http://192.168.0.2:8081/slam/public/header', 'header-spacing' => -20);
+                $optionsFooter = array('footer-html' => 'http://192.168.0.2:8081/slam/public/footer', 'footer-line' => true, 'footer-spacing' => 5);
                 $optionsPage = array('margin-top'=>10,'margin-bottom'=>20,'margin-left'=>10,'margin-right'=>10);
 
                 $snappy = App::make('snappy.pdf.wrapper');

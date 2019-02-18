@@ -2,82 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevCtz2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevCtz2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/048c6ad5e9e6b8647c4deada77ebe0e76f24fb8e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/05b19d63945d80151a3678b4ce4eace277000220" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/0b806af34e42d2ef4f14e73be77b345038f19bbd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/1253e33a9750b2062ef5e3afd8f9d7609171b275" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/1ef9c95491d4f0a25eda0adb6c0c5e5f8a223355" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/1fd8bd7310c4c9d8a55c3aba8d8e9e95286be880" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/2017768ca9de5ab27c4c598024e4003ab5eac7b8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/2409720cf6ef50a6102694c78b91a6cecc1a6cc1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/241ad7189df890d7b3cbb40607a9cbeb40f7b6f9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/2fddcd627ce32e2b41f7ba92d84fd52c370aa4b3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/31357aafaba1d5f0f8279d17cfe8440636597abd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/332e785e38dfa85acce5b8d173af77ddba8baefe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/34ee85fcc5b0a10be6acfa7a30f5a726afcc255b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/37846932f1631f6ddfd52c11d288d5161a527ad1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/3b8cd15772b0bc7319ba88d0f7b0469c40128318" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/3e9b413e532ed5c33d21b46d686f93ce17926f34" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/3fa1dd2bec5df05a6c8f4b38992fdb286f361509" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/424e13b26f0af72dbf8d957bebac3bf48108e023" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/44e843df24fe0056c16b227e977c476d444e140c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/4a5066ea486004756baf8914880e3871ee019353" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/5301b8275d81bb7978305d23f6d8eabdb64cd5e1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/53ad1d617700e2d014f9e546f9255ae7a176cefb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/563cdf3ad7ba4b11e48b12815b5b116dc0623c14" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/589b9eab67896c9acdaf6693ca603c2b48885a57" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/591b1972a4ceba2c2f48d25743d65731b0ee90f4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/5b8378e0ae01be49848734848986b43d07c7f4b9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/5ca9b8fb40ea62c761410d7ffa9b514b8ce073b1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/639dc47c9fdaf02898f947a643efd150c9575714" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/6437bdf922337b29faaebafddfd02a306fc4edfc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/656fee8fc631c6bd3d313816b812d75658030b8c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/6aa3ac4a291a8d0e28953b7e6802f82930ae00ab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/6b93a5e532ffb00d4a384ea6789cd35584f4e4bb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/707672f817d05ac216bba5b28e5bf38d85c4659e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/722c91bc154f3447fe5f735047628b4ee4c9daac" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/74e7b39b3f3bdbc4baf241e225a6f5d335974027" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/76bde1c9e2f6800db9e30d2b914e845031c5475d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/78ec33a7a8b8446e1730998097bcd1cfb4922576" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/7ad7f7dd28921a5e7abbc122a11fef109e2d717c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/8000d5b7b41162c2250eb4b3b47793252ddf0f3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/8225acd5158ec868ec5b5cf063185fd510c2df13" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/828716c207786fd10dfe43d08b84b1e4fbf552e3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/842c0f722b35fdeef363c599913d3483ec3d24c0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/84e955b422f935b1c163a4a3448bc2972ab9bd24" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/8f1534eb621fa65981fdd4361fcfe79468ec4403" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/928541a3919028982506585c22b699f6c258cf39" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/939d32cfa2254738fd165bf8d253c39c8afc7a44" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/93cc3477ec421201387b105d119a07488ffc1020" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/9993062d884c4f097687b024b60b34a991af4d41" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/9b4c7b4589fbffcee4eb6d11831abcc69ed43be8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/a05389f66d4778cc90803f22338521fc5798221c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/a22351f932bccc0583f820df23a4dd56a7a2410a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/a9f8f04fa5b97f9899f9688b95f2ced818ab5ff6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/ae6ac815817ca9d468852bf640e8c603d3d2a8d4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/b2a2b4de8be54c396fa50184bdb6c3c6a1720363" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/b746a28443284f5c0bec6be47cf03d15ecb3c158" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/b8a4c23247d0c67e3714bad88727fc7498da5a22" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/b8b4b012c1d1fa525b40a866e7d3c860fe956015" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/bc020696d6e49171dbe336f8229bded352b42ea8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/c1f7d075a2140ab675da5baef634afbe2cb8db10" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/c4b7707e7e9a5042408b4f8da2eda75520c51b82" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/c6bc3cd163eb6d1a21f288ed130a6dbfd5c3129f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/c8a71fbc616add4077c9635f7880183c89c9807d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/cc3f82471c9082a08671f56c574507261f17bd0c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/d8fcbccc680d2ee9d3dc695a36e0983da6a5dd6c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/dafffa944bbd7223938c66db4b475b4bc94200f4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/dbb7cd833d4de5cba444c6eee30e471771814672" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/e0ec61d752e5fa7a9810b9090987c6afcb6f296a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/e9878a9d912aeeb3cda2e4b1cb70048b9f373658" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/ea5d6bd5c6c485beb891423bd48a7be229a755cd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/ef79eca29fc68396914b64adc11e412df967fd4e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/f39592f764d7203d7398e3fbf9f8204ec748b98c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/fd8eae9006e8d76ac32713932d082a5ee965e193" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php" afterDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -116,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="259" column="35" selection-start-line="259" selection-start-column="13" selection-end-line="259" selection-end-column="35" />
+            <state relative-caret-position="271">
+              <caret line="367" column="68" selection-start-line="367" selection-start-column="68" selection-end-line="367" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -125,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="182" lean-forward="true" selection-start-line="182" selection-end-line="182" />
+            <state relative-caret-position="239">
+              <caret line="189" column="68" selection-start-line="185" selection-start-column="69" selection-end-line="189" selection-end-column="68" />
               <folding>
                 <element signature="e#46#74#0#PHP" expanded="true" />
               </folding>
@@ -137,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="458" column="43" lean-forward="true" selection-start-line="458" selection-start-column="43" selection-end-line="458" selection-end-column="43" />
+            <state relative-caret-position="251">
+              <caret line="341" column="80" selection-start-line="341" selection-start-column="80" selection-end-line="341" selection-end-column="80" />
               <folding>
                 <element signature="e#54#82#0#PHP" expanded="true" />
               </folding>
@@ -264,16 +190,16 @@
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteConta.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteContaPdf.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteSecuenciaPcs.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteProducto.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteProceso.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteSecuencia.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php" />
         <option value="$PROJECT_DIR$/public/js/jsDevCtz2.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php" />
       </list>
     </option>
   </component>
@@ -367,7 +293,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -438,6 +363,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -539,16 +465,18 @@
       <workItem from="1549976554968" duration="13835000" />
       <workItem from="1550076930135" duration="10766000" />
       <workItem from="1550150738168" duration="77523000" />
+      <workItem from="1550493668636" duration="1024000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="627384000" />
+    <option name="totallyTimeSpent" value="628408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21409395" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21677852" />
       <window_info id="Structure" order="1" weight="0.24966443" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -840,23 +768,6 @@
     <entry file="file://$PROJECT_DIR$/resources/views/almacen/reporte/reporteFinanciamiento.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-273" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/header-pdf.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="32" column="103" lean-forward="true" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/footer-pdf.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/slam.php">
@@ -1181,27 +1092,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="259" column="35" selection-start-line="259" selection-start-column="13" selection-end-line="259" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="182" lean-forward="true" selection-start-line="182" selection-end-line="182" />
+        <state relative-caret-position="239">
+          <caret line="189" column="68" selection-start-line="185" selection-start-column="69" selection-end-line="189" selection-end-column="68" />
           <folding>
             <element signature="e#46#74#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="367" column="68" selection-start-line="367" selection-start-column="68" selection-end-line="367" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/footer-pdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/header-pdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/reporteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="458" column="43" lean-forward="true" selection-start-line="458" selection-start-column="43" selection-end-line="458" selection-end-column="43" />
+        <state relative-caret-position="251">
+          <caret line="341" column="80" selection-start-line="341" selection-start-column="80" selection-end-line="341" selection-end-column="80" />
           <folding>
             <element signature="e#54#82#0#PHP" expanded="true" />
           </folding>
