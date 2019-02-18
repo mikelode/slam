@@ -730,9 +730,11 @@ class ctrlGrl extends Controller
     {
         $qry ="";      
         if($request->Tipo=="RQ") { $qry ="  and RQ.reqID like '%".$request->Valor."'";}
+        else if($request->Tipo=="CZ") { $qry = " and CZ.ctzID like '%".$request->Valor."'";}
         else if($request->Tipo=="SF") { $qry =" and RQ.reqSecFun like '%".$request->Valor."'";}
         else if($request->Tipo=="DP") { $qry ="  and RQ.reqDep like '%".$request->Valor."'";}
         $result["Dll"]  = \DB::connection('dblogistica')-> select(' exec spLogGetReqSg ?,?,?,?,?,?',   array('',$request->Anio,'','','',$qry));
+
         return view ('logistica.Partials.logReqSg',compact('result'))->render();
     }
 

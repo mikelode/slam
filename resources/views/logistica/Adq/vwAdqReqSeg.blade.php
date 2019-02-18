@@ -17,7 +17,7 @@
                                                      <button type="button" id="btnReqSgBusq" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown" style = "width:200px; height: 40px;font-size: 12px;  ">    <span  id="txReqSgBuq"  data-bind="label">Seleccione...</span> <span class="caret"></span></button>
                                                      <ul class="dropdown-menu menu-ReqSgBusq" role="menu" style="font-size: 12px; ">
                                                         <li  psrId="RQ"><a href="#">NRO DE REQUERIMIENTO</a></li>
-                                                      
+                                                        <li psrId="CZ"><a href="#">COTIZACION</a></li>
                                                         <li  psrId="DP"><a href="#">DEPENDENCIA</a></li>
                                                         <li  psrId="SF"><a href="#">SEC. FUNCIONAL</a></li>
                                                      </ul>
