@@ -1,9 +1,11 @@
 <?php
 
 namespace Logistica\Http\Controllers\Logistica;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Logistica\Almacen\almTLogCtz;
 use Logistica\Almacen\almTLogReq;
 use Logistica\Http\Requests;
@@ -38,75 +40,125 @@ class ctrlCtz extends Controller
     }
     public function spLogSetCtz(Request $prRqsCtz)
     {
-        $dbResult = \DB::select('exec spLogSetCtz ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?',
-            array(
-                $prRqsCtz["varCtz"]["ctzOPE"],
-                $prRqsCtz["varCtz"]["ctzAnio"],
-                $prRqsCtz["varCtz"]["ctzFecha"],
-                $prRqsCtz["varCtz"]["ctzID"],
-                $prRqsCtz["varCtz"]["ctzReqID"],
-                $prRqsCtz["varCtz"]["ctzDep"],
-                $prRqsCtz["varCtz"]["ctzSecFun"],
-                $prRqsCtz["varCtz"]["ctzGlosa"],
-                $prRqsCtz["varCtz"]["ctzLugarEnt"],
-                $prRqsCtz["varCtz"]["ctzOrgDoc"],
-                $prRqsCtz["varCtz"]["ctzRef"],
-                $prRqsCtz["varCtz"]["ctzObsv"],                
-                Auth::user()->usrID
-            ));
+        try{
 
-            //dd($prRqsCtz["varCtzDll"]);
-            $idCtz= $dbResult[0]->CtzNo ;
-            $ErrorDtll=array();
-            if($idCtz=="NN") { return response()->json($dbResult); ; }
-           
-            if(  $prRqsCtz["varCtz"]["ctzOPE"]=="ADD" || $prRqsCtz["varCtz"]["ctzOPE"]=="UPD" )
-            {   
-                foreach ($prRqsCtz["varCtzDll"] as $key => $valor)
-                {
-                   $dbResultDll = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
-                       array(
-                           'ADD',
-                           $prRqsCtz["varCtz"]["ctzReqID"],
-                           $valor["czItm"] , $valor["rqItm"]  ,
-                           $idCtz  ,
-                           $valor["prod"],
-                           $valor["und"],
-                           $valor["cant"],
-                           $valor["espf"],
-                           Auth::user()->usrID,
-                           $valor['secfun'],
-                           $valor['rubro']
-                       ));
+            $dbResult = [];
 
-                   if ($dbResultDll[0]->CtzNo == "NN")    {    array_push($ErrorDtll, array('CtzNo' => $dbResultDll[0]->CtzNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"])); }
+            $exception = DB::transaction(function () use($prRqsCtz, &$dbResult){
+
+                $dbResult = \DB::select('exec spLogSetCtz ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?',
+                    array(
+                        $prRqsCtz["varCtz"]["ctzOPE"],
+                        $prRqsCtz["varCtz"]["ctzAnio"],
+                        $prRqsCtz["varCtz"]["ctzFecha"],
+                        $prRqsCtz["varCtz"]["ctzID"],
+                        $prRqsCtz["varCtz"]["ctzReqID"],
+                        $prRqsCtz["varCtz"]["ctzDep"],
+                        $prRqsCtz["varCtz"]["ctzSecFun"],
+                        $prRqsCtz["varCtz"]["ctzGlosa"],
+                        $prRqsCtz["varCtz"]["ctzLugarEnt"],
+                        $prRqsCtz["varCtz"]["ctzOrgDoc"],
+                        $prRqsCtz["varCtz"]["ctzRef"],
+                        $prRqsCtz["varCtz"]["ctzObsv"],
+                        Auth::user()->usrID
+                    ));
+
+                $idCtz= $dbResult[0]->CtzNo ;
+                $ErrorDtll=array();
+                if($idCtz=="NN") {
+                    throw new Exception($dbResult[0]->Mensaje);
+                    //return response()->json($dbResult);
                 }
-                if (count($ErrorDtll) > 0) {    return response()->json($ErrorDtll);      }
+
+                if(  $prRqsCtz["varCtz"]["ctzOPE"]=="ADD" || $prRqsCtz["varCtz"]["ctzOPE"]=="UPD" )
+                {
+                    foreach ($prRqsCtz["varCtzDll"] as $key => $valor)
+                    {
+                        $dbResultDll = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
+                            array(
+                                'ADD',
+                                $prRqsCtz["varCtz"]["ctzReqID"],
+                                $valor["czItm"] , $valor["rqItm"]  ,
+                                $idCtz  ,
+                                $valor["prod"],
+                                $valor["und"],
+                                $valor["cant"],
+                                $valor["espf"],
+                                Auth::user()->usrID,
+                                $valor['secfun'],
+                                $valor['rubro']
+                            ));
+
+                        if ($dbResultDll[0]->CtzNo == "NN"){
+                            array_push($ErrorDtll, array('CtzNo' => $dbResultDll[0]->CtzNo, 'Error' => '1', 'Mensaje' => ' NO se registro : ' . $valor["prod"]));
+                        }
+                    }
+                    if (count($ErrorDtll) > 0) {
+                        throw new Exception(implode(", ", $ErrorDtll));
+                        //return response()->json($ErrorDtll);
+                    }
+                }
+            });
+
+            if(is_null($exception)){
+                $dbResult[0]->msg = "Registrado correctamente la cotización";
+                $dbResult[0]->msgId = 200;
             }
-        return  response()->json ($dbResult );
+            else{
+                throw new Exception($exception);
+            }
+
+        }catch (Exception $e){
+            $dbResult[0]->msg = "Error: " . $e->getMessage();
+            $dbResult[0]->msgId = 500;
+        }
+
+        return  response()->json($dbResult);
     }
     public function spLogSetCtzD(Request $prRqsCtz)
     {
-        $codCtz = $prRqsCtz["varCtz"]["ctzID"];
-        $varReturn["Flg"]="1";
-        $qry = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
-            array(
-                $prRqsCtz["varCtzDll"]["OPE"] ,
-                $prRqsCtz["varCtz"]["ctzReqID"] ,
-                $prRqsCtz["varCtzDll"]["czItm"] ,
-                $prRqsCtz["varCtzDll"]["rqItm"]  ,
-                $codCtz  ,
-                $prRqsCtz["varCtzDll"]["prodID"],
-                $prRqsCtz["varCtzDll"]["prodUndID"],
-                $prRqsCtz["varCtzDll"]["prodCant"],
-                $prRqsCtz["varCtzDll"]["prodEspf"],
-                Auth::user()->usrID,
-                $prRqsCtz["varCtzDll"]["prodSecfun"],
-                $prRqsCtz["varCtzDll"]["prodRubro"]
-            ));
-        if ($qry[0]->Error=="0") { $varReturn["Flg"]=$qry[0]->Mensaje;}
-        $result = \DB::select('exec spLogGetCtzD ?',array( $codCtz));
-        $varReturn["CtzDll"] =  view ('logistica.Partials.logCtzDll',compact( 'result'))->render();
+        try{
+
+            $varReturn = [];
+
+            $exception = DB::transaction(function() use($prRqsCtz, &$varReturn){
+
+                $codCtz = $prRqsCtz["varCtz"]["ctzID"];
+                $varReturn["Flg"]="1";
+                $qry = \DB::select('exec spLogSetCtzD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
+                    array(
+                        $prRqsCtz["varCtzDll"]["OPE"] ,
+                        $prRqsCtz["varCtz"]["ctzReqID"] ,
+                        $prRqsCtz["varCtzDll"]["czItm"] ,
+                        $prRqsCtz["varCtzDll"]["rqItm"]  ,
+                        $codCtz  ,
+                        $prRqsCtz["varCtzDll"]["prodID"],
+                        $prRqsCtz["varCtzDll"]["prodUndID"],
+                        $prRqsCtz["varCtzDll"]["prodCant"],
+                        $prRqsCtz["varCtzDll"]["prodEspf"],
+                        Auth::user()->usrID,
+                        $prRqsCtz["varCtzDll"]["prodSecfun"],
+                        $prRqsCtz["varCtzDll"]["prodRubro"]
+                    ));
+                if ($qry[0]->Error=="0") { $varReturn["Flg"]=$qry[0]->Mensaje;}
+                $result = \DB::select('exec spLogGetCtzD ?',array( $codCtz));
+                $varReturn["CtzDll"] =  view ('logistica.Partials.logCtzDll',compact( 'result'))->render();
+
+            });
+
+            if(is_null($exception)){
+                $varReturn['msg'] = "Producto de la cotización registrada correctamente";
+                $varReturn['msgId'] = 200;
+            }
+            else{
+                throw new Exception($exception);
+            }
+
+        }catch (Exception $e){
+            $varReturn['msg'] = "Error: " . $e->getMessage();
+            $varReturn['msgId'] = 500;
+        }
+
         return  $varReturn;
     }
     public function spLogGetCtzReq(Request $request)
@@ -115,10 +167,12 @@ class ctrlCtz extends Controller
 
         $ctz = almTLogCtz::where('ctzCodReq',$reqID)->get();
 
-        if($ctz->count() > 0){
-            $msg = 'ATENCIÓN: EL REQUERIMIENTO YA TIENE COTIZACIÓN NRO: ' .substr($ctz[0]->ctzID, -5) ;
-            $msgId = '500';
-            return response()->json(compact('msg','msgId'));
+        if($request->attempt == 0){
+            if($ctz->count() > 0){
+                $msg = 'ATENCIÓN: EL REQUERIMIENTO YA TIENE COTIZACIÓN NRO: ' .substr($ctz[0]->ctzID, -5) ;
+                $msgId = '500';
+                return response()->json(compact('msg','msgId'));
+            }
         }
 
         $ReturnData["Req"] = \DB::select('exec spLogGetReq ?,?,?', array(  $request->prRows, $request->prAnio, $request->prQry ));

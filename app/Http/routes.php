@@ -379,3 +379,8 @@ Route::get('logistica/rptPriceRefExcel/{prAnio}/{prCodigo}',    'Logistica\ctrlG
 
 Route::get('logistica/vwNotify', 'Logistica\ctrlGrl@fnGetViewNotify');
 Route::get('displayOc','Almacen\logisticaController@displayOc');
+
+/* MANTENIMIENT TABLAS  */
+
+Route::get('mant/sfrb','HomeController@conciliar_secfunrubro');
+Route::get('mant/ctas','HomeController@conciliar_cuentas');

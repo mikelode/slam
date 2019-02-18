@@ -152,7 +152,7 @@ $(document).on('click , keydown','#btnLogCtzItem',function(e) {
 $( document ).on( 'keydown',  '#txCodReq',function(e) {
     if(event.shiftKey)     {        event.preventDefault();      }
     if(event.keyCode == 13 ) {
-        jsFunDBReqGetData( "COD",$("#txCodReq").val(),  $(".txVarAnioEjec").val() );
+        jsFunDBReqGetData( "COD",$("#txCodReq").val(), 0 );
     }
 });
 
@@ -286,25 +286,31 @@ $( document ).on( 'click',  '#btnLogCtzSave , #btnLogCtzDel , #btnLogCtzTrsh',fu
             success: function (returnData) {
                 $("#divDialog").dialog("close");
                 $(".modal-backdrop").remove();
-                if (returnData.length > 0) {
-                  //  console.log(returnData);
-                    if (returnData[0].Error == "0") {
-                        varCtz.ctzID = returnData[0].CtzNo;
-                        jsFunCtzEnable(true);
-                        jsFunCtzButtons(false);
-                        $("#divDialog").dialog(opt);
-                        $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
-                        $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
-                        $("#divDialog").dialog("open");
-                        $("#divDialog").dialog({ width:400,height: 150, title: "CONFIRMAR OPERACION"});
-                        $("#divDialogCont").html(returnData[0].Mensaje);
-                        $("#divDialog").dialog({
-                            buttons: {
-                                "Aceptar": function () {           jsFunDBCtzGetData("ID",varCtz.ctzID);            }}});
-                    }
-                    else {  jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>" + returnData[0].Mensaje + "</strong>"); }
+
+                if(returnData[0].msgId == 500){
+                    jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", returnData[0].msg);
                 }
-                else {jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>No se retorno ningun registro.!</strong>");}
+                else{
+                    if (returnData.length > 0) {
+                        //  console.log(returnData);
+                        if (returnData[0].Error == "0") {
+                            varCtz.ctzID = returnData[0].CtzNo;
+                            jsFunCtzEnable(true);
+                            jsFunCtzButtons(false);
+                            $("#divDialog").dialog(opt);
+                            $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
+                            $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
+                            $("#divDialog").dialog("open");
+                            $("#divDialog").dialog({ width:400,height: 150, title: "CONFIRMAR OPERACION"});
+                            $("#divDialogCont").html(returnData[0].Mensaje);
+                            $("#divDialog").dialog({
+                                buttons: {
+                                    "Aceptar": function () {           jsFunDBCtzGetData("ID",varCtz.ctzID);            }}});
+                        }
+                        else {  jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>" + returnData[0].Mensaje + "</strong>"); }
+                    }
+                    else {jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>No se retorno ningun registro.!</strong>");}
+                }
               }
             });
 
@@ -477,17 +483,23 @@ $(document).on('click','.btnCtzRowADD',function(e){
             beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", objEvento, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
             error: function () {  jsFnDialogBox(400, 145, "WARNING", objEvento, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
             success: function (VR) {
+
                 $("#divDialog").dialog("close");
                 $(".modal-backdrop").remove();
-                
-                if(VR["CtzDll"].length>0)
-                {                   
-                    $("#divCtzProdBienes").html(VR["CtzDll"]);
-                    $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', VR["Flg"].toString()));
-                    $('#dvAviso').modal('show');
+
+                if(VR["msgId"] == 500){
+                    jsFnDialogBox(400, 140, "ERROR", objEvento, "ERROR ", VR["msg"]);
                 }
-                else {
-                    jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                else{
+                    if(VR["CtzDll"].length>0)
+                    {
+                        $("#divCtzProdBienes").html(VR["CtzDll"]);
+                        $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', VR["Flg"].toString()));
+                        $('#dvAviso').modal('show');
+                    }
+                    else {
+                        jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                    }
                 }
             }
         });
@@ -604,14 +616,20 @@ $(document).on('click','.btnCtzRowDEL',function(e){
                         success: function (VR) {
                             $("#divDialog").dialog("close");
                             $(".modal-backdrop").remove();
-                            if(VR["CtzDll"].length>0)
-                            {
-                                $("#divCtzProdBienes").html(VR["CtzDll"]);
-                                $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
-                                $('#dvAviso').modal('show');
+
+                            if(VR["msgId"] == 500){
+                                jsFnDialogBox(400, 140, "ERROR", objCurrent, "ERROR ", VR["msg"]);
                             }
-                            else {
-                                jsFnDialogBox(400, 140, "WARNING", objCurrent, "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                            else{
+                                if(VR["CtzDll"].length>0)
+                                {
+                                    $("#divCtzProdBienes").html(VR["CtzDll"]);
+                                    $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
+                                    $('#dvAviso').modal('show');
+                                }
+                                else {
+                                    jsFnDialogBox(400, 140, "WARNING", objCurrent, "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                                }
                             }
                         }
                     });
@@ -669,13 +687,20 @@ $(document).on('click','.btnCtzRowUPD',function(e){
             success: function (VR) {
                 $("#divDialog").dialog("close");
                 $(".modal-backdrop").remove();
-                if(VR["CtzDll"].length>0)
-                {
-                    $("#divCtzProdBienes").html(VR["CtzDll"]);
+                if(VR["msgId"] == 500){
+                    jsFnDialogBox(400, 140, "ERROR", objEvento, "ERROR ", VR["msg"]);
                 }
-                else {
-                    jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                else{
+
+                    if(VR["CtzDll"].length>0)
+                    {
+                        $("#divCtzProdBienes").html(VR["CtzDll"]);
+                    }
+                    else {
+                        jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                    }
                 }
+
             }
         });
     }
@@ -780,7 +805,7 @@ function jsFunCtzButtons(flg)
 
 
 
-function jsFunDBReqGetData(Tipo,valor)
+function jsFunDBReqGetData(Tipo,valor,attempt)
 {
     var qry = "";
     if(Tipo=="COD")
@@ -792,7 +817,7 @@ function jsFunDBReqGetData(Tipo,valor)
         qry=" and reqid = '"+valor+"'";
     }
     var token= $('#tokenBtn').val();
-    var dataString = {'prRows':' top 1 ','prAnio': $(".txVarAnioEjec").val() ,'prQry':qry,'_token':token, 'val': valor } ;
+    var dataString = {'prRows':' top 1 ','prAnio': $(".txVarAnioEjec").val() ,'prQry':qry,'_token':token, 'val': valor, 'attempt': attempt } ;
     $.ajax({
         type: "POST",
         url: "logistica/spLogGetCtzReq",
@@ -801,8 +826,28 @@ function jsFunDBReqGetData(Tipo,valor)
         error: function () {  jsFunReqClear(); jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
         success: function (VR)
         {
+            console.log(VR);
             if(typeof VR.msg !== 'undefined'){
-                    jsFunReqClear(); jsFnDialogBox(400, 160, "ERROR", null, "ATENCION", VR.msg);
+                jsFunReqClear();
+                $("#divDialog").dialog(opt);
+                $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
+                $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
+                $("#divDialog").dialog("open");
+                $("#divDialog").dialog({ width:410 ,height: 200, title: "Confirmar Operacion"});
+                $("#divDialogCont").html(VR.msg + "<br>¿ Desea continuar con el registro de la cotización ? <br> ACEPTAR: se recargaran nuevamente los datos del requerimiento elegido. <br> CANCELAR: No se realiza ninguna operación.");
+
+                $("#divDialog").dialog({
+                    buttons:{
+                        "Aceptar": function(){
+                            jsFunDBReqGetData(Tipo, valor, 1);
+                        },
+                        "Cancelar": function(){
+                            $(this).dialog("close");
+                        }
+
+                    }
+                });
+
             }
             else{
                 if(VR["Req"].length>0)
