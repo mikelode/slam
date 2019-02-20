@@ -5,6 +5,8 @@ namespace Logistica\Http\Controllers\Logistica;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Logistica\Almacen\almTLogReq;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
 use Logistica\User;
@@ -53,6 +55,23 @@ class ctrlReq extends Controller
                 array_push($ErrorDtll, array('ReqNo' => 'NN', 'Error' => '1', 'Mensaje' => ' Falta los Detalles del Requerimiento'));
                 return response()->json($ErrorDtll);
             }
+        }
+
+        /* obtenemos la data del req que se esta editando */
+        if( $varOpe == 'UPD' ){
+
+            $reqCurrent = almTLogReq::find($request["datos"]["reqID"]);
+            $flagUpdateRbs = 0;
+            $flagUpdateSfs = 0;
+
+            if($reqCurrent->reqRubro != $request["datos"]["reqRubro"]){
+                $flagUpdateRbs = 1;
+            }
+
+            if($reqCurrent->reqSecFun != $request["datos"]["reqSecFun"]){
+                $flagUpdateSfs = 1;
+            }
+
         }
 
         $result = \DB::select('exec spLogSetReq ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,?   ,?,?,?,?',
@@ -118,6 +137,28 @@ class ctrlReq extends Controller
             }
             if (count($ErrorDtll) > 0) {    return response()->json($ErrorDtll);      }
         }
+
+        if($varOpe == "UPD"){
+
+            if($flagUpdateRbs){
+
+                DB::table('TLogReqD')
+                    ->where('rdtCodReq',$request["datos"]["reqID"])
+                    ->update(['rdtRubro' => $request["datos"]["reqRubro"]]);
+
+            }
+
+            if($flagUpdateSfs){
+
+                if(substr($request["datos"]["reqSecFun"],-1) != 'M'){
+                    DB::table('TLogReqD')
+                        ->where('rdtCodReq',$request["datos"]["reqID"])
+                        ->update(['rdtSecFun' => $request["datos"]["reqSecFun"]]);
+                }
+            }
+
+        }
+
         return  response()->json ($result );
     }
     public function spLogSetReqD(Request $request)

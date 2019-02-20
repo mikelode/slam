@@ -65,19 +65,18 @@
             
         </div>
 
-        <!-- <div class="ribbon-section">
-            <span class="section-title">Tramite y Verificación</span>
-            <div class="ribbon-button ribbon-button-large" id="btnTramBandeja">
-            <span class="button-title">Tramite de <br>Requerimientos</span>
-            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/computer_go.png')); ?>" width="32px" height="32px" />
-            </div>
+        <?php /*<div class="ribbon-section">*/ ?>
+            <?php /*<span class="section-title">Tramite y Verificación</span>*/ ?>
+            <?php /*<div class="ribbon-button ribbon-button-large" id="btnTramBandeja">*/ ?>
+            <?php /*<span class="button-title">Tramite de <br>Requerimientos</span>*/ ?>
+            <?php /*<img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/computer_go.png')); ?>" width="32px" height="32px" />*/ ?>
+            <?php /*</div>*/ ?>
 
-            <div class="ribbon-button ribbon-button-large" id="btnTramChecking">
-            <span class="button-title">Verificación <br>de Requerimiento</span>
-            <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/checklist-1.png')); ?>" width="35px" height="35px"  />
-            </div>
-         </div>
-        -->
+            <?php /*<div class="ribbon-button ribbon-button-large" id="btnTramChecking">*/ ?>
+            <?php /*<span class="button-title">Verificación <br>de Requerimiento</span>*/ ?>
+            <?php /*<img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('plugins/ribbon/icons/normal/checklist-1.png')); ?>" width="35px" height="35px"  />*/ ?>
+            <?php /*</div>*/ ?>
+         <?php /*</div>*/ ?>
           <div class="ribbon-section">
              <div class="ribbon-button ribbon-button-large" id="btnMainLogAnio">
             <span class="button-title">Año de Ejecución</span>
@@ -283,7 +282,7 @@
         });
     });
 
-    $('#btn-tramiteLogistica').click(function(e){
+    $('#btnTramBandeja').click(function(e){
         e.preventDefault();
         var url = 'tramite';
         $.get(url,function(data){

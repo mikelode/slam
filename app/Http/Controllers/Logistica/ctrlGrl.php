@@ -96,7 +96,7 @@ class ctrlGrl extends Controller
 
    public  function fnGetViewActDoc()   
     {
-        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_CNF_ADOC'  ));
+        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_CNF_ADO'  ));
         if( isset ($result[0]->NEW ))
         {
             if( $result[0]->NEW =="1") {             
