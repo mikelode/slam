@@ -1220,20 +1220,24 @@ $(document).on('click','#btnLogUSR_SAVE',function(e) {
                             iUpd="0";
                             iDel="0";
                             iPrint="0";
+                            iShow="0";
                             rowAdd = rowAUDll.find("td[name=tdModAdd]").find('input[type="checkbox"]').html();
                             rowUpd = rowAUDll.find("td[name=tdModUpd]").find('input[type="checkbox"]').html();
                             rowDel = rowAUDll.find("td[name=tdModDel]").find('input[type="checkbox"]').html();
                             rowPrint = rowAUDll.find("td[name=tdModPrint]").find('input[type="checkbox"]').html();
+                            rowShow = rowAUDll.find("td[name=tdModShow]").find('input[type="checkbox"]').html();
                            
                             if ( typeof rowAdd != "undefined" )     { if( rowAUDll.find("td[name=tdModAdd]").find('input[type="checkbox"]').is(':checked') ) iAdd='1' ;     }
                             if ( typeof rowUpd != "undefined" )     { if( rowAUDll.find("td[name=tdModUpd]").find('input[type="checkbox"]').is(':checked') ) iUpd='1' ;     }
                             if ( typeof rowDel != "undefined" )     { if( rowAUDll.find("td[name=tdModDel]").find('input[type="checkbox"]').is(':checked') ) iDel='1' ;     }
                             if ( typeof rowPrint != "undefined" )   { if( rowAUDll.find("td[name=tdModPrint]").find('input[type="checkbox"]').is(':checked') ) iPrint='1' ; }
+                            if ( typeof rowShow != "undefined" )   { if( rowAUDll.find("td[name=tdModShow]").find('input[type="checkbox"]').is(':checked') ) iShow='1' ; }
                             fila.iRow= itemRow;
                             fila.iAdd= iAdd;
                             fila.iUpd= iUpd;
                             fila.iDel= iDel;
                             fila.iPrint= iPrint;
+                            fila.iShow = iShow;
                             filasDlls .push(fila);
                         }                   
                         });

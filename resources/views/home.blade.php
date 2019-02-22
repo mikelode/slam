@@ -23,7 +23,6 @@
 
 @endif
 
-
 </div>
 
 <script type="text/javascript">

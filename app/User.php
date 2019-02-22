@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -34,5 +36,39 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('Logistica\Almacen\almTPerPrs','perID','usrID');
     }
 
+    public function permiso($modId, $modOpt, $usrId)
+    {
+        $accesos = $this->accesos($usrId, $modId);
+        switch ($modOpt){
+            case 'VER':
+                $rpta = $accesos->mdlVer;
+                break;
+            case 'GUARDAR':
+                $rpta = $accesos->mdlCre;
+                break;
+            case 'EDITAR':
+                $rpta = $accesos->mdlMod;
+                break;
+            case 'ELIMINAR':
+                $rpta = $accesos->mdlEli;
+                break;
+            case 'IMPRIMIR':
+                $rpta = $accesos->mdlImp;
+                break;
+            default:
+                $rpta = 0;
+        }
 
+       return $rpta;
+
+    }
+
+    public function accesos($idUsr, $modId)
+    {
+        return DB::table('TSisUsr')
+                    ->leftJoin('TSisModDll','TSisUsr.usrID','=','TSisModDll.mdlUsrID')
+                    ->where('mdlUsrID',$idUsr)
+                    ->where('mdlModID',$modId)
+                    ->first();
+    }
 }

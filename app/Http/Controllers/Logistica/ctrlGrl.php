@@ -178,7 +178,7 @@ class ctrlGrl extends Controller
     {    
         $result="";
         foreach ($request["varDll"] as $key => $valor)
-          $result = \ DB::select('exec spLogSetUsrPerz ?,?,?,?,?,?', array($request->varCodUser  , $valor["iRow"] ,  $valor["iAdd"],$valor["iUpd"] ,$valor["iDel"] ,$valor["iPrint"]));
+          $result = \ DB::select('exec spLogSetUsrPerz ?,?,?,?,?,? ,?', array($request->varCodUser  , $valor["iRow"] ,  $valor["iAdd"],$valor["iUpd"] ,$valor["iDel"] ,$valor["iPrint"],$valor["iShow"]));
          return  $result  ;
     }
     public  function spLogGetUsrAcs( Request $request  )

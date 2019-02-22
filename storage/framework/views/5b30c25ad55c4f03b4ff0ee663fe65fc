@@ -104,10 +104,14 @@
         <div class="ribbon-section">
             <span class="section-title">Ctz- CC - OC - OS </span>
 
+            <?php if(auth()->user()->permiso('LOG_LOG_CZ','VER',Auth::user()->usrID)): ?>
+
             <div class="ribbon-button ribbon-button-large" id="btnMainLogCtz">
             <span class="button-title">Solicitud de <br/>Cotización </span>
             <img class="ribbon-icon ribbon-normal" src="<?php echo e(asset('img/iconCtz2.png')); ?>" />
             </div>
+
+            <?php endif; ?>
 
             <div class="ribbon-button ribbon-button-large" id="btnMainLogCC">
             <span class="button-title">Cuadro <br/>Comparativo</span>

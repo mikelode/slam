@@ -107,6 +107,7 @@ class tramiteController extends Controller
         {
             $user = explode('_',Auth::user()->usrPfl);
             $perfil = $user[count($user)-1];
+            dd($user);
 
             switch($perfil)
             {

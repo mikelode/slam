@@ -21,12 +21,12 @@ class ctrlCtz extends Controller
     }
     public  function fnGetViewCtz()
     {
-        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_CZ'  ));
+        /*$result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_CZ'  ));
         if( isset ($result[0]->NEW ))
         {
-            if( $result[0]->NEW =="1") {
+            if( $result[0]->NEW =="1") {*/
                 return view ('logistica.Adq.vwAdqCtz');
-            }
+            /*}
             else
             {
                 return view('logistica.Adq.vwPermission');
@@ -35,7 +35,7 @@ class ctrlCtz extends Controller
         else
         {
             return view('logistica.Adq.vwPermission');
-        }
+        }*/
 
     }
     public function spLogSetCtz(Request $prRqsCtz)
