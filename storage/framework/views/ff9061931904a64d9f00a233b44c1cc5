@@ -16,14 +16,14 @@
         <div class="panel-body alm-panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab-pendientes">
-                    <table class="table alm-table">
+                    <table class="table alm-table" id="tblSintramite">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Documento</th>
                                 <th>Código</th>
                                 <th>Fecha Creación</th>
-                                <th style="width: 500px;">Glosa</th>
+                                <th style="width: 500px;">Nota</th>
                                 <th style="text-align: center;">Elegir</th>
                             </tr>
                         </thead>
@@ -34,7 +34,7 @@
                                 <td>Requerimiento</td>
                                 <td><?php echo e($item->reqID); ?></td>
                                 <td><?php echo e($item->reqFecha); ?></td>
-                                <td><input type="text" name="<?php echo e($item->reqID); ?>" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="<?php echo e($item->reqID); ?>" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="<?php echo e($item->reqID); ?>"></td>
                             </tr>
                         <?php endforeach; ?>
@@ -44,7 +44,7 @@
                                 <td>Cotización</td>
                                 <td><?php echo e($item->ctzID); ?></td>
                                 <td><?php echo e($item->ctzFecha); ?></td>
-                                <td><input type="text" name="<?php echo e($item->ctzID); ?>" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="<?php echo e($item->ctzID); ?>" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="<?php echo e($item->ctzID); ?>"></td>
                             </tr>
                         <?php endforeach; ?>
@@ -54,7 +54,7 @@
                                 <td>Cuadro Comparativo</td>
                                 <td><?php echo e($item->cdrID); ?></td>
                                 <td><?php echo e($item->cdrFecha); ?></td>
-                                <td><input type="text" name="<?php echo e($item->cdrID); ?>" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="<?php echo e($item->cdrID); ?>" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="<?php echo e($item->cdrID); ?>"></td>
                             </tr>
                         <?php endforeach; ?>
@@ -64,7 +64,7 @@
                                 <td>Orden de Servicio</td>
                                 <td><?php echo e($item->orsID); ?></td>
                                 <td><?php echo e($item->orsFecha); ?></td>
-                                <td><input type="text" name="<?php echo e($item->orsID); ?>" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="<?php echo e($item->orsID); ?>" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="<?php echo e($item->orsID); ?>"></td>
                             </tr>
                         <?php endforeach; ?>
@@ -74,7 +74,7 @@
                                 <td>Orden de Compra</td>
                                 <td><?php echo e($item->orcID); ?></td>
                                 <td><?php echo e($item->orcFecha); ?></td>
-                                <td><input type="text" name="<?php echo e($item->orcID); ?>" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="<?php echo e($item->orcID); ?>" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="<?php echo e($item->orcID); ?>"></td>
                             </tr>
                         <?php endforeach; ?>
@@ -82,41 +82,30 @@
                     </table>
                 </div>
                 <div class="tab-pane fade in" id="tab-enviados">
-                    <table class="table alm-table">
+                    <table class="table table-hover alm-table" id="tblEnviados">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Documento</th>
-                                <th>Código</th>
-                                <th>Fecha de Envío</th>
-                                <th style="width: 500px;">Glosa</th>
+                                <th>Nro</th>
+                                <th>Número de Trámite</th>
+                                <th>Fecha de Trámite</th>
+                                <th>Enviado a</th>
+                                <th>Mensaje</th>
+                                <th>Print</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php foreach($enviados as $key=>$item): ?>
                             <tr>
-                                <td><?php echo e($key + 1); ?></td>
-                                <td><?php echo e($item->tlbTypeDoc); ?></td>
-                                <td><?php echo e($item->tlbCodDoc); ?></td>
-                                <td><?php echo e($item->tlsFecha); ?></td>
+                                <td class="details-control" onclick="documentos_enviados(this, '<?php echo e($item->topId); ?>')">
+                                </td>
+                                <td><?php echo e($item->topId); ?></td>
+                                <td><?php echo e($item->topFecha); ?></td>
+                                <td><?php echo e($item->topUsrTarget); ?></td>
+                                <td><?php echo e($item->topMensaje); ?></td>
                                 <td>
-                                    <div class="alm-input-frm">
-                                    <?php if($item->tlbTypeDoc == 'REQUERIMIENTO'): ?>
-                                        <?php if(!$item->tlbFlagCheck): ?>
-                                            <a href="#" class="updtStateTram" data-type="textarea" data-pk="<?php echo e($item->tlbId); ?>" data-name="tramStateDoc"><?php echo e($item->tlbSituacion); ?></a>
-                                        <?php else: ?>
-                                            <?php echo e($item->tlbSituacion.' - Verificado por Logística'); ?>
-
-                                        <?php endif; ?>
-                                    <?php else: ?>
-                                        <?php if(!$item->tlbFlagR): ?>
-                                            <a href="#" class="updtStateTram" data-type="textarea" data-pk="<?php echo e($item->tlbId); ?>" data-name="tramStateDoc"><?php echo e($item->tlbSituacion); ?></a>
-                                        <?php else: ?>
-                                            <?php echo e($item->tlbSituacion.' - Verificado por Logística'); ?>
-
-                                        <?php endif; ?>
-                                    <?php endif; ?>
-                                    </div>
+                                    <a href="<?php echo e('tramite/print/' . $item->topId); ?>" target="_blank">
+                                        <img src="<?php echo e(asset('img/print.png')); ?>" alt="">
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -144,14 +133,16 @@
 <script>
 $(document).ready(function(){
 
-    var token = $('meta[name="csrf-token"]').attr('content');
+    $('#tblSintramite').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
+        }
+    });
 
-    $('.updtStateTram').editable({
-        url: 'update/statetram',
-        emptytext: 'No Especificado',
-        params: {_token: token},
-        success: function(response){
-            /*alert('Estado del documento modificado con éxito');*/
+
+    $('#tblEnviados').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
         }
     });
 

@@ -13,6 +13,10 @@
 <script src="{{ asset('/plugins/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{ asset('/plugins/summernote-master/dist/summernote.min.js') }}" type="text/javascript"></script>
+<!-- Datatables -->
+<script src="{{ asset('/plugins/DataTables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/DataTables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+
 <!-- Custom javaScript -->
 <script src="{{ asset('/js/symva.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/teclado.js') }}" type="text/javascript"></script>

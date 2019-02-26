@@ -20,6 +20,8 @@
     <link href="{{ asset('plugins/x-editable/bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet" type="text/css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="{{ asset('/plugins/summernote-master/dist/summernote.css') }}" rel="stylesheet" type="text/css" />
+    <!-- datatables -->
+    <link href="{{ asset('plugins/DataTables/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <!-- CUSTOM CSS -->
     <link href="{{ asset('css/almacen.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/gs.app.css') }}" rel="stylesheet" type="text/css">

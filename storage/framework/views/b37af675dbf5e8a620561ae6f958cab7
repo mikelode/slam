@@ -1,0 +1,26 @@
+<table class="table alm-table" id="tblPendientes">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Documento</th>
+        <th>Código</th>
+        <th>Fecha de Envio</th>
+        <th style="width: 400px;">Glosa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($bandeja as $key=>$item): ?>
+        <tr>
+            <td><?php echo e($key + 1); ?></td>
+            <td><?php echo e($item->tlbTypeDoc); ?></td>
+            <td><?php echo e($item->tlbCodDoc); ?></td>
+            <td><?php echo e($item->tlsFecha); ?></td>
+            <td>
+                <div class="alm-input-frm">
+                    <a href="#" class="updtStateTram" data-type="textarea" data-pk="<?php echo e($item->tlbId); ?>" data-name="tramStateDoc"><?php echo e($item->tlbSituacion); ?></a>
+                </div>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

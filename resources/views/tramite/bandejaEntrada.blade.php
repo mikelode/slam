@@ -25,58 +25,53 @@
         <div class="panel-body alm-panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab-pendientes">
-                    <table class="table alm-table">
+                    <table class="table alm-table" id="tblPendientes">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Documento</th>
-                                <th>Código</th>
-                                <th>Fecha de Envio</th>
-                                <th style="width: 400px;">Glosa</th>
+                                <th>Nro</th>
+                                <th>Número de Trámite</th>
+                                <th>Fecha de Trámite</th>
+                                <th>Enviado por</th>
+                                <th style="width: 400px;">Mensaje</th>
                                 <th>Elegir</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($documents as $key=>$doc)
+                        @foreach($operaciones as $key=>$item)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $doc->tlbTypeDoc }}</td>
-                                <td>{{ $doc->tlbCodDoc }}</td>
-                                <td>{{ $doc->tlsFecha }}</td>
-                                <td>
-                                    <div class="alm-input-frm">
-                                        <a href="#" class="updtStateTram" data-type="textarea" data-pk="{{ $doc->tlbId }}" data-name="tramStateDoc">{{ $doc->tlbSituacion }}</a>
-                                    </div>
+                                <td class="details-control" onclick="documentos_pendientes(this, '{{ $item->topId }}')">
                                 </td>
-                                <td><input type="checkbox" class="alm-controlc" name="receiptDoc[]" value="{{ $doc->tlbId }}"></td>
+                                <td>{{ $item->topId }}</td>
+                                <td>{{ $item->topFecha }}</td>
+                                <td>{{ $item->topUsr }}</td>
+                                <td>{{ $item->topMensaje }}</td>
+                                <td>
+                                    <input type="checkbox" class="alm-controlc" name="receiptDoc[]" value="{{ $item->topId }}">
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade in" id="tab-recibidos">
-                    <table class="table alm-table">
+                    <table class="table alm-table" id="tblRecibidos">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Documento</th>
-                                <th>Código</th>
+                                <th>Nro</th>
+                                <th>Número de Trámite</th>
+                                <th>Fecha de Trámite</th>
                                 <th>Fecha de Recepcion</th>
-                                <th style="width: 400px;">Glosa</th>
+                                <th style="width: 400px;">Mensaje</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($recibidos as $key=>$doc)
+                        @foreach($recibidos as $key=>$item)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $doc->tlbTypeDoc }}</td>
-                                <td>{{ $doc->tlbCodDoc }}</td>
-                                <td>{{ $doc->tleFecha }}</td>
-                                <td>
-                                    <div class="alm-input-frm">
-                                        <a href="#" class="updtStateTram" data-type="textarea" data-pk="{{ $doc->tlbId }}" data-name="tramStateDoc">{{ $doc->tlbSituacion }}</a>
-                                    </div>
-                                </td>
+                                <td class="details-control" onclick="documentos_recibidos(this, '{{ $item->topId }}')"></td>
+                                <td>{{ $item->topId }}</td>
+                                <td>{{ $item->topFecha }}</td>
+                                <td>{{ $item->tleFecha }}</td>
+                                <td>{{ $item->topMensaje }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -114,5 +109,16 @@ $(document).ready(function(){
         }
     });
 
+    $('#tblPendientes').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
+        }
+    });
+
+    $('#tblRecibidos').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
+        }
+    });
 });
 </script>

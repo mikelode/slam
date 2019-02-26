@@ -131,6 +131,11 @@ Route::post('tramite/{operation}','Tramite\tramiteController@postOperationTramit
 Route::get('consulta/procesos','Tramite\tramiteController@getConsultaProveedor');
 Route::post('consulta/procesos','Tramite\tramiteController@postConsultaProveedor');
 Route::post('update/statetram','Tramite\tramiteController@postUpdateStatetram');
+Route::get('documentos/enviados','Tramite\tramiteController@getListarDocumentosEnviados');
+Route::get('documentos/pendientes','Tramite\tramiteController@getListarDocumentosPendientes');
+Route::get('documentos/recibidos','Tramite\tramiteController@getListarDocumentosRecibidos');
+Route::get('tramite/print/{opId}','Tramite\tramiteController@printTramiteOperacion');
+Route::get('operacion/delete/{docId}','Tramite\tramiteController@getDeleteDocumentOperacion');
 
 /*
  * TEST -PRUEBAS

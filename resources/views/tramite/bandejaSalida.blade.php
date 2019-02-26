@@ -16,14 +16,14 @@
         <div class="panel-body alm-panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab-pendientes">
-                    <table class="table alm-table">
+                    <table class="table alm-table" id="tblSintramite">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Documento</th>
                                 <th>Código</th>
                                 <th>Fecha Creación</th>
-                                <th style="width: 500px;">Glosa</th>
+                                <th style="width: 500px;">Nota</th>
                                 <th style="text-align: center;">Elegir</th>
                             </tr>
                         </thead>
@@ -34,7 +34,7 @@
                                 <td>Requerimiento</td>
                                 <td>{{ $item->reqID }}</td>
                                 <td>{{ $item->reqFecha  }}</td>
-                                <td><input type="text" name="{{ $item->reqID }}" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="{{ $item->reqID }}" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="{{ $item->reqID }}"></td>
                             </tr>
                         @endforeach
@@ -44,7 +44,7 @@
                                 <td>Cotización</td>
                                 <td>{{ $item->ctzID }}</td>
                                 <td>{{ $item->ctzFecha  }}</td>
-                                <td><input type="text" name="{{ $item->ctzID }}" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="{{ $item->ctzID }}" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="{{ $item->ctzID }}"></td>
                             </tr>
                         @endforeach
@@ -54,7 +54,7 @@
                                 <td>Cuadro Comparativo</td>
                                 <td>{{ $item->cdrID }}</td>
                                 <td>{{ $item->cdrFecha  }}</td>
-                                <td><input type="text" name="{{ $item->cdrID }}" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="{{ $item->cdrID }}" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="{{ $item->cdrID }}"></td>
                             </tr>
                         @endforeach
@@ -64,7 +64,7 @@
                                 <td>Orden de Servicio</td>
                                 <td>{{ $item->orsID }}</td>
                                 <td>{{ $item->orsFecha  }}</td>
-                                <td><input type="text" name="{{ $item->orsID }}" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="{{ $item->orsID }}" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="{{ $item->orsID }}"></td>
                             </tr>
                         @endforeach
@@ -74,7 +74,7 @@
                                 <td>Orden de Compra</td>
                                 <td>{{ $item->orcID }}</td>
                                 <td>{{ $item->orcFecha  }}</td>
-                                <td><input type="text" name="{{ $item->orcID }}" class="form-control alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="{{ $item->orcID }}" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="{{ $item->orcID }}"></td>
                             </tr>
                         @endforeach
@@ -82,39 +82,30 @@
                     </table>
                 </div>
                 <div class="tab-pane fade in" id="tab-enviados">
-                    <table class="table alm-table">
+                    <table class="table table-hover alm-table" id="tblEnviados">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Documento</th>
-                                <th>Código</th>
-                                <th>Fecha de Envío</th>
-                                <th style="width: 500px;">Glosa</th>
+                                <th>Nro</th>
+                                <th>Número de Trámite</th>
+                                <th>Fecha de Trámite</th>
+                                <th>Enviado a</th>
+                                <th>Mensaje</th>
+                                <th>Print</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($enviados as $key=>$item)
                             <tr>
-                                <td>{{ $key + 1  }}</td>
-                                <td>{{ $item->tlbTypeDoc }}</td>
-                                <td>{{ $item->tlbCodDoc  }}</td>
-                                <td>{{ $item->tlsFecha }}</td>
+                                <td class="details-control" onclick="documentos_enviados(this, '{{ $item->topId }}')">
+                                </td>
+                                <td>{{ $item->topId }}</td>
+                                <td>{{ $item->topFecha  }}</td>
+                                <td>{{ $item->topUsrTarget }}</td>
+                                <td>{{ $item->topMensaje }}</td>
                                 <td>
-                                    <div class="alm-input-frm">
-                                    @if($item->tlbTypeDoc == 'REQUERIMIENTO')
-                                        @if(!$item->tlbFlagCheck)
-                                            <a href="#" class="updtStateTram" data-type="textarea" data-pk="{{ $item->tlbId }}" data-name="tramStateDoc">{{ $item->tlbSituacion }}</a>
-                                        @else
-                                            {{ $item->tlbSituacion.' - Verificado por Logística' }}
-                                        @endif
-                                    @else
-                                        @if(!$item->tlbFlagR)
-                                            <a href="#" class="updtStateTram" data-type="textarea" data-pk="{{ $item->tlbId }}" data-name="tramStateDoc">{{ $item->tlbSituacion }}</a>
-                                        @else
-                                            {{ $item->tlbSituacion.' - Verificado por Logística' }}
-                                        @endif
-                                    @endif
-                                    </div>
+                                    <a href="{{ 'tramite/print/' . $item->topId }}" target="_blank">
+                                        <img src="{{ asset('img/print.png') }}" alt="">
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -142,14 +133,16 @@
 <script>
 $(document).ready(function(){
 
-    var token = $('meta[name="csrf-token"]').attr('content');
+    $('#tblSintramite').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
+        }
+    });
 
-    $('.updtStateTram').editable({
-        url: 'update/statetram',
-        emptytext: 'No Especificado',
-        params: {_token: token},
-        success: function(response){
-            /*alert('Estado del documento modificado con éxito');*/
+
+    $('#tblEnviados').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
         }
     });
 

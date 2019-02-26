@@ -2,6 +2,7 @@
 
 namespace Logistica\Http\Controllers\Tramite;
 
+use Illuminate\Support\Facades\App;
 use Logistica\Almacen\almTPrePto;
 use Logistica\Almacen\almTPreSF;
 use Logistica\Custom\FormatCode;
@@ -20,6 +21,7 @@ use Logistica\Tramite\tramLogBandeja;
 use Logistica\Tramite\tramLogEntrada;
 use Logistica\Tramite\tramLogSalida;
 use Logistica\Tramite\tramLogVerificacion;
+use Logistica\Tramite\tramOperacion;
 use Logistica\Tramite\tramSeguimiento;
 use Logistica\Tramite\tramTLogCC;
 use Logistica\Tramite\tramTLogCtz;
@@ -49,7 +51,14 @@ class tramiteController extends Controller
                     ->where('perID',$dniUser)
                     ->get();
 
-        $view = view('tramite.panel-tramite',['usuario'=>$usuario]);
+        $logisticos = tramTPerPersona::select(DB::raw("perID, concat(perNombres, ' ', perAPaterno, ' ', perAMaterno) AS logNombres"))
+                    ->join('TSisModDll','mdlUsrID','=','perID')
+                    ->where('mdlCre',1)
+                    ->whereIn('mdlModID',['LOG_LOG_CZ','LOG_LOG_CC','LOG_LOG_OC','LOG_LOG_OS'])
+                    ->groupBy(DB::raw("perID, concat(perNombres, ' ', perAPaterno, ' ', perAMaterno)"))
+                    ->get();
+
+        $view = view('tramite.panel-tramite',compact('usuario','logisticos'));
 
         return $view;
     }
@@ -105,107 +114,88 @@ class tramiteController extends Controller
     {
         if($bandeja == 'entrada')
         {
-            $user = explode('_',Auth::user()->usrPfl);
-            $perfil = $user[count($user)-1];
-            dd($user);
-
-            switch($perfil)
-            {
-                case 'RQ':
-                    $documents = [];
-                    $recibidos = [];
-                    break;
-                case 'CZ':
-                    $documents = tramLogBandeja::select('*')
-                        ->join('tramLogSalida','tlbEnvioId','=','tlsId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',false)
-                        ->where('tlbTypeDoc','REQUERIMIENTO')
-                        ->orderby('tlbTypeDoc','DESC')
+            $perfiles = DB::table('TSisModDll')
+                        ->where('mdlUsrID',Auth::user()->usrID)
+                        ->where('mdlCre',1)
+                        ->where('mdlModID','!=','LOG_LOG_RQ')
                         ->get();
 
-                    $recibidos = tramLogBandeja::select('*')
-                        ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',true)
-                        ->where('tleDni',Auth::user()->usrID)
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
-                    break;
-                case 'CC':
-                    $documents = tramLogBandeja::select('*')
-                        ->join('tramLogSalida','tlbEnvioId','=','tlsId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',false)
-                        ->where('tlbTypeDoc','COTIZACION')
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
+            /*foreach ($perfiles as $i => $perfil){
 
-                    $recibidos = tramLogBandeja::select('*')
-                        ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',true)
-                        ->where('tleDni',Auth::user()->usrID)
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
-                    break;
-                case 'OC':
-                    $documents = tramLogBandeja::select('*')
-                        ->join('tramLogSalida','tlbEnvioId','=','tlsId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',false)
-                        ->where('tlbTypeDoc','CUADRO COMPARATIVO')
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
+                $perfil = explode('_',$perfil->mdlModID)[2];
 
-                    $recibidos = tramLogBandeja::select('*')
-                        ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',true)
-                        ->where('tleDni',Auth::user()->usrID)
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
-                    break;
-                case 'OS':
-                    $documents = tramLogBandeja::select('*')
-                        ->join('tramLogSalida','tlbEnvioId','=','tlsId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',false)
-                        ->where('tlbTypeDoc','CUADRO COMPARATIVO')
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
+                switch($perfil)
+                {
+                    case 'CZ':
+                        $recibidos = tramLogBandeja::select('*')
+                            ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
+                            ->where('tlbFlagCheck',true)
+                            ->where('tlbFlagR',true)
+                            ->where('tleDni',Auth::user()->usrID)
+                            ->orderby('tlbTypeDoc','DESC')
+                            ->get();
+                        break;
+                    case 'CC':
+                        $recibidos = tramLogBandeja::select('*')
+                            ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
+                            ->where('tlbFlagCheck',true)
+                            ->where('tlbFlagR',true)
+                            ->where('tleDni',Auth::user()->usrID)
+                            ->orderby('tlbTypeDoc','DESC')
+                            ->get();
+                        break;
+                    case 'OC':
+                        $recibidos = tramLogBandeja::select('*')
+                            ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
+                            ->where('tlbFlagCheck',true)
+                            ->where('tlbFlagR',true)
+                            ->where('tleDni',Auth::user()->usrID)
+                            ->orderby('tlbTypeDoc','DESC')
+                            ->get();
+                        break;
+                    case 'OS':
+                        $recibidos = tramLogBandeja::select('*')
+                            ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
+                            ->where('tlbFlagCheck',true)
+                            ->where('tlbFlagR',true)
+                            ->where('tleDni',Auth::user()->usrID)
+                            ->orderby('tlbTypeDoc','DESC')
+                            ->get();
+                        break;
+                    case 'ALM':
+                        $recibidos = tramLogBandeja::select('*')
+                            ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
+                            ->where('tlbFlagCheck',true)
+                            ->where('tlbFlagR',true)
+                            ->where('tleDni',Auth::user()->usrID)
+                            ->orderby('tlbTypeDoc','DESC')
+                            ->get();
+                        break;
+                    default:
+                        $oppendientes = [];
+                        $recibidos = [];
+                }
 
-                    $recibidos = tramLogBandeja::select('*')
-                        ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',true)
-                        ->where('tleDni',Auth::user()->usrID)
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
-                    break;
-                case 'ALM':
-                    $documents = tramLogBandeja::select('*')
-                        ->join('tramLogSalida','tlbEnvioId','=','tlsId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',false)
-                        ->where('tlbTypeDoc','ORDEN DE COMPRA')
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
+                $operaciones[$i] = tramOperacion::select('*')
+                    ->whereIn('topId',$oppendientes->pluck('tlbOperacion')->all())
+                    ->get();
 
-                    $recibidos = tramLogBandeja::select('*')
-                        ->join('tramLogEntrada','tlbRecepcionId','=','tleId')
-                        ->where('tlbFlagCheck',true)
-                        ->where('tlbFlagR',true)
-                        ->where('tleDni',Auth::user()->usrID)
-                        ->orderby('tlbTypeDoc','DESC')
-                        ->get();
-                    break;
-                default:
-                    $documents = [];
-                    $recibidos = [];
-            }
+            }*/
 
-            $view = view('tramite.bandejaEntrada',['documents'=>$documents, 'recibidos'=>$recibidos]);
+            $operaciones = tramOperacion::select('*')
+                            ->where('topUsrTarget',Auth::user()->usrID)
+                            ->where('topFlagR', false)
+                            ->orderby('topId')
+                            ->get();
+
+            $recibidos = tramOperacion::select('*')
+                            ->join('tramLogEntrada','topRecepcionId','=','tleId')
+                            ->where('topFlagR', true)
+                            ->where('tleDni',Auth::user()->usrID)
+                            ->orderby('topId','DESC')
+                            ->get();
+
+            $view = view('tramite.bandejaEntrada', compact('operaciones','recibidos'));
         }
         else if($bandeja == 'salida')
         {
@@ -236,17 +226,132 @@ class tramiteController extends Controller
                 ->where('orcEstUsr',$dniUser)
                 ->get();
 
-            $enviados = tramLogBandeja::select('*')
-                ->join('tramLogSalida','tlbEnvioId','=','tlsId')
-                ->where('tlbFlagE',true)
+            $enviados = tramOperacion::select('*')
+                ->join('tramLogSalida','topEnvioId','=','tlsId')
+                ->where('topFlagE',true)
                 ->where('tlsDni',$dniUser)
-                ->orderby('tlbTypeDoc','DESC')
+                ->orderby('topId','DESC')
                 ->get();
 
             $view = view('tramite.bandejaSalida',['req'=>$req,'ctz'=>$ctz,'cdr'=>$cdr,'ors'=>$ors,'orc'=>$orc, 'enviados'=>$enviados]);
         }
 
         return $view;
+    }
+
+    public function getListarDocumentosEnviados(Request $request)
+    {
+        $bandeja = tramLogBandeja::select('*')
+                    ->join('tramOperacion','topId','=','tlbOperacion')
+                    ->join('tramLogSalida','tlsId','=','topEnvioId')
+                    ->where('tlbOperacion',$request->operacion)
+                    ->get();
+
+        $view = view('tramite.bandejaEnviadosLista', compact('bandeja'));
+        return $view;
+    }
+
+    public function getListarDocumentosPendientes(Request $request)
+    {
+        $bandeja = tramLogBandeja::select('*')
+            ->join('tramOperacion','topId','=','tlbOperacion')
+            ->join('tramLogSalida','tlsId','=','topEnvioId')
+            ->where('tlbOperacion',$request->operacion)
+            ->get();
+
+        $view = view('tramite.bandejaPendientesLista', compact('bandeja'));
+        return $view;
+    }
+
+    public function getListarDocumentosRecibidos(Request $request)
+    {
+        $bandeja = tramLogBandeja::select('*')
+            ->join('tramOperacion','topId','=','tlbOperacion')
+            ->join('tramLogEntrada','tleId','=','topRecepcionId')
+            ->where('tlbOperacion',$request->operacion)
+            ->get();
+
+        $view = view('tramite.bandejaRecibidosLista', compact('bandeja'));
+        return $view;
+    }
+
+    public function printTramiteOperacion($opId)
+    {
+        $operacion = tramOperacion::select(DB::raw("*, DB_Logistica.dbo.fnLogGetGrlDat('DNI', topUsrTarget, '') as topTargetName"))
+                        ->where('topId',$opId)
+                        ->first();
+
+        $documentos = $operacion->documentos;
+        $emisor = $operacion->remitente;
+
+        $view = view('tramite.tramitePdf', compact('operacion','documentos','emisor'));
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('A4','portrait');
+        return $pdf->stream('tramite.pdf');
+    }
+
+    public function getDeleteDocumentOperacion($docId)
+    {
+        try{
+
+            $doc = tramLogBandeja::find($docId);
+            $operacion = tramOperacion::find($doc->tlbOperacion);
+
+            if($operacion->topFlagR){
+                throw new Exception("No es posible eliminar el documento elegido, porque ya se registro su recepción");
+            }
+
+            $exception = DB::transaction(function() use($docId){
+
+                $doc = tramLogBandeja::find($docId);
+
+                switch ($doc->tlbTypeDoc){
+                    case 'REQUERIMIENTO':
+                        $req = tramTLogReq::find($doc->tlbCodDoc);
+                        $req->flagEnvio = false;
+                        $req->save();
+                        break;
+                    case 'COTIZACION':
+                        $ctz = tramTLogCtz::find($doc->tlbCodDoc);
+                        $ctz->flagEnvio = false;
+                        $ctz->save();
+                        break;
+                    case 'CUADRO COMPARATIVO':
+                        $cdr = tramTLogCC::find($doc->tlbCodDoc);
+                        $cdr->flagEnvio = false;
+                        $cdr->save();
+                        break;
+                    case 'ORDEN DE COMPRA':
+                        $ctz = almTLogOC::find($doc->tlbCodDoc);
+                        $ctz->flagEnvio = false;
+                        $ctz->save();
+                        break;
+                    case 'ORDEN DE SERVICIO':
+                        $ctz = tramTLogOS::find($doc->tlbCodDoc);
+                        $ctz->flagEnvio = false;
+                        $ctz->save();
+                        break;
+                }
+
+                tramLogBandeja::destroy($docId);
+
+            });
+
+            if(is_null($exception)){
+                $msg = "Documento eliminado de la hoja de trámite seleccionada";
+                $msgId = 200;
+            }
+            else{
+                throw new Exception($exception);
+            }
+
+        }catch (Exception $e){
+            $msg = "Error: " . $e->getMessage();
+            $msgId = 500;
+        }
+
+        return response()->json(compact('msg','msgId'));
     }
 
     public function postOperationTramite($operation, Request $request)
@@ -284,27 +389,35 @@ class tramiteController extends Controller
                 $receptor->tleFecha = Carbon::now()->format('d/m/Y h:i:s A');//$data->envDate;
                 $receptor->tleRegisterBy = Auth::user()->usrID; /*'user session';*/
                 $receptor->tleRegisterAt = Carbon::now()->format('d/m/Y h:i:s A');
-                $receptor->tleDestinoPlace = $data->envDepOrigen;
+                $receptor->tleDestinoPlace = '-';//$data->envDepOrigen;
                 $receptor->save();
 
                 foreach($data->receiptDoc as $doc)
                 {
-                    $document = tramLogBandeja::find($doc);
-                    $document->tlbRecepcionId = $receptor->tleId;
-                    $document->tlbFlagR = true;
-                    $document->tlbUserR = Auth::user()->usrID; /*'user session';*/
-                    $document->save();
+                    $operacion = tramOperacion::find($doc);
+                    $operacion->topFlagR = true;
+                    $operacion->topRecepcionId = $receptor->tleId;
+                    $operacion->save();
 
-                    unset($document);
+                    unset($operacion);
                 }
 
             });
 
-            return is_null($exception) ? '200' : $exception;
+            if(is_null($exception)){
+                $msg = 'Recepción registrada correctamente';
+                $msgId = 200;
+            }
+            else{
+                throw new Exception($exception);
+            }
 
         }catch (Exception $e){
-            return '500';
+            $msg = "Error: " . $e->getMessage();
+            $msgId = 500;
         }
+
+        return response()->json(compact('msg','msgId'));
     }
 
     public function storeCheckDocument($data)
@@ -346,7 +459,9 @@ class tramiteController extends Controller
     public function storeEnvioDocumento($data)
     {
         try{
-            $exception = DB::transaction(function($data) use ($data){
+            $tramNro = 0;
+
+            $exception = DB::transaction(function() use ($data, &$tramNro){
 
                 $fullName = explode('_',$data->envFullName);
 
@@ -358,20 +473,39 @@ class tramiteController extends Controller
                 $emisor->tlsFecha = Carbon::now()->format('d/m/Y h:i:s A');//$data->envDate;
                 $emisor->tlsRegisterBy = Auth::user()->usrID; /*'user session';*/
                 $emisor->tlsRegisterAt = Carbon::now()->format('d/m/Y h:i:s A');
-                $emisor->tlsOrigenPlace = $data->envDepOrigen;
+                $emisor->tlsOrigenPlace = '-';//$data->envDepOrigen;
                 $emisor->save();
+
+                if(!$emisor){
+                    throw new Exception("Error al registrar al emisor del docuemento");
+                }
+
+
+                $opId = DB::select(DB::raw("SELECT dbo.fnLogGetTramKy(?) AS tramNro"), [trim($data->tramAnio)]);
+
+                $operacion = new tramOperacion();
+                $operacion->topId = $opId[0]->tramNro;
+                $operacion->topFecha = Carbon::parse($data->envDate)->format('d/m/Y h:i:s A');
+                $operacion->topUsr = Auth::user()->usrID;
+                $operacion->topUsrTarget = $data->envUsrTarget;
+                $operacion->topMensaje = $data->envMensaje;
+                $operacion->topFlagE = true;
+                $operacion->topFlagR = false;
+                $operacion->topEnvioId = $emisor->tlsId;
+                $operacion->save();
+
+                if(!$operacion){
+                    throw new Exception("Error al registrar la operación " . $opId[0]->tramNro);
+                }
 
                 foreach($data->envDoc as $key=>$doc)
                 {
                     $bandeja = new tramLogBandeja();
-                    $bandeja->tlbOperacion = '000000'; //numero temporal - campo no valido
+                    $bandeja->tlbOperacion = $opId[0]->tramNro;
                     $bandeja->tlbTypeDoc = $this->docType($doc);
                     $bandeja->tlbCodDoc = $doc;
-                    $bandeja->tlbFechaDoc = Carbon::now()->format('d/m/Y h:i:s A'); //temporal-fecha de creacion del documento
-                    $bandeja->tlbEnvioId = $emisor->tlsId;
-                    $bandeja->tlbFlagE = true;
+                    $bandeja->tlbFechaDoc = Carbon::parse($data->envDate)->format('d/m/Y h:i:s A');
                     $bandeja->tlbFlagCheck = $this->docType($doc) == 'REQUERIMIENTO' ? false : true;
-                    $bandeja->tlbFlagR = false;
                     $bandeja->tlbSituacion = $data[$doc];
                     $bandeja->save();
 
@@ -422,13 +556,26 @@ class tramiteController extends Controller
                     }
                 }
 
+                $tramNro = $opId[0]->tramNro;
+
             });
 
-            return is_null($exception) ? '200' : $exception;
+            if(is_null($exception)){
+                $msg = 'Tramite Generado NRO: ' . $tramNro;
+                $msgId = 200;
+            }
+            else{
+                throw new Exception($exception);
+            }
 
         }catch (Exception $e){
-            return '500';
+
+            $msg = "Error: " . $e->getMessage();
+            $msgId = 500;
         }
+
+        return response()->json(compact('msg','msgId'));
+
     }
 
     public function isAlreadyRemit($doc)

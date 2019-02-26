@@ -25,58 +25,53 @@
         <div class="panel-body alm-panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab-pendientes">
-                    <table class="table alm-table">
+                    <table class="table alm-table" id="tblPendientes">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Documento</th>
-                                <th>Código</th>
-                                <th>Fecha de Envio</th>
-                                <th style="width: 400px;">Glosa</th>
+                                <th>Nro</th>
+                                <th>Número de Trámite</th>
+                                <th>Fecha de Trámite</th>
+                                <th>Enviado por</th>
+                                <th style="width: 400px;">Mensaje</th>
                                 <th>Elegir</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($documents as $key=>$doc): ?>
+                        <?php foreach($operaciones as $key=>$item): ?>
                             <tr>
-                                <td><?php echo e($key + 1); ?></td>
-                                <td><?php echo e($doc->tlbTypeDoc); ?></td>
-                                <td><?php echo e($doc->tlbCodDoc); ?></td>
-                                <td><?php echo e($doc->tlsFecha); ?></td>
-                                <td>
-                                    <div class="alm-input-frm">
-                                        <a href="#" class="updtStateTram" data-type="textarea" data-pk="<?php echo e($doc->tlbId); ?>" data-name="tramStateDoc"><?php echo e($doc->tlbSituacion); ?></a>
-                                    </div>
+                                <td class="details-control" onclick="documentos_pendientes(this, '<?php echo e($item->topId); ?>')">
                                 </td>
-                                <td><input type="checkbox" class="alm-controlc" name="receiptDoc[]" value="<?php echo e($doc->tlbId); ?>"></td>
+                                <td><?php echo e($item->topId); ?></td>
+                                <td><?php echo e($item->topFecha); ?></td>
+                                <td><?php echo e($item->topUsr); ?></td>
+                                <td><?php echo e($item->topMensaje); ?></td>
+                                <td>
+                                    <input type="checkbox" class="alm-controlc" name="receiptDoc[]" value="<?php echo e($item->topId); ?>">
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade in" id="tab-recibidos">
-                    <table class="table alm-table">
+                    <table class="table alm-table" id="tblRecibidos">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Documento</th>
-                                <th>Código</th>
+                                <th>Nro</th>
+                                <th>Número de Trámite</th>
+                                <th>Fecha de Trámite</th>
                                 <th>Fecha de Recepcion</th>
-                                <th style="width: 400px;">Glosa</th>
+                                <th style="width: 400px;">Mensaje</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($recibidos as $key=>$doc): ?>
+                        <?php foreach($recibidos as $key=>$item): ?>
                             <tr>
-                                <td><?php echo e($key + 1); ?></td>
-                                <td><?php echo e($doc->tlbTypeDoc); ?></td>
-                                <td><?php echo e($doc->tlbCodDoc); ?></td>
-                                <td><?php echo e($doc->tleFecha); ?></td>
-                                <td>
-                                    <div class="alm-input-frm">
-                                        <a href="#" class="updtStateTram" data-type="textarea" data-pk="<?php echo e($doc->tlbId); ?>" data-name="tramStateDoc"><?php echo e($doc->tlbSituacion); ?></a>
-                                    </div>
-                                </td>
+                                <td class="details-control" onclick="documentos_recibidos(this, '<?php echo e($item->topId); ?>')"></td>
+                                <td><?php echo e($item->topId); ?></td>
+                                <td><?php echo e($item->topFecha); ?></td>
+                                <td><?php echo e($item->tleFecha); ?></td>
+                                <td><?php echo e($item->topMensaje); ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -114,5 +109,16 @@ $(document).ready(function(){
         }
     });
 
+    $('#tblPendientes').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
+        }
+    });
+
+    $('#tblRecibidos').DataTable({
+        "language":{
+            "url": "plugins/DataTables/Spanish.json"
+        }
+    });
 });
 </script>

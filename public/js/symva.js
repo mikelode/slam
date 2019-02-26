@@ -442,3 +442,69 @@ function getMenuVerificacion()
         $('.alm-content-wrapper').html(data);
     });
 }
+
+function documentos_enviados(fila, opId){
+    var tr = $(fila).closest('tr');
+    var row = $('#tblEnviados').DataTable().row(tr);
+
+    if(row.child.isShown()){
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else{
+        $.get('documentos/enviados',{'operacion': opId}, function(data) {
+            row.child(data).show();
+            tr.addClass('shown');
+        });
+    }
+}
+
+function documentos_pendientes(fila, opId){
+    var tr = $(fila).closest('tr');
+    var row = $('#tblPendientes').DataTable().row(tr);
+
+    if(row.child.isShown()){
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else{
+        $.get('documentos/pendientes',{'operacion': opId}, function(data) {
+            row.child(data).show();
+            tr.addClass('shown');
+        });
+    }
+}
+
+function documentos_recibidos(fila, opId)
+{
+    var tr = $(fila).closest('tr');
+    var row = $('#tblRecibidos').DataTable().row(tr);
+
+    if(row.child.isShown()){
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else{
+        $.get('documentos/recibidos',{'operacion': opId}, function(data) {
+            row.child(data).show();
+            tr.addClass('shown');
+        });
+    }
+}
+
+function quitar_documento(docId)
+{
+    var ok = confirm("¿Está seguro de quitar el documento del trámite?");
+
+    if(!ok)
+        return;
+
+    var url = 'operacion/delete/' + docId;
+
+    $.get(url, function(response){
+        alert(response.msg);
+        if(response.msgId == 200){
+            change_to_submenu('tramite/salida');
+        }
+    })
+}

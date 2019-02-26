@@ -11,16 +11,6 @@ class tramLogBandeja extends Model
     protected $primaryKey = 'tlbId';
     public $timestamps = false;
 
-    public function remitente()
-    {
-        return $this->hasOne('Logistica\Tramite\tramLogSalida','tlsId','tlbEnvioId');
-    }
-
-    public function receptor()
-    {
-        return $this->hasOne('Logistica\Tramite\tramLogEntrada','tleId','tlbRecepcionId');
-    }
-
     public function verificador()
     {
         return $this->hasOne('Logistica\Tramite\tramLogVerificacion','tlvId','tlbVerificacionId');

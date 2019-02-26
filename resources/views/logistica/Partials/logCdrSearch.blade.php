@@ -23,10 +23,11 @@
 
             <th WIDTH="80px"  align="left"   valign="center">RUC</th>
             <th WIDTH="150px"  align="left"   valign="center">Razon Social</th>
-            <th WIDTH="60px"  align="right"   valign="center">Monto</th>
+            <th WIDTH="40px"  align="right"   valign="center">Monto</th>
             <th WIDTH="50px"  align="center"   valign="center">Plazo</th>
             <th WIDTH="80px"  align="center"   valign="center">IGV</th>
-            <th WIDTH="150px"  align="center"   valign="center">Justificacion</th>
+            <th WIDTH="80px"  align="center"   valign="center">Justificacion</th>
+            <th WIDTH="90px"  align="center"   valign="center">Obs</th>
             <th WIDTH="80px"  align="center"   valign="center">Ctz</th>
             <th WIDTH="40px"  align="center"   valign="center">-</th>
 
@@ -50,6 +51,7 @@
         <td  align="center" >{{  $nom->cdrPlazo}}</td>
         <td  align="center" >{{  $nom->cdrIGV}}</td>
         <td  align="left" >{{  $nom->cdrJustf}}</td>
+            <td  align="left" >{{  $nom->cdrObsv}}</td>
         <td  align="center" >{{  $nom->cdrCtzCod}}</td>
         <td  align="center">
             <button class="btn btn-info  btn-cdrSelect" codID="{{  $nom->cdrID }}" >

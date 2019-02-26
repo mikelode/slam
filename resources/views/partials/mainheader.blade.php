@@ -65,18 +65,7 @@
             
         </div>
 
-        {{--<div class="ribbon-section">--}}
-            {{--<span class="section-title">Tramite y Verificación</span>--}}
-            {{--<div class="ribbon-button ribbon-button-large" id="btnTramBandeja">--}}
-            {{--<span class="button-title">Tramite de <br>Requerimientos</span>--}}
-            {{--<img class="ribbon-icon ribbon-normal" src="{{ asset('plugins/ribbon/icons/normal/computer_go.png') }}" width="32px" height="32px" />--}}
-            {{--</div>--}}
 
-            {{--<div class="ribbon-button ribbon-button-large" id="btnTramChecking">--}}
-            {{--<span class="button-title">Verificación <br>de Requerimiento</span>--}}
-            {{--<img class="ribbon-icon ribbon-normal" src="{{ asset('plugins/ribbon/icons/normal/checklist-1.png') }}" width="35px" height="35px"  />--}}
-            {{--</div>--}}
-         {{--</div>--}}
           <div class="ribbon-section">
              <div class="ribbon-button ribbon-button-large" id="btnMainLogAnio">
             <span class="button-title">Año de Ejecución</span>
@@ -134,6 +123,18 @@
             </div>
         </div>
 
+        <div class="ribbon-section">
+            <span class="section-title">Tramite</span>
+            <div class="ribbon-button ribbon-button-large" id="btnTramBandeja">
+                <span class="button-title">Tramite de <br>Requerimientos</span>
+                <img class="ribbon-icon ribbon-normal" src="{{ asset('plugins/ribbon/icons/normal/computer_go.png') }}" width="32px" height="32px" />
+            </div>
+
+            {{--<div class="ribbon-button ribbon-button-large" id="btnTramChecking">
+            <span class="button-title">Verificación <br>de Requerimiento</span>
+            <img class="ribbon-icon ribbon-normal" src="{{ asset('plugins/ribbon/icons/normal/checklist-1.png') }}" width="35px" height="35px"  />
+            </div>--}}
+        </div>
 
          <div class="ribbon-section">
 

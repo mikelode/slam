@@ -34,13 +34,18 @@
                                     <input class="alm-input-frm" name="envFullName" style="width: 500px;" value="<?php echo e($usuario[0]->perNombres.'_'.$usuario[0]->perAPaterno.'_'.$usuario[0]->perAMaterno); ?>" readonly>
                                 </div>
                                 <div class="form-group alm-form-group">
-                                    <label class="control-label alm-label" for="">Dependencia</label>
-                                    <input class="alm-input-frm" name="envDepOrigen" style="width: 583px;" value="<?php echo e($usuario[0]->perCodDep.' - '.$usuario[0]->Descripcion); ?>" readonly>
+                                    <label class="control-label alm-label" style="float: left">Enviar a</label>
+                                    <select class="form-control alm-input" name="envUsrTarget" id="envUsrTarget" style="width: 500px;">
+                                        <option value="NA">-- Seleccione destinatario --</option>
+                                        <?php foreach($logisticos as $logis): ?>
+                                            <option value="<?php echo e($logis->perID); ?>"><?php echo e($logis->logNombres); ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
-                                <?php /*<div class="form-group alm-form-group">
-                                    <label class="control-label alm-label" style="float: left">Glosa</label>
-                                    <textarea class="form-control alm-input" name="envGlosa" style="width: 500px;"></textarea>
-                                </div>*/ ?>
+                                <div class="form-group alm-form-group">
+                                    <label class="control-label alm-label" style="float: left">Asunto</label>
+                                    <textarea class="form-control alm-input" name="envMensaje" style="width: 500px;"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -76,25 +81,27 @@ $(document).ready(function(){
 
         var flag = check_empty_checker($('input.alm-control'));
 
-        if(!flag)
-        {
-            alert('Seleccione almenos un Requerimiento');
+        if($('#envUsrTarget').val() == 'NA'){
+            alert('Seleccione a quién se va a enviar el/los documento(s)');
             return false;
         }
 
+        if(!flag){
+            alert('Seleccione almenos un Requerimiento');
+            return false;
+        }
+        else{
+            var ok = confirm("¿Estád seguro de tramitar los documentos seleccionados?")
+            if(!ok)
+                return;
+        }
+
         var url = $('#frm-send-doc').attr('action');
-        var data = $('#frm-send-doc').serialize();
+        var data = $('#frm-send-doc').serialize() + '&tramAnio=' + $('#txAnioFinal').val();
 
         $.post(url,data,function(response){
-            if(response == '200')
-            {
-                alert('Registrado su envío con éxito');
-            }
-            else
-            {
-                alert('Error. Verifique su conexión al servidor');
-            }
-            change_to_submenu('tramite/salida')
+            alert(response.msg);
+            change_to_submenu('tramite/salida');
         });
 
     });
@@ -115,14 +122,7 @@ $(document).ready(function(){
         var data = $('#frm-send-doc').serialize();
 
         $.post(url,data,function(response){
-            if(response == '200')
-            {
-                alert('Registrado su envío con éxito');
-            }
-            else
-            {
-                alert('Error. Verifique su conexión al servidor');
-            }
+            alert(response.msg);
             change_to_submenu('tramite/entrada')
         });
     });
