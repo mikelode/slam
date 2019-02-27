@@ -232,41 +232,48 @@ class pdfController extends Controller
                     ->where('ing_giu',$proceso[0]->ing_giu)
                     ->get();
 
-        $oc = almTLogOC::find($guia[0]->oc_cod);
-
-        /* PARA FORMATO ESPECIAL PARA CONVENIO MARCO PRIMEROS REGISTROS */
-  //      $checkCMarco = array('OC1600044','OC1600040','OC1600030','OC1600035','OC1600034','OC1600042','OC1600033','OC1600032','OC1600036','OC1600045','OC1600039','OC1600041','OC1600043','OC1600031');
-
-
-        $orc = null;
-        /*if(in_array(trim($guia[0]->oc_cod),$checkCMarco))
-        {
-            $orc = almTLogOC::find($guia[0]->oc_cod);
-        }*/
-
-        if($guia[0]->oc_tipoProceso == '009' && ltrim( $oc->orcIGV) == 'SI')
-        {
-            $orc = almTLogOC::find($guia[0]->oc_cod);
+        if(substr($guia[0]->ing_giu,0,2) == 'NE' ){
+            $resClasificador = [];
+            $resCuenta = [];
+            $orc = null;
         }
+        else{
+            $oc = almTLogOC::find($guia[0]->oc_cod);
 
-         if ( $oc->orcID== 'OC1601275')
-        {
-             $orc = almTLogOC::find($data[0]->oc_cod);
-        }
-        
-        /*else
-        {
-            if($oc != null && $oc->orcIGV == 'SI')
+            /* PARA FORMATO ESPECIAL PARA CONVENIO MARCO PRIMEROS REGISTROS */
+            //      $checkCMarco = array('OC1600044','OC1600040','OC1600030','OC1600035','OC1600034','OC1600042','OC1600033','OC1600032','OC1600036','OC1600045','OC1600039','OC1600041','OC1600043','OC1600031');
+
+
+            $orc = null;
+            /*if(in_array(trim($guia[0]->oc_cod),$checkCMarco))
+            {
+                $orc = almTLogOC::find($guia[0]->oc_cod);
+            }*/
+
+            if($guia[0]->oc_tipoProceso == '009' && ltrim( $oc->orcIGV) == 'SI')
             {
                 $orc = almTLogOC::find($guia[0]->oc_cod);
             }
-        }
-*/
-        /******************************************************************/
-        $orc = null;
 
-        $resClasificador = \DB::connection('dblogistica')->select('exec spLogGetOCAbsClasf ?',array(  $oc->orcID ));
-        $resCuenta = \DB::connection('dblogistica')->select('exec spLogGetOCAbsCta ?', array($oc->orcID));
+            if ( $oc->orcID== 'OC1601275')
+            {
+                $orc = almTLogOC::find($data[0]->oc_cod);
+            }
+
+            /*else
+            {
+                if($oc != null && $oc->orcIGV == 'SI')
+                {
+                    $orc = almTLogOC::find($guia[0]->oc_cod);
+                }
+            }
+    */
+            /******************************************************************/
+            $orc = null;
+
+            $resClasificador = \DB::connection('dblogistica')->select('exec spLogGetOCAbsClasf ?',array(  $oc->orcID ));
+            $resCuenta = \DB::connection('dblogistica')->select('exec spLogGetOCAbsCta ?', array($oc->orcID));
+        }
 
         $view = view('almacen.pdf.pdfPs',['guia'=>$guia, 'proceso'=>$proceso, 'orden'=>$orc, 'resClasificador' => $resClasificador, 'resCuenta' => $resCuenta]);
         $pdf = App::make('dompdf.wrapper'); 
