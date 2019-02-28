@@ -91,15 +91,27 @@
                 height: 48px;
                 background-color: #eaeaea;
             }
+            .content{
+                top: 215px;
+                margin-bottom: 120px;
+            }
             .footer {
-                position: fixed;
+/*                position: fixed;
                 bottom: 0;
                 border-top: solid 1px;
                 width: 100%;
                 font-family: "Courier New", Courier, monospace;
                 font-size: 12px;
                 font-weight: bold;
+                display: inline-block;*/
+
+                position: fixed;
+                bottom: 0.35cm;
+                width: 100%;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 12px;
                 display: inline-block;
+                height: 100px;
             }
             .pagenum:before {
                 content: counter(page);
@@ -110,17 +122,16 @@
             }
             .firmas table{
                 width: 100%;
-                margin-top: 20px;
+                margin-top: 0px;
             }
 
             .firmas table thead tr td{
-                height: 8px;
+                height: 15px;
                 width: 25%;
                 font-size: 12px;
             }
             .firmas table tbody tr td{
                 height: 80px;
-                font-weight: bold;
             }
         </style>
     </head>
@@ -169,6 +180,26 @@
             </div>
         </div>
         <div class="footer">
+            <div class="firmas">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                    <thead>
+                    <tr>
+                        <td>V°B° Almacén Central</td>
+                        <td>Entregado por</td>
+                        <td>Recibido por</td>
+                        <td>Trasladado por</td>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
             <div style="float: left; display: inline-block; width: 90%;">
                 {{ config('slam.ENTIDAD_PIE') }}, {{ \Carbon\Carbon::now()->toDateTimeString() }}
             </div>
@@ -264,26 +295,6 @@
                         <td colspan="8"></td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
-        <div class="firmas">
-            <table>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-                <thead>
-                <tr>
-                    <td>V°B° Almacén Central</td>
-                    <td>Entregado por</td>
-                    <td>Recibido por</td>
-                    <td>Trasladado por</td>
-                </tr>
-                </thead>
             </table>
         </div>
     </body>

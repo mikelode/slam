@@ -25,7 +25,7 @@
             }
             .footer {
                 position: fixed;
-                bottom: 0.75cm;
+                bottom: 0.35cm;
                 width: 100%;
                 font-family: "Courier New", Courier, monospace;
                 font-size: 12px;
@@ -140,12 +140,12 @@
             }
 
             .firmas table thead tr td{
-                height: 20px;
+                height: 15px;
                 width: 25%;
                 font-size: 12px;
             }
             .firmas table tbody tr td{
-                height: 85px;
+                height: 80px;
             }
 
         </style>
@@ -349,10 +349,5 @@
                 </tbody>
             </table>
         </div>
-        
-
-
-
-
     </body>
  </html>
