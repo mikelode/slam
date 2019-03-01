@@ -57,10 +57,10 @@
              </div>
 
 
-             {{--<div class="ribbon-button ribbon-button-large" id="btnMainLogSiafSeg" style="width:80px">--}}
-              {{--<span class="button-title">Seguimiento  <br>de OC y OS</span>--}}
-              {{--<img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconSeg.png') }}" width="35px" height="35px"  />--}}
-             {{--</div>--}}
+{{--             <div class="ribbon-button ribbon-button-large" id="btnMainLogSiafSeg" style="width:80px">
+              <span class="button-title">Seguimiento  <br>de OC y OS</span>
+              <img class="ribbon-icon ribbon-normal" src="{ asset('img/iconSeg.png') }}" width="35px" height="35px"  />
+             </div>--}}
              
             
         </div>
@@ -144,10 +144,10 @@
               </div>
 
               <span class="section-title">Reportes</span>
-              {{--<div class="ribbon-button ribbon-button-large" id="btnMainLogPrice">--}}
-              {{--<span class="button-title">Precios<br>Referenciales</span>--}}
-              {{--<img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconPrice.png') }}" />--}}
-              {{--</div>--}}
+              <div class="ribbon-button ribbon-button-large" id="btnMainLogPrice">
+              <span class="button-title">Precios<br>Referenciales</span>
+              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconPrice2.png') }}" />
+              </div>
 
               
 			       <div class="ribbon-button ribbon-button-large" id="btnMainLogRptSeace">

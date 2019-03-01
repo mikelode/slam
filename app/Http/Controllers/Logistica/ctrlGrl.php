@@ -9,7 +9,7 @@ use Logistica\Almacen\almAlmacen;
 use TCPDF;*/
 
 use Illuminate\Http\Request;
-
+use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -587,30 +587,218 @@ class ctrlGrl extends Controller
         }
     }
 
+    function getNumRand()
+    {
+        $url="http://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/captcha?accion=random";
+
+        $_followlocation = true;
+        $_timeout = 30;
+        $_maxRedirects = 4;
+        $_noBody = false;
+        $_includeHeader = false;
+        $_binary = false;
+        $_httpheader = array('Expect:');
+        $_cookieFileLocation = storage_path('app/cookie.txt');// dirname(__FILE__).'/cookie.txt';
+        $_useragent = 'Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0';
+        $_referer ="https://www.google.com/";
+
+        $proxy = false;
+        $proxy_host = '';
+        $proxy_port = '';
+
+        $authentication = false;
+        $auth_name      = '';
+        $auth_pass      = '';
+
+        $_post = false;
+
+        $s = curl_init();
+        curl_setopt($s,CURLOPT_URL,$url);
+        curl_setopt($s,CURLOPT_HTTPHEADER,$_httpheader);
+        curl_setopt($s,CURLOPT_TIMEOUT,$_timeout);
+        curl_setopt($s,CURLOPT_MAXREDIRS,$_maxRedirects);
+        curl_setopt($s,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($s,CURLOPT_FOLLOWLOCATION,$_followlocation);
+        curl_setopt($s,CURLOPT_COOKIEJAR,$_cookieFileLocation);
+        curl_setopt($s,CURLOPT_COOKIEFILE,$_cookieFileLocation);
+        curl_setopt($s,CURLOPT_USERAGENT,$_useragent);
+        curl_setopt($s,CURLOPT_REFERER,$_referer);
+        $_webpage = curl_exec($s);
+        $_status = curl_getinfo($s,CURLINFO_HTTP_CODE);
+        curl_close($s);
+
+        $numRand = $_webpage;
+
+        return $numRand;
+    }
+
     public function spLogGetRucsunat(Request $request)
     {
-        $ruc = $request->qry;
-        $data = file_get_contents("https://api.sunat.cloud/ruc/".$ruc);
-        $info = json_decode($data, true);
+        try{
 
-        if($data==='[]' || $info['fecha_inscripcion']==='--'){
-            $datos = array(0 => 'nn');
-        }
-        else{
-            $datos = array(
-                0 => $info['ruc'],
-                1 => $info['razon_social'],
-                2 => date("d/m/Y", strtotime($info['fecha_actividad'])),
-                3 => $info['contribuyente_condicion'],
-                4 => $info['contribuyente_tipo'],
-                5 => $info['contribuyente_estado'],
-                6 => date("d/m/Y", strtotime($info['fecha_inscripcion'])),
-                7 => $info['domicilio_fiscal'],
-                8 => date("d/m/Y", strtotime($info['emision_electronica']))
+            $ruc = $request->qry;
+
+            $numRand = $this->getNumRand();
+            $rtn = array();
+            if($ruc != "" && $numRand!=false)
+            {
+                $data = array(
+                    "nroRuc" => $ruc,
+                    "accion" => "consPorRuc",
+                    "numRnd" => $numRand
+                );
+
+                $url = "http://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias";
+
+                $_binary = false;
+                $_post = true;
+                $_postFields = http_build_query($data);
+                $_httpheader = array('Expect:');
+                $_cookieFileLocation = storage_path('app/cookie.txt'); // dirname(__FILE__).'/cookie.txt';
+                $_useragent = 'Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0';
+                $_referer ="https://www.google.com/";
+
+                $s = curl_init();
+                curl_setopt($s,CURLOPT_URL,$url);
+                curl_setopt($s,CURLOPT_HTTPHEADER,$_httpheader);
+                curl_setopt($s,CURLOPT_TIMEOUT,30);
+                curl_setopt($s,CURLOPT_MAXREDIRS,4);
+                curl_setopt($s,CURLOPT_RETURNTRANSFER,true);
+                curl_setopt($s,CURLOPT_FOLLOWLOCATION,true);
+                curl_setopt($s,CURLOPT_COOKIEJAR,$_cookieFileLocation);
+                curl_setopt($s,CURLOPT_COOKIEFILE,$_cookieFileLocation);
+                curl_setopt($s,CURLOPT_POST,$_post);
+                curl_setopt($s,CURLOPT_POSTFIELDS,$_postFields);
+                curl_setopt($s,CURLOPT_USERAGENT,$_useragent);
+                curl_setopt($s,CURLOPT_REFERER,$_referer);
+                $_webpage = curl_exec($s);
+                $_status = curl_getinfo($s,CURLINFO_HTTP_CODE);
+                curl_close($s);
+
+                $Page = $_webpage;
+
+                //RazonSocial
+                $patron='/<input type="hidden" name="desRuc" value="(.*)">/';
+                $output = preg_match_all($patron, $Page, $matches, PREG_SET_ORDER);
+                if(isset($matches[0]))
+                {
+                    $RS = utf8_encode(str_replace('"','', ($matches[0][1])));
+                    $rtn = array("RUC"=>$ruc,"RazonSocial"=>trim($RS));
+                }
+
+                //Telefono
+                $patron='/<td class="bgn" colspan=1>Tel&eacute;fono\(s\):<\/td>[ ]*-->\r\n<!--\t[ ]*<td class="bg" colspan=1>(.*)<\/td>/';
+                $output = preg_match_all($patron, $Page, $matches, PREG_SET_ORDER);
+                if( isset($matches[0]) )
+                {
+                    $rtn["Telefono"] = trim($matches[0][1]);
+                }
+
+                // Condicion Contribuyente
+                $patron='/<td class="bgn"[ ]*colspan=1[ ]*>Condici&oacute;n del Contribuyente:[ ]*<\/td>\r\n[\t]*[ ]+<td class="bg" colspan=[1|3]+>[\r\n\t[ ]+]*(.*)[\r\n\t[ ]+]*<\/td>/';
+                $output = preg_match_all($patron, $Page, $matches, PREG_SET_ORDER);
+                if( isset($matches[0]) )
+                {
+                    $rtn["Condicion"] = strip_tags(trim($matches[0][1]));
+                }
+
+                $busca=array(
+                    "NombreComercial" 		=> "Nombre Comercial",
+                    "Tipo" 					=> "Tipo Contribuyente",
+                    "Inscripcion" 			=> "Fecha de Inscripci&oacute;n",
+                    "Estado" 				=> "Estado del Contribuyente",
+                    "Direccion" 			=> "Direcci&oacute;n del Domicilio Fiscal",
+                    "SistemaEmision" 		=> "Sistema de Emisi&oacute;n de Comprobante",
+                    "ActividadExterior"		=> "Actividad de Comercio Exterior",
+                    "SistemaContabilidad" 	=> "Sistema de Contabilidad",
+                    "Oficio" 				=> "Profesi&oacute;n u Oficio",
+                    "ActividadEconomica" 	=> "Actividad\(es\) Econ&oacute;mica\(s\)",
+                    "EmisionElectronica" 	=> "Emisor electr&oacute;nico desde",
+                    "PLE" 					=> "Afiliado al PLE desde"
+                );
+                foreach($busca as $i=>$v)
+                {
+                    $patron='/<td class="bgn"[ ]*colspan=1[ ]*>'.$v.':[ ]*<\/td>\r\n[\t]*[ ]+<td class="bg" colspan=[1|3]+>(.*)<\/td>/';
+                    $output = preg_match_all($patron, $Page, $matches, PREG_SET_ORDER);
+                    if(isset($matches[0]))
+                    {
+                        $rtn[$i] = trim(utf8_encode( preg_replace( "[\s+]"," ", ($matches[0][1]) ) ) );
+                    }
+                }
+            }
+            else{
+                throw new Exception("No fue posible conseguir el CAPTCHA de la web de SUNAT");
+            }
+
+            if( count($rtn) > 2 ){
+                $msg = 'OK';
+                $msgId = 200;
+                $datos = $rtn;
+            }
+            else{
+                throw new Exception("NO SE PUDO RECUPERAR LA INFORMACIÓN SOLICITADA");
+            }
+
+            /*$ruc = $request->qry;
+            $url = 'https://ruc.com.pe/api/v1/ruc';
+            $token = 'd7c910f3-78cb-4a50-bd3e-58659cc63833-e9199ee0-f598-459d-9588-81bcdbc5889e';
+
+            $params = array("token"=>$token,"ruc"=>$ruc);
+            $params_json = json_encode($params);
+
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt(
+                $curl, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                )
             );
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_POSTFIELDS,$params_json);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
+            //$data = file_get_contents("https://api.sunat.cloud/ruc/".$ruc);
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            $info = json_decode($data, true);
+
+            if(isset($info['errors'])){
+                throw new Exception("Error: " . $info['errors']);
+            }
+            else{
+                $msg = 'OK';
+                $msgId = 200;
+
+                $datos = $info;
+
+                /*if($data==='[]' || $info['fecha_inscripcion']==='--'){
+                    $datos = array(0 => 'nn');
+                }
+                else{
+                    $datos = array(
+                        0 => $info['ruc'],
+                        1 => $info['razon_social'],
+                        2 => date("d/m/Y", strtotime($info['fecha_actividad'])),
+                        3 => $info['contribuyente_condicion'],
+                        4 => $info['contribuyente_tipo'],
+                        5 => $info['contribuyente_estado'],
+                        6 => date("d/m/Y", strtotime($info['fecha_inscripcion'])),
+                        7 => $info['domicilio_fiscal'],
+                        8 => date("d/m/Y", strtotime($info['emision_electronica']))
+                    );
+
+                }*
+            }*/
+
+        }catch(Exception $e){
+            $msg = $e->getMessage() . " - " . $e->getLine();
+            $msgId = 500;
+            $datos = null;
         }
-        return response()->json($datos);
+
+        return response()->json(compact('datos','msg','msgId'));
     }
 
     public function spLogGetRuc(Request $request )

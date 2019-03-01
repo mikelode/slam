@@ -987,21 +987,21 @@ $(document).on('click','#btnLogRUC_SUNAT',function(e){
         error: function () {  jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
         success: function (VR) {
             $('#txMessage').html('');
-            if (VR[0] != 'nn') {
-                $("#txRUC_Ruc").val(VR[0]);
-                $("#txRUC_RSocial").val(VR[1]);
+            if (VR.msgId == 200) {
+                $("#txRUC_Ruc").val(VR.datos.RUC);
+                $("#txRUC_RSocial").val(VR.datos.RazonSocial);
                 $("#txRUC_Tel").val('');
-                $("#txRUC_Dir").val(VR[7]);
+                $("#txRUC_Dir").val(VR.datos.Direccion);
                 $("#txRUC_Contacto").val('');
                 $("#txRUC_EMail").val('');
                 $("#txRUC_Web").val('');
-                $("#txRUC_Otros").val(VR[5]);
+                $("#txRUC_Otros").val(VR.datos.Tipo);
                 $("#txRUC_Ruc").attr("codID","ADD")
 
             }
             else
             {
-                $("#txRUC_Ruc").val("");
+                alert(VR.msg);
                 $("#txRUC_RSocial").val("");
                 $("#txRUC_Tel").val("");
                 $("#txRUC_Dir").val("");

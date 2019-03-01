@@ -54,11 +54,12 @@ $(document).ready(function(){
 
     $('#btnMainLogPrice').click(function(e){
         e.preventDefault();
-        var url = 'logistica/vwPrice';
+        var url = 'logistica/vwAdqPriceRef';
         // alert('MEFF');
        $.get(url,function(data){
-            $("#loadModalsMain").html(data);
-            $('#modalRptPrice').modal('show');
+           $('.alm-content-wrapper').html(data);
+            /*$("#loadModalsMain").html(data);
+            $('#modalRptPrice').modal('show');*/
             
             // $('#txPER_DNI').attr("maxlength", 8);
 

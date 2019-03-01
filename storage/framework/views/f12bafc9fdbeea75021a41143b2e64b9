@@ -82,7 +82,7 @@
 </div> <!-- modal -->
 
 <div id = "loadModals" > </div>
-<input type="hidden" name="_token" value="{{csrf_token()}}" id ="tokenBtn">
+<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" id ="tokenBtn">
 
 
 <div id="divDialog">
