@@ -117,10 +117,14 @@
             <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconOS.png') }}" />
             </div>
 
+            @if(auth()->user()->permiso('LOG_LOG_NTF','GUARDAR',Auth::user()->usrID))
+
             <div class="ribbon-button ribbon-button-large" id="btnMainLogNot">
                 <span class="button-title">Registro de<br/>Notificaciones</span>
                 <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconNotif.png') }}" />
             </div>
+
+            @endif
         </div>
 
         <div class="ribbon-section">
@@ -217,45 +221,73 @@
         <div class="ribbon-section">
             <span class="section-title">Configuraciones</span>
 
+            @if(auth()->user()->permiso('LOG_CNF_RUC','GUARDAR',Auth::user()->usrID))
+
              <div class="ribbon-button ribbon-button-large" id="btnMainLogRUC" >
              <span class="button-title">Registro de  <br>Proveedores</span>
              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconProveedor.png') }}" />
              </div>
 
-             <div class="ribbon-button ribbon-button-large" id="btnMainLogPers">
-             <span class="button-title">Registro de  <br>Personal</span>
-             <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconPerson.png') }}" />
-             </div>
+            @endif
 
+            @if(auth()->user()->permiso('LOG_CNF_DEP','GUARDAR',Auth::user()->usrID))
           
              <div class="ribbon-button ribbon-button-large" id="btnMainLogDep">
              <span class="button-title">Registro de  <br>Dependencia</span>
              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconDep.png') }}" />
              </div>
 
+            @endif
+
+            @if(auth()->user()->permiso('LOG_PTO_SF','GUARDAR',Auth::user()->usrID))
+
              <div class="ribbon-button ribbon-button-large" id="btnMainLogSecFun">
              <span class="button-title">Registro de  <br>Secuencia Funcional</span>
              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconMeta.png') }}" />
              </div>
+
+            @endif
+
+            @if(auth()->user()->permiso('LOG_CNF_ADO','GUARDAR',Auth::user()->usrID))
 
               <div class="ribbon-button ribbon-button-large" id="btnMainLogActDoc">
              <span class="button-title">Activar  <br>Documentos</span>
              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconPer.png') }}" />
              </div>
 
+            @endif
+
+            @if(auth()->user()->permiso('LOG_CNF_ADU','GUARDAR',Auth::user()->usrID))
+
           
              <div class="ribbon-button ribbon-button-large" id="btnMainLogActUser">
              <span class="button-title">Cambiar  <br>Usuarios</span>
              <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconCambiar.png') }}" />
              </div>
+
+            @endif
              
          </div>
 
          <div class="ribbon-section">
-                        <div class="ribbon-button ribbon-button-large" id="btnMainLogUsr">
+
+             @if(auth()->user()->permiso('LOG_CNF_PERS','GUARDAR',Auth::user()->usrID) || Auth::user()->usrID == '12345678')
+
+             <div class="ribbon-button ribbon-button-large" id="btnMainLogPers">
+                 <span class="button-title">Registro de  <br>Personal</span>
+                 <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconPerson.png') }}" />
+             </div>
+
+             @endif
+
+             @if(auth()->user()->permiso('LOG_CNF_USR','GUARDAR',Auth::user()->usrID) || Auth::user()->usrID == '12345678')
+
+                <div class="ribbon-button ribbon-button-large" id="btnMainLogUsr">
                <span class="button-title">Registro de  <br>Cuentas de Usuario</span>
                <img class="ribbon-icon ribbon-normal" src="{{ asset('img/iconNuevousr.png') }}"  width="30px" height="30px" />
                </div>
+
+             @endif
            </div>
     </div>
 

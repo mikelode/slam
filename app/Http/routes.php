@@ -199,9 +199,6 @@ Route::get('logistica/vwReqSg',           'Logistica\ctrlGrl@fnGetViewReqSg');
 Route::post('logistica/spLogGetReqSg',    'Logistica\ctrlGrl@spLogGetReqSg');
 Route::post('logistica/spLogGetReqSgDll', 'Logistica\ctrlGrl@spLogGetReqSgDll');
 
-Route::get('logistica/vwPrice',           'Logistica\ctrlGrl@fnGetViewPrice');
-Route::post('logistica/spLogGetPrice',    'Logistica\ctrlGrl@spLogGetPrice');
-
 Route::get('logistica/vwPass',           'Logistica\ctrlGrl@fnGetViewPass');
 Route::Post('logistica/vwPassVal',       'Logistica\ctrlGrl@fnGetViewPassVal');
 Route::Post('logistica/spLogSetUsrPss',  'Logistica\ctrlGrl@spLogSetUsrPss');
@@ -375,7 +372,11 @@ Route::Post('logistica/spLogGetUsrAcs',     'Logistica\ctrlGrl@spLogGetUsrAcs');
 Route::Post('logistica/spLogSetTrsh','Logistica\ctrlGrl@spLogSetTrsh');
 Route::Post('logistica/spSiafAsyn','Logistica\ctrlGrl@spSiafAsyn');
 
-Route::get('logistica/vwAdqPriceRef',            'Logistica\ctrlGrl@fnGetViewPriceRef');
+Route::get('logistica/vwPrice',           'Logistica\ctrlGrl@fnGetViewPrice');
+Route::post('logistica/spLogGetPrice',    'Logistica\ctrlGrl@spLogGetPrice');
+Route::post('logistica/spLogGetPriceProduct','Logistica\ctrlGrl@spLogGetPriceProducto');
+Route::get('logistica/vwDetailPriceProduct','Logistica\ctrlGrl@vwDetailPriceProducto');
+Route::get('logistica/vwAdqPriceRef',            'Logistica\ctrlGrl@fnGetViewPriceRef'); // vista de busqueda de precio
 Route::Post('logistica/spLogGetPriceItem',     'Logistica\ctrlGrl@spLogGetPriceItem');
 Route::Post('logistica/spLogGetPriceAll',     'Logistica\ctrlGrl@spLogGetPriceAll');
 Route::get('logistica/rptPriceRefExcel/{prAnio}/{prCodigo}',    'Logistica\ctrlGrl@spLogGetPriceRefExcel');

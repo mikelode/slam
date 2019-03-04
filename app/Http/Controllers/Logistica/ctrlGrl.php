@@ -437,6 +437,77 @@ class ctrlGrl extends Controller
         return view ('logistica.Partials.logPrice',compact('result'))->render();
     }
 
+    public function  spLogGetPriceProducto(Request $request)
+    {
+        try{
+            $qry =  " WHERE prcProdDsc LIKE '%" . $request->prcProducto . "%' ";
+
+            $productos = DB::connection('dblogistica')->select('exec spLogGetPriceProducto ?, ?, ?, ?', array(
+                'GRL',
+                $qry,
+                $request->prcDocumento,
+                $request->prcAnio
+            ));
+
+            if(count($productos) > 0){
+                $view = view('logistica.Partials.logPriceProduct', compact('productos'))->render();
+                $msg = 'Recuperado';
+                $msgId = 200;
+            }
+            else{
+                throw new Exception("No existen registro de precios para el producto buscado");
+            }
+
+        }catch (Exception $e){
+            $msg = $e->getMessage();
+            $msgId = 500;
+            $view = null;
+        }
+
+        return response()->json(compact('msg','msgId','view'));
+    }
+
+    public function vwDetailPriceProducto(Request $request)
+    {
+        try{
+
+            $qry = " WHERE prodCod = '" . $request->producto . "' AND prodUndCod = " . $request->unidad;
+
+            $precios["RQ"] = DB::connection('dblogistica')->select('exec spLogGetPriceProducto ?, ?, ?, ?', array(
+                'DLL',
+                $qry,
+                'RQ',
+                $request->anio
+            ));
+
+            $precios["CC"] = DB::connection('dblogistica')->select('exec spLogGetPriceProducto ?, ?, ?, ?', array(
+                'DLL',
+                $qry,
+                'CC',
+                $request->anio
+            ));
+
+            $precios["OC"] = DB::connection('dblogistica')->select('exec spLogGetPriceProducto ?, ?, ?, ?', array(
+                'DLL',
+                $qry,
+                'OC',
+                $request->anio
+            ));
+
+            $view = view('logistica.partials.logPriceSeg', compact('precios'))->render();
+            $msg = 'Recuperado correctamente';
+            $msgId = 200;
+
+        }
+        catch (Exception $e){
+            $msg = $e->getMessage();
+            $msgId = 500;
+            $view = '';
+        }
+
+        return response()->json(compact('msg','msgId','view'));
+    }
+
  
     public  function fnGetViewPassVal( Request $request  )
     {
@@ -486,8 +557,26 @@ class ctrlGrl extends Controller
     }
     public  function fnGetViewUsr()
     {
-        $Usr["PFL"]= \DB::connection('dblogistica')-> select(' exec spLogGetDatos ?,?,?,? ',   array('PFL','','',''));
-        return view('logistica.Partials.logUsr',compact( 'Usr'))->render();
+        try{
+
+            /* Solo existira un usuario con privilegio de administrar usuarios */
+            if(Auth::user()->usrID == '12345678'){
+                $Usr["PFL"]= \DB::connection('dblogistica')-> select(' exec spLogGetDatos ?,?,?,? ',   array('PFL','','',''));
+                $view = view('logistica.Partials.logUsr',compact( 'Usr'))->render();
+                $msg = "Permiso aceptado";
+                $msgId = 200;
+            }
+            else{
+                throw new Exception("Ud. no está autorizado para acceder a este módulo");
+            }
+        }catch (Exception $e){
+            $msg = $e->getMessage();
+            $msgId = 500;
+            $view = '';
+        }
+
+        return response()->json(compact('msg','msgId','view'));
+
         /*$result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_RQ'  ));
         if( isset ($result[0]->NEW ))
         {

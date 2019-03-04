@@ -25,7 +25,7 @@
                        <td WIDTH="5"> </td>
                        <td >     <input id="txReqSgNro" class="form-control gs-input" style="width:80px;font-size: 18px;height: 40px; font-weight: bold; " />   </td>
                        <td WIDTH="3"> </td>
-                       <td> {!! Form::button('BUSCAR',['class'=>'btn btn-info','id'=>'btnLogPriceSearch','placeholder'=>'Codigo','style'=>'font-size:11px; width:80px; height:40px; text-align:center;' ]) !!}  </td>
+                       <td> <?php echo Form::button('BUSCAR',['class'=>'btn btn-info','id'=>'btnLogPriceSearch','placeholder'=>'Codigo','style'=>'font-size:11px; width:80px; height:40px; text-align:center;' ]); ?>  </td>
 
                         <td WIDTH="10"> </td>
                             <td > <span id="titleBusq" style ="font-size: 10px;font-weight: bold;"></span> </td>
@@ -61,21 +61,21 @@
         <?php if (isset($result["Dll"]))
         {?>
         <?php $i=1;?>
-        @foreach($result["Dll"] as $key=>$nom)
+        <?php foreach($result["Dll"] as $key=>$nom): ?>
         <tr style="height: 40px" >
             <td name="tdCant"  align="center" ><?php echo "0".$i++;?></td>
 
-            <td  >{{  $nom->prodDsc }}</td>
-            <td  align="center" >{{  $nom->Unidad}}</td>
-            <td  align="center" >{{  $nom->Marca }}</td>
-            <td  align="center" >{{  $nom->Cant}}</td>
-            <td  >{{  $nom->Precio}}</td>
-            <td  >{{  $nom->Total}}</td>
-            <td  align="center" >{{  $nom->Fecha}}</td>
-            <td  align="center" >{{  $nom->RUC}}</td>
-            <td  align="left" >{{  $nom->RSocial}}</td>
+            <td  ><?php echo e($nom->prodDsc); ?></td>
+            <td  align="center" ><?php echo e($nom->Unidad); ?></td>
+            <td  align="center" ><?php echo e($nom->Marca); ?></td>
+            <td  align="center" ><?php echo e($nom->Cant); ?></td>
+            <td  ><?php echo e($nom->Precio); ?></td>
+            <td  ><?php echo e($nom->Total); ?></td>
+            <td  align="center" ><?php echo e($nom->Fecha); ?></td>
+            <td  align="center" ><?php echo e($nom->RUC); ?></td>
+            <td  align="left" ><?php echo e($nom->RSocial); ?></td>
         </tr>
-        @endforeach
+        <?php endforeach; ?>
         <?php
         }
         ?>

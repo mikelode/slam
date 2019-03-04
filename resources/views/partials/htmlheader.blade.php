@@ -11,6 +11,7 @@
     <link href="{{ asset('plugins/ribbon/soft_button.css') }}" rel="stylesheet" type="text/css" />
     <!-- BOOTSTRAP -->
     <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css">
     <!-- FONT AWESOME ICONS -->
     <link href="{{ asset('plugins/font-awesome-4.3.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <!-- IONICONS -->

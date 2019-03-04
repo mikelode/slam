@@ -1,6 +1,7 @@
 <!-- JAVA SCRIPT -->
 <!-- Bootstrap -->
 <script src="<?php echo e(asset('/plugins/bootstrap/js/bootstrap.min.js')); ?>" type="text/javascript"></script>
+<script src="<?php echo e(asset('js/bootstrap-select.min.js')); ?>" type="text/javascript"></script>
 <!-- Jquery-ui javaScript -->
 <script src="<?php echo e(asset('/plugins/jquery-ui/jquery-ui.min.js')); ?>" type="text/javascript"></script>
 <!-- X-Editable Field -->

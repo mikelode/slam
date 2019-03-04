@@ -1,6 +1,4 @@
-@extends('layout-public')
-
-@section('main-content')
+<?php $__env->startSection('main-content'); ?>
 <style>
     .sombra2 {
         text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
@@ -32,18 +30,19 @@
                     <div class="sub-content">
                         <div class="col-md-3" style="padding-left: 0">
                             <div class="img-lateral img-rounded">
-                                <img src="{{ asset('css/img/teclado.jpg') }}">
+                                <img src="<?php echo e(asset('css/img/teclado.jpg')); ?>">
                             </div>
                         </div>
                         <div class="col-md-9">
                             <form id="frm-consultar-doc" action="procesos">
-                                {!! csrf_field() !!}
+                                <?php echo csrf_field(); ?>
+
                                 <div class="form-group">
                                     <label class="control-label" for="">(*) Elija tipo de documento</label>
                                     <select class="selectpicker" name="searchTipo">
                                         <option value="RQ">REQUERIMIENTO</option>
                                         <option value="CZ">COTIZACIÓN</option>
-                                        {{--<option value="CD">Cuadro Comparativo</option>--}}
+                                        <?php /*<option value="CD">Cuadro Comparativo</option>*/ ?>
                                         <option value="OC">ORDEN DE COMPRA</option>
                                     </select>
                                 </div>
@@ -143,7 +142,7 @@
                                 </div>
                                 <div class="alm-button-place">
                                     <a href="#" id="btn-consultar-doc">
-                                        <img src="{{ asset('img/boton_consultar.png') }}">
+                                        <img src="<?php echo e(asset('img/boton_consultar.png')); ?>">
                                     </a>
                                 </div>
                             </form>
@@ -175,4 +174,5 @@ $(document).ready(function(){
 });
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout-public', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

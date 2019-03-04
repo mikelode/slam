@@ -622,6 +622,14 @@ class tramiteController extends Controller
         $tipo = trim($request->searchTipo);
         $anio = trim($request->searchPeriodo);
         $codigo = $this->assembleCode($tipo,$anio,$num);
+    }
+
+    public function postConsultaProveedor2(Request $request)
+    {
+        $num = trim($request->searchDoc);
+        $tipo = trim($request->searchTipo);
+        $anio = trim($request->searchPeriodo);
+        $codigo = $this->assembleCode($tipo,$anio,$num);
 
         switch($tipo)
         {

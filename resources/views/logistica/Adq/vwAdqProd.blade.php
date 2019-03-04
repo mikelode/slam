@@ -36,7 +36,9 @@
     </tr>
     </table>
 <br>
+    @if(auth()->user()->permiso('LOG_CNF_PROD','GUARDAR',Auth::user()->usrID))
 <span id="btnLogCat_New" class="btn btn-info" STYLE="WIDTH:150PX;height: 40px; padding-top: 10px; font-weight: bold;"> Nuevo Registro</span>
+    @endif
 <BR>
 <BR>
     <div id="CatDll">

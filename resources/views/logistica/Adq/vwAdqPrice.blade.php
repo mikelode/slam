@@ -17,53 +17,54 @@
 <tr>
 <td>
         <div class="panel panel-default" style="margin-top:5px; margin-left:5px; margin-right: 5px; padding:5px;" >
-        <table style="margin:5px; table-layout: fixed;" width="100%">
-        <tr>
-          <td align="left" style="font-weight: bold" width="15%"> NOMBRE DEL PRODUCTO </td>
-            <td width="1%">:</td>
-            <td>
-                <input type="text" class="form-control input-sm">
-            </td>
-            <td align="center" width="10%" style="font-weight: bold">DOCUMENTO</td>
-            <td width="1%">:</td>
-            <td>
-                <select name="" id="" class="form-control input-sm">
-                    <option value="OC">Orden de Compra</option>
-                    <option value="CC">Cuadro Comparativo</option>
-                    <option value="RQ">Requerimiento</option>
-                </select>
-            </td>
-            <td width="1%"></td>
-        </tr>
-         <tr>
-             <td colspan="6" align="right" style="padding-top: 5px;">
-                 <span id="btnPriceClear" class="btn btn-default"> LIMPIAR </span>
-                 <span id="btnPriceSearch" class="btn btn-primary"> PRECIOS </span>
-             </td>
-             <td></td>
-        </tr>
-        </table>
+            <form id="frmFindPrice" method="post">
+                {{ csrf_field() }}
+                <table style="margin:5px; table-layout: fixed;" width="100%">
+                    <tr>
+                        <td align="left" style="font-weight: bold" width="10%"> PRODUCTO </td>
+                        <td width="1%">:</td>
+                        <td>
+                            <input type="text" class="form-control input-sm" name="prcProducto">
+                        </td>
+                        <td align="center" width="15%" style="font-weight: bold">PRECIOS A NIVEL DE</td>
+                        <td width="1%">:</td>
+                        <td>
+                            <select name="prcDocumento" id="" class="form-control input-sm">
+                                <option value="OC">Orden de Compra</option>
+                                <option value="CC">Cuadro Comparativo</option>
+                                <option value="RQ">Requerimiento</option>
+                            </select>
+                        </td>
+                        <td width="1%"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" align="right" style="padding-top: 5px;">
+                            <span id="btnPriceClear" class="btn btn-default"> LIMPIAR </span>
+                            <span id="btnPriceSearch" class="btn btn-primary"> PRECIOS </span>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
         </div>
 </td>
 </tr>
 <tr>
 <td>
 
-         <div id="dvPriceFilter" class="panel panel-default"  style="overflow: scroll;   overflow-x: hidden;   height: 200px; margin-left:5px; margin-top:5px;" >
+         <div id="dvPriceFilter" class="panel panel-default"  style="margin-left:5px; padding-top:5px;" >
          <TABLE class="suggest-element table table-striped gs-table-item gs-table-hover " id="tabPriceFilter" style="table-layout: fixed" width="100%">
           <thead>
              <tr>            
              <th width="10%"  align="center">Codigo</th>
-             <th width="55%"  align="left" >Descripcion</th>
+             <th width="50%"  align="left" >Descripcion</th>
+             <th width="5%">Und</th>
              <th width="5%"  align="center">Det</th>
              <th width="10%"  align="center">Precio Mín</th>
              <th width="10%"  align="center">Precio Máx</th>
              <th width="10%"  align="center">Promedio</th>
              </tr>
           </thead>
-          <tbody>
-              
-          </tbody>
           </TABLE>
 
          </div>

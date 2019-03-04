@@ -85,10 +85,14 @@ $(document).ready(function(){
         e.preventDefault();
         var url = 'logistica/vwUsr';
         $.get(url,function(data){
-            $("#loadModalsMain").html(data);
-            $('#modalUsr').modal('show');
-            $('#txUSR_DNI').attr("maxlength", 8);
-
+            if(data.msgId == 500){
+                alert(data.msg);
+            }
+            else{
+                $("#loadModalsMain").html(data.view);
+                $('#modalUsr').modal('show');
+                $('#txUSR_DNI').attr("maxlength", 8);
+            }
         });
     });
 

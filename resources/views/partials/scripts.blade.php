@@ -1,6 +1,7 @@
 <!-- JAVA SCRIPT -->
 <!-- Bootstrap -->
 <script src="{{ asset('/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/bootstrap-select.min.js') }}" type="text/javascript"></script>
 <!-- Jquery-ui javaScript -->
 <script src="{{ asset('/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
 <!-- X-Editable Field -->

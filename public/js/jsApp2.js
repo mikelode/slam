@@ -1413,7 +1413,45 @@ $(document).on('click','#btnLogPriceSearch',function(e){
    // $( "#divScroll" ).scrollLeft( 300 );
 });
 
+$(document).on('click','#btnPriceSearch', function(e){
+    e.preventDefault();
 
+    var data = $('#frmFindPrice').serialize() + "&prcAnio=" + $(".txVarAnioEjec").val();
+
+    $.ajax({
+        type: "POST",
+        url: "logistica/spLogGetPriceProduct",
+        data: data,
+        beforeSend: function () {  jsFnDialogBox(0,0,"LOAD",parent," PETICION EN PROCESO","Cargando, Espere un momento...") ;},
+        error: function () {  jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+        success: function (response) {
+            $("#divDialog").dialog("close");
+            if(response.msgId == 500){
+                alert(response.msg);
+            }
+            else{
+                $('#dvPriceFilter').html(response.view);
+            }
+        }
+    });
+});
+
+function detalle_producto(fila, prodId, prodDoc, prodUnd)
+{
+    var tr = $(fila).closest('tr');
+    var row = $('#tabPriceFilter').DataTable().row(tr);
+
+    if(row.child.isShown()){
+        row.child.hide();
+        tr.removeClass('shown');
+    }
+    else{
+        $.get('logistica/vwDetailPriceProduct',{'producto': prodId, 'documento': prodDoc, 'anio': $(".txVarAnioEjec").val(), 'unidad': prodUnd}, function(data) {
+            row.child(data.view).show();
+            tr.addClass('shown');
+        });
+    }
+}
 
 /*
 $(document).on('focus','#txReqSgNro',function(){
