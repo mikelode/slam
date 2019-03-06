@@ -896,31 +896,44 @@ class tramiteController extends Controller
 
     public function listsf()
     {
-        $conn = new OleDbConnection();
-        $conn->openDataOleDb(config('slam.PATH_SYNC'));
-        $data = $conn->makeQueryOleDb('SELECT A.Ano_eje, A.Sec_ejec, A.Sec_func, A.Programa, A.Sub_programa, A.Act_proy, A.Finalidad, B.Nombre as Namepry FROM META as A INNER JOIN Finalidad as B ON A.Ano_eje =B.Ano_eje AND A.Finalidad = B.Finalidad  WHERE A.Ano_eje = "'.config('slam.ANIO').'" AND A.Sec_ejec="'.config('slam.UE_ENTIDAD').'" ORDER BY A.Sec_func ASC');
-        $result = array();
+        try{
 
-        while(!$data->EOF){
-            $sf['year'] = $data->Fields('Ano_eje')->value;
-            $sf['ejec'] = $data->Fields('Sec_ejec')->value;
-            $sf['sf'] = $data->Fields('Sec_func')->value;
-            $sf['prog'] = $data->Fields('Programa')->value;
-            $sf['subprg'] = $data->Fields('Sub_programa')->value;
-            $sf['actpry'] = $data->Fields('Act_proy')->value;
-            $sf['fin'] = $data->Fields('Finalidad')->value;
-            $sf['name'] = iconv('','UTF-8',trim($data->Fields('Namepry')->value));
+            $conn = new OleDbConnection();
+            $conn->openDataOleDb(config('slam.PATH_SYNC'));
+            $data = $conn->makeQueryOleDb('SELECT A.Ano_eje, A.Sec_ejec, A.Sec_func, A.Programa, A.Sub_programa, A.Act_proy, A.Finalidad, B.Nombre as Namepry FROM META as A INNER JOIN Finalidad as B ON A.Ano_eje =B.Ano_eje AND A.Finalidad = B.Finalidad  WHERE A.Ano_eje = "'.config('slam.ANIO').'" AND A.Sec_ejec="'.config('slam.UE_ENTIDAD').'" ORDER BY A.Sec_func ASC');
 
-            array_push($result,$sf);
+            $result = array();
 
-            $data->MoveNExt();
+            while(!$data->EOF){
+                $sf['year'] = $data->Fields('Ano_eje')->value;
+                $sf['ejec'] = $data->Fields('Sec_ejec')->value;
+                $sf['sf'] = $data->Fields('Sec_func')->value;
+                $sf['prog'] = $data->Fields('Programa')->value;
+                $sf['subprg'] = $data->Fields('Sub_programa')->value;
+                $sf['actpry'] = $data->Fields('Act_proy')->value;
+                $sf['fin'] = $data->Fields('Finalidad')->value;
+                $sf['name'] = iconv('','UTF-8',trim($data->Fields('Namepry')->value));
+
+                array_push($result,$sf);
+
+                $data->MoveNExt();
+            }
+
+            $data->Close();
+            $conn->closeDataOleDb();
+
+            $view = view('sync.listSyncSf',compact('result'))->render();
+
+            $msg = 'Recuperado OK';
+            $msgId = 200;
+
+        }catch(Exception $e){
+            $msg = $e->getMessage();
+            $msgId = 500;
+            $view = null;
         }
 
-        $data->Close();
-        $conn->closeDataOleDb();
-        $view = view('sync.listSyncSf',compact('result'));
-
-        return $view;
+        return response()->json(compact('msg','msgId','view'));
     }
 
     public function updatesf(Request $request)

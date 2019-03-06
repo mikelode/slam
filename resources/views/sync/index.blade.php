@@ -112,9 +112,11 @@
                     myXhr.addEventListener("progress", function (ev) {
                         if(ev.lengthComputable){
                             var prcntComplete = (ev.loaded / ev.total) * 100;
-                            console.log(prcntComplete);
                             $('div.progress > div.progress-bar').css({ "width": prcntComplete + "%"});
-                            $('div.progress > div.progress-bar').html(prcntComplete + "%");
+                            $('progress').attr({
+                                value: ev.loaded,
+                                max: ev.total
+                            });
                         }
                     }, false);
 
@@ -123,7 +125,12 @@
                 url: url,
                 type: 'get',
                 success: function(response){
-                    $('#resultdata').html(response);
+                    if(response.msgId == 500){
+                        alert(response.msg);
+                    }
+                    else{
+                        $('#resultdata').html(response.view);
+                    }
                 }
             });
         });
