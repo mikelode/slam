@@ -377,6 +377,54 @@ class internamientoController extends Controller
                     $intern->oc_medio_notificacion = $request->ocMedioNotificacion;
                     $intern->save();
 
+                    /* PARA ACTUALIZAR EL INVENTARIO SEGUN DETALLE DE LA ORDEN DE COMPRA */
+                    /* ELIMINAMOS LOS ACTUALES Y REGISTRAMOS LOS NUEVOS */
+
+                    almInventario::where('cod_giu',$intern->ing_giu)->delete();
+
+                    $ocd = DB::connection('dblogistica')->table('TLogOCD')
+                        ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('PROD',cdtCodProd,'') AS ocdProd"))
+                        ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('UNDABRV',cdtCodUnd,'') AS ocdUnd"))
+                        ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('CLASF',cdtCodClsf,'') AS ocdClsf"))
+                        ->where('cdtCodOC',$request->ocCodigo)->get();
+
+                    foreach ($ocd as $i => $prodOc)
+                    {
+                        $ocDet = new almInventario();
+
+                        $ocDet->cod_giu = $intern->ing_giu;
+                        $ocDet->prod_oc = $prodOc->cdtCodOC;
+                        $ocDet->prod_cod = $prodOc->cdtCodProd;
+                        $ocDet->prod_desc = $prodOc->ocdProd.': '.$prodOc->cdtEspecif;
+                        $ocDet->prod_marca = $prodOc->cdtMarca;
+                        $ocDet->prod_cant = $prodOc->cdtCant;
+                        $ocDet->prod_medida = $prodOc->ocdUnd;
+                        $ocDet->prod_precio = $prodOc->cdtPrecio;
+                        $ocDet->prod_costo = $prodOc->cdtCant * $prodOc->cdtPrecio;
+                        $ocDet->prod_ingobs = null;
+                        $ocDet->prod_recep = 0;
+                        $ocDet->conf_prod = 'P';
+                        $ocDet->flagR = false;
+                        $ocDet->prod_distribuido = 0;
+                        $ocDet->prod_stock = 0;
+                        $ocDet->flagD = false;
+                        $ocDet->prod_salobs = null;
+                        $ocDet->prod_clasif = $prodOc->cdtCodClsf;
+                        $ocDet->fecha_act = Carbon::now()->toDateString();
+                        $ocDet->hora_act = Carbon::now()->toTimeString();
+                        $ocDet->user_act = Auth::user()->usrID; // 'Usuario';
+                        $ocDet->prod_ord = $i+1;
+
+                        $cuenta = almTPreCta::where('ctaTipo','PARTIDA_GASTOS')->where('ctaCgp',$prodOc->ocdClsf)->first();
+
+                        $ocDet->prod_cta = is_null($cuenta) ? '' : $cuenta->ctaPatrimd;
+                        $ocDet->prod_secfun = $prodOc->cdtSecFun;
+                        $ocDet->prod_rubro = $prodOc->cdtRubro;
+
+                        $ocDet->save();
+
+                        unset($ocDet);
+                    }
                 });
 
                 if(is_null($exception)){

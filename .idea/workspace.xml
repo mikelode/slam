@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89aaeb17-5e18-49fa-9a9e-d0caa8c79b32" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logPriceSeg.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Tramite/tramiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tramite/tramiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsApp2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsApp2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jsDevMenu2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jsDevMenu2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/rpt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/rpt.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqPrice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqPrice.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqProd.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqProd.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/logistica/Partials/logPrice22.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/logistica/Partials/logPriceProduct.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/htmlheader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/htmlheader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/mainheader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/scripts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tramite/panel-consulta.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tramite/panel-consulta.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/f08cf366338772a186fea0143bf11fcfd3bf2ef8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5b30c25ad55c4f03b4ff0ee663fe65fc" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5b30c25ad55c4f03b4ff0ee663fe65fc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/61ec9ca9350c7994ecaecf294bcd788c" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/61ec9ca9350c7994ecaecf294bcd788c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/b708b227bee7953d779dbb2ca421a1e9" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/b708b227bee7953d779dbb2ca421a1e9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/f12bafc9fdbeea75021a41143b2e64b9" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f12bafc9fdbeea75021a41143b2e64b9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/f4cdbfaf901169c856622f60df27d79d" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f4cdbfaf901169c856622f60df27d79d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/48562825cf29b8b7a1ac4af53ec092ca6255474e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/9eb3ba2dd35fa9fd20ae851920e720a1f01c0ce3" beforeDir="false" />
     </list>
     <ignored path="slam.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,17 +44,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="334" column="165" selection-start-line="334" selection-start-column="165" selection-end-line="334" selection-end-column="165" />
+            <state relative-caret-position="251">
+              <caret line="32" column="79" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="79" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="394" column="59" lean-forward="true" selection-start-line="394" selection-start-column="59" selection-end-line="394" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="1175" column="56" lean-forward="true" selection-start-line="1175" selection-start-column="56" selection-end-line="1175" selection-end-column="56" />
+            <state relative-caret-position="363">
+              <caret line="1373" column="32" lean-forward="true" selection-start-line="1373" selection-start-column="32" selection-end-line="1373" selection-end-column="32" />
               <folding>
                 <element signature="e#243#271#0#PHP" expanded="true" />
                 <element signature="e#30#38#0" expanded="true" />
@@ -86,74 +78,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/jsDevRpt2.js">
+        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwNotify.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="1" column="37" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="37" />
+            <state relative-caret-position="315">
+              <caret line="235" column="18" lean-forward="true" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQ.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="100" column="73" selection-start-line="100" selection-start-column="73" selection-end-line="100" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Tramite/tramiteController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="623" column="56" selection-start-line="623" selection-start-column="56" selection-end-line="623" selection-end-column="56" />
-              <folding>
-                <element signature="e#54#89#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/tramite/panel-consulta.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layout-public.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/partials/htmlheader.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/partials/scripts.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/tramite/panel-consultaOriginal.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="133" column="69" selection-start-line="133" selection-start-column="69" selection-end-line="133" selection-end-column="69" />
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -167,11 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>spLogGetRucsunat</find>
-      <find>logistica/vwAdqPriceRef</find>
-      <find>price</find>
-      <find>btnLogPriceSearch</find>
-      <find>logistica/spLogGetPrice</find>
       <find>spLogGetPrice</find>
       <find>loadModalsMain</find>
       <find>btnPriceSearch</find>
@@ -197,6 +127,11 @@
       <find>spLogGetRpt</find>
       <find>logistica/rptPrueba/</find>
       <find>btnLogRptPdf</find>
+      <find>slam.m</find>
+      <find>fnGetViewNotify</find>
+      <find>btnSaveOc</find>
+      <find>internamiento/oc</find>
+      <find>postRegisterOc</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -209,7 +144,6 @@
       <dir>D:\xampp\htdocs\slam\resources\views\almacen</dir>
       <dir>D:\xampp\htdocs\slam\resources\views\almacen\ingreso</dir>
       <dir>D:\xampp\htdocs\slam\resources\views\logistica\Adq</dir>
-      <dir>D:\xampp\htdocs\slam\app</dir>
       <dir>D:\xampp\htdocs\slam</dir>
       <dir>D:\xampp\htdocs\slam\app\Http\Controllers\Almacen</dir>
       <dir>D:\xampp\htdocs\slam\public</dir>
@@ -222,6 +156,7 @@
       <dir>D:\xampp\htdocs\slam\app\Http\Controllers</dir>
       <dir>D:\xampp\htdocs\slam\public\js</dir>
       <dir>D:\xampp\htdocs\slam\resources\views</dir>
+      <dir>D:\xampp\htdocs\slam\app</dir>
     </dirStrings>
   </component>
   <component name="FindManager">
@@ -237,7 +172,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/Almacen/almTPreCta.php" />
         <option value="$PROJECT_DIR$/resources/views/logistica/Adq/vwNotify.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/panel-reporte.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteConta.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/almacen/reporte/reporteContaPdf.blade.php" />
@@ -286,6 +220,7 @@
         <option value="$PROJECT_DIR$/resources/views/partials/htmlheader.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/tramite/panel-consulta.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php" />
       </list>
     </option>
   </component>
@@ -411,7 +346,7 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Logistica" type="462c0819:PsiDirectoryNode" />
+              <item name="Almacen" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
@@ -419,7 +354,7 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Tramite" type="462c0819:PsiDirectoryNode" />
+              <item name="Logistica" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
@@ -434,12 +369,6 @@
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
               <item name="slam" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slam" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -447,6 +376,13 @@
               <item name="slam" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slam" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="errors" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
@@ -454,6 +390,14 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="logistica" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slam" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="logistica" type="462c0819:PsiDirectoryNode" />
+              <item name="Adq" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="slam" type="b2602c69:ProjectViewProjectNode" />
@@ -468,6 +412,11 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="tramite" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slam" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -591,16 +540,19 @@
       <workItem from="1551536178648" duration="13207000" />
       <workItem from="1551576928814" duration="5120000" />
       <workItem from="1551622963898" duration="5611000" />
+      <workItem from="1551703851909" duration="5335000" />
+      <workItem from="1551877184163" duration="4023000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="780382000" />
+    <option name="totallyTimeSpent" value="789740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26644295" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27449664" />
       <window_info id="Structure" order="1" weight="0.24966443" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -660,100 +612,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/almacen.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="357" column="14" lean-forward="true" selection-start-line="357" selection-start-column="14" selection-end-line="357" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Tramite/tramOperacion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tramite/panel-tramite.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1952">
-          <caret line="122" column="43" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tramite/bandejaSalida.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="76" column="88" selection-start-line="76" selection-start-column="88" selection-end-line="76" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Partials/logCdrSearch.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/jsDevCdr2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="177" column="40" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqCdr.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="24" column="80" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/distribucionController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/AdminLTE.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="129" column="1" selection-start-line="129" selection-start-column="1" selection-end-line="129" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfGi.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="247" column="45" lean-forward="true" selection-start-line="247" selection-start-column="45" selection-end-line="247" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/almacen/pdf/pdfPs.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="244" column="35" selection-start-line="244" selection-start-column="35" selection-end-line="244" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/pdfController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="278" column="44" lean-forward="true" selection-start-line="278" selection-start-column="44" selection-end-line="278" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCC.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding>
-            <element signature="e#55#91#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlCtz.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -768,13 +626,6 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwNotify.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="184" column="17" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -871,27 +722,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwAdqProd.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
           <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="25" />
-          <folding>
-            <element signature="e#29#65#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,13 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/mainheader.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="124" column="18" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -916,30 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tramite/panel-consultaOriginal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="133" column="69" selection-start-line="133" selection-start-column="69" selection-end-line="133" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout-public.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/htmlheader.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/tramite/panel-consulta.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -958,20 +761,44 @@
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jsDevRpt2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" column="37" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/logistica/Rpt/logXlsRQ.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
+        <state relative-caret-position="1600">
           <caret line="100" column="73" selection-start-line="100" selection-start-column="73" selection-end-line="100" selection-end-column="73" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Tramite/tramiteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
+        <state relative-caret-position="9552">
           <caret line="623" column="56" selection-start-line="623" selection-start-column="56" selection-end-line="623" selection-end-column="56" />
           <folding>
             <element signature="e#54#89#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/tramite/panel-consulta.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout-public.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/htmlheader.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -982,24 +809,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/tramite/panel-consultaOriginal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="334" column="165" selection-start-line="334" selection-start-column="165" selection-end-line="334" selection-end-column="165" />
+        <state relative-caret-position="2496">
+          <caret line="133" column="69" selection-start-line="133" selection-start-column="69" selection-end-line="133" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/jsDevRpt2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="37" />
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpspec.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpunit.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/test.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/report.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/framework/cache/0a/81/0a81ae39edc9893e5a1d203df443545c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/framework/cache/08/b2/08b230ccfc39fa8e1aa074060ad13b4a">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/errors/503.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/mainheader.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="137" column="36" lean-forward="true" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlReq.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="31" column="71" selection-start-line="31" selection-start-column="71" selection-end-line="31" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+          <folding>
+            <element signature="e#29#65#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/errors/error-busqueda.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/logisticaController.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Logistica/ctrlGrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="1175" column="56" lean-forward="true" selection-start-line="1175" selection-start-column="56" selection-end-line="1175" selection-end-column="56" />
+        <state relative-caret-position="363">
+          <caret line="1373" column="32" lean-forward="true" selection-start-line="1373" selection-start-column="32" selection-end-line="1373" selection-end-column="32" />
           <folding>
             <element signature="e#243#271#0#PHP" expanded="true" />
             <element signature="e#30#38#0" expanded="true" />
@@ -1009,6 +906,27 @@
             <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#TD#0;n#tr#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="32" column="79" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/logistica/Adq/vwNotify.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="235" column="18" lean-forward="true" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Almacen/internamientoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="394" column="59" lean-forward="true" selection-start-line="394" selection-start-column="59" selection-end-line="394" selection-end-column="59" />
         </state>
       </provider>
     </entry>
