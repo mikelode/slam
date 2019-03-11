@@ -1,4 +1,4 @@
-$( document ).on( 'click', '.menu-TipoReqOC li', function( event ) {
+$( document ).on( 'click', '.menu-TipoReqOC li', function( event ) { //use
 
     var $target = $(event.currentTarget);
     $target.closest('.btn-group').find('[data-bind="label"]').text($target.text()).end().children('.dropdown-toggle').dropdown('toggle');
@@ -39,7 +39,7 @@ $( document ).on( 'keydown',  '#btnLogOCSave , #btnLogOCCancel, #btnLogOCUpd, #b
     e.preventDefault();
 });
 
-$( document ).on( 'keydown',  '#txOC_No',function(e) {
+$( document ).on( 'keydown',  '#txOC_No',function(e) { // use
     if(event.shiftKey)     {        event.preventDefault();      }
     if(event.keyCode == 13 ) {
 		
@@ -48,58 +48,58 @@ $( document ).on( 'keydown',  '#txOC_No',function(e) {
     }
 });
 
-$( document ).on( 'keydown',  '#txOC_NroDoc',function(e) {
+$( document ).on( 'keydown',  '#txOC_NroDoc',function(e) { // use
     if(e.shiftKey)     {        e.preventDefault();      }
     if(e.keyCode == 13 ) {
         var valor  = $("#txOC_NroDoc").val() ;
         var tipoDoc   = $("#txOC_CodTipoDoc").attr("codID") ;
         if (typeof tipoDoc == "undefined" /*|| tipoDoc=='NN'*/ ) {    jsFnDialogBox(400, 145, "WARNING", null, "::VERIFIQUE SUS DATOS", "Ingrese el Tipo de documento origen"); return;    }
         
-		 if ($("#OC").attr("opeID")=="UPD")
-			 {
-				 var mgs66 = confirm ("==================================== \n - ESTA SEGURO DE BORRAR TODOS LOS ITEM DE LA BASE DE DATOS \n \n\n==================================== \n");
-				if(mgs66)
-				{			
-						 $.ajax({
-						type: "POST",
-						url: "logistica/spLogSetOCDDel",
-						data:{   'ocID': $("#OC").attr("ocID")  ,  '_token': $('#tokenBtnMain').val()} ,
-
-						error: function () {  jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
-						success: function (VR) {
-							$("#divDialog").dialog("close");
-							$(".modal-backdrop").remove();
-							//$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
-							//$('#dvAviso').modal('show');
-							//$("#divOC_Dll").html(VR["vwDll"]);
-						}
-						});
-				}
-			}		
-		
-            jsFunOC_ClearOrigen();
-            if (tipoDoc=='CC' )
-            {   jsFunDBOC_CCGetData("COD",valor);}
-            else if (tipoDoc=='RQ' )
-            {  jsFunDBOC_ReqGetData("COD",valor);}
-            else if (tipoDoc =='NN')	{
-                var dataString = {'ocOPE': $("#OC").attr("opeID") ,'_token':$('#tokenBtn').val() } ;
+        if ($("#OC").attr("opeID")=="UPD")
+        {
+            var mgs66 = confirm ("==================================== \n - ESTA SEGURO DE BORRAR TODOS LOS ITEM DE LA BASE DE DATOS \n \n\n==================================== \n");
+            if(mgs66)
+            {
                 $.ajax({
                     type: "POST",
-                    url: "logistica/vwGetTable",
-                    data: dataString,
-                    error: function ()      {  jsFnDialogBox(400,145, "WARNING",parent,"ERROR EN LA PETICION","Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>") ;},
-                    beforeSend: function () {  jsFnDialogBox(0,0,"LOAD",parent," PETICION EN PROCESO","Cargando, Espere un momento...") ;},
-                    success: function(VR) {
-                    $("#divDialog").dialog("close");
-                    $('#divOC_Dll').html(VR);
+                    url: "logistica/spLogSetOCDDel",
+                    data:{ 'ocID': $("#OC").attr("ocID")  ,  '_token': $('#tokenBtnMain').val()} ,
 
+                    error: function () {  jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+                    success: function (VR) {
+                        $("#divDialog").dialog("close");
+                        $(".modal-backdrop").remove();
+
+                        if(VR["msgId"] == 500){
+                            jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", VR["msg"]);
+                        }
+                        //$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
+                        //$('#dvAviso').modal('show');
+                        //$("#divOC_Dll").html(VR["vwDll"]);
                     }
-                  });
+                });
             }
-            else { alert("Tiene que seleccionar un tipo de documento origen"); return ;}
-	
-	
+        }
+
+        jsFunOC_ClearOrigen();
+        if (tipoDoc=='CC' ){   jsFunDBOC_CCGetData("COD",valor);}
+        else if (tipoDoc=='RQ' ){  jsFunDBOC_ReqGetData("COD",valor);}
+        else if (tipoDoc =='NN')	{
+            var dataString = {'ocOPE': $("#OC").attr("opeID") ,'_token':$('#tokenBtn').val() } ;
+            $.ajax({
+                type: "POST",
+                url: "logistica/vwGetTable",
+                data: dataString,
+                error: function ()      {  jsFnDialogBox(400,145, "WARNING",parent,"ERROR EN LA PETICION","Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>") ;},
+                beforeSend: function () {  jsFnDialogBox(0,0,"LOAD",parent," PETICION EN PROCESO","Cargando, Espere un momento...") ;},
+                success: function(VR) {
+                $("#divDialog").dialog("close");
+                $('#divOC_Dll').html(VR);
+
+                }
+            });
+        }
+        else { alert("Tiene que seleccionar un tipo de documento origen"); return ;}
 	
     }
 });
@@ -286,7 +286,7 @@ if(mgs3)
 		
 		
 
-$( document ).on( 'click',  '#btnLogOCSave , #btnLogOCDel',function(e){
+$( document ).on( 'click',  '#btnLogOCSave , #btnLogOCDel',function(e){ // use
     e.preventDefault();
 
     if(!jsFunOC_Val()){return ; }
@@ -309,41 +309,42 @@ $( document ).on( 'click',  '#btnLogOCSave , #btnLogOCDel',function(e){
     if ( typeof tmpOS != "undefined")
     {
         $('#tbOC_Dll tbody tr').each(function ()  {
-                if ($(this).attr("class")!="fila-Hide") {
-                    var fila = new Object();
-                    fila.ocItm=$(this).find("td[name=tdOcItm]").html();
-                    fila.cdItm=$(this).find("td[name=tdCdItm]").html();
-                    fila.czItm=$(this).find("td[name=tdCzItm]").html();
-                    fila.rqItm=$(this).find("td[name=tdRqItm]").html();
+            if ($(this).attr("class")!="fila-Hide") {
+                var fila = new Object();
+                fila.ocItm=$(this).find("td[name=tdOcItm]").html();
+                fila.cdItm=$(this).find("td[name=tdCdItm]").html();
+                fila.czItm=$(this).find("td[name=tdCzItm]").html();
+                fila.rqItm=$(this).find("td[name=tdRqItm]").html();
 
-                    fila.secfund=$(this).find("td[name=tdSF]").attr('codID');
-                    fila.rubro=$(this).find("td[name=tdRubro]").attr('codID');
+                fila.secfund=$(this).find("td[name=tdSF]").attr('codID');
+                fila.rubro=$(this).find("td[name=tdRubro]").attr('codID');
 
-                    fila.cant= $(this).find("td[name=tdCant]").html();
-                    fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
-                    fila.prod = $(this).find("td[name=tdProd]").attr("codID");
-                    fila.und = $(this).find("td[name=tdUnd]").attr("codID");
-                    fila.espf = $(this).find("td[name=tdEspf]").html();
-                    fila.marca = $(this).find("td[name=tdMarca]").html();
-                    fila.precio = $(this).find("td[name=tdPrecio]").html();
-                    fila.secFun = $(this).find("td[name=tdSecFun]").attr("codID");
-                    fila.envio = 0;
-                    OcDlls .push(fila);
-                    i++;
-                }
+                fila.cant= $(this).find("td[name=tdCant]").html();
+                fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
+                fila.prod = $(this).find("td[name=tdProd]").attr("codID");
+                fila.und = $(this).find("td[name=tdUnd]").attr("codID");
+                fila.espf = $(this).find("td[name=tdEspf]").html();
+                fila.marca = $(this).find("td[name=tdMarca]").html();
+                fila.precio = $(this).find("td[name=tdPrecio]").html();
+                fila.secFun = $(this).find("td[name=tdSecFun]").attr("codID");
+                fila.envio = 0;
+                OcDlls .push(fila);
+                i++;
+            }
         });      
     }else {  alert("Existe un error en los detalles de la orden de compra"); return ;}
 
-     if(i==0 && varOC.ocOPE!="DEL" ){
-          $(".modal-backdrop").remove();
-          $("#loadModals").html( jsFunLoadAviso('MENSAJE DE ADVERTENCIA','Falta Ingresar los Bienes'));
-          $('#dvAviso').modal('show');
-          return;
-     }
+    if(i==0 && varOC.ocOPE!="DEL" ){
+        $(".modal-backdrop").remove();
+        $("#loadModals").html( jsFunLoadAviso('MENSAJE DE ADVERTENCIA','Falta Ingresar los Bienes'));
+        $('#dvAviso').modal('show');
+        return;
+    }
     if(  varOC.ocOPE=="DEL")  varOC.FlgADD = "NOT";
 
     if (varOC.ocOPE=="ADD" || varOC.ocOPE =="UPD" || varOC.ocOPE=="DEL" ) {
-        var fullData = {  'varOC': varOC,   'varOCDll': JSON.parse(JSON.stringify(OcDlls )),   '_token': $('#tokenBtn').val()   }
+
+        var fullData = {  'varOC': varOC,   'varOCDll': JSON.parse(JSON.stringify(OcDlls )),   '_token': $('#tokenBtn').val()   };
 
         $("#divDialog").dialog(opt);
         $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
@@ -601,7 +602,7 @@ $( document ).on( 'click' ,'#btnLogReq_dllCANCEL',function(e) {
 });
 
 
-$( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) {
+$( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) { // use
    var trCurrent = $(this).parent().parent();
    var trClone = $(this).parent().parent().clone();
 
@@ -656,9 +657,16 @@ $( document ).on( 'click' ,'#btnLogOC_dllSAVE',function(e) {
                 success: function (VR) {
                     $("#divDialog").dialog("close");
                     $(".modal-backdrop").remove();
-                    //$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
-                    //$('#dvAviso').modal('show');
-                    $("#divOC_Dll").html(VR["vwDll"]);
+
+                    if(VR["msgId"] == 500){
+                        jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+                    }
+                    else{
+                        //$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
+                        //$('#dvAviso').modal('show');
+                        $("#divOC_Dll").html(VR["vwDll"]);
+                    }
+
                 }
             });
 
@@ -997,7 +1005,7 @@ function jsFunOC_Val()
 /****** FUNCTION GET DATABASE ************************************************************************************************/
 
 
-function jsFunDBOC_Get( Tipo , valor)
+function jsFunDBOC_Get( Tipo , valor) // use
 {
     jsFunOC_ClearOrigen();
     var qry = "";
@@ -1019,109 +1027,117 @@ function jsFunDBOC_Get( Tipo , valor)
         error: function () {  jsFunReqClear(); jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
         success: function (VR)
         {
-            if(VR["OC"].length>0)
-            {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
+            if(VR["msgId"] == 500){
+                jsFunReqClear();
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+            }
+            else{
 
-                //$("#OC").attr("ocEtapa",VR["Req"][0].reqEtapa);
-                $("#OC").attr("anioID",VR["OC"][0].ocAnio);
-                $("#OC").attr("ocID", VR["OC"][0].ocID);
-                $("#OC").attr("ctzID", VR["OC"][0].ocCtzID);
-                $("#OC").attr("cdrID", VR["OC"][0].ocCcID);
-                $("#OC").attr("reqID", VR["OC"][0].ocReqID);
-
-                $('#txOC_Fecha').val(VR["OC"][0].ocFechaFormat);
-                $('#txOC_No').val(VR["OC"][0].ocCodigo);
-                $('#txOC_Etapa').html(VR["OC"][0].ocEtapa);
-
-
-                if( VR["OC"][0].ocCcID.length>5){
-                    $('#txOC_NroDoc').val(VR["OC"][0].ocCcCod);
-                    $('#txOC_CodTipoDoc').attr("codID","CC");
-                    $('#txOC_TipoDoc').text("Cuadro Comp.");
-                }
-                else
+                if(VR["OC"].length>0)
                 {
-                    if( VR["OC"][0].ocReqID.length>5){
-                        $('#txOC_NroDoc').val(VR["OC"][0].ocReqCod);
-                        $('#txOC_CodTipoDoc').attr("codID","RQ");
-                        $('#txOC_TipoDoc').text("Requerimiento");
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+
+                    //$("#OC").attr("ocEtapa",VR["Req"][0].reqEtapa);
+                    $("#OC").attr("anioID",VR["OC"][0].ocAnio);
+                    $("#OC").attr("ocID", VR["OC"][0].ocID);
+                    $("#OC").attr("ctzID", VR["OC"][0].ocCtzID);
+                    $("#OC").attr("cdrID", VR["OC"][0].ocCcID);
+                    $("#OC").attr("reqID", VR["OC"][0].ocReqID);
+
+                    $('#txOC_Fecha').val(VR["OC"][0].ocFechaFormat);
+                    $('#txOC_No').val(VR["OC"][0].ocCodigo);
+                    $('#txOC_Etapa').html(VR["OC"][0].ocEtapa);
+
+
+                    if( VR["OC"][0].ocCcID.length>5){
+                        $('#txOC_NroDoc').val(VR["OC"][0].ocCcCod);
+                        $('#txOC_CodTipoDoc').attr("codID","CC");
+                        $('#txOC_TipoDoc').text("Cuadro Comp.");
                     }
-					else {
-						$('#txOC_NroDoc').val("-");
-                        $('#txOC_CodTipoDoc').attr("codID","NN");
-                        $('#txOC_TipoDoc').text("Sin Origen");
-					}
-                }
+                    else
+                    {
+                        if( VR["OC"][0].ocReqID.length>5){
+                            $('#txOC_NroDoc').val(VR["OC"][0].ocReqCod);
+                            $('#txOC_CodTipoDoc').attr("codID","RQ");
+                            $('#txOC_TipoDoc').text("Requerimiento");
+                        }
+                        else {
+                            $('#txOC_NroDoc').val("-");
+                            $('#txOC_CodTipoDoc').attr("codID","NN");
+                            $('#txOC_TipoDoc').text("Sin Origen");
+                        }
+                    }
 
-                $('#txOC_CodDep').attr('codID',VR["OC"][0].ocDepID);
-                $('#txOC_CodDep').val(VR["OC"][0].ocDepCod);
-                $('#txOC_Dep').val(VR["OC"][0].ocDepDsc);
-                $('#txOC_CodSecFun').attr("codID",VR["OC"][0].ocSecFunID);
-                $('#txOC_CodSecFun').val(VR["OC"][0].ocSecFunCod);
-                $('#txOC_SecFun').val(VR["OC"][0].ocSecFunDsc);
-                $('#txOC_CodRubro').attr("codID",VR["OC"][0].ocRubroID);
-                $('#txOC_CodRubro').val(VR["OC"][0].ocRubroCod);
-                $('#txOC_Rubro').val(VR["OC"][0].ocRubroDsc);
-                $('#txOC_LugarEnt').val(VR["OC"][0].ocLugar);
-                $('#txOC_Glosa').val(VR["OC"][0].ocGlosa);
-                $('#txOC_Ref').val(VR["OC"][0].ocRef);
-                $('#txOC_CodTipoProc').val(VR["OC"][0].ocTipoProcCod);
-                $('#txOC_TipoProc').val(VR["OC"][0].ocTipoProcDsc);
-                $('#txOC_CodTipoProc').attr("codID",VR["OC"][0].ocTipoProcID);
-				
-				 if( $('#txOC_CodTipoProc').attr("codID") !="009" )
-                {
-                    $('#txOC_tSubTotal').val(0);
-                    $('#txOC_tDesc').val(0);
-                    $('#txOC_tEnvio').val(0);
-                    $('#txOC_tTotal').val(0);
-                  //  $('#txOC_tSubTotal').prop('disabled',true);
-                  //  $('#txOC_tDesc').prop('disabled',true);
-                  //  $('#txOC_tEnvio').prop('disabled',true);
-                    //$('#txOC_tTotal').prop('disabled',true);
+                    $('#txOC_CodDep').attr('codID',VR["OC"][0].ocDepID);
+                    $('#txOC_CodDep').val(VR["OC"][0].ocDepCod);
+                    $('#txOC_Dep').val(VR["OC"][0].ocDepDsc);
+                    $('#txOC_CodSecFun').attr("codID",VR["OC"][0].ocSecFunID);
+                    $('#txOC_CodSecFun').val(VR["OC"][0].ocSecFunCod);
+                    $('#txOC_SecFun').val(VR["OC"][0].ocSecFunDsc);
+                    $('#txOC_CodRubro').attr("codID",VR["OC"][0].ocRubroID);
+                    $('#txOC_CodRubro').val(VR["OC"][0].ocRubroCod);
+                    $('#txOC_Rubro').val(VR["OC"][0].ocRubroDsc);
+                    $('#txOC_LugarEnt').val(VR["OC"][0].ocLugar);
+                    $('#txOC_Glosa').val(VR["OC"][0].ocGlosa);
+                    $('#txOC_Ref').val(VR["OC"][0].ocRef);
+                    $('#txOC_CodTipoProc').val(VR["OC"][0].ocTipoProcCod);
+                    $('#txOC_TipoProc').val(VR["OC"][0].ocTipoProcDsc);
+                    $('#txOC_CodTipoProc').attr("codID",VR["OC"][0].ocTipoProcID);
 
-                }
-                else
-                {
+                    if( $('#txOC_CodTipoProc').attr("codID") !="009" )
+                    {
+                        $('#txOC_tSubTotal').val(0);
+                        $('#txOC_tDesc').val(0);
+                        $('#txOC_tEnvio').val(0);
+                        $('#txOC_tTotal').val(0);
+                        //  $('#txOC_tSubTotal').prop('disabled',true);
+                        //  $('#txOC_tDesc').prop('disabled',true);
+                        //  $('#txOC_tEnvio').prop('disabled',true);
+                        //$('#txOC_tTotal').prop('disabled',true);
+
+                    }
+                    else
+                    {
                         $('#txOC_tSubTotal').val(VR["OC"][0].ocMonto);
                         $('#txOC_tDesc').val(VR["OC"][0].ocDescuento);
                         $('#txOC_tEnvio').val(VR["OC"][0].ocEnvio);
                         $('#txOC_tTotal').val(VR["OC"][0].ocTotal);
-                    $('#txOC_tSubTotal').prop('disabled',false);
-                    $('#txOC_tDesc').prop('disabled',false);
-                    $('#txOC_tEnvio').prop('disabled',false);
-                    //$('#txOC_tTotal').prop('disabled',false);
+                        $('#txOC_tSubTotal').prop('disabled',false);
+                        $('#txOC_tDesc').prop('disabled',false);
+                        $('#txOC_tEnvio').prop('disabled',false);
+                        //$('#txOC_tTotal').prop('disabled',false);
 
+                    }
+
+                    $("#lblExp").html(VR["Exp"][0].msg);
+
+                    $('#txOC_Ruc').attr("codID",VR["OC"][0].ocRUC);
+                    $('#txOC_Ruc').val(VR["OC"][0].ocRUC);
+                    $('#txOC_RSocial').val(VR["OC"][0].ocRazon);
+                    $('#txOC_Plazo').val(VR["OC"][0].ocPlazo);
+                    $('#txOC_Garantia').val(VR["OC"][0].ocGarantia);
+                    $('#txOC_IGV').val(VR["OC"][0].ocIGV);
+                    $('#txOC_Obsv').val(VR["OC"][0].ocObsv);
+                    //$('#txOC_Condicion').val(VR["OC"][0].ocCondicion);
+                    $('#txOC_Condicion').parent().find('.note-editable').html(VR["OC"][0].ocCondicion);
+                    $('.note-editable p').css('margin','0px');
+                    $("#divOC_Dll").html(VR["OCDll"]);
+                    //$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
+                    //$('#dvAviso').modal('show');
+                    jsFunOC_EnableText(true);
+                    jsFunOC_EnableBtns(false);
                 }
+                else
+                {    jsFunOC_Default(); jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");}
 
-				 $("#lblExp").html(VR["Exp"][0].msg);
-
-                $('#txOC_Ruc').attr("codID",VR["OC"][0].ocRUC);
-                $('#txOC_Ruc').val(VR["OC"][0].ocRUC);
-                $('#txOC_RSocial').val(VR["OC"][0].ocRazon);
-                $('#txOC_Plazo').val(VR["OC"][0].ocPlazo);
-                $('#txOC_Garantia').val(VR["OC"][0].ocGarantia);
-                $('#txOC_IGV').val(VR["OC"][0].ocIGV);
-                $('#txOC_Obsv').val(VR["OC"][0].ocObsv);
-                //$('#txOC_Condicion').val(VR["OC"][0].ocCondicion);
-                $('#txOC_Condicion').parent().find('.note-editable').html(VR["OC"][0].ocCondicion);
-				$('.note-editable p').css('margin','0px');
-                $("#divOC_Dll").html(VR["OCDll"]);
-                //$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
-                //$('#dvAviso').modal('show');
-                jsFunOC_EnableText(true);
-                jsFunOC_EnableBtns(false);
             }
-            else
-            {    jsFunOC_Default(); jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");}
         }
     });
 
 }
 
-function jsFunDBOC_CCGetData(Tipo,valor)
+function jsFunDBOC_CCGetData(Tipo,valor) // use
 {
     var qry = "";
     if(Tipo=="COD")      {   qry="  AND cast(substring (cdrcodigo,4,5) as int ) = "+valor;  }
@@ -1140,46 +1156,54 @@ function jsFunDBOC_CCGetData(Tipo,valor)
             jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");
         },
         success: function (VR) {
+            if(VR["msgId"] == 500){
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+            }
+            else{
 
-            if (VR["CC"].length > 0) {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
+                if (VR["CC"].length > 0) {
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
 
-                $("#OC").attr("cdrID",VR["CC"][0].cdrID);
-                $("#OC").attr("ctzID",VR["CC"][0].cdrOrgID);
-                $('#txOC_NroDoc').val(VR["CC"][0].cdrCodigo);
+                    $("#OC").attr("cdrID",VR["CC"][0].cdrID);
+                    $("#OC").attr("ctzID",VR["CC"][0].cdrOrgID);
+                    $('#txOC_NroDoc').val(VR["CC"][0].cdrCodigo);
 
-                $("#OC").attr("fteID",VR["AdjDll"][0].fteID);
-                $("#txOC_Ruc").attr("codID",VR["AdjDll"][0].fteRuc);
-                $("#txOC_Ruc").val(VR["AdjDll"][0].fteRuc);
-                $("#txOC_RSocial").val(VR["AdjDll"][0].fteRazon);
-                $("#txOC_Plazo").val(VR["AdjDll"][0].ftePlazo);
-                $("#txOC_Garantia").val(VR["AdjDll"][0].fteGarantia);
-                $("#txOC_IGV").val(VR["AdjDll"][0].fteIgv);
-                $("#txOC_LugarEnt").val(VR["CC"][0].cdrLugarEnt);
-                $("#divOC_Dll").html(VR["OcDll"]);
+                    $("#OC").attr("fteID",VR["AdjDll"][0].fteID);
+                    $("#txOC_Ruc").attr("codID",VR["AdjDll"][0].fteRuc);
+                    $("#txOC_Ruc").val(VR["AdjDll"][0].fteRuc);
+                    $("#txOC_RSocial").val(VR["AdjDll"][0].fteRazon);
+                    $("#txOC_Plazo").val(VR["AdjDll"][0].ftePlazo);
+                    $("#txOC_Garantia").val(VR["AdjDll"][0].fteGarantia);
+                    $("#txOC_IGV").val(VR["AdjDll"][0].fteIgv);
+                    $("#txOC_LugarEnt").val(VR["CC"][0].cdrLugarEnt);
+                    $("#divOC_Dll").html(VR["OcDll"]);
 
-                $("#OC").attr("reqID",VR["Req"][0].reqID);
-                $("#txOC_CodDep").val(VR["Req"][0].reqDepCod);
-                $("#txOC_CodDep").attr("codID",VR["Req"][0].reqDepID);
-                $("#txOC_Dep").val(VR["Req"][0].reqDepDsc);
-                $("#txOC_CodSecFun").attr("codID",VR["Req"][0].reqSecFunID);
-                $("#txOC_CodSecFun").val(VR["Req"][0].reqSecFunCod);
-                $("#txOC_SecFun").val(VR["Req"][0].reqSecFunDsc);
-                $("#txOC_CodRubro").attr("codID",VR["Req"][0].reqRubroID);
-                $("#txOC_CodRubro").val(VR["Req"][0].reqRubroCod);
-                $("#txOC_Rubro").val(VR["Req"][0].reqRubroDsc);
-                $("#txOC_Glosa").val(VR["Req"][0].reqGlosa);
-                
-                
-               // $("#txOC_Ref").val(VR["Ref"][0].Ref);
-                
+                    $("#OC").attr("reqID",VR["Req"][0].reqID);
+                    $("#txOC_CodDep").val(VR["Req"][0].reqDepCod);
+                    $("#txOC_CodDep").attr("codID",VR["Req"][0].reqDepID);
+                    $("#txOC_Dep").val(VR["Req"][0].reqDepDsc);
+                    $("#txOC_CodSecFun").attr("codID",VR["Req"][0].reqSecFunID);
+                    $("#txOC_CodSecFun").val(VR["Req"][0].reqSecFunCod);
+                    $("#txOC_SecFun").val(VR["Req"][0].reqSecFunDsc);
+                    $("#txOC_CodRubro").attr("codID",VR["Req"][0].reqRubroID);
+                    $("#txOC_CodRubro").val(VR["Req"][0].reqRubroCod);
+                    $("#txOC_Rubro").val(VR["Req"][0].reqRubroDsc);
+                    $("#txOC_Glosa").val(VR["Req"][0].reqGlosa);
+
+
+                    // $("#txOC_Ref").val(VR["Ref"][0].Ref);
+
+
+                }
+                else {
+
+                    jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");
+                }
 
             }
-            else {
-               
-                jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");
-            }
+
+
 
         }
     });
@@ -1187,7 +1211,7 @@ function jsFunDBOC_CCGetData(Tipo,valor)
 }
 
 
-function jsFunDBOC_ReqGetData(Tipo,valor)
+function jsFunDBOC_ReqGetData(Tipo,valor) // use
 {
     var qry = "";
     if(Tipo=="COD")      {   qry=" and  cast(substring (reqid,8,4) as int ) = "+valor;  }
@@ -1207,32 +1231,36 @@ function jsFunDBOC_ReqGetData(Tipo,valor)
         },
         success: function (VR) {
 
-            if (VR["Req"].length > 0) {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
-                //$("#OC").attr("cdrID",VR["CC"][0].cdrID);
-                //$("#OC").attr("ctzID",VR["CC"][0].cdrCtzID);
-                $('#txOC_NroDoc').val(VR["Req"][0].reqCodigo);
-                $("#OC").attr("reqID",VR["Req"][0].reqID);
-                $("#txOC_CodDep").val(VR["Req"][0].reqDepCod);
-                $("#txOC_CodDep").attr("codID",VR["Req"][0].reqDepID);
-                $("#txOC_Dep").val(VR["Req"][0].reqDepDsc);
-                $("#txOC_CodSecFun").attr("codID",VR["Req"][0].reqSecFunID);
-                $("#txOC_CodSecFun").val(VR["Req"][0].reqSecFunCod);
-                $("#txOC_SecFun").val(VR["Req"][0].reqSecFunDsc);
-                $("#txOC_CodRubro").attr("codID",VR["Req"][0].reqRubroID);
-                $("#txOC_CodRubro").val(VR["Req"][0].reqRubroCod);
-                $("#txOC_Rubro").val(VR["Req"][0].reqRubroDsc);
-                $("#txOC_LugarEnt").val(VR["Req"][0].reqLugarEnt);
-               // $("#txOC_Ref").val(VR["Ref"][0].Ref);
-                $("#txOC_Glosa").val(VR["Req"][0].reqGlosa);
-                $("#divOC_Dll").html(VR["vwDll"]);
+            if(VR["msgId"] == 500){
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
             }
-            else {
-                // jsFunCdrClear();
-                jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");
+            else{
+                if (VR["Req"].length > 0) {
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+                    //$("#OC").attr("cdrID",VR["CC"][0].cdrID);
+                    //$("#OC").attr("ctzID",VR["CC"][0].cdrCtzID);
+                    $('#txOC_NroDoc').val(VR["Req"][0].reqCodigo);
+                    $("#OC").attr("reqID",VR["Req"][0].reqID);
+                    $("#txOC_CodDep").val(VR["Req"][0].reqDepCod);
+                    $("#txOC_CodDep").attr("codID",VR["Req"][0].reqDepID);
+                    $("#txOC_Dep").val(VR["Req"][0].reqDepDsc);
+                    $("#txOC_CodSecFun").attr("codID",VR["Req"][0].reqSecFunID);
+                    $("#txOC_CodSecFun").val(VR["Req"][0].reqSecFunCod);
+                    $("#txOC_SecFun").val(VR["Req"][0].reqSecFunDsc);
+                    $("#txOC_CodRubro").attr("codID",VR["Req"][0].reqRubroID);
+                    $("#txOC_CodRubro").val(VR["Req"][0].reqRubroCod);
+                    $("#txOC_Rubro").val(VR["Req"][0].reqRubroDsc);
+                    $("#txOC_LugarEnt").val(VR["Req"][0].reqLugarEnt);
+                    // $("#txOC_Ref").val(VR["Ref"][0].Ref);
+                    $("#txOC_Glosa").val(VR["Req"][0].reqGlosa);
+                    $("#divOC_Dll").html(VR["vwDll"]);
+                }
+                else {
+                    // jsFunCdrClear();
+                    jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");
+                }
             }
-
         }
     });
 
@@ -1516,19 +1544,19 @@ var varCdr = jQuery.parseJSON('{  ' +
 
 
 
-$( document ).on( 'click',  '#btnLogOCLeft',function(e) {
+$( document ).on( 'click',  '#btnLogOCLeft',function(e) { //use
     e.preventDefault();
     jsFunDBOCLR( "L");
 });
 
 
-$( document ).on( 'click',  '#btnLogOCRight',function(e) {
+$( document ).on( 'click',  '#btnLogOCRight',function(e) { //use
     e.preventDefault();
     jsFunDBOCLR( "R");
 });
 
 
-function jsFunDBOCLR(prPosition)
+function jsFunDBOCLR(prPosition) // use
 {
     var token= $('#tokenBtn').val();
     var dataString = {'prAnio': $(".txVarAnioEjec").val(),'prPosition': prPosition, 'prCodOC':$("#OC").attr("ocID") ,'_token':token } ;
@@ -1605,68 +1633,68 @@ $( document ).on( 'click' ,'#btnLogOCIgv',function(e) {
 
 
 
-$( document ).on( 'click' ,'#btnLogOC_dllADD',function(e) {
+$( document ).on( 'click' ,'#btnLogOC_dllADD',function(e) { // use
     var flg = false;
   
-        var objEvento = $(this).parent().parent();
-        var trClone = $(this).parent().parent().clone();
+    var objEvento = $(this).parent().parent();
+    var trClone = $(this).parent().parent().clone();
 
-        reqErrores="<p>";
-        if ( parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val()).toFixed(2).toString() == "NaN") {  reqErrores+=' <br> * Cantidad '; }
-        if ( parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val()).toFixed(2).toString() == "NaN") {  reqErrores+=' <br> * Precio Unitario '; }
+    reqErrores="<p>";
+    if ( parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val()).toFixed(2).toString() == "NaN") {  reqErrores+=' <br> * Cantidad '; }
+    if ( parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val()).toFixed(2).toString() == "NaN") {  reqErrores+=' <br> * Precio Unitario '; }
        // if ( parseFloat(trClone.find("td[name=tdEnvio]").find('input[id=txProdEnvio]').val()).toFixed(2).toString() == "NaN") {  reqErrores+=' <br> * Envio '; }
-        if ( parseFloat(trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').attr("codID")).toFixed(2).toString() == "NaN") {  reqErrores+=' <br> * Unidad '; }
-        if ( trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID")== "NN") {  reqErrores+=' <br> * Seleccione el Producto de Catalogo '; }
-        if ( trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID")== "NN") {  reqErrores+=' <br> * Clasificador '; }
+    if ( parseFloat(trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').attr("codID")).toFixed(2).toString() == "NaN") {  reqErrores+=' <br> * Unidad '; }
+    if ( trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID")== "NN") {  reqErrores+=' <br> * Seleccione el Producto de Catalogo '; }
+    if ( trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID")== "NN") {  reqErrores+=' <br> * Clasificador '; }
 
-        if ( trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID")== "NN") {  reqErrores+=' <br> * Secuencia Funcional '; }
+    if ( trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID")== "NN") {  reqErrores+=' <br> * Secuencia Funcional '; }
 
     if ( trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID")== "NN") {  reqErrores+=' <br> * Secuencia Funcional del item '; }
 
     if ( trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID")== "NN") {  reqErrores+=' <br> * Rubro del item '; }
 
-        reqErrores+="</p>";
-        if(reqErrores.length>10){    $("#loadModals").html( jsFunLoadAviso('VERIFIQUE LOS DATOS DEL PRODUCTO A INGRESAR',reqErrores));  $('#dvAviso').modal('show');   return false; }
+    reqErrores+="</p>";
+    if(reqErrores.length>10){    $("#loadModals").html( jsFunLoadAviso('VERIFIQUE LOS DATOS DEL PRODUCTO A INGRESAR',reqErrores));  $('#dvAviso').modal('show');   return false; }
 
 
-        filaADD = $("#tbOC_Dll tfoot tr").clone(true).removeClass('fila-Hide');
+    filaADD = $("#tbOC_Dll tfoot tr").clone(true).removeClass('fila-Hide');
 
-        //filaADD.find("td[name=tdID]").attr("fteID", trClone.find("td[name=tdID]").attr("fteID"));
-        filaADD.find("td[name=tdOcItm]").html(trClone.find("td[name=tdOsItm]").text());
-        filaADD.find("td[name=tdCdItm]").html(trClone.find("td[name=tdCdItm]").text());
-        filaADD.find("td[name=tdCzItm]").html(trClone.find("td[name=tdCzItm]").text());
-        filaADD.find("td[name=tdRqItm]").html(trClone.find("td[name=tdRqItm]").text());
+    //filaADD.find("td[name=tdID]").attr("fteID", trClone.find("td[name=tdID]").attr("fteID"));
+    filaADD.find("td[name=tdOcItm]").html(trClone.find("td[name=tdOsItm]").text());
+    filaADD.find("td[name=tdCdItm]").html(trClone.find("td[name=tdCdItm]").text());
+    filaADD.find("td[name=tdCzItm]").html(trClone.find("td[name=tdCzItm]").text());
+    filaADD.find("td[name=tdRqItm]").html(trClone.find("td[name=tdRqItm]").text());
 
-        filaADD.find("td[name=tdSF]").html(trClone.find("td[name=tdSF]").find('input[id=txProdSF]').val());
-        filaADD.find("td[name=tdRubro]").html(trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').val());
+    filaADD.find("td[name=tdSF]").html(trClone.find("td[name=tdSF]").find('input[id=txProdSF]').val());
+    filaADD.find("td[name=tdRubro]").html(trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').val());
 
-        filaADD.find("td[name=tdCant]").html(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());
-        filaADD.find("td[name=tdClasf]").html(trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').val());
-        filaADD.find("td[name=tdProd]").html(trClone.find("td[name=tdProd]").find('input[id=txProdProd]').val());
-        filaADD.find("td[name=tdUnd]").html(trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').val());
-        filaADD.find("td[name=tdEspf]").html(trClone.find("td[name=tdEspf]").find('textarea[id=txProdEspf]').val());
+    filaADD.find("td[name=tdCant]").html(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());
+    filaADD.find("td[name=tdClasf]").html(trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').val());
+    filaADD.find("td[name=tdProd]").html(trClone.find("td[name=tdProd]").find('input[id=txProdProd]').val());
+    filaADD.find("td[name=tdUnd]").html(trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').val());
+    filaADD.find("td[name=tdEspf]").html(trClone.find("td[name=tdEspf]").find('textarea[id=txProdEspf]').val());
 
-        filaADD.find("td[name=tdPrecio]").html(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());
-        filaADD.find("td[name=tdMarca]").html(trClone.find("td[name=tdMarca]").find('input[id=txProdMarca]').val());
-        filaADD.find("td[name=tdEnvio]").html(trClone.find("td[name=tdEnvio]").find('input[id=txProdEnvio]').val());
+    filaADD.find("td[name=tdPrecio]").html(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());
+    filaADD.find("td[name=tdMarca]").html(trClone.find("td[name=tdMarca]").find('input[id=txProdMarca]').val());
+    filaADD.find("td[name=tdEnvio]").html(trClone.find("td[name=tdEnvio]").find('input[id=txProdEnvio]').val());
 
-        filaADD.find("td[name=tdSF]").attr("codID",trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID"));
-        filaADD.find("td[name=tdRubro]").attr("codID",trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID"));
+    filaADD.find("td[name=tdSF]").attr("codID",trClone.find("td[name=tdSF]").find('input[id=txProdSF]').attr("codID"));
+    filaADD.find("td[name=tdRubro]").attr("codID",trClone.find("td[name=tdRubro]").find('input[id=txProdRubro]').attr("codID"));
 
-        filaADD.find("td[name=tdClasf]").attr("codID", trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID"));
-        filaADD.find("td[name=tdProd]").attr("codID", trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID"));
-        filaADD.find("td[name=tdUnd]").attr("codID", trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').attr("codID"));
-        filaADD.find("td[name=tdSecFun]").attr("codID", trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID"));
+    filaADD.find("td[name=tdClasf]").attr("codID", trClone.find("td[name=tdClasf]").find('input[id=txProdClasf]').attr("codID"));
+    filaADD.find("td[name=tdProd]").attr("codID", trClone.find("td[name=tdProd]").find('input[id=txProdProd]').attr("codID"));
+    filaADD.find("td[name=tdUnd]").attr("codID", trClone.find("td[name=tdUnd]").find('input[id=txProdUnd]').attr("codID"));
+    filaADD.find("td[name=tdSecFun]").attr("codID", trClone.find("td[name=tdSecFun]").find('input[id=txProdSecFun]').attr("codID"));
 
-        var cant = parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());//.toFixed(2);
-        var precioUnt = parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());//.toFixed(6)
-        var total       = parseFloat( cant*precioUnt).toFixed(2);
-        filaADD.find("td[name=tdTotal]").html(total);
+    var cant = parseFloat(trClone.find("td[name=tdCant]").find('input[id=txProdCant]').val());//.toFixed(2);
+    var precioUnt = parseFloat(trClone.find("td[name=tdPrecio]").find('input[id=txProdPrecio]').val());//.toFixed(6)
+    var total       = parseFloat( cant*precioUnt).toFixed(2);
+    filaADD.find("td[name=tdTotal]").html(total);
 
-        $("#tbOC_Dll").append(filaADD);
-        $("#tbBarraBienes tr").each(function (index) {      $(this).remove();     });
-        $("#dvBarraAdd").css({'background': '#efefef'});
-        $("#dvBarraAdd").css({'display': 'none'});
+    $("#tbOC_Dll").append(filaADD);
+    $("#tbBarraBienes tr").each(function (index) {      $(this).remove();     });
+    $("#dvBarraAdd").css({'background': '#efefef'});
+    $("#dvBarraAdd").css({'display': 'none'});
 });
 
 $(document).on('click , keydown','#btnLogOC_dllCLOSE',function(e) {

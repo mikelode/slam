@@ -11,7 +11,7 @@ var optCdr = {
 
 };
 
-function jsFnOrgDoc(tipo,valor)
+function jsFnOrgDoc(tipo,valor) //use
 {
       if(tipo =="RQ")
                 {
@@ -32,7 +32,7 @@ function jsFnOrgDoc(tipo,valor)
 }
 
 
-$( document ).on( 'click', '.menu-TipoCdDoc li', function( event ) {
+$( document ).on( 'click', '.menu-TipoCdDoc li', function( event ) { //use
     var $target = $( event.currentTarget );
     $target.closest( '.btn-group' ).find( '[data-bind="label"]' ).text( $target.text() ).end().children( '.dropdown-toggle' ).dropdown( 'toggle' );
     var TipoReq= $target.attr("psrId") ;
@@ -83,7 +83,7 @@ $( document ).on( 'click',  '#btnLogCCRight',function(e) {
 
 
 
-$( document ).on( 'keydown',  '#txCCNo',function(e) {
+$( document ).on( 'keydown',  '#txCCNo',function(e) { // use
     if(event.shiftKey)     {        event.preventDefault();      }
     if(event.keyCode == 13 ) {
         if($("#txCCNo").val().length>0) {
@@ -95,7 +95,7 @@ $( document ).on( 'keydown',  '#txCCNo',function(e) {
     }
 });
 
-$( document ).on( 'keydown',  '#txCC_CtzNo',function(e) {
+$( document ).on( 'keydown',  '#txCC_CtzNo',function(e) { // use
     if(e.shiftKey)     {        e.preventDefault();      }
     if(e.keyCode == 13 ) {
     TipoDoc= $("#txTipoCdDoc").attr("codID");
@@ -117,14 +117,14 @@ $( document ).on( 'keydown',  '#txCC_CtzNo',function(e) {
             $("#divDialog").dialog({
             buttons: {
                 "Aceptar": function () {
-                  if(TipoDoc=="CZ") {
+                    if(TipoDoc=="CZ") {
                       jsFunDBCC_CtzSetData( "COD",$("#txCC_CtzNo").val());
-                  }
-                  else  {
+                    }
+                    else  {
                       jsFunDBCC_ReqSetData( "COD",$("#txCC_CtzNo").val());
-                  }
-                  $(this).dialog("close");
-                     },
+                    }
+                    $(this).dialog("close");
+                 },
                 "Cancel": function () {   jsFnOrgDoc (tmpOrgDoc,tmpOrgRef);   $(this).dialog("close"); }    }
             });
         }    
@@ -169,7 +169,7 @@ $( document ).on( 'click',  '.btn-cdrSelect',function(e) {
 
 });
 
-$( document ).on( 'click',  '#btnLogCCSearch',function(e) {
+$( document ).on( 'click',  '#btnLogCCSearch',function(e) { // use
     e.preventDefault();
   //  jsFunDBCC_GetData( "COD",$("#txCCNo").val());
 
@@ -522,7 +522,7 @@ $(document).on('click','.btnCdrRowUPD',function(e){
 /********************************************************/
 
 
-$( document ).on( 'click',  '#btnLogCCSave , #btnLogCCDel',function(e){
+$( document ).on( 'click',  '#btnLogCCSave , #btnLogCCDel',function(e){ // use
     e.preventDefault();
 
         if(!jsFunCdrVal()){return ; }
@@ -580,30 +580,36 @@ $( document ).on( 'click',  '#btnLogCCSave , #btnLogCCDel',function(e){
         $("#divDialog").dialog({
             buttons: {
                 "Aceptar": function () {
-                     if(  varCdr.cdrOPE =="DEL" ) varCdr.cdrObsv  = $("#txCC_Motivo").val();
-                     
-        
+                    if(  varCdr.cdrOPE =="DEL" ) varCdr.cdrObsv  = $("#txCC_Motivo").val();
 
-                                $.ajax({
-                                    type: "POST",
-                                    url: "logistica/spLogSetCC",
-                                    data: fullData,
-                                    beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
-                                    error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
-                                    success: function (VR) {
-                                        $("#divDialog").dialog("close");
-                                        $(".modal-backdrop").remove();
-                                        $("#divDialog").dialog(opt);
-                                        $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
-                                        $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
-                                        $("#divDialog").dialog("open");
-                                        $("#divDialog").dialog({ width:400,height: 150, title: "CONFIRMAR OPERACION"});
-                                        $("#divDialogCont").html(VR["Result"][0].Mensaje);
-                                        $("#divDialog").dialog({
-                                            buttons: {
-                                                "Aceptar": function () {jsFunDBCC_GetData("SI","CID",VR["Result"][0].CCNo);           }}});
+                    $.ajax({
+                        type: "POST",
+                        url: "logistica/spLogSetCC",
+                        data: fullData,
+                        beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
+                        error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+                        success: function (VR) {
+                            $("#divDialog").dialog("close");
+                            $(".modal-backdrop").remove();
+
+                            if(VR["msgId"] == 500){
+                                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+                            }
+                            else{
+                                $("#divDialog").dialog(opt);
+                                $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
+                                $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
+                                $("#divDialog").dialog("open");
+                                $("#divDialog").dialog({ width:400,height: 150, title: "CONFIRMAR OPERACION"});
+                                $("#divDialogCont").html(VR["Result"][0].Mensaje);
+                                $("#divDialog").dialog({
+                                    buttons: {
+                                        "Aceptar": function () {jsFunDBCC_GetData("SI","CID",VR["Result"][0].CCNo);}
                                     }
                                 });
+                            }
+                        }
+                    });
                                 
                 },
                 "Cancel": function () {
@@ -1114,99 +1120,116 @@ $( document ).on( 'click' ,'#btnLogCdrRucADD',function(e){
 });
 
 
-$( document ).on( 'click' ,'#btnLogCdrRucSave ',function(e) {
+$( document ).on( 'click' ,'#btnLogCdrRucSave ',function(e) { // use
 
     if ($("#CDR").attr("opeID")=="ADD"){  
      
-         if(!jsFunCdrVal( )){return ; }
+        if(!jsFunCdrVal( )){return ; }
 
             var flg = false;
             var ItemArray = new Array();
             $('#tbCdr_Dll tbody tr').each(function ()
-                {
-                    if ($(this).attr("class")!="fila-Hide")  {
-                            var fila = new Object();
-                            fila.ID=0;
-                            fila.cdItm= $(this).find("td[name=tdCdItm]").html();
-                            fila.czItm= $(this).find("td[name=tdCzItm]").html();
-                            fila.rqItm= $(this).find("td[name=tdRqItm]").html();
-                            fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
-                            fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
-                            fila.cant= $(this).find("td[name=tdCant]").html();                           
-                            fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
-                            fila.prod = $(this).find("td[name=tdProd]").attr("codID");
-                            fila.und = $(this).find("td[name=tdUnd]").attr("codID");
-                            fila.espf = $(this).find("td[name=tdEspf]").html();                           
-                            ItemArray.push(fila);
-                        flg= true;
-                    }
-                });
-
-             var fullData = {
-                    'varCdr': varCdr,
-                    'varCdrDll': JSON.parse(JSON.stringify(ItemArray)),
-                    '_token': $('#tokenBtn').val()
+            {
+                if ($(this).attr("class")!="fila-Hide")  {
+                        var fila = new Object();
+                        fila.ID=0;
+                        fila.cdItm= $(this).find("td[name=tdCdItm]").html();
+                        fila.czItm= $(this).find("td[name=tdCzItm]").html();
+                        fila.rqItm= $(this).find("td[name=tdRqItm]").html();
+                        fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
+                        fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
+                        fila.cant= $(this).find("td[name=tdCant]").html();
+                        fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
+                        fila.prod = $(this).find("td[name=tdProd]").attr("codID");
+                        fila.und = $(this).find("td[name=tdUnd]").attr("codID");
+                        fila.espf = $(this).find("td[name=tdEspf]").html();
+                        ItemArray.push(fila);
+                    flg= true;
                 }
+            });
 
-                $.ajax({
+            var fullData = {
+                'varCdr': varCdr,
+                'varCdrDll': JSON.parse(JSON.stringify(ItemArray)),
+                '_token': $('#tokenBtn').val()
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "logistica/spLogSetCC",
+                data: fullData,
+                // beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
+                error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+                success: function (VR) {
+
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+
+                    if(VR["msgId"] == 500){
+                        jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+                    }
+                    else{
+                        //  jsFunDBCC_GetData("CID",VR["Result"][0].CCNo)
+                        $("#CDR").attr("cdrID",VR["Result"][0].CCNo);
+                        jsFunCdrEnable(false);
+                        jsFunCdrButtons(true);
+
+                        if(!jsFunFteVal()){alert("Error en los datos ingresados del RUC"); return ;}
+                        var datos = {
+                            'varFte': varFte,
+                            '_token': $('#tokenBtn').val()
+                        };
+
+                        $.ajax({
                             type: "POST",
-                            url: "logistica/spLogSetCC",
-                            data: fullData,
-                            // beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
-                            error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
-                            success: function (VR) {
-                            $("#divDialog").dialog("close");
-                            $(".modal-backdrop").remove();
-                            //  jsFunDBCC_GetData("CID",VR["Result"][0].CCNo)
-                            $("#CDR").attr("cdrID",VR["Result"][0].CCNo);
-                            jsFunCdrEnable(false);
-                            jsFunCdrButtons(true);
+                            url: "logistica/spLogSetFte",
+                            data: datos,
+                            beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
+                            error: function ()      { jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+                            success: function (VR)  {
+                                $("#divDialog").dialog("close");
+                                $(".modal-backdrop").remove();
 
-                            if(!jsFunFteVal()){alert("Error en los datos ingresados del RUC"); return ;}
-                            var datos = {
-                                'varFte': varFte,
-                                '_token': $('#tokenBtn').val()
-                            }
-
-                            $.ajax({
-                                type: "POST",
-                                url: "logistica/spLogSetFte",
-                                data: datos,
-                                beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
-                                error: function ()      { jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
-                                success: function (VR)  {
-                                    $("#divDialog").dialog("close");
-                                    $(".modal-backdrop").remove();                                   
-                                    $("#tabRucList").html(VR["Fte"]);                                  
-
+                                if(VR["msgId"] == 500){
+                                    jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
                                 }
-                              });
-
+                                else{
+                                    $("#tabRucList").html(VR["Fte"]);
+                                }
                             }
-                });
-
-       
+                        });
+                    }
+                }
+            });
         $("#CDR").attr("opeID","UPD");
     }
     else
     {
-                        if(!jsFunFteVal()){alert("Error en los datos ingresados del RUC"); return ;}
-                            var datos = {
-                                'varFte': varFte,
-                                '_token': $('#tokenBtn').val()
-                            }
-                            $.ajax({
-                                type: "POST",
-                                url: "logistica/spLogSetFte",
-                                data: datos,
-                                beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
-                                error: function ()      { jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
-                                success: function (VR)  {
-                                    $("#divDialog").dialog("close");
-                                    $(".modal-backdrop").remove();                                   
-                                    $("#tabRucList").html(VR["Fte"]);
-                                }
-                            });
+        if(!jsFunFteVal()){alert("Error en los datos ingresados del RUC"); return ;}
+
+        var datos = {
+            'varFte': varFte,
+            '_token': $('#tokenBtn').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "logistica/spLogSetFte",
+            data: datos,
+            beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
+            error: function ()      { jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+            success: function (VR)  {
+                $("#divDialog").dialog("close");
+                $(".modal-backdrop").remove();
+
+                if(VR["msgId"] == 500){
+                    jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+                }
+                else{
+                    $("#tabRucList").html(VR["Fte"]);
+                }
+            }
+        });
     }
 
      $("#liRucAdd").css({'display': 'none'});
@@ -1388,7 +1411,7 @@ $( document ).on( 'click' ,'#btnCCRucDEL',function(e){
 });
 
 
-$( document ).on( 'click' ,'#btnCCRucBUENAPRO',function(e){
+$( document ).on( 'click' ,'#btnCCRucBUENAPRO',function(e){ // use
     //e.preventDefault();
     trClone = $(this).parent().parent().clone();
     var idTmp   = $(this).parent().parent().find("td[name=tdID]").html();
@@ -1406,8 +1429,7 @@ $( document ).on( 'click' ,'#btnCCRucBUENAPRO',function(e){
     var datos = {
         'varCC': varCdr,
         '_token': $('#tokenBtn').val()
-    }
-
+    };
 
     $("#divDialog").dialog(opt);
     $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display","block");
@@ -1569,7 +1591,7 @@ $( document ).on( 'click' ,'#btnLogCC_ItemCancel ',function(e) {
 
 });
 
-$( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) {
+$( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) { // use
     trCurrent = $(this).parent().parent();
     var trClone = $(this).parent().parent().clone();
     varFteDll.dllOPE="UPD";
@@ -1604,17 +1626,23 @@ $( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) {
         beforeSend: function () {      jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
         error: function () {     jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");  },
         success: function (VR) {
+
             $("#divDialog").dialog("close");
             $(".modal-backdrop").remove();
-          //  $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
-           // $('#dvAviso').modal('show');
+            if(VR["msgId"] == 500){
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+            }
+            else{
+                //  $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
+                // $('#dvAviso').modal('show');
 
-            //$("#tabRucBns").html(VR["FteDll"]);
-            // $("#aRucBns").click();
-         //   $("#divOC_Dll").html(VR["vwDll"]);
-            document.getElementById('sthMontoCC').innerHTML = "MONTO TOTAL:<span style='font-size: 14px; color:blue;'> " + VR["MontoDll"] + "</span>";
+                //$("#tabRucBns").html(VR["FteDll"]);
+                // $("#aRucBns").click();
+                //   $("#divOC_Dll").html(VR["vwDll"]);
+                document.getElementById('sthMontoCC').innerHTML = "MONTO TOTAL:<span style='font-size: 14px; color:blue;'> " + VR["MontoDll"] + "</span>";
 
-            $('#row' + nxtrow).find("input[name=txProdMarca]").focus();
+                $('#row' + nxtrow).find("input[name=txProdMarca]").focus();
+            }
         }
     });
 });
@@ -1625,7 +1653,7 @@ $( document ).on( 'click' ,'#btnLogCC_ItemSave',function(e) {
 
 
 
-function jsFunDBCC_GetData(tmp , Tipo,valor)
+function jsFunDBCC_GetData(tmp , Tipo,valor) // use
 {
     $("#tabBienesList").html('');
     var qry = "";
@@ -1646,59 +1674,63 @@ function jsFunDBCC_GetData(tmp , Tipo,valor)
         },
         success: function (VR) {
 
-            if (VR["CC"].length > 0) {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
-
-                $("#CDR").attr("cdrEtapa",VR["CC"][0].cdrEtapa);
-                $("#CDR").attr("anioID",VR["CC"][0].cdrAnio);
-                $("#CDR").attr("cdrID",VR["CC"][0].cdrID);
-                $("#CDR").attr("ctzID",VR["CC"][0].cdrCtzID);
-                $("#CDR").attr("reqID",VR["CC"][0].cdrReqID);
-                $("#CDR").attr("fteID",VR["CC"][0].cdrOrg);
-                $('#txEtapa').html(VR["CC"][0].cdrEtapa);
-                $('#txFecha').val(VR["CC"][0].cdrFechaFormat);
-                $('#txCCNo').val(VR["CC"][0].cdrCodigo);
-                
-                $("#CDR").attr("orgID",VR["CC"][0].cdrOrgID);
-                $("#CDR").attr("orgDoc",VR["CC"][0].cdrOrgDoc);
-                $("#CDR").attr("orgRef",VR["CC"][0].cdrOrgRef);
-                
-                jsFnOrgDoc(VR["CC"][0].cdrOrgDoc , VR["CC"][0].cdrOrgRef   );
-                $('#txObsv').val(VR["CC"][0].cdrObsv);
-                $("#tabBienesList").html(VR["CdrDll"]);
-                $('#aBns').click();
-
-                
-                 
-                 $("#tabRucList").html(VR["Fts"]);
-                 $("#tabAdj").html(VR["Adj"]);    
-
-                if (tmp=="SI" )
-                {
-                     $("#CDR").attr("opeID","ADD"); 
-                     jsFunCdrEnable(true);
-                     jsFunCdrButtons(false);   
-                }         
-                
-           /*     jsFunCdrEnable(true);
-                jsFunCdrButtons(false);
-                if (VR["Adj"].length > 0) {
-                    $('#liBns').click();
-                }
-                else
-                {
-                    jsFnDialogBox(400, 160, "WARNING", null, "ADVERTENCIA", "Los datos fueron recuperados corectamente,<BR> <STRONG> PERO AUNO NO FUE ADJUDICADO</STRONG> ");
-
-                }*/
-            }
-            else {
+            if(VR["msgId"] == 500){
                 jsFunCdrClear();
-                jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");
-
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
             }
+            else{
+                if (VR["CC"].length > 0) {
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+
+                    $("#CDR").attr("cdrEtapa",VR["CC"][0].cdrEtapa);
+                    $("#CDR").attr("anioID",VR["CC"][0].cdrAnio);
+                    $("#CDR").attr("cdrID",VR["CC"][0].cdrID);
+                    $("#CDR").attr("ctzID",VR["CC"][0].cdrCtzID);
+                    $("#CDR").attr("reqID",VR["CC"][0].cdrReqID);
+                    $("#CDR").attr("fteID",VR["CC"][0].cdrOrg);
+                    $('#txEtapa').html(VR["CC"][0].cdrEtapa);
+                    $('#txFecha').val(VR["CC"][0].cdrFechaFormat);
+                    $('#txCCNo').val(VR["CC"][0].cdrCodigo);
+
+                    $("#CDR").attr("orgID",VR["CC"][0].cdrOrgID);
+                    $("#CDR").attr("orgDoc",VR["CC"][0].cdrOrgDoc);
+                    $("#CDR").attr("orgRef",VR["CC"][0].cdrOrgRef);
+
+                    jsFnOrgDoc(VR["CC"][0].cdrOrgDoc , VR["CC"][0].cdrOrgRef   );
+                    $('#txObsv').val(VR["CC"][0].cdrObsv);
+                    $("#tabBienesList").html(VR["CdrDll"]);
+                    $('#aBns').click();
 
 
+
+                    $("#tabRucList").html(VR["Fts"]);
+                    $("#tabAdj").html(VR["Adj"]);
+
+                    if (tmp=="SI" )
+                    {
+                        $("#CDR").attr("opeID","ADD");
+                        jsFunCdrEnable(true);
+                        jsFunCdrButtons(false);
+                    }
+
+                    /*     jsFunCdrEnable(true);
+                         jsFunCdrButtons(false);
+                         if (VR["Adj"].length > 0) {
+                             $('#liBns').click();
+                         }
+                         else
+                         {
+                             jsFnDialogBox(400, 160, "WARNING", null, "ADVERTENCIA", "Los datos fueron recuperados corectamente,<BR> <STRONG> PERO AUNO NO FUE ADJUDICADO</STRONG> ");
+
+                         }*/
+                }
+                else {
+                    jsFunCdrClear();
+                    jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");
+
+                }
+            }
         }
 
     });
@@ -1706,7 +1738,7 @@ function jsFunDBCC_GetData(tmp , Tipo,valor)
 }
 
 
-function jsFunDBCC_CtzGetData(Tipo,valor)
+function jsFunDBCC_CtzGetData(Tipo,valor) // use
 {
     $("#CDR").attr("orgID","NN");
     $("#CDR").attr("orgRef","NN");
@@ -1727,33 +1759,38 @@ function jsFunDBCC_CtzGetData(Tipo,valor)
         success: function (VR)
         {
             $(".modal-backdrop").remove();
-            if( VR["Ctz"].length>0 )
-            {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
-                
-              /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
-                    jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
-                    jsFunCdrClear();
-                    return;
-                }*/                
-                $("#CDR").attr("orgID", VR["Ctz"][0].ctzID);                 
-                $("#CDR").attr("orgRef", VR["Ctz"][0].ctzCodigo); 
-                $("#CDR").attr("orgDoc", "CZ");
-                $("#txCC_CtzNo").val( VR["Ctz"][0].ctzCodigo); 
-                $("#tabBienesList").html(VR["CdrDll"]);
-                
-              //  alert ( $("#CDR").attr("ctzID"));
 
+            if(VR["msgId"] == 500){
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
             }
-            else
-            {   jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo "); $("#divCCDll").html("");}
+            else{
+                if( VR["Ctz"].length>0 )
+                {
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
 
+                    /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
+                          jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
+                          jsFunCdrClear();
+                          return;
+                      }*/
+                    $("#CDR").attr("orgID", VR["Ctz"][0].ctzID);
+                    $("#CDR").attr("orgRef", VR["Ctz"][0].ctzCodigo);
+                    $("#CDR").attr("orgDoc", "CZ");
+                    $("#txCC_CtzNo").val( VR["Ctz"][0].ctzCodigo);
+                    $("#tabBienesList").html(VR["CdrDll"]);
+
+                    //  alert ( $("#CDR").attr("ctzID"));
+
+                }
+                else
+                {   jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo "); $("#divCCDll").html("");}
+            }
         }
     });
 }
 
-function jsFunDBCC_ReqGetData(Tipo,valor)
+function jsFunDBCC_ReqGetData(Tipo,valor) // use
 {
     $("#CDR").attr("orgID","NN");
     $("#CDR").attr("orgRef","NN");
@@ -1775,38 +1812,38 @@ function jsFunDBCC_ReqGetData(Tipo,valor)
         success: function (VR)
         {
             $(".modal-backdrop").remove();
-            if( VR["Req"].length>0 )
-            {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
-                
-              /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
-                    jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
-                    jsFunCdrClear();
-                    return;
-                }*/              
-                $("#CDR").attr("orgID", VR["Req"][0].reqID);                 
-                $("#CDR").attr("orgRef", VR["Req"][0].reqCodigo); 
-                $("#CDR").attr("orgDoc", "RQ");
-                $("#txCC_CtzNo").val( VR["Req"][0].reqCodigo); 
-                $("#tabBienesList").html(VR["CdrDll"]);
-             
-            }
-            else
-            {   jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo "); $("#divCCDll").html("");}
 
+            if(VR["msgId"] == 500){
+                jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", VR["msg"]);
+            }
+            else{
+                if( VR["Req"].length>0 )
+                {
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+
+                    /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
+                          jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
+                          jsFunCdrClear();
+                          return;
+                      }*/
+                    $("#CDR").attr("orgID", VR["Req"][0].reqID);
+                    $("#CDR").attr("orgRef", VR["Req"][0].reqCodigo);
+                    $("#CDR").attr("orgDoc", "RQ");
+                    $("#txCC_CtzNo").val( VR["Req"][0].reqCodigo);
+                    $("#tabBienesList").html(VR["CdrDll"]);
+                }
+                else
+                {   jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo "); $("#divCCDll").html("");}
+            }
         }
     });
 }
 
 
 
-function jsFunDBCC_CtzSetData(Tipo,valor)
+function jsFunDBCC_CtzSetData(Tipo,valor) // use
 {
-    $("#CDR").attr("orgID","NN");
-    $("#CDR").attr("orgRef","NN");
-    $("#CDR").attr("orgDoc","NN");
-    $("#tabBienesList").html('');
     var parent = null;
     var qry = "";
     if(Tipo=="COD")      {   qry=" and cast(substring (ctzcodigo,4,5) as int ) = "+valor;  }
@@ -1822,98 +1859,108 @@ function jsFunDBCC_CtzSetData(Tipo,valor)
         success: function (VR)
         {
             $(".modal-backdrop").remove();
-            if( VR["Ctz"].length>0 )
-            {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
-                
-              /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
-                    jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
-                    jsFunCdrClear();
-                    return;
-                }*/
-                $("#CDR").attr("orgID", VR["Ctz"][0].ctzID);                 
-                $("#CDR").attr("orgRef", VR["Ctz"][0].ctzCodigo); 
-                $("#CDR").attr("orgDoc", "CZ");
-                $("#txCC_CtzNo").val( VR["Ctz"][0].ctzCodigo); 
-                
-                $("#tabBienesList").html(VR["CdrDll"]);                
 
-                /*************************************************/
-                  if(!jsFunCdrVal( )){return ; }
+            if(VR["msgId"] == 500){
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+            }
+            else{
+                $("#CDR").attr("orgID","NN");
+                $("#CDR").attr("orgRef","NN");
+                $("#CDR").attr("orgDoc","NN");
+                $("#tabBienesList").html('');
+
+                if( VR["Ctz"].length>0 )
+                {
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+
+                    /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
+                          jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
+                          jsFunCdrClear();
+                          return;
+                      }*/
+                    $("#CDR").attr("orgID", VR["Ctz"][0].ctzID);
+                    $("#CDR").attr("orgRef", VR["Ctz"][0].ctzCodigo);
+                    $("#CDR").attr("orgDoc", "CZ");
+                    $("#txCC_CtzNo").val( VR["Ctz"][0].ctzCodigo);
+
+                    $("#tabBienesList").html(VR["CdrDll"]);
+
+                    /*************************************************/
+                    if(!jsFunCdrVal( )){return ; }
 
                     flg = false;
                     ItemArray = new Array();
                     $('#tbCdr_Dll tbody tr').each(function ()
-                        {
-                            if ($(this).attr("class")!="fila-Hide")  {
-                                    var fila = new Object();
-                                    fila.ID=0;
-                                    fila.cdItm= $(this).find("td[name=tdCdItm]").html();
-                                    fila.czItm= $(this).find("td[name=tdCzItm]").html();
-                                    fila.rqItm= $(this).find("td[name=tdRqItm]").html();
-                                    fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
-                                    fila.rubro= $(this).find("td[name=tdRubro]").attr('codID');
-                                    fila.cant= $(this).find("td[name=tdCant]").html();
-                                    fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
-                                    fila.prod = $(this).find("td[name=tdProd]").attr("codID");
-                                    fila.und = $(this).find("td[name=tdUnd]").attr("codID");
-                                    fila.espf = $(this).find("td[name=tdEspf]").html();
-                                    //fila.precioUnt = $(this).find("td[name=tdPrecio]").html();
-                                    ItemArray.push(fila);
-                                flg= true;
-                            }
-                        });
-                    
+                    {
+                        if ($(this).attr("class")!="fila-Hide")  {
+                            var fila = new Object();
+                            fila.ID=0;
+                            fila.cdItm= $(this).find("td[name=tdCdItm]").html();
+                            fila.czItm= $(this).find("td[name=tdCzItm]").html();
+                            fila.rqItm= $(this).find("td[name=tdRqItm]").html();
+                            fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
+                            fila.rubro= $(this).find("td[name=tdRubro]").attr('codID');
+                            fila.cant= $(this).find("td[name=tdCant]").html();
+                            fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
+                            fila.prod = $(this).find("td[name=tdProd]").attr("codID");
+                            fila.und = $(this).find("td[name=tdUnd]").attr("codID");
+                            fila.espf = $(this).find("td[name=tdEspf]").html();
+                            //fila.precioUnt = $(this).find("td[name=tdPrecio]").html();
+                            ItemArray.push(fila);
+                            flg= true;
+                        }
+                    });
+
                     valor = $("#CDR").attr("cdrID");
                     qry=" and cdrid = '"+valor+"'";
 
-                     var fullData = {
-                            'prCdrID': varCdr.cdrID,
-                            'prOrgID': varCdr.cdrOrgID ,
-                            'prOrgDoc': varCdr.cdrOrgDoc ,
-                            'prOrgRef': varCdr.cdrOrgRef ,
-                            'varCdrDll': JSON.parse(JSON.stringify(ItemArray)),
-                            'prAnio': $(".txVarAnioEjec").val(),
-                            'prRows':' Top 1 ',
-                            'prQry':qry,
-                            '_token': $('#tokenBtn').val()
+                    var fullData = {
+                        'prCdrID': varCdr.cdrID,
+                        'prOrgID': varCdr.cdrOrgID ,
+                        'prOrgDoc': varCdr.cdrOrgDoc ,
+                        'prOrgRef': varCdr.cdrOrgRef ,
+                        'varCdrDll': JSON.parse(JSON.stringify(ItemArray)),
+                        'prAnio': $(".txVarAnioEjec").val(),
+                        'prRows':' Top 1 ',
+                        'prQry':qry,
+                        '_token': $('#tokenBtn').val()
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "logistica/spLogSetCCCz",
+                        data: fullData,
+                        beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
+                        error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+                        success: function (VR) {
+                            $("#divDialog").dialog("close");
+                            $(".modal-backdrop").remove();
+
+                            if(VR["msgId"] == 500){
+                                jsFnDialogBox(400, 145, "WARNING", parent, VR["msg"]);
+                            }
+                            else{
+                                jsFunDBCC_GetData("NO","CID",valor)
+                            }
                         }
+                    });
 
-                        $.ajax({
-                                                    type: "POST",
-                                                    url: "logistica/spLogSetCCCz",
-                                                    data: fullData,
-                                                    beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
-                                                    error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
-                                                    success: function (VR) {
-                                                        $("#divDialog").dialog("close");
-                                                        $(".modal-backdrop").remove();
-                                                        jsFunDBCC_GetData("NO","CID",valor)
-
-                                                     
-                                                    }
-                        });
-
-                
-              //  alert ( $("#CDR").attr("ctzID"));
+                }
+                else
+                {
+                    jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo ");
+                    $("#divCCDll").html("");
+                }
 
             }
-            else
-            {   jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo "); $("#divCCDll").html("");}
-
         }
     });
 }
 
 
-function jsFunDBCC_ReqSetData(Tipo,valor)
+function jsFunDBCC_ReqSetData(Tipo,valor)  // use
 {
-    $("#CDR").attr("orgID","NN");
-    $("#CDR").attr("orgRef","NN");
-    $("#CDR").attr("orgDoc","NN");
-    $("#tabBienesList").html('');
-  
     var parent = null;
     var qry = "";
     if(Tipo=="COD")      {   qry=" and cast(substring (dbo.fnLogGetCodRq (reqID),4,5) as int ) = "+valor;  }
@@ -1929,85 +1976,99 @@ function jsFunDBCC_ReqSetData(Tipo,valor)
         success: function (VR)
         {
             $(".modal-backdrop").remove();
-            if( VR["Req"].length>0 )
-            {
-                $("#divDialog").dialog("close");
-                $(".modal-backdrop").remove();
-                
-              /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
-                    jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
-                    jsFunCdrClear();
-                    return;
-                }*/
-                $("#CDR").attr("orgID", VR["Req"][0].reqID);                 
-                $("#CDR").attr("orgRef", VR["Req"][0].reqCodigo); 
-                $("#CDR").attr("orgDoc", "RQ");
-                $("#txCC_CtzNo").val( VR["Req"][0].reqCodigo); 
-                $("#tabBienesList").html(VR["CdrDll"]);                
 
-                /*************************************************/
-                  if(!jsFunCdrVal( )){return ; }
+            if(VR["msgId"] == 500){
+                jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+            }
+            else{
+                $("#CDR").attr("orgID","NN");
+                $("#CDR").attr("orgRef","NN");
+                $("#CDR").attr("orgDoc","NN");
+                $("#tabBienesList").html('');
+
+                if( VR["Req"].length>0 )
+                {
+                    $("#divDialog").dialog("close");
+                    $(".modal-backdrop").remove();
+
+                    /*  if(VR["Ctz"][0].ctzEtapa=="PROCESADO" || VR["Ctz"][0].ctzEtapa=="ANULADO" ) {
+                          jsFnDialogBox(400, 145, "WARNING", null, "VERIFIQUE SUS DATOS - CT", "- La Cotizacion seleccionada esta <strong>"+VR["Ctz"][0].ctzEtapa+"</strong>");
+                          jsFunCdrClear();
+                          return;
+                      }*/
+                    $("#CDR").attr("orgID", VR["Req"][0].reqID);
+                    $("#CDR").attr("orgRef", VR["Req"][0].reqCodigo);
+                    $("#CDR").attr("orgDoc", "RQ");
+                    $("#txCC_CtzNo").val( VR["Req"][0].reqCodigo);
+                    $("#tabBienesList").html(VR["CdrDll"]);
+
+                    /*************************************************/
+                    if(!jsFunCdrVal( )){return ; }
 
                     flg = false;
                     ItemArray = new Array();
                     $('#tbCdr_Dll tbody tr').each(function ()
-                        {
-                            if ($(this).attr("class")!="fila-Hide")  {
-                                    var fila = new Object();
-                                    fila.ID=0;
-                                    fila.cdItm= $(this).find("td[name=tdCdItm]").html();
-                                    fila.czItm= $(this).find("td[name=tdCzItm]").html();
-                                    fila.rqItm= $(this).find("td[name=tdRqItm]").html();
-                                    fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
-                                    fila.rubro= $(this).find("td[name=tdRubro]").attr('codID');
-                                    fila.cant= $(this).find("td[name=tdCant]").html();
-                                    fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
-                                    fila.prod = $(this).find("td[name=tdProd]").attr("codID");
-                                    fila.und = $(this).find("td[name=tdUnd]").attr("codID");
-                                    fila.espf = $(this).find("td[name=tdEspf]").html();
-                                    //fila.precioUnt = $(this).find("td[name=tdPrecio]").html();
-                                    ItemArray.push(fila);
-                                flg= true;
-                            }
-                        });
-                    
+                    {
+                        if ($(this).attr("class")!="fila-Hide")  {
+                            var fila = new Object();
+                            fila.ID=0;
+                            fila.cdItm= $(this).find("td[name=tdCdItm]").html();
+                            fila.czItm= $(this).find("td[name=tdCzItm]").html();
+                            fila.rqItm= $(this).find("td[name=tdRqItm]").html();
+                            fila.secfun= $(this).find("td[name=tdSF]").attr('codID');
+                            fila.rubro= $(this).find("td[name=tdRubro]").attr('codID');
+                            fila.cant= $(this).find("td[name=tdCant]").html();
+                            fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
+                            fila.prod = $(this).find("td[name=tdProd]").attr("codID");
+                            fila.und = $(this).find("td[name=tdUnd]").attr("codID");
+                            fila.espf = $(this).find("td[name=tdEspf]").html();
+                            //fila.precioUnt = $(this).find("td[name=tdPrecio]").html();
+                            ItemArray.push(fila);
+                            flg= true;
+                        }
+                    });
+
                     valor = $("#CDR").attr("cdrID");
                     qry=" and cdrid = '"+valor+"'";
 
-                     var fullData = {
-                            'prCdrID': varCdr.cdrID,
-                            'prOrgID': varCdr.cdrOrgID ,
-                            'prOrgDoc': varCdr.cdrOrgDoc ,
-                            'prOrgRef': varCdr.cdrOrgRef ,
-                            'varCdrDll': JSON.parse(JSON.stringify(ItemArray)),
-                            'prAnio': $(".txVarAnioEjec").val(),
-                            'prRows':' Top 1 ',
-                            'prQry':qry,
-                            '_token': $('#tokenBtn').val()
+                    var fullData = {
+                        'prCdrID': varCdr.cdrID,
+                        'prOrgID': varCdr.cdrOrgID ,
+                        'prOrgDoc': varCdr.cdrOrgDoc ,
+                        'prOrgRef': varCdr.cdrOrgRef ,
+                        'varCdrDll': JSON.parse(JSON.stringify(ItemArray)),
+                        'prAnio': $(".txVarAnioEjec").val(),
+                        'prRows':' Top 1 ',
+                        'prQry':qry,
+                        '_token': $('#tokenBtn').val()
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "logistica/spLogSetCCCz",
+                        data: fullData,
+                        beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
+                        error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
+                        success: function (VR) {
+                            $("#divDialog").dialog("close");
+                            $(".modal-backdrop").remove();
+
+                            if(VR["msgId"] == 500){
+                                jsFnDialogBox(400, 145, "WARNING", parent, VR["msg"]);
+                            }
+                            else{
+                                jsFunDBCC_GetData("NO" ,"CID",valor)
+                            }
                         }
+                    });
 
-                        $.ajax({
-                                                    type: "POST",
-                                                    url: "logistica/spLogSetCCCz",
-                                                    data: fullData,
-                                                    beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
-                                                    error: function () {  jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
-                                                    success: function (VR) {
-                                                        $("#divDialog").dialog("close");
-                                                        $(".modal-backdrop").remove();
-                                                        jsFunDBCC_GetData("NO" ,"CID",valor)
-                                                          
-                                                     
-                                                    }
-                        });
 
-                
-              //  alert ( $("#CDR").attr("ctzID"));
+                    //  alert ( $("#CDR").attr("ctzID"));
 
+                }
+                else
+                {   jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo "); $("#divCCDll").html("");}
             }
-            else
-            {   jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro el Numero de Cotizacion <br> Vuelva a intentarlo "); $("#divCCDll").html("");}
-
         }
     });
 }

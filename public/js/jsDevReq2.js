@@ -53,7 +53,7 @@ $( document ).on( 'keydown',  '#btnLogReqSave , #btnLogReqCancel, #btnLogReqUpd,
     e.preventDefault();
 });
 
-$( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',function(e){
+$( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',function(e){ /* USE */
     e.preventDefault();
     if(!jsFunReqValidarDatos()){return ; }
     if($(this).attr("id") =="btnLogReqDel")  varDatosReq.reqOPE="DEL" ;
@@ -130,35 +130,34 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
                         error: function () {
                             jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>");
                         },
-                        success: function (returnData) {
+                        success: function (data) {
                             $("#divDialog").dialog("close");
                             $(".modal-backdrop").remove();
-                            if (returnData.length > 0) {
-                                if (returnData[0].Error == "0") {
-                                    varDatosReq.reqID = returnData[0].ReqNo;
 
-                                    jsFunReqEnable(true);
-                                    jsFunReqButtons(false);
-                                    $("#divDialog").dialog(opt);
-                                    $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display", "block");
-                                    $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
-                                    $("#divDialog").dialog("open");
-                                    $("#divDialog").dialog({width: 400, height: 150, title: "CONFIRMAR OPERACION"});
-                                    $("#divDialogCont").html(returnData[0].Mensaje);
-                                    $("#divDialog").dialog({
-                                        buttons: {
-                                            "Aceptar": function () {
-                                                if(varDatosReq.reqID!="NN") jsFunReqGetData("ID", varDatosReq.reqID);
-                                            }
-                                        }
-                                    });
-                                }
-                                else {
-                                    jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>" + returnData[0].Mensaje + "</strong>");
-                                }
+                            if(data.msgId == 500){
+                                jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", data.msg);
                             }
-                            else {
-                                jsFnDialogBox(400, 160, "ERROR", parentt, "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>No se retorno ningun registro.!</strong>");
+                            else{
+
+                                var returnData = data.result;
+
+                                varDatosReq.reqID = returnData[0].ReqNo;
+
+                                jsFunReqEnable(true);
+                                jsFunReqButtons(false);
+                                $("#divDialog").dialog(opt);
+                                $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").css("display", "block");
+                                $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
+                                $("#divDialog").dialog("open");
+                                $("#divDialog").dialog({width: 400, height: 150, title: "CONFIRMAR OPERACION"});
+                                $("#divDialogCont").html(returnData[0].Mensaje);
+                                $("#divDialog").dialog({
+                                    buttons: {
+                                        "Aceptar": function () {
+                                            if(varDatosReq.reqID!="NN") jsFunReqGetData("ID", varDatosReq.reqID);
+                                        }
+                                    }
+                                });
                             }
                         }
 
@@ -648,7 +647,7 @@ function jsFunReqValidarPto ( _idClasf, _codClasf)
    return valor ;
 }
 
-$(document).on('click','.addRow',function(e){
+$(document).on('click','.addRow',function(e){ // use
     e.preventDefault();
     var objEvento = $(this).parent().parent();
     if(!jsFunReqValidarDatos(objEvento )){return ; }
@@ -673,18 +672,26 @@ $(document).on('click','.addRow',function(e){
             data: fullData,
             beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", objEvento, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
             error: function () {  jsFnDialogBox(400, 145, "WARNING", objEvento, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>"); },
-            success: function (VR) {
+            success: function (data) {
+
                 $("#divDialog").dialog("close");
                 $(".modal-backdrop").remove();
-              //  console.log(VR);
-                if(VR["ReqDll"].length>0)
-                {
-                    $("#divProdBienes").html(VR["ReqDll"]);
-                    $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
-                    $('#dvAviso').modal('show');
+
+                if(data.msgId == 500){
+                    jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "<strong>"+data.msg+"</strong>");
                 }
-                else {
-                    jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                else{
+
+                    var VR = data.varReturn;
+                    if(VR["ReqDll"].length>0)
+                    {
+                        $("#divProdBienes").html(VR["ReqDll"]);
+                        $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
+                        $('#dvAviso').modal('show');
+                    }
+                    else {
+                        jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                    }
                 }
             }
         });
@@ -879,7 +886,7 @@ $(document).on('click','.CancelRow',function(e){
 
 
 
-$(document).on('click','.updRow',function(e){
+$(document).on('click','.updRow',function(e){ /* USE */
     e.preventDefault();
     var objEvento = $(this).parent().parent();
 
@@ -913,29 +920,35 @@ $(document).on('click','.updRow',function(e){
             data: fullData,
             beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", objEvento, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
             error: function () {  jsFnDialogBox(400, 145, "WARNING", objEvento, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>"); },
-            success: function (VR) {
+            success: function (data) {
                 $("#divDialog").dialog("close");
                 $(".modal-backdrop").remove();
-               
-                if (typeof VR["ReqDll"] != "undefined")
-                {
-                    if(VR["ReqDll"].length>0)
-                    {
-                        $("#divProdBienes").html(VR["ReqDll"]);                      
 
-                        if (VR["Msg"][0].Error != 0 ) {
-                           jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "<br><strong>" + VR["Msg"][0].Mensaje + "</strong>");
-                           }
-                    
+                if(data.msgId == 500){
+                    jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "<strong>" + data.msg + "</strong>");
+                }
+                else{
+                    var VR = data.varReturn;
+                    if (typeof VR["ReqDll"] != "undefined")
+                    {
+                        if(VR["ReqDll"].length>0)
+                        {
+                            $("#divProdBienes").html(VR["ReqDll"]);
+
+                            if (VR["Msg"][0].Error != 0 ) {
+                                jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "<br><strong>" + VR["Msg"][0].Mensaje + "</strong>");
+                            }
+
+                        }
+                        else {
+                            jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                        }
                     }
-                    else {
-                        jsFnDialogBox(400, 140, "WARNING", $(this), "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                    else
+                    {
+                        jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>" +VR[0].Mensaje + "</strong>");
                     }
                 }
-                else 
-                {
-                    jsFnDialogBox(400, 160, "ERROR", $(this), "ERROR EN LA PETICION", "Se produjo un ERROR en la Proceso. <br><strong>" +VR[0].Mensaje + "</strong>");
-                }           
                     
            }
         });
@@ -1037,7 +1050,7 @@ function jsFunReqButtons(flg)
 /****************************************************************************************/
 /** SECTION FUNCTION  OWN => DB *********************************************************/
 
-function jsFunReqGetData(Tipo,valor)
+function jsFunReqGetData(Tipo,valor) // USE
 {
     var qry = "";
     if(Tipo=="COD")
@@ -1058,10 +1071,15 @@ function jsFunReqGetData(Tipo,valor)
         data: dataString,
         beforeSend: function () {  jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
         error: function () {  jsFunReqClear(); jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>"); },
-        success: function (VR)
+        success: function (data)
         {
-            if(VR["Req"].length>0)
-            {
+            if(data.msgId == 500){
+                jsFunReqClear();
+                jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", data.msg);
+            }
+            else{
+                var VR = data.ReturnData;
+
                 $("#divDialog").dialog("close");
                 $(".modal-backdrop").remove();
                 $("#REQ").attr("reqEtapa",VR["Req"][0].reqEtapa);
@@ -1103,13 +1121,11 @@ function jsFunReqGetData(Tipo,valor)
                 $('#stxMontoReq').html("MONTO REQUERIMIENTO: <span style='font-size: 14px;'>" + VR["Req"][0].reqMonto + "</span>");
 
                 $("#divProdBienes").html(VR["ReqDll"]);
-               // $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
-               // $('#dvAviso').modal('show');
+                // $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
+                // $('#dvAviso').modal('show');
                 jsFunReqEnable(true);
                 jsFunReqButtons(false);
             }
-            else
-            {    jsFunReqClear(); jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");}
         }
     });
 
@@ -1433,14 +1449,18 @@ function jsFunDBReqLR(prPosition)
         url: "logistica/spLogGetReqLR",
         data: dataString,
         //  beforeSend: function () {  jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
-        error: function () {  jsFunReqClear(); jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>"); },
+        error: function (err) {
+            jsFunReqClear();
+            jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>"); },
         success: function (VR)
         {
-            if(VR[0].ID!="NN") {
-                jsFunReqGetData("ID",VR[0].ID);
+            if(VR.msgId == 500){
+                jsFunReqClear();
+                jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", VR.msg);
             }
-            else
-            {    jsFunReqClear(); jsFnDialogBox(400, 160, "WARNING", null, "RESULTADOS DE LA BUSQUEDA", "No se encontro ningun registro con el valor ingresado <br> Vuelva a intentarlo ");}
+            else{
+                jsFunReqGetData("ID",VR.ReturnData[0].ID);
+            }
         }
     });
 

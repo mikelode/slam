@@ -243,22 +243,22 @@ Route::post('logistica/spLogSetUsr', 'Logistica\ctrlGrl@spLogSetUsr');
 Route::get('logistica/vwReq', 'Logistica\ctrlReq@fnGetViewReq');
 Route::post('logistica/spLogGetReq', 'Logistica\ctrlReq@spLogGetReq');
 
-Route::post('logistica/spLogGetReqTmpII', 'Logistica\ctrlReq@spLogGetReqTmpII');
+Route::post('logistica/spLogGetReqTmpII', 'Logistica\ctrlReq@spLogGetReqTmpII'); // use
 
 Route::post('logistica/spLogGetReqD', 'Logistica\ctrlReq@spLogGetReqD');
 Route::post('logistica/spLogGetReqBusy', 'Logistica\ctrlReq@spLogGetReqBusy');
 Route::get('logistica/rptReq/{id}/{anio}', 'Logistica\ctrlReq@spLogGetReqPrint');
-Route::post('logistica/spLogSetReq', 'Logistica\ctrlReq@spLogSetReq');
-Route::post('logistica/spLogSetReqD', 'Logistica\ctrlReq@spLogSetReqD');
+Route::post('logistica/spLogSetReq', 'Logistica\ctrlReq@spLogSetReq'); // use
+Route::post('logistica/spLogSetReqD', 'Logistica\ctrlReq@spLogSetReqD'); // use
 Route::post('logistica/spLogSetReqBusy', 'Logistica\ctrlReq@spLogSetReqBusy');
-Route::post('logistica/spLogGetReqLR',   'Logistica\ctrlReq@spLogGetReqLR');
+Route::post('logistica/spLogGetReqLR',   'Logistica\ctrlReq@spLogGetReqLR'); // use
 
 /* REQUERIMIENTOS POR USUARIO */
 Route::get('logistica/vwreqs','Requerimiento\lsmReq@spLogListReq');
 
 /* *  COTIZACION ************* */
 Route::get('logistica/vwCtz',           'Logistica\ctrlCtz@fnGetViewCtz');
-Route::post('logistica/spLogSetCtz',    'Logistica\ctrlCtz@spLogSetCtz');
+Route::post('logistica/spLogSetCtz',    'Logistica\ctrlCtz@spLogSetCtz'); // use
 Route::post('logistica/spLogSetCtzD',   'Logistica\ctrlCtz@spLogSetCtzD');
 Route::Post('logistica/spLogSetCtzBusy',     'Logistica\ctrlCtz@spLogSetCtzBusy');
 Route::post('logistica/spLogGetCtzReq', 'Logistica\ctrlCtz@spLogGetCtzReq');
@@ -274,59 +274,59 @@ Route::get('logistica/vwCC',           'Logistica\ctrlCC@fnGetViewCC');
 Route::get('logistica/vwCCRucAdd',     'Logistica\ctrlCC@fnGetViewCCRucAdd');
 Route::get('logistica/spLogGetFte',    'Logistica\ctrlCC@spLogGetFte');
 Route::get('logistica/spLogGetFteD',    'Logistica\ctrlCC@spLogGetFteD');
-Route::Post('logistica/spLogSetFte',     'Logistica\ctrlCC@spLogSetFte');
-Route::Post('logistica/spLogSetFteD',     'Logistica\ctrlCC@spLogSetFteD');
-Route::Post('logistica/spLogSetCC',     'Logistica\ctrlCC@spLogSetCC');
+Route::Post('logistica/spLogSetFte',     'Logistica\ctrlCC@spLogSetFte'); // use
+Route::Post('logistica/spLogSetFteD',     'Logistica\ctrlCC@spLogSetFteD'); // use
+Route::Post('logistica/spLogSetCC',     'Logistica\ctrlCC@spLogSetCC'); // use
 Route::Post('logistica/spLogSetCCD',     'Logistica\ctrlCC@spLogSetCCD');
-Route::Post('logistica/spLogSetCCCz',     'Logistica\ctrlCC@spLogSetCCCz');
-Route::Post('logistica/spLogGetCC',     'Logistica\ctrlCC@spLogGetCC');
+Route::Post('logistica/spLogSetCCCz',     'Logistica\ctrlCC@spLogSetCCCz'); // use
+Route::Post('logistica/spLogGetCC',     'Logistica\ctrlCC@spLogGetCC'); // use
 Route::Post('logistica/spLogSetCCBusy',     'Logistica\ctrlCC@spLogSetCCBusy');
 Route::get('logistica/rptCC/{anio}/{id}',     'Logistica\ctrlCC@spLogGetCCPrint');
 Route::post('logistica/spLogGetCCLR',   'Logistica\ctrlCC@spLogGetCCLR');
 Route::post('logistica/spLogGetCCSearch',   'Logistica\ctrlCC@spLogGetCCSearch');
 
-Route::Post('logistica/spLogGetCC_Ctz',     'Logistica\ctrlCC@spLogGetCC_Ctz');
-Route::Post('logistica/spLogGetCC_Req',     'Logistica\ctrlCC@spLogGetCC_Req');
+Route::Post('logistica/spLogGetCC_Ctz',     'Logistica\ctrlCC@spLogGetCC_Ctz'); // use
+Route::Post('logistica/spLogGetCC_Req',     'Logistica\ctrlCC@spLogGetCC_Req'); // use
 
 /* *  ORDEN DE COMPRA ************* */
 Route::get('logistica/vwOC',           'Logistica\ctrlOC@fnGetViewOC');
 Route::post('logistica/spLogGetOC',    'Logistica\ctrlOC@spLogGetOC');
-Route::post('logistica/spLogGetOCTmp',    'Logistica\ctrlOC@spLogGetOCTmp');
+Route::post('logistica/spLogGetOCTmp',    'Logistica\ctrlOC@spLogGetOCTmp'); // use
 Route::post('logistica/spLogGetOCD',   'Logistica\ctrlOC@spLogGetOCD');
 Route::post('logistica/spLogGetOCBusy','Logistica\ctrlOC@spLogGetOCBusy');
 Route::get('logistica/rptOC/{anio}/{id}',     'Logistica\ctrlOC@spLogGetOCPrint');
 
 //Route::get('logistica/rptOC/{id}',     'Logistica\ctrlOC@spPrueba');
 
-Route::post('logistica/spLogSetOC',    'Logistica\ctrlOC@spLogSetOC');
-Route::post('logistica/spLogSetOCD',   'Logistica\ctrlOC@spLogSetOCD');
+Route::post('logistica/spLogSetOC',    'Logistica\ctrlOC@spLogSetOC'); // use
+Route::post('logistica/spLogSetOCD',   'Logistica\ctrlOC@spLogSetOCD'); // use
 Route::Post('logistica/spLogSetOCBusy','Logistica\ctrlOC@spLogSetOCBusy');
 Route::Post('logistica/spLogSetOcDClear',  'Logistica\ctrlOC@spLogSetOcDClear');
 //Route::post('logistica/spLogSetOCBusy','Logistica\ctrlOC@spLogSetOCBusy');
-Route::post('logistica/spLogGetOCReq', 'Logistica\ctrlOC@spLogGetReq');
+Route::post('logistica/spLogGetOCReq', 'Logistica\ctrlOC@spLogGetReq'); // use
 Route::post('logistica/spLogGetOCLR',  'Logistica\ctrlOC@spLogGetOCLR');
 Route::post('logistica/spLogGetOCSearch', 'Logistica\ctrlOC@spLogGetOCSearch');
 Route::get('logistica/vwCatalogoOC',      'Logistica\ctrlOC@fnGetViewCatalogoOC');
-Route::post('logistica/vwGetTable',      'Logistica\ctrlOC@fnGetViewTableNull');
+Route::post('logistica/vwGetTable',      'Logistica\ctrlOC@fnGetViewTableNull'); // use
 Route::Post('logistica/spLogSetOCIgv','Logistica\ctrlOC@spLogSetOCIgv');
-Route::Post('logistica/spLogSetOCDDel','Logistica\ctrlOC@spLogSetOCDDel');
-Route::post('logistica/spLogGetOC_CCVal', 'Logistica\ctrlOC@spLogGetOC_CCVal');
+Route::Post('logistica/spLogSetOCDDel','Logistica\ctrlOC@spLogSetOCDDel'); // use
+Route::post('logistica/spLogGetOC_CCVal', 'Logistica\ctrlOC@spLogGetOC_CCVal'); // use
 
 /* *  ORDEN DE SERVICIO ************* */
 Route::get('logistica/vwOS',           'Logistica\ctrlOS@fnGetViewOS');
-Route::post('logistica/spLogGetOS',    'Logistica\ctrlOS@spLogGetOS');
+Route::post('logistica/spLogGetOS',    'Logistica\ctrlOS@spLogGetOS'); // use
 Route::post('logistica/spLogGetOSD',   'Logistica\ctrlOS@spLogGetOSD');
 Route::post('logistica/spLogGetOSBusy','Logistica\ctrlOS@spLogGetOSBusy');
 Route::get('logistica/rptOS/{anio}/{id}',     'Logistica\ctrlOS@spLogGetOSPrint');
 Route::post('logistica/spLogSetOS',    'Logistica\ctrlOS@spLogSetOS');
-Route::post('logistica/spLogSetOSD',   'Logistica\ctrlOS@spLogSetOSD');
+Route::post('logistica/spLogSetOSD',   'Logistica\ctrlOS@spLogSetOSD'); // use
 Route::post('logistica/spLogSetOSBusy','Logistica\ctrlOS@spLogSetOSBusy');
-Route::post('logistica/spLogGetOSReq', 'Logistica\ctrlOS@spLogGetReq');
-Route::post('logistica/spLogGetOSLR',   'Logistica\ctrlOS@spLogGetOSLR');
+Route::post('logistica/spLogGetOSReq', 'Logistica\ctrlOS@spLogGetReq'); // use
+Route::post('logistica/spLogGetOSLR',   'Logistica\ctrlOS@spLogGetOSLR'); // use
 Route::post('logistica/spLogGetOSSearch',   'Logistica\ctrlOS@spLogGetOSSearch');
-Route::post('logistica/vwGetTableOSDll',  'Logistica\ctrlOS@fnGetViewTableOSNull');
-Route::Post('logistica/spLogSetOSDDel','Logistica\ctrlOS@spLogSetOSDDel');
-Route::post('logistica/spLogGetOS_CCVal', 'Logistica\ctrlOS@spLogGetOS_CCVal');
+Route::post('logistica/vwGetTableOSDll',  'Logistica\ctrlOS@fnGetViewTableOSNull'); // use
+Route::Post('logistica/spLogSetOSDDel','Logistica\ctrlOS@spLogSetOSDDel'); // use
+Route::post('logistica/spLogGetOS_CCVal', 'Logistica\ctrlOS@spLogGetOS_CCVal'); // use
 
 
 

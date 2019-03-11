@@ -397,8 +397,11 @@ $("#txOC_Condicion").summernote(
      width:630,
      height:250,
  styleWithSpan: false,
-                        toolbar: [
-                        ]
+      toolbar: [
+          ['style', ['bold', 'italic', 'underline']],
+          ['para', ['ul']],
+          ['height', ['height']]
+      ]
 }
   );
 </script>>

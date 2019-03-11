@@ -47,20 +47,33 @@ class ctrlOC extends Controller
     }
 
      public function spLogGetOCTmp (Request $prRqsOC)
-    {  $Doc = "Odc";
-        $ReturnData["OC"] = \DB::select('exec spLogGetOCTmp ?,?,?', array(  $prRqsOC->prRows, $prRqsOC->prAnio, $prRqsOC->prQry ));
-        if(isset ($ReturnData["OC"][0]->ocID)) {
-            $result = \DB::select('exec spLogGetOCD ?', array($ReturnData["OC"][0]->ocID));
-            $ReturnData["OCDll"] = view('logistica.Partials.logOCDll', compact('result',"Doc"))->render();
+    {
+        try{
+
+            $Doc = "Odc";
+            $ReturnData["OC"] = \DB::select('exec spLogGetOCTmp ?,?,?', array(  $prRqsOC->prRows, $prRqsOC->prAnio, $prRqsOC->prQry ));
+            if(isset ($ReturnData["OC"][0]->ocID)) {
+                $result = \DB::select('exec spLogGetOCD ?', array($ReturnData["OC"][0]->ocID));
+                $ReturnData["OCDll"] = view('logistica.Partials.logOCDll', compact('result',"Doc"))->render();
+            }
+            else{
+                throw new Exception("No existe el número de Orden de Compra ingresado");
+            }
+            $ReturnData["Exp"] = \DB::select('exec spLogGetCSExpRow ?', array($ReturnData["OC"][0]->ocID));
+            $ReturnData["msgId"] = 200;
+            $ReturnData["msg"] = "Recuperado OC";
+
+        }catch (Exception $e){
+            $ReturnData["msgId"] = 500;
+            $ReturnData["msg"] = $e->getMessage();
         }
-         $ReturnData["Exp"] = \DB::select('exec spLogGetCSExpRow ?', array($ReturnData["OC"][0]->ocID));
+
         return  $ReturnData ;
     }
 
 
-    public function spLogSetOC(Request $prRqsOC)
+    public function spLogSetOC(Request $prRqsOC) // use
     {
-        //sleep(1);
         try{
 
             $dbResult = null;
@@ -113,7 +126,29 @@ class ctrlOC extends Controller
                 {
                     foreach ($prRqsOC["varOCDll"] as $key => $valor)
                     {
-                        $dbResultDll = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,? ', array( 'ADD',$idOC , $valor["prod"], $valor["und"], $valor["clasf"],$valor["cant"],$valor["precio"],$valor["marca"],$valor["espf"],$valor["ocItm"], $valor["cdItm"]  ,$valor["czItm"],$valor["rqItm"],  Auth::user()->usrID , $valor["envio"]  ,$valor["secFun"], $valor['secfund'], $valor['rubro'] ));
+                        if($valor['secfund'] == 'NN' || $valor['rubro'] == 'NN')
+                            throw new Exception("Debe ingresar el rubro o secuencia funcional del producto y validarlo con la tecla ENTER");
+
+                        $dbResultDll = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,?  ,?,?,?,?,? ,?,?,? ', array(
+                            'ADD',
+                            $idOC ,
+                            $valor["prod"],
+                            $valor["und"],
+                            $valor["clasf"],
+                            $valor["cant"],
+                            $valor["precio"],
+                            $valor["marca"],
+                            $valor["espf"],
+                            $valor["ocItm"],
+                            $valor["cdItm"]  ,
+                            $valor["czItm"],
+                            $valor["rqItm"],
+                            Auth::user()->usrID ,
+                            $valor["envio"]  ,
+                            $valor["secFun"],
+                            $valor['secfund'],
+                            $valor['rubro']
+                        ));
                         if ($dbResultDll[0]->OCNo == "NN")
                         {
                             throw new Exception(' NO se registro : ' . $valor["prod"]);
@@ -143,39 +178,84 @@ class ctrlOC extends Controller
     }
     public function spLogSetOCD(Request $prRqsOC)
     {
-        $Doc = "Odc" ;
-        $varReturn["varReturns"] = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,? ,?,?,? ',
-            array(
-                $prRqsOC["varBns"]["OPE"] ,
-                $prRqsOC["varBns"]["OCID"] ,
-                $prRqsOC["varBns"]["prodID"]  ,
-                $prRqsOC["varBns"]["prodUndID"],
-                $prRqsOC["varBns"]["prodClasfID"],
-                $prRqsOC["varBns"]["prodCant"],
-                $prRqsOC["varBns"]["prodPrecio"],
-                $prRqsOC["varBns"]["prodMarca"],
-                $prRqsOC["varBns"]["prodEspf"],
-                $prRqsOC["varBns"]["ocItm"],
-                $prRqsOC["varBns"]["cdItm"],
-                $prRqsOC["varBns"]["czItm"],
-                $prRqsOC["varBns"]["rqItm"],
-                Auth::user()->usrID ,
-                0,
-                $prRqsOC["varBns"]["prodSecFun"],
-                $prRqsOC["varBns"]["prodsf"],
-                $prRqsOC["varBns"]["prodrubro"]
-            ));
-        $result = \DB::select('exec spLogGetOCD ?',array( $prRqsOC["varBns"]["OCID"]));
-        $varReturn["vwDll"] =  view ('logistica.Partials.logOCDll',compact( 'result','Doc'))->render();
+        try{
+            $varReturn = null;
+
+            $exception = DB::transaction(function () use($prRqsOC, &$varReturn){
+
+                $Doc = "Odc" ;
+
+                if($prRqsOC["varBns"]['prodsf'] == 'NN' || $prRqsOC['varBns']['prodrubro'] == 'NN')
+                    throw new Exception("Debe ingresar el rubro o secuencia funcional del producto y validarlo con la tecla ENTER");
+
+                $varReturn["varReturns"] = \DB::select('exec spLogSetOCD ?,?,?,?,?  ,?,?,?,?,? ,?,?,?,?,? ,?,?,? ',
+                    array(
+                        $prRqsOC["varBns"]["OPE"] ,
+                        $prRqsOC["varBns"]["OCID"] ,
+                        $prRqsOC["varBns"]["prodID"]  ,
+                        $prRqsOC["varBns"]["prodUndID"],
+                        $prRqsOC["varBns"]["prodClasfID"],
+                        $prRqsOC["varBns"]["prodCant"],
+                        $prRqsOC["varBns"]["prodPrecio"],
+                        $prRqsOC["varBns"]["prodMarca"],
+                        $prRqsOC["varBns"]["prodEspf"],
+                        $prRqsOC["varBns"]["ocItm"],
+                        $prRqsOC["varBns"]["cdItm"],
+                        $prRqsOC["varBns"]["czItm"],
+                        $prRqsOC["varBns"]["rqItm"],
+                        Auth::user()->usrID ,
+                        0,
+                        $prRqsOC["varBns"]["prodSecFun"],
+                        $prRqsOC["varBns"]["prodsf"],
+                        $prRqsOC["varBns"]["prodrubro"]
+                    ));
+                $result = \DB::select('exec spLogGetOCD ?',array( $prRqsOC["varBns"]["OCID"]));
+                $varReturn["vwDll"] =  view ('logistica.Partials.logOCDll',compact( 'result','Doc'))->render();
+
+            });
+
+            if(is_null($exception)){
+                $varReturn["msgId"] = 200;
+                $varReturn["msg"] = 'OK guardado producto';
+            }
+            else{
+                throw new Exception($exception);
+            }
+
+        }catch (Exception $e){
+            $varReturn["msgId"] = 500;
+            $varReturn["msg"] = $e->getMessage();
+        }
+
         return  $varReturn;
     }
 	
 	 public function spLogSetOCDDel(Request $prRqsOC)
     {
-        $Doc = "Odc" ;
-        $varReturn["varReturns"] = \DB::select('exec spLogSetOCDDel ?',  array( $prRqsOC->ocID));        
-        $result = \DB::select('exec spLogGetOCD ?',array( $prRqsOC->ocID));
-        $varReturn["vwDll"] =  view ('logistica.Partials.logOCDll',compact( 'result', 'Doc'))->render();
+        try{
+            $varReturn = null;
+            $exception = DB::transaction(function () use($prRqsOC, &$varReturn){
+
+                $Doc = "Odc" ;
+                $varReturn["varReturns"] = \DB::select('exec spLogSetOCDDel ?',  array( $prRqsOC->ocID));
+                $result = \DB::select('exec spLogGetOCD ?',array( $prRqsOC->ocID));
+                $varReturn["vwDll"] =  view ('logistica.Partials.logOCDll',compact( 'result', 'Doc'))->render();
+
+            });
+
+            if(is_null($exception)){
+                $varReturn["msgId"] = 200;
+                $varReturn["msg"] = "OK DEL";
+            }
+            else{
+                throw new Exception($exception);
+            }
+
+        }catch (Exception $e){
+            $varReturn["msgId"] = 200;
+            $varReturn["msg"] = $e->getMessage();
+        }
+
         return  $varReturn;
     }
 
@@ -233,13 +313,27 @@ class ctrlOC extends Controller
 
      public function spLogGetReq(Request $prRqsOC)
     {
-        $Doc = "Req";
-        $ReturnData["Req"] = \DB::select('exec spLogGetReqTmp ?,?,?', array(   $prRqsOC->prRows, $prRqsOC->prAnio, $prRqsOC->prQry ));
-        if(isset ($ReturnData["Req"][0]->reqID)) {
-            $result = \DB::select('exec spLogGetReqD ?', array($ReturnData["Req"][0]->reqID));      //  dd($dll);
-            $reqTmpID=$ReturnData["Req"][0]->reqSecFunID ;
-            $ReturnData["vwDll"] = view('logistica.Partials.logOCDll', compact('result',"Doc",'reqTmpID'))->render();
+        try{
+
+            $Doc = "Req";
+            $ReturnData["Req"] = \DB::select('exec spLogGetReqTmp ?,?,?', array(   $prRqsOC->prRows, $prRqsOC->prAnio, $prRqsOC->prQry ));
+            if(isset ($ReturnData["Req"][0]->reqID)) {
+                $result = \DB::select('exec spLogGetReqD ?', array($ReturnData["Req"][0]->reqID));      //  dd($dll);
+                $reqTmpID=$ReturnData["Req"][0]->reqSecFunID ;
+                $ReturnData["vwDll"] = view('logistica.Partials.logOCDll', compact('result',"Doc",'reqTmpID'))->render();
+            }
+            else{
+                throw new Exception("No existe el número de Requerimiento ingresado");
+            }
+
+            $ReturnData["msgId"] = 200;
+            $ReturnData["msg"] = 'OK RQ';
+
+        }catch (Exception $e){
+            $ReturnData["msgId"] = 500;
+            $ReturnData["msg"] = $e->getMessage();
         }
+
         return  $ReturnData ;
     }
 
@@ -299,7 +393,7 @@ class ctrlOC extends Controller
         return $$ReturnData;
     }
 	
-	public  function fnGetViewTableNull(Request $prRqsOC)
+	public  function fnGetViewTableNull(Request $prRqsOC) // use
     { 
 	   
        $Doc = "Null";
@@ -315,43 +409,79 @@ class ctrlOC extends Controller
         return  $ReturnData;
     }
 	
+    public function spLogGetOC_CCVal(Request $prRqsCC) // use
+    {
+        try{
+            $varReturn = null;
 
-     public function spLogGetOC_CCVal(Request $prRqsCC)    {
-            $reqTmpID="";
-            $varReturn["CC"] = \DB::select('exec spLogGetCC ?,?,?', array($prRqsCC->prRows, $prRqsCC->prAnio, $prRqsCC->prQry));
-            if(  count( $varReturn["CC"])>0) 
-            {
-                 $Doc="Cdr";                 
-                 $result = \DB::select('exec spLogGetFte ?,?,?,?', array('NO', '', $varReturn["CC"][0]->cdrID, 'P'));          
-                 $varReturn["Fts"] = view('logistica.Partials.logCdrRucList', compact('result'))->render();
-                 $Ftes["Fte"] = \DB::select('exec spLogGetFte ?,?,?,?', array('SI', $varReturn["CC"][0]->cdrOrg, $varReturn["CC"][0]->cdrOrgID, 'P'));
+            $exception = DB::transaction(function () use($prRqsCC, &$varReturn){
 
-                 if(isset( $Ftes["Fte"][0]->fteID))
-                    $varReturn["Adj"] = view('logistica.Partials.logCdrRucAdj', ["Ftes"=>$Ftes,'Just'=>$varReturn["CC"][0]->cdrJustf,'Eje'=>$varReturn["CC"][0]->cdrEjecucion,'Ent'=>$varReturn["CC"][0]->cdrEntrega,'LugarEnt'=>$varReturn["CC"][0]->cdrLugarEnt ])->render();
-                 else
-                    $varReturn["Adj"] = view('logistica.Partials.logCdrRucAdj',compact('result') )->render();
+                $reqTmpID="";
+                $varReturn["CC"] = \DB::select('exec spLogGetCC ?,?,?', array($prRqsCC->prRows, $prRqsCC->prAnio, $prRqsCC->prQry));
 
-                 $varReturn["AdjDll"] =$Ftes["Fte"];
-                 $tmpQry="";
-                 if (  $varReturn["CC"][0]->cdrOrgDoc =="CZ") 
-                 {  
-                    $tmpQry=" and reqCtzID =  '".$varReturn["CC"][0]->cdrOrgID."'" ; 
-                    $varReturn["Req"] =\DB::select('exec spLogGetReq ?,?,?', array(  ' top 1 ', $prRqsCC->prAnio, $tmpQry  ));
-                    $reqTmpID=$varReturn["Req"][0]->reqSecFunID ;
-                 }
-                 else if (  $varReturn["CC"][0]->cdrOrgDoc =="RQ") 
-                { 
-                    $tmpQry=" and reqID =   '".$varReturn["CC"][0]->cdrOrgID."'" ; 
-                    $varReturn["Req"] =\DB::select('exec spLogGetReq ?,?,?', array(  ' top 1 ', $prRqsCC->prAnio, $tmpQry  ));
-                    $reqTmpID=$varReturn["Req"][0]->reqSecFunID ;
+                if(count( $varReturn["CC"])>0){
+
+                    $Doc="Cdr";
+                    $result = \DB::select('exec spLogGetFte ?,?,?,?', array('NO', '', $varReturn["CC"][0]->cdrID, 'P'));
+                    $varReturn["Fts"] = view('logistica.Partials.logCdrRucList', compact('result'))->render();
+                    $Ftes["Fte"] = \DB::select('exec spLogGetFte ?,?,?,?', array(
+                        'SI',
+                        $varReturn["CC"][0]->cdrOrg,
+                        $varReturn["CC"][0]->cdrOrgID,
+                        'P'
+                    ));
+
+                    if(isset( $Ftes["Fte"][0]->fteID))
+                        $varReturn["Adj"] = view('logistica.Partials.logCdrRucAdj', ["Ftes"=>$Ftes,'Just'=>$varReturn["CC"][0]->cdrJustf,'Eje'=>$varReturn["CC"][0]->cdrEjecucion,'Ent'=>$varReturn["CC"][0]->cdrEntrega,'LugarEnt'=>$varReturn["CC"][0]->cdrLugarEnt ])->render();
+                    else
+                        $varReturn["Adj"] = view('logistica.Partials.logCdrRucAdj',compact('result') )->render();
+
+                    $varReturn["AdjDll"] =$Ftes["Fte"];
+
+                    if(count($varReturn["AdjDll"]) == 0){
+                        throw new Exception("No se ha determinado el proveedor con BUENA PRO en el Cuadro Comparativo: ".$varReturn["CC"][0]->cdrID);
+                    }
+
+                    $tmpQry="";
+                    if (  $varReturn["CC"][0]->cdrOrgDoc =="CZ")
+                    {
+                        $tmpQry=" and reqCtzID =  '".$varReturn["CC"][0]->cdrOrgID."'" ;
+                        $varReturn["Req"] =\DB::select('exec spLogGetReq ?,?,?', array(  ' top 1 ', $prRqsCC->prAnio, $tmpQry  ));
+                        $reqTmpID=$varReturn["Req"][0]->reqSecFunID ;
+                    }
+                    else if (  $varReturn["CC"][0]->cdrOrgDoc =="RQ")
+                    {
+                        $tmpQry=" and reqID =   '".$varReturn["CC"][0]->cdrOrgID."'" ;
+                        $varReturn["Req"] =\DB::select('exec spLogGetReq ?,?,?', array(  ' top 1 ', $prRqsCC->prAnio, $tmpQry  ));
+                        $reqTmpID=$varReturn["Req"][0]->reqSecFunID ;
+                    }
+                    else {   $varReturn["Req"]=null ;}
+
+                    $result = \DB::select('exec spLogGetFteD ?',array( $varReturn["CC"][0]->cdrOrg));
+                    $varReturn["OcDll"] = view ('logistica.Partials.logOCDll',compact( 'result','Doc', 'reqTmpID'))->render();
+
                 }
-                else {   $varReturn["Req"]=null ;}    
+                else{
+                    $varReturn["Fts"]= null ;
+                    $varReturn["Adj"]= null;
+                    throw new Exception("No existe el Cuadro Comparativo ingresado");
+                }
 
-              $result = \DB::select('exec spLogGetFteD ?',array( $varReturn["CC"][0]->cdrOrg));
-              $varReturn["OcDll"] = view ('logistica.Partials.logOCDll',compact( 'result','Doc', 'reqTmpID'))->render();       
+            });
 
+            if(is_null($exception)){
+                $varReturn["msgId"] = 200;
+                $varReturn["msg"] = "OK CC";
+            }
+            else{
+                throw new Exception($exception);
+            }
+
+        }catch (Exception $e){
+            $varReturn["msgId"] = 500;
+            $varReturn["msg"] = $e->getMessage();
         }
-        else{  $varReturn["Fts"]= null ;$varReturn["Adj"]= null;}
+
         return $varReturn;
     }
 
