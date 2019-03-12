@@ -853,18 +853,25 @@ $(document).on('click','.deleteRow',function(e){
                         data: fullData,
                         beforeSend: function () { jsFnDialogBox(0, 0, "LOAD", objCurrent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
                         error: function () {  jsFnDialogBox(400, 145, "WARNING", objCurrent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>"); },
-                        success: function (VR) {
+                        success: function (response) {
                             $("#divDialog").dialog("close");
                             $(".modal-backdrop").remove();
-                           // console.log(VR);
-                            if(VR["ReqDll"].length>0)
-                            {
-                                $("#divProdBienes").html(VR["ReqDll"]);
-                                $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE'));
-                                $('#dvAviso').modal('show');
+
+                            if(response.msgId == 500){
+                                jsFnDialogBox(400, 140, "WARNING", objCurrent, "AVISO ", response.msg);
                             }
-                            else {
-                                jsFnDialogBox(400, 140, "WARNING", objCurrent, "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                            else{
+                                var VR = response.varReturn;
+                                // console.log(VR);
+                                if(VR["ReqDll"].length>0)
+                                {
+                                    $("#divProdBienes").html(VR["ReqDll"]);
+                                    $("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION', 'Los Datos fueron Procesados CORRECTAMENTE: ITEM BORRADO'));
+                                    $('#dvAviso').modal('show');
+                                }
+                                else {
+                                    jsFnDialogBox(400, 140, "WARNING", objCurrent, "AVISO ", "Este Requerimiento no tienes ningun registro</strong>");
+                                }
                             }
                         }
                     });
