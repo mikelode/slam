@@ -48,22 +48,23 @@ class ctrlReq extends Controller
     {
         try{
 
-            $varOpe = $request["datos"]["reqOPE"];
-            $ErrorDtll=array();
-            $idU = Auth::user()->usrID;
-            $flg = false;
-            if( !($varOpe=="TRH" || $varOpe=="DEL" )) {
-                foreach ($request["lista"] as $key => $valor) {    $flg = true;    }
-                if (!$flg) {
-                    array_push($ErrorDtll, array('ReqNo' => 'NN', 'Error' => '1', 'Mensaje' => ' Falta los Detalles del Requerimiento'));
-                    throw new Exception("Faltan los detalles del Requerimiento");
-                    //return response()->json($ErrorDtll);
-                }
-            }
-
             $result = null;
 
-            $exception = DB::transaction(function () use($request, $varOpe, $idU, &$result){
+            $exception = DB::transaction(function () use($request, &$result){
+
+                $varOpe = $request["datos"]["reqOPE"];
+                $ErrorDtll=array();
+                $idU = Auth::user()->usrID;
+                $flg = false;
+                if( !($varOpe=="TRH" || $varOpe=="DEL" )) {
+                    foreach ($request["lista"] as $key => $valor) {    $flg = true;    }
+                    if (!$flg) {
+                        array_push($ErrorDtll, array('ReqNo' => 'NN', 'Error' => '1', 'Mensaje' => ' Falta los Detalles del Requerimiento'));
+                        throw new Exception("Faltan los detalles del Requerimiento");
+                        //return response()->json($ErrorDtll);
+                    }
+                }
+
 
                 /* obtenemos la data del req que se esta editando */
                 if( $varOpe == 'UPD' ){

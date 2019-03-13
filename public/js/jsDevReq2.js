@@ -69,8 +69,8 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
     parentt = $(this);
     flg = false ;
     if (varDatosReq.reqOPE=="ADD" || varDatosReq.reqOPE =="UPD" || varDatosReq.reqOPE =="DEL" || varDatosReq.reqOPE =="TRH"   ) {
-    var ItemArray = new Array();
-    $('#tbProdBienes tbody tr').each(function ()
+        var ItemArray = new Array();
+        $('#tbProdBienes tbody tr').each(function ()
         {
             if ($(this).attr("class")!="fila-Hide")  {
                     var fila = new Object();
@@ -87,7 +87,7 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
                 flg= true;
             }
         });
-       if(varDatosReq.reqOPE =="ADD" || varDatosReq.reqOPE =="UPD")  {
+        if(varDatosReq.reqOPE =="ADD" || varDatosReq.reqOPE =="UPD")  {
             if(!flg){
                 jsFnDialogBox(400, 145, "WARNING", null, "ERROR EN LA PETICION", "Falta ingresar los detalles del requerimiento ( Bienes o Servicios )");return ;
             }
@@ -96,14 +96,14 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
                 'lista': JSON.parse(JSON.stringify(ItemArray)),
                 '_token': $('#tokenBtnMain').val()
             }
-       }
+        }
         else {
            var fullData = {
                'datos': varDatosReq,
             //   'lista': JSON.parse(JSON.stringify(ItemArray)),
                '_token': $('#tokenBtnMain').val()
            }
-       }
+        }
 
 
         $("#divDialog").dialog(opt);
@@ -116,6 +116,7 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
         else if (varDatosReq.reqOPE=="UPD")     $("#divDialogCont").html('Esta seguro que desea ACTUALIZAR el Registro Seleccionado ? ');
         else if (varDatosReq.reqOPE=="ADD")     $("#divDialogCont").html('Esta seguro que desea GUARDAR el Registro Seleccionado ? ');
         else $("#divDialogCont").html('ERROR de SELECCION ');
+
         $("#divDialog").dialog({
             buttons: {
                 "Aceptar": function () {
@@ -168,7 +169,7 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
                     $(this).dialog("close");
                 }
             }
-            });
+        });
     }
 });
 $( document ).on( 'click',  '#btnLogReqCancel',function(e) {

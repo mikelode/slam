@@ -415,7 +415,7 @@ $( document ).on( 'click',  '#btnLogOCUpd',function(e) {
     $("#divDialog").dialog(opt).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("gs-ui-state-primary");
     $("#divDialog").dialog("open");
     $("#divDialog").dialog({ width:400 ,height: 175, title: "CONFIRMAR PROCESOS"});
-    $("#divDialogCont").html("Esta Seguro de Actualizar el ORDEN DE COMPRA");
+    $("#divDialogCont").html("Esta Seguro de Actualizar la ORDEN DE COMPRA");
     $("#divDialog").dialog({
         buttons: {
             "Aceptar": function () {
@@ -774,56 +774,60 @@ $(document).on('click , keydown','#btnLogReq_dllSalir',function(e) {
 
 $( document ).on( 'click' ,'#btnLogOC_dllDEL ',function(e) {
 
-
-
     var msg= confirm("ESTA SEGURO QUE DESEA ELIMINAR EL REGISTRO");
 	if(msg)
 	{	
-						var trCloneFILAS = $(this).parent().parent();
-						varOCDll.OPE="DEL";
-						varOCDll.OCID =$("#OC").attr("ocID");
-						varOCDll.ocItm=trCloneFILAS.find("td[name=tdOcItm]").html();
-                        varOCDll.cdItm=trCloneFILAS.find("td[name=tdCdItm]").html();
-                        varOCDll.czItm=trCloneFILAS.find("td[name=tdCzItm]").html();
-                        varOCDll.rqItm=trCloneFILAS.find("td[name=tdRqItm]").html();
+        var trCloneFILAS = $(this).parent().parent();
+        varOCDll.OPE="DEL";
+        varOCDll.OCID =$("#OC").attr("ocID");
+        varOCDll.ocItm=trCloneFILAS.find("td[name=tdOcItm]").html();
+        varOCDll.cdItm=trCloneFILAS.find("td[name=tdCdItm]").html();
+        varOCDll.czItm=trCloneFILAS.find("td[name=tdCzItm]").html();
+        varOCDll.rqItm=trCloneFILAS.find("td[name=tdRqItm]").html();
 
-						varOCDll.prodCant=trCloneFILAS.find("td[name=tdCant]").html( );
-						varOCDll.prodID=trCloneFILAS.find("td[name=tdProd]").attr("codID");
-						
-						varOCDll.prodUndID=trCloneFILAS.find("td[name=tdUnd]").attr("codID");
-						varOCDll.prodClasfID=trCloneFILAS.find("td[name=tdClasf]").attr("codID");
-						varOCDll.prodEspf=trCloneFILAS.find("td[name=tdEspf]").html( );
-						varOCDll.prodMarca=trCloneFILAS.find("td[name=tdMarca]").html( );
-						varOCDll.prodPrecio=trCloneFILAS.find("td[name=tdPrecio]").html( );
-                        varOCDll.prodSecFun=trCloneFILAS.find("td[name=tdSecFun]").attr("codID");
-						varOCDll.prodUsrID="NN";
+        varOCDll.prodsf = trCloneFILAS.find("td[name=tdSF]").attr("codID");
+        varOCDll.prodrubro = trCloneFILAS.find("td[name=tdRubro]").attr("codID");
 
+        varOCDll.prodCant=trCloneFILAS.find("td[name=tdCant]").html( );
+        varOCDll.prodID=trCloneFILAS.find("td[name=tdProd]").attr("codID");
 
-						var datos = {
-							varBns:varOCDll,
-							'_token': $('#tokenBtn').val()
-						}
-						$.ajax({
-							type: "post",
-							url: "logistica/spLogSetOCD",
-							data: datos,
-							beforeSend: function () {      jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
-							error: function () {     jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");  },
-							success: function (VR) {
-								$("#divDialog").dialog("close");
-								$(".modal-backdrop").remove();
-								//$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
-								//$('#dvAviso').modal('show');
-								$("#divOC_Dll").html(VR["vwDll"]);
-							}
-						});
-						$("#dvBarraOCAdd").css({'background': '#efefef'});
-						$("#dvBarraOCAdd").css({'display': 'none'});
+        varOCDll.prodUndID=trCloneFILAS.find("td[name=tdUnd]").attr("codID");
+        varOCDll.prodClasfID=trCloneFILAS.find("td[name=tdClasf]").attr("codID");
+        varOCDll.prodEspf=trCloneFILAS.find("td[name=tdEspf]").html( );
+        varOCDll.prodMarca=trCloneFILAS.find("td[name=tdMarca]").html( );
+        varOCDll.prodPrecio=trCloneFILAS.find("td[name=tdPrecio]").html( );
+        varOCDll.prodSecFun=trCloneFILAS.find("td[name=tdSecFun]").attr("codID");
+        varOCDll.prodUsrID="NN";
 
 
-   }
+        var datos = {
+            varBns:varOCDll,
+            '_token': $('#tokenBtn').val()
+        };
 
+        $.ajax({
+            type: "post",
+            url: "logistica/spLogSetOCD",
+            data: datos,
+            beforeSend: function () {      jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento...");   },
+            error: function () {     jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>");  },
+            success: function (VR) {
+                $("#divDialog").dialog("close");
+                $(".modal-backdrop").remove();
+                if(VR["msgId"] == 500){
+                    jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", VR["msg"]);
+                }
+                else{
+                    //$("#loadModals").html(jsFunLoadAviso('RESULTADO DE LA OPERACION',  VR["varReturns"][0].Mensaje ));
+                    //$('#dvAviso').modal('show');
+                    $("#divOC_Dll").html(VR["vwDll"]);
+                }
+            }
+        });
+        $("#dvBarraOCAdd").css({'background': '#efefef'});
+        $("#dvBarraOCAdd").css({'display': 'none'});
 
+    }
 });
 
 
