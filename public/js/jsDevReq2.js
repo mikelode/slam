@@ -179,7 +179,7 @@ $( document ).on( 'click',  '#btnLogReqCancel',function(e) {
     jsFunReqButtons(false);
 
 });
-$( document ).on( 'click',  '#btnLogReqNew',function(e) {
+$( document ).on( 'click',  '#btnLogReqNew',function(e) { // USE
     e.preventDefault();
 
     $.ajax({
@@ -194,12 +194,16 @@ $( document ).on( 'click',  '#btnLogReqNew',function(e) {
     jsFunReqEnable(false);
     jsFunReqButtons(true);
 
+    $("#REQ").attr("opeID","ADD");
+    varDatosReq.reqOPE = $("#REQ").attr('opeid');
+
 });
 $( document ).on( 'click',  '#btnLogReqUpd',function(e) {
     e.preventDefault();
    // if(!jsFunReqValidarDatos()){return ; }
    $("#REQ").attr("opeID","UPD");
    varDatosReq.reqID = $("#REQ").attr("reqID");
+   varDatosReq.reqOPE = $("#REQ").attr('opeid');
    jsFunReqEnable(false);
    jsFunReqButtons(true);
 
@@ -1078,7 +1082,10 @@ function jsFunReqGetData(Tipo,valor) // USE
         url: "logistica/spLogGetReqTmpII",
         data: dataString,
         beforeSend: function () {  jsFnDialogBox(0, 0, "LOAD", parent, "PETICION EN PROCESO", "Cargando, Espere un momento..."); },
-        error: function () {  jsFunReqClear(); jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>"); },
+        error: function () {
+            jsFunReqClear();
+            jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>VERIFIQUE LA CONEXION AL SERVIDOR.</strong>");
+        },
         success: function (data)
         {
             if(data.msgId == 500){
@@ -1144,7 +1151,7 @@ function jsFunReqGetData(Tipo,valor) // USE
 function jsFunReqClear()
 {
     $("#REQ").attr("anioID",$(".txVarAnioEjec").val() );
-    $("#REQ").attr("opeID","ADD");
+    $("#REQ").attr("opeID","NN"); /* cambiado de ADD a NN, y add to line 197 */
     $("#REQ").attr("reqID","NN");
     $("#REQ").attr("reqUsr","NN");
 

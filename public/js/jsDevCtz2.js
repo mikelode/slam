@@ -826,7 +826,6 @@ function jsFunDBReqGetData(Tipo,valor,attempt)
         error: function () {  jsFunReqClear(); jsFnDialogBox(400, 145, "WARNING", parent, "ERROR EN LA PETICION", "Se produjo un ERROR en la peticion durante la Peticion. <br><strong>CONTACTESE CON EL ADMINISTRADOR</strong>"); },
         success: function (VR)
         {
-            console.log(VR);
             if(typeof VR.msg !== 'undefined'){
                 jsFunReqClear();
                 $("#divDialog").dialog(opt);
