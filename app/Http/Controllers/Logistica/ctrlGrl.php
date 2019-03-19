@@ -560,15 +560,15 @@ class ctrlGrl extends Controller
         try{
 
             /* Solo existira un usuario con privilegio de administrar usuarios */
-            if(Auth::user()->usrID == '12345678'){
+//            if(Auth::user()->usrID == '12345678'){
                 $Usr["PFL"]= \DB::connection('dblogistica')-> select(' exec spLogGetDatos ?,?,?,? ',   array('PFL','','',''));
                 $view = view('logistica.Partials.logUsr',compact( 'Usr'))->render();
                 $msg = "Permiso aceptado";
                 $msgId = 200;
-            }
+/*            }
             else{
                 throw new Exception("Ud. no está autorizado para acceder a este módulo");
-            }
+            }*/
         }catch (Exception $e){
             $msg = $e->getMessage();
             $msgId = 500;
