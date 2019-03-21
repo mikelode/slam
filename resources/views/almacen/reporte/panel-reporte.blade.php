@@ -65,7 +65,8 @@
                                         <div class="col-sm-8">
                                             <select class="form-control alm-input" name="repAnalysis" id="repAnalysis">
                                                 <option value="NA" >-- SELECCIONAR --</option>
-                                                <option value="PCS" >PECOSAS</option>
+                                                <option value="PCS" >PECOSAS DETALLADO</option>
+                                                <option value="PCS-R" >PECOSAS RESUMEN</option>
                                                 <option value="IYS">INGRESO Y SALIDA</option>
                                                 <option value="NEA">NEAs</option>
                                                 <option value="GIU">INTERNAMIENTOS</option>

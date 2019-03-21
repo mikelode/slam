@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Logistica\Almacen\almAlmacen;
 use Logistica\Almacen\almInternamiento;
+use Logistica\Almacen\almProcesoSalida;
 use Logistica\Almacen\almTLogContPlan;
 use Logistica\Almacen\almTPreSF;
 use Logistica\Http\Requests;
@@ -178,7 +179,7 @@ class reporteController extends Controller
                 switch($filter)
                 {
                     case 'SF':
-                        $data = $this->create_report_pecosa_secfun($almacen,$dateFrom,$dateTo,$detail);
+                        $data = $this->create_report_pecosa_secfun($almacen,$dateFrom,$dateTo,$detail,'detallado');
                         if($type == 'pdf')
                         {
                             $view = view('almacen.reporte.reporteSecuenciaPdfPcs',['data' => $data]);
@@ -190,6 +191,19 @@ class reporteController extends Controller
                         else if($type == 'xls')
                         {
                             $view = 'almacen.reporte.reporteSecuenciaPcs';
+                        }
+                        break;
+                }
+            }
+            else if($analysis == 'PCS-R')
+            {
+                switch ($filter)
+                {
+                    case 'SF':
+                        $data = $this->create_report_pecosa_secfun($almacen,$dateFrom,$dateTo,$detail,'resumen');
+                        if($type == 'html')
+                        {
+                            $view = view('almacen.reporte.reporteSecuenciaPcsR',compact('data'));
                         }
                         break;
                 }
@@ -656,36 +670,72 @@ class reporteController extends Controller
         return $query;
     }
 
-    private function create_report_pecosa_secfun($almacen, $dateFrom, $dateTo, $detail)
+    private function create_report_pecosa_secfun($almacen, $dateFrom, $dateTo, $detail, $nivel)
     {
-        if($detail == 'ALL')
-        {
-            $query = almInternamiento::select('psal_pecosa as PECOSA','Internamiento.ing_giu as GI','oc_secFuncional','psal_fecha as Fecha Pecosa','psalp_cod as Codigo Producto','oc_cod as OC')
-                ->addSelect('psalp_desc as Producto','psalp_cant as Cantidad','psalp_cant_atend as Atendido','psalp_precio as Precio','psalp_costo as Costo','psalp_umedida as Medida')
-                ->addSelect(DB::raw('dbo.getCodClsf(Internamiento.ing_giu, oc_cod, psalp_cod) AS Clasificador'))
-                ->addSelect(DB::raw('dbo.getCodNumber(oc_secFuncional) as SF'))
-                ->join('procesos_salida','Internamiento.ing_giu','=','procesos_salida.ing_giu')
-                ->join('psal_productos','psal_pecosa','=','psalp_pecosa')
-                ->where('ing_almacen',$almacen)
-                ->whereBetween('psal_fecha',[$dateFrom,$dateTo])
-                ->orderBy('oc_secFuncional','ASC')
-                ->get();
+        if($nivel == 'detallado'){
+            if($detail == 'ALL')
+            {
+                $query = almInternamiento::select('psal_pecosa as PECOSA','Internamiento.ing_giu as GI','oc_secFuncional','psal_fecha as Fecha Pecosa','psalp_cod as Codigo Producto','oc_cod as OC')
+                    ->addSelect('psalp_desc as Producto','psalp_cant as Cantidad','psalp_cant_atend as Atendido','psalp_precio as Precio','psalp_costo as Costo','psalp_umedida as Medida')
+                    ->addSelect(DB::raw('dbo.getCodClsf(Internamiento.ing_giu, oc_cod, psalp_cod) AS Clasificador'))
+                    ->addSelect(DB::raw('dbo.getCodNumber(oc_secFuncional) as SF'))
+                    ->join('procesos_salida','Internamiento.ing_giu','=','procesos_salida.ing_giu')
+                    ->join('psal_productos','psal_pecosa','=','psalp_pecosa')
+                    ->where('ing_almacen',$almacen)
+                    ->whereBetween('psal_fecha',[$dateFrom,$dateTo])
+                    ->orderBy('oc_secFuncional','ASC')
+                    ->get();
+            }
+            else
+            {
+                $query = almInternamiento::select('secDsc','psal_pecosa as PECOSA','Internamiento.ing_giu as GI','oc_secFuncional','psal_fecha as Fecha Pecosa','psalp_cod as Codigo Producto','oc_cod as OC')
+                    ->addSelect('psalp_desc as Producto','psalp_cant as Cantidad','psalp_cant_atend as Atendido','psalp_precio as Precio','psalp_costo as Costo','psalp_umedida as Medida')
+                    ->addSelect(DB::raw('dbo.getCodClsf(Internamiento.ing_giu, oc_cod, psalp_cod) AS Clasificador'))
+                    ->addSelect(DB::raw('dbo.getCodNumber(oc_secFuncional) as SF'))
+                    ->join('procesos_salida','Internamiento.ing_giu','=','procesos_salida.ing_giu')
+                    ->join('psal_productos','psal_pecosa','=','psalp_pecosa')
+                    ->join(DB::raw("DB_Logistica..TPreSF"),'oc_secFuncional','=','secID')
+                    ->where('ing_almacen',$almacen)
+                    ->whereBetween('psal_fecha',[$dateFrom,$dateTo])
+                    ->where('oc_secFuncional',$detail)
+                    ->orderBy('oc_secFuncional','ASC')
+                    ->get();
+            }
         }
-        else
-        {
-            $query = almInternamiento::select('secDsc','psal_pecosa as PECOSA','Internamiento.ing_giu as GI','oc_secFuncional','psal_fecha as Fecha Pecosa','psalp_cod as Codigo Producto','oc_cod as OC')
-                ->addSelect('psalp_desc as Producto','psalp_cant as Cantidad','psalp_cant_atend as Atendido','psalp_precio as Precio','psalp_costo as Costo','psalp_umedida as Medida')
-                ->addSelect(DB::raw('dbo.getCodClsf(Internamiento.ing_giu, oc_cod, psalp_cod) AS Clasificador'))
-                ->addSelect(DB::raw('dbo.getCodNumber(oc_secFuncional) as SF'))
-                ->join('procesos_salida','Internamiento.ing_giu','=','procesos_salida.ing_giu')
-                ->join('psal_productos','psal_pecosa','=','psalp_pecosa')
-                ->join(DB::raw("DB_Logistica..TPreSF"),'oc_secFuncional','=','secID')
-                ->where('ing_almacen',$almacen)
-                ->whereBetween('psal_fecha',[$dateFrom,$dateTo])
-                ->where('oc_secFuncional',$detail)
-                ->orderBy('oc_secFuncional','ASC')
-                ->get();
+        else if($nivel == 'resumen'){
+            if($detail == 'ALL')
+            {
+                $query = almProcesoSalida::select('secDsc as rptSf','secID as rptSfID','orcRubro as rptRubro', 'orcRuc as rptRucid', 'orcID as rptOcid', 'orcFecha as rptOcfecha', 'procesos_salida.ing_giu as rptInternamiento', 'psal_pecosa as rptPcs', 'psal_fecha as rptPcsfecha', 'psal_solicitante as rptSolicitante')
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetCSExp(orcID) as rptSiaf"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('RUC', orcRuc, '') as rptRuc"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetMonto(orcID,'OC') as rptOcmonto"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetMonto(psal_pecosa,'PCS') as rptPcsmonto"))
+                    ->join('Internamiento','Internamiento.ing_giu','=','procesos_salida.ing_giu')
+                    ->leftJoin(DB::raw("DB_Logistica..TLogOC"),'oc_cod','=','orcID')
+                    ->join(DB::raw("DB_Logistica..TPreSF"),'orcSecFun','=','secID')
+                    ->where('ing_almacen',$almacen)
+                    ->whereBetween('psal_fecha',[$dateFrom,$dateTo])
+                    ->orderBy('oc_secFuncional','ASC')
+                    ->get();
+            }
+            else
+            {
+                $query = almProcesoSalida::select('secDsc as rptSf','secID as rptSfID','orcRubro as rptRubro', 'orcRuc as rptRucid', 'orcID as rptOcid', 'orcFecha as rptOcfecha', 'procesos_salida.ing_giu as rptInternamiento', 'psal_pecosa as rptPcs', 'psal_fecha as rptPcsfecha', 'psal_solicitante as rptSolicitante')
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetCSExp(orcID) as rptSiaf"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('RUC', orcRuc, '') as rptRuc"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetMonto(orcID,'OC') as rptOcmonto"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetMonto(psal_pecosa,'PCS') as rptPcsmonto"))
+                    ->join('Internamiento','Internamiento.ing_giu','=','procesos_salida.ing_giu')
+                    ->leftJoin(DB::raw("DB_Logistica..TLogOC"),'oc_cod','=','orcID')
+                    ->join(DB::raw("DB_Logistica..TPreSF"),'orcSecFun','=','secID')
+                    ->where('ing_almacen',$almacen)
+                    ->whereBetween('psal_fecha',[$dateFrom,$dateTo])
+                    ->where('oc_secFuncional',$detail)
+                    ->orderBy('oc_secFuncional','ASC')
+                    ->get();
+            }
         }
+
 
         return $query;
 

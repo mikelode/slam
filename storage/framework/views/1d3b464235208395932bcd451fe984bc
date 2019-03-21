@@ -1,0 +1,54 @@
+<div class="panel panel-default alm-panel">
+    <div class="panel-heading alm-panel-heading">
+        REPORTE DE ALMACEN - PECOSAS RESUMEN
+    </div>
+    <div class="table-responsive">
+        <table class="table table-condensed table-striped">
+            <thead>
+            <tr>
+                <th colspan="4">SECUENCIA FUNCIONAL</th>
+                <th colspan="7"><?php echo e(!$data->isEmpty()?$data[0]->secDsc:'SIN PECOSAS'); ?></th>
+            </tr>
+            <tr>
+                <th>N°</th>
+                <th>SIAF</th>
+                <th>META</th>
+                <th>PROVEEDOR</th>
+                <th>NRO O/C</th>
+                <th>FECHA O/C</th>
+                <th>IMPORTE</th>
+                <th>INTERNAMIENTO</th>
+                <th>NRO PECOSA</th>
+                <th>FECHA PECOSA</th>
+                <th>RECEPCIONADO POR</th>
+                <th>IMPORTE</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $total = 0; ?>
+            <?php foreach($data as $key=>$item): ?>
+                <tr>
+                    <td><?php echo e($key + 1); ?></td>
+                    <td><?php echo e($item->rptSiaf); ?></td>
+                    <td><?php echo e(substr($item->rptSfID,-3)); ?></td>
+                    <td><?php echo e($item->rptRuc); ?></td>
+                    <td><?php echo e($item->rptOcid); ?></td>
+                    <td><?php echo e($item->rptOcfecha); ?></td>
+                    <td style="text-align: right"><?php echo e(number_format($item->rptOcmonto,2)); ?></td>
+                    <td><?php echo e($item->rptInternamiento); ?></td>
+                    <td><?php echo e($item->rptPcs); ?></td>
+                    <td><?php echo e($item->rptPcsfecha); ?></td>
+                    <td><?php echo e($item->rptSolicitante); ?></td>
+                    <td style="text-align: right"><?php echo e(number_format($item->rptPcsmonto,2)); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td colspan="9" style="text-align: right">TOTAL</td>
+                <td><?php echo e($total); ?></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
