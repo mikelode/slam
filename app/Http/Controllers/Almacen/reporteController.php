@@ -171,6 +171,7 @@ class reporteController extends Controller
         $detail = $request->repDetail; // secuencias funcionales
 
         $tiporpt = $request->repTipo;
+        $orientation = 'landscape';
 
         if($tiporpt == 'rpt1'){
 
@@ -201,9 +202,20 @@ class reporteController extends Controller
                 {
                     case 'SF':
                         $data = $this->create_report_pecosa_secfun($almacen,$dateFrom,$dateTo,$detail,'resumen');
-                        if($type == 'html')
+
+                        if($type == 'pdf')
+                        {
+                            $data = $data->groupBy('rptSfID');
+                            $view = view('almacen.reporte.reporteSecuenciaPdfPcsR', compact('data'));
+                            $orientation = 'portrait';
+                        }
+                        else if($type == 'html')
                         {
                             $view = view('almacen.reporte.reporteSecuenciaPcsR',compact('data'));
+                        }
+                        else if($type == 'xls')
+                        {
+                            $view = 'almacen.reporte.reporteSecuenciaPcsR';
                         }
                         break;
                 }
@@ -360,7 +372,7 @@ class reporteController extends Controller
                 //$snappy->setOptions($optionsHeader);
                 $snappy->setOptions($optionsPage);
                 $snappy->setOptions($optionsFooter);
-                $snappy->loadHTML($view)->setPaper('a4')->setOrientation('landscape');
+                $snappy->loadHTML($view)->setPaper('a4')->setOrientation($orientation);
 
                 return $snappy->stream('reporte-productos.pdf');
 

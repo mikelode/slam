@@ -6,7 +6,7 @@
         <table class="table table-condensed table-striped">
             <thead>
             <tr>
-                <th colspan="4">SECUENCIA FUNCIONAL</th>
+                <th colspan="4">PEDIDO COMPROBANTE DE SALIDA</th>
                 <th colspan="7"><?php echo e(!$data->isEmpty()?$data[0]->secDsc:'SIN PECOSAS'); ?></th>
             </tr>
             <tr>
