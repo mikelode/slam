@@ -131,16 +131,16 @@
 
     @foreach($data as $key => $sf)
 
-        <table class="table" style="table-layout: fixed; width:100%">
-            <caption style="padding-top: 5px">
-                <h5 style="text-align: left; font-size: 0.75em;">
+        <table class="table" style="table-layout: fixed" width="100%" cellspacing="5" cellpadding="5">
+            <caption style="padding-top: 15px;">
+                <div style="text-align: left; font-family: 'Bree Serif', serif; font-size: 0.75em;">
                     {{ substr($key,-3) }} -
                     {{ strtoupper( $sf[0]->rptSf ) }}
-                </h5>
+                </div>
             </caption>
             <thead>
             <tr>
-                <th width="1%">N°</th>
+                <th width="2%">N°</th>
                 <th width="5%">SIAF</th>
                 <th width="5%">META</th>
                 <th>PROVEEDOR</th>
@@ -151,7 +151,7 @@
                 <th width="8%">NRO PECOSA</th>
                 <th width="8%">FECHA PECOSA</th>
                 <th width="18%">RECEPCIONADO POR</th>
-                <th width="8%">IMPORTE</th>
+                <th width="7%">IMPORTE</th>
             </tr>
             </thead>
             <tbody>
