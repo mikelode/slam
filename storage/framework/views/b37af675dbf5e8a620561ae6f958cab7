@@ -1,11 +1,11 @@
-<table class="table alm-table" id="tblPendientes">
+<table class="table alm-table" id="tblPendientesDocs">
     <thead>
     <tr>
         <th>#</th>
         <th>Documento</th>
         <th>Código</th>
         <th>Fecha de Envio</th>
-        <th style="width: 400px;">Glosa</th>
+        <th style="width: 400px;">Nota</th>
     </tr>
     </thead>
     <tbody>

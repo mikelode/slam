@@ -36,6 +36,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('Logistica\Almacen\almTPerPrs','perID','usrID');
     }
 
+    public function dependencia()
+    {
+        return $this->hasOne('Logistica\Almacen\almTLogDep','depID','usrDep');
+    }
+
     public function permiso($modId, $modOpt, $usrId)
     {
         $accesos = $this->accesos($usrId, $modId);

@@ -17,37 +17,52 @@
   
     <table >
      <tr  style="height: 10px;background:#f6f6f6" >            
-     <td valign="center" COLSPAN="4" > <h5>{{ config('slam.APP_ENTIDAD')}}</h5></td>        
+     <td valign="center" COLSPAN="7" > <h5>{{ config('slam.APP_ENTIDAD')}}</h5></td>
      </tr>  
 
      <tr  style="height: 15px;background:#f6f6f6" >            
-     <td valign="center" COLSPAN="4" > <h4>REPORTE RANKING DE PROVEEDORES</h4></td>        
+     <td valign="center" COLSPAN="7" > <h4>REPORTE RANKING DE PROVEEDORES</h4></td>
      </tr>
 
     </table>
-    
-            <table  style="border-collapse: separate;border-spacing:0px;" class=" table table-striped gs-table-item gs-table-hover">
-            <thead align="center">
-            <tr CLASS="gsTh" style="background: #dedede;" >
+<table  style="border-collapse: separate;border-spacing:0px;" class=" table table-striped gs-table-item gs-table-hover">
+    <thead>
+    <tr CLASS="gsTh" style="background: #dedede;" >
 
-                <th WIDTH="55px"  align="center"   valign="center">Cant</th>
-                <th WIDTH="50px"  align="center"   valign="center">RUC</th>
-                <th WIDTH="300px" align="center"    valign="center">Razon Social</th>
-                <th WIDTH="50px" align="center"    valign="center">Monto</th>
+        <th align="center"   valign="center">RUC</th>
+        <th align="center"    valign="center">DOCUMENTO</th>
+        <th align="center"    valign="center">FECHA</th>
+        <th align="center"    valign="center">GLOSA</th>
+        <th align="center"    valign="center">PROCESO</th>
+        <th align="center"    valign="center">SECUENCIA FUNCIONAL</th>
+        <th align="center"    valign="center">MONTO</th>
+    </tr>
+    </thead>
+    @foreach($result as $key => $item)
+        <thead align="center">
+        <tr CLASS="gsTh" style="background: #dedede;" >
 
+            <th align="center"   valign="center">{{ $item[0]->rucID }}</th>
+            <th align="center"    valign="center">{{ $item[0]->rucTipo }}</th>
+            <th colspan="4" WIDTH="300px" align="center"    valign="center">{{ $item[0]->rucDsc }}</th>
+            <th align="center"    valign="center" style="mso-number-format:'0.00'">{{ $item[0]->rucMonto }}</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach($item as $i=>$orden)
+            <tr style="height: 28px" style="border: 1px solid #ddd;border-spacing:  0px ;border-collapse: collapse;" >
+                <td></td>
+                <td   style="mso-number-format:'@'" align="center" >{{ substr($orden->rucDoc,0,2) . '-' . substr($orden->rucDoc,-5) }}</td>
+                <td  align="left" style="mso-number-format:'@'" >{{ $orden->rucDocfecha}}</td>
+                <td  align="left" >{{ $orden->rucGlosa }}</td>
+                <td  align="left">{{ $orden->rucProcesodsc }}</td>
+                <td  align="left">{{ $orden->rucSfdsc }}</td>
+                <td  style="mso-number-format:'0.00'">{{ $orden->rucDocmonto }}</td>
             </tr>
-            </thead>
-            <tbody>
+        @endforeach
 
-             @foreach($result["Ranking"] as $key=>$nom)
-             <tr style="height: 28px" style="border: 1px solid #ddd;border-spacing:  0px ;border-collapse: collapse;" > 
-                   <td   style="mso-number-format:'@'" align="center" >{{$key+1}}</td>
-                          <td  align="left" style="mso-number-format:'@'" >{{ $nom->Ruc}}</td>
-                          <td  align="left" >{{ $nom->Razon}}</td>                                                   
-                          <td  style="mso-number-format:'0.00'">{{ $nom->Monto}}</td>
-
-            </tr>
-            @endforeach
-
-            </tbody>
-            </table>
+        </tbody>
+    @endforeach
+</table>

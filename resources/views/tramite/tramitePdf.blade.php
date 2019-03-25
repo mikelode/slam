@@ -76,7 +76,7 @@
         }
         .datehead thead tr td, .datehead tbody tr td{
             font-size: 12px;
-            padding: 2px;
+            padding: 0 2px 0 2px;
         }
         .title{
             height: 70px;
@@ -136,7 +136,7 @@
             RUC: {{ config('slam.ENTIDAD_RUC') }}
         </div>
     </div>
-    <table class="datehead">
+    <table class="datehead" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
             <td>Día</td>
@@ -158,12 +158,12 @@
     <h6 style="padding: 0; margin: 10px 0 0 0;">DATOS GENERALES</h6>
     <div class="info">
         <div class="infoitem">
-            <label>DE</label>:
-            {{ '(' . $emisor->tlsDni . ') ' . $emisor->tlsNombre . ' ' . $emisor->tlsAPaterno . ' ' . $emisor->tlsAMaterno }}
+            <label>REMITENTE</label>:
+            {{ $emisor->tlsDni . ' - ' . $emisor->tlsNombre . ' ' . $emisor->tlsAPaterno . ' ' . $emisor->tlsAMaterno }}
             <br>
         </div>
-        <div class="infoitem"><label>PARA</label>: {{ '(' . $operacion->topUsrTarget . ') ' . $operacion->topTargetName }}<br></div>
-        <div class="infoitem"><label>FECHA</label>: {{ $operacion->topFecha }}<br></div>
+        <div class="infoitem"><label>ENVIADO A</label>: {{ $operacion->topUsrTarget . ' - ' . $operacion->topTargetName }}<br></div>
+        <div class="infoitem"><label></label>&nbsp; {{ $operacion->topTargetDepdsc }}<br></div>
         <div class="infoitem"><label>ASUNTO</label>: {{ $operacion->topMensaje }}<br></div>
         <label><!-- fix --></label>
     </div>
@@ -203,16 +203,20 @@
     <table>
         <tbody>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="vertical-align: bottom">
+                Fecha envío: ......./....../.......
+            </td>
+            <td style="vertical-align: bottom">
+                Fecha recepción: ......./....../.......
+            </td>
         </tr>
         </tbody>
         <thead>
         <tr>
-            <td>LOGÍSTICA</td>
             <td>REMITENTE</td>
-            <td>RECEPTOR</td>
+            <td>
+                RECEPTOR
+            </td>
         </tr>
         </thead>
     </table>

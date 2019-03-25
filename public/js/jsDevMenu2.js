@@ -319,10 +319,12 @@ $(document).ready(function(){
         e.preventDefault();
         var url = 'logistica/vwLogRptRanking';
         $.get(url,function(data){
-            $("#loadModalsMain").html(data);
+            console.log(data);
+            $('.alm-content-wrapper').html(data);
+            /*$("#loadModalsMain").html(data);
             $('#modalRptRanking').modal('show');
             $('#txRpt_RankingFechaIni').val(moment().format('YYYY-MM-DD'));
-            $('#txRpt_RankingFechaFin').val(moment().format('YYYY-MM-DD'));
+            $('#txRpt_RankingFechaFin').val(moment().format('YYYY-MM-DD'));*/
 
         });
     });

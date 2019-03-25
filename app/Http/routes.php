@@ -182,7 +182,7 @@ Route::get('logistica/rptSeaceExcel/{Doc}/{TipoRpt}/{FecIni}/{FecFin}',    'Logi
 Route::get('logistica/rptPriceExcel/{TipoRpt}/{FecIni}/{FecFin}',    'Logistica\ctrlGrl@spRptPriceExcel');
 Route::get('logistica/rptSegExcel/{anio}/{tipo}/{valor}',    'Logistica\ctrlGrl@spLogGetSegExcel');
 
-Route::get('logistica/rptRankingExcel/{Doc}/{FecIni}/{FecFin}',    'Logistica\ctrlGrl@spRptRankingExcel');
+Route::get('logistica/rptRankingExcel/{Doc}/{tipo}/{anio}',    'Logistica\ctrlGrl@spRptRankingExcel');
 Route::get('logistica/rptRankingPdf/{Doc}/{FecIni}/{FecFin}',    'Logistica\ctrlGrl@spRptRankingPdf');
 
 Route::get('logistica/rptSegDllExcel/{id}',    'Logistica\ctrlGrl@spLogGetSegDllExcel');
@@ -208,6 +208,8 @@ Route::Post('logistica/spLogGetCodNext', 'Logistica\ctrlGrl@spLogGetCodNext');
 Route::get('logistica/vwLogRpt',        'Logistica\ctrlGrl@fnGetViewRpt');
 Route::get('logistica/vwLogRptSeace',   'Logistica\ctrlGrl@fnGetViewRptSeace');
 Route::get('logistica/vwLogRptRanking',   'Logistica\ctrlGrl@fnGetViewRptRanking');
+Route::post('logistica/spLogGetRanking', 'Logistica\ctrlGrl@spLogGetRanking');
+Route::get('logistica/vwDetailRucCS', 'Logistica\ctrlGrl@spLogGetDetailRucCS');
 
 
 

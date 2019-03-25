@@ -17,7 +17,7 @@ class ctrlOC extends Controller
     }
     public  function fnGetViewOC()
     {
-        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_OC'  ));
+/*        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_OC'  ));
         if( isset ($result[0]->NEW ))
         {
             if( $result[0]->NEW =="1") {
@@ -30,6 +30,13 @@ class ctrlOC extends Controller
         }
         else
         {
+            return view('logistica.Adq.vwPermission');
+        }*/
+
+        if(Auth::user()->permiso('LOG_LOG_OC','VER',Auth::user()->usrID)){
+            return view ('logistica.Adq.vwAdqOCom');
+        }
+        else{
             return view('logistica.Adq.vwPermission');
         }
 

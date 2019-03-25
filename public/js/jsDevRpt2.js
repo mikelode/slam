@@ -33,13 +33,16 @@ $(document).on('click','#btnLogRankingPdf',function(e){
 
 $(document).on('click','#btnLogRankingExcel',function(e){
     e.preventDefault();
-    var FecIni  = $("#txRpt_RankingFechaIni").val();
-    var FecFin  = $("#txRpt_RankingFechaFin").val();
+    /*var FecIni  = $("#txRpt_RankingFechaIni").val();
+    var FecFin  = $("#txRpt_RankingFechaFin").val();*/
     //var TipoRpt = $("#txRptSeace_CodTipoRpt").attr("codID");
     //  if (typeof TipoRpt != "undefined"){  if(TipoRpt=="NN" ) { return ; } }else { return;  }  
 
     var Doc = "XLS";
-    window.open("logistica/rptRankingExcel/"+Doc+"/"+FecIni+"/"+FecFin, "rpt");
+    var tipo = $('#rnkTipo').val();
+    var anio = $('.txVarAnioEjec').val();
+    //window.open("logistica/rptRankingExcel/"+Doc+"/"+FecIni+"/"+FecFin, "rpt");
+    window.open("logistica/rptRankingExcel/"+Doc+"/"+tipo+"/"+anio, "rpt");
 });
 
 

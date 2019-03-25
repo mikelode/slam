@@ -24,39 +24,68 @@
                                 Datos del Usuario o Remitente que enviará el/los documentos
                             </div>
                             <div class="panel-body alm-panel-body">
-                                <div class="form-group alm-form-group">
-                                    <label class="control-label alm-label" for="">Fecha</label>
-                                    <input type="date" name="envDate" class="alm-input-frm" style="width: 149px; display: inline-block" value="<?php echo e(\Carbon\Carbon::now()->toDateString()); ?>" readonly>
-                                </div>
-                                <div class="form-group alm-form-group">
-                                    <label class="control-label alm-label" for="">Nombres</label>
-                                    <input class="alm-input-frm" name="envDni" style="width: 80px;" value="<?php echo e($usuario[0]->perID); ?>" readonly>
-                                    <input class="alm-input-frm" name="envFullName" style="width: 500px;" value="<?php echo e($usuario[0]->perNombres.'_'.$usuario[0]->perAPaterno.'_'.$usuario[0]->perAMaterno); ?>" readonly>
-                                </div>
-                                <div class="form-group alm-form-group">
-                                    <label class="control-label alm-label" style="float: left">Enviar a</label>
-                                    <select class="form-control alm-input" name="envUsrTarget" id="envUsrTarget" style="width: 500px;">
-                                        <option value="NA">-- Seleccione destinatario --</option>
-                                        <?php foreach($logisticos as $logis): ?>
-                                            <option value="<?php echo e($logis->perID); ?>"><?php echo e($logis->logNombres); ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="form-group alm-form-group">
-                                    <label class="control-label alm-label" style="float: left">Asunto</label>
-                                    <textarea class="form-control alm-input" name="envMensaje" style="width: 500px;"></textarea>
-                                </div>
+                                <table class="table table-condensed" style="table-layout: fixed; margin-bottom: 0px;" width="100%">
+                                    <tbody>
+                                    <tr>
+                                        <td width="10%">Fecha</td>
+                                        <td width="15%">
+                                            <input type="date" name="envDate" style="width: 100%;" class="alm-input-frm" value="<?php echo e(\Carbon\Carbon::now()->toDateString()); ?>" readonly>
+                                        </td>
+                                        <td colspan="2">
+                                            <input type="hidden" name="envDependenciaId" value="<?php echo e(Auth::user()->dependencia->depID); ?>">
+                                            <input type="text" name="envDependencia" class="alm-input-frm" style="width: 100%;" value="<?php echo e(Auth::user()->dependencia->depDsc); ?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombres</td>
+                                        <td>
+                                            <input class="alm-input-frm" name="envDni" style="width: 100%;" value="<?php echo e($usuario[0]->perID); ?>" readonly>
+                                        </td>
+                                        <td colspan="2">
+                                            <input class="alm-input-frm" name="envFullName" style="width: 100%;" value="<?php echo e($usuario[0]->perNombres.'_'.$usuario[0]->perAPaterno.'_'.$usuario[0]->perAMaterno); ?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enviar a</td>
+                                        <td colspan="3">
+                                            <select class="form-control alm-input" name="envUsrTarget" id="envUsrTarget">
+                                                <option value="NA">-- Seleccione destinatario --</option>
+                                                <?php foreach($logisticos as $logis): ?>
+                                                    <option value="<?php echo e($logis->perID); ?>"><?php echo e($logis->logNombres); ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dependencia</td>
+                                        <td colspan="3">
+                                            <select class="form-control alm-input" name="envUsrDepTarget" id="envUsrDepTarget">
+                                                <option value="NA">-- Seleccione dependencia --</option>
+                                                <?php foreach($dependencias as $dep): ?>
+                                                    <option value="<?php echo e($dep->depID); ?>"><?php echo e($dep->depDsc); ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asunto</td>
+                                        <td colspan="3">
+                                            <textarea class="form-control alm-input" name="envMensaje"></textarea>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="panel panel-default alm-panel">
                             <div class="panel-body" style="text-align: center">
-                                <button type="button" class="btn btn-primary alm-button" onclick="change_to_submenu('tramite/salida')">
+                                <button type="button" class="btn btn-primary alm-button" id="btnEmisionBandeja">
                                     <?php /*<i class="glyphicon glyphicon-remove-sign"></i>*/ ?> EMISION
                                 </button>
                                 <p></p>
-                                <button type="button" class="btn btn-primary alm-button" onclick="change_to_submenu('tramite/entrada')">
+                                <button type="button" class="btn btn-primary alm-button" id="btnRecepcionBandeja">
                                     <?php /*<i class="glyphicon glyphicon-floppy-save"></i>*/ ?> RECEPCION
                                 </button>
                             </div>
@@ -76,6 +105,23 @@
 
 $(document).ready(function(){
 
+    $('#btnEmisionBandeja').click(function (e) {
+        e.preventDefault();
+
+        $.get('tramite/salida', function(data){
+            $('.alm-sub-content').html(data);
+        });
+
+    });
+
+    $('#btnRecepcionBandeja').click(function (e) {
+        e.preventDefault();
+
+        $.get('tramite/entrada', function(data){
+            $('.alm-sub-content').html(data);
+        });
+    });
+
     $('.alm-sub-content').on('click','#btn-send-doc',function(e){
         e.preventDefault();
 
@@ -91,7 +137,7 @@ $(document).ready(function(){
             return false;
         }
         else{
-            var ok = confirm("¿Estád seguro de tramitar los documentos seleccionados?")
+            var ok = confirm("¿Estás seguro de tramitar los documentos seleccionados?");
             if(!ok)
                 return;
         }

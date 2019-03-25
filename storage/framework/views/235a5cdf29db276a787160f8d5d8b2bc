@@ -1,0 +1,38 @@
+<TABLE class="suggest-element table table-striped gs-table-item gs-table-hover " id="tabRankingFilter" style="table-layout: fixed" width="100%">
+<thead>
+<tr>
+    <th width="5%"  align="center"></th>
+    <th width="5%">Nro</th>
+    <th width="10%">RUC</th>
+    <th align="left" >Proveedor</th>
+    <th width="5%">Tipo</th>
+    <th width="10%" align="center">Monto Proveido</th>
+    <th width="2%"></th>
+</tr>
+</thead>
+<tbody>
+<?php foreach($ranking as $i => $ruc): ?>
+    <tr>
+        <td class="details-control" onclick="detalle_ruc(this, '<?php echo e($ruc->rucID); ?>','<?php echo e($ruc->rucTipo == 'BIENES' ? 'oc' : 'os'); ?>')"></td>
+        <td><?php echo e($i + 1); ?></td>
+        <td><?php echo e($ruc->rucID); ?></td>
+        <td><?php echo e($ruc->rucDsc); ?></td>
+        <td><?php echo e($ruc->rucTipo); ?></td>
+        <td align="right" style="padding-right: 5px;"><?php echo e(number_format($ruc->rucMonto,2)); ?></td>
+        <td></td>
+    </tr>
+<?php endforeach; ?>
+</tbody>
+</TABLE>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#tabRankingFilter').dataTable({
+            "language":{
+                "url": "plugins/DataTables/Spanish.json"
+            }
+        });
+
+    });
+</script>

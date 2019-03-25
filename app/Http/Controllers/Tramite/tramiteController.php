@@ -3,6 +3,7 @@
 namespace Logistica\Http\Controllers\Tramite;
 
 use Illuminate\Support\Facades\App;
+use Logistica\Almacen\almTLogDep;
 use Logistica\Almacen\almTPrePto;
 use Logistica\Almacen\almTPreSF;
 use Logistica\Custom\FormatCode;
@@ -29,6 +30,7 @@ use Logistica\Tramite\tramTLogOS;
 use Logistica\Tramite\tramTLogReq;
 use Logistica\Tramite\tramTPerPersona;
 use Logistica\Tramite\tramViewSiafSeguimiento;
+use Logistica\User;
 
 class tramiteController extends Controller
 {
@@ -54,11 +56,13 @@ class tramiteController extends Controller
         $logisticos = tramTPerPersona::select(DB::raw("perID, concat(perNombres, ' ', perAPaterno, ' ', perAMaterno) AS logNombres"))
                     ->join('TSisModDll','mdlUsrID','=','perID')
                     ->where('mdlCre',1)
-                    ->whereIn('mdlModID',['LOG_LOG_CZ','LOG_LOG_CC','LOG_LOG_OC','LOG_LOG_OS'])
+                    ->whereIn('mdlModID',['LOG_LOG_VERIF','LOG_LOG_SEND'])
                     ->groupBy(DB::raw("perID, concat(perNombres, ' ', perAPaterno, ' ', perAMaterno)"))
                     ->get();
 
-        $view = view('tramite.panel-tramite',compact('usuario','logisticos'));
+        $dependencias = almTLogDep::all();
+
+        $view = view('tramite.panel-tramite',compact('usuario','logisticos','dependencias'));
 
         return $view;
     }
@@ -201,30 +205,52 @@ class tramiteController extends Controller
         {
             $dniUser = Auth::user()->usrID;
             /*$dniUser = '29298646';*/
-            $req = tramTLogReq::select('reqID','reqFecha','reqUsr')
-                ->where('flagEnvio',false)
-                ->where('reqUsr',$dniUser)
-                ->get();
+            $verif = [];
+            $req = $ctz = $cdr = $ors = $orc = [];
 
-            $ctz = tramTLogCtz::select('ctzID','ctzFecha','ctzUser')
-                ->where('flagEnvio',false)
-                ->where('ctzUser',$dniUser)
-                ->get();
+            if(Auth::user()->permiso('LOG_LOG_MP','GUARDAR',$dniUser)){
+                $req = tramTLogReq::select('reqID','reqFecha','reqUsr')
+                    //->where('flagEnvio',false)
+                    ->whereNull('reqNull')
+                    ->get();
+            }
 
-            $cdr = tramTLogCC::select('cdrID','cdrFecha','cdrUsr')
-                ->where('flagEnvio',false)
-                ->where('cdrUsr',$dniUser)
-                ->get();
+            if(Auth::user()->permiso('LOG_LOG_VERIF','GUARDAR',$dniUser)){
 
-            $ors = tramTLogOS::select('orsID','orsFecha','orsEstUsr')
-                ->where('flagEnvio',false)
-                ->where('orsEstUsr',$dniUser)
-                ->get();
+                $verif = tramLogBandeja::join('tramOperacion','topId','=','tlbOperacion')
+                            ->join('tramLogEntrada','topRecepcionId','=','tleId')
+                            ->where('topUsrTarget', $dniUser)
+                            ->where('topFlagR',true)
+                            ->get();
+            }
 
-            $orc = almTLogOC::select('orcID','orcFecha','orcEstUsr')
-                ->where('flagEnvio',false)
-                ->where('orcEstUsr',$dniUser)
-                ->get();
+            if(Auth::user()->permiso('LOG_LOG_SEND','GUARDAR',$dniUser)){
+                /*$req = tramTLogReq::select('reqID','reqFecha','reqUsr')
+                    ->where('flagEnvio',false)
+                    ->where('reqUsr',$dniUser)
+                    ->get();*/
+
+                $ctz = tramTLogCtz::select('ctzID','ctzFecha','ctzUser')
+                    ->where('flagEnvio',false)
+                    ->where('ctzUser',$dniUser)
+                    ->get();
+
+                $cdr = tramTLogCC::select('cdrID','cdrFecha','cdrUsr')
+                    /*->where('flagEnvio',false)*/
+                    ->where('cdrUsr',$dniUser)
+                    ->get();
+
+                $ors = tramTLogOS::select('orsID','orsFecha','orsEstUsr')
+                    ->where('flagEnvio',false)
+                    ->where('orsEstUsr',$dniUser)
+                    ->get();
+
+                $orc = almTLogOC::select('orcID','orcFecha','orcEstUsr')
+                    ->where('flagEnvio',false)
+                    ->where('orcEstUsr',$dniUser)
+                    ->get();
+
+            }
 
             $enviados = tramOperacion::select('*')
                 ->join('tramLogSalida','topEnvioId','=','tlsId')
@@ -233,7 +259,7 @@ class tramiteController extends Controller
                 ->orderby('topId','DESC')
                 ->get();
 
-            $view = view('tramite.bandejaSalida',['req'=>$req,'ctz'=>$ctz,'cdr'=>$cdr,'ors'=>$ors,'orc'=>$orc, 'enviados'=>$enviados]);
+            $view = view('tramite.bandejaSalida', compact('req','ctz','cdr','ors','orc','enviados','verif'));
         }
 
         return $view;
@@ -277,7 +303,7 @@ class tramiteController extends Controller
 
     public function printTramiteOperacion($opId)
     {
-        $operacion = tramOperacion::select(DB::raw("*, DB_Logistica.dbo.fnLogGetGrlDat('DNI', topUsrTarget, '') as topTargetName"))
+        $operacion = tramOperacion::select(DB::raw("*, DB_Logistica.dbo.fnLogGetGrlDat('DNI', topUsrTarget, '') as topTargetName, DB_Logistica.dbo.fnLogGetGrlDat('DEP', topDepTarget, '') as topTargetDepdsc"))
                         ->where('topId',$opId)
                         ->first();
 
@@ -492,6 +518,7 @@ class tramiteController extends Controller
                 $operacion->topFlagE = true;
                 $operacion->topFlagR = false;
                 $operacion->topEnvioId = $emisor->tlsId;
+                $operacion->topDepTarget = $data->envUsrDepTarget;
                 $operacion->save();
 
                 if(!$operacion){

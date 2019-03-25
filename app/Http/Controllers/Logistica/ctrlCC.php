@@ -16,7 +16,7 @@ class ctrlCC extends Controller
     }
     public  function fnGetViewCC()
     {
-        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_CC'  ));
+/*        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_CC'  ));
         if( isset ($result[0]->NEW ))
         {
             if( $result[0]->NEW =="1") {
@@ -27,6 +27,13 @@ class ctrlCC extends Controller
             }
         }
         else   {
+            return view('logistica.Adq.vwPermission');
+        }*/
+
+        if(Auth::user()->permiso('LOG_LOG_CC','VER',Auth::user()->usrID)){
+            return view ('logistica.Adq.vwAdqCdr');
+        }
+        else{
             return view('logistica.Adq.vwPermission');
         }
     }

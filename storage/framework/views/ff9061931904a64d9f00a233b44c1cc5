@@ -16,7 +16,36 @@
         <div class="panel-body alm-panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab-pendientes">
-                    <table class="table alm-table" id="tblSintramite">
+                    <?php if(count($verif) != 0): ?>
+                    <table class="table alm-table tblSintramite">
+                        <caption style="color: green; font-size: 1.2em; text-align: center; background-color: darkseagreen">DOCUMENTOS A VERIFICAR</caption>
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo</th>
+                            <th>Codigo</th>
+                            <th>Fecha Recepción</th>
+                            <th>Situación</th>
+                            <th>Elegir</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($verif as $key=>$item): ?>
+                            <tr>
+                                <td><?php echo e($key + 1); ?></td>
+                                <td><?php echo e($item->tlbTypeDoc); ?></td>
+                                <td><?php echo e($item->tlbCodDoc); ?></td>
+                                <td><?php echo e($item->tleFecha); ?></td>
+                                <td>
+                                    <input type="text" name="<?php echo e($item->tlbCodDoc); ?>" class="alm-input-table" placeholder="Escriba la situación actual del documento" value="<?php echo e($item->tlbSituacion); ?>">
+                                </td>
+                                <td><input type="checkbox" class="alm-control" name="envDoc[]" value="<?php echo e($item->tlbCodDoc); ?>"></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <?php endif; ?>
+                    <table class="table alm-table tblSintramite">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -74,7 +103,7 @@
                                 <td>Orden de Compra</td>
                                 <td><?php echo e($item->orcID); ?></td>
                                 <td><?php echo e($item->orcFecha); ?></td>
-                                <td><input type="text" name="<?php echo e($item->orcID); ?>" class="alm-input-table" placeholder="Escriba la situación actual del documento"></td>
+                                <td><input type="text" name="<?php echo e($item->orcID); ?>" class="alm-input-table updtStateTram" placeholder="Escriba la situación actual del documento"></td>
                                 <td><input type="checkbox" class="alm-control" name="envDoc[]" value="<?php echo e($item->orcID); ?>"></td>
                             </tr>
                         <?php endforeach; ?>
@@ -132,8 +161,18 @@
 
 <script>
 $(document).ready(function(){
+    var token = $('meta[name="csrf-token"]').attr('content');
 
-    $('#tblSintramite').DataTable({
+    $('.updtStateTram').editable({
+        url: 'update/statetram',
+        emptytext: 'No Especificado',
+        params: {_token: token},
+        success: function(response){
+            /*alert('Estado del documento modificado con éxito');*/
+        }
+    });
+
+    $('.tblSintramite').DataTable({
         "language":{
             "url": "plugins/DataTables/Spanish.json"
         }

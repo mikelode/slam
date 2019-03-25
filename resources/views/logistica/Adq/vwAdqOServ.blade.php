@@ -47,23 +47,42 @@
 
         <td align="right" width="715px" >
 
-         @if( Auth::user()->usrID=='41130020' || Auth::user()->usrID=='42469504'  || Auth::user()->usrID=='23974416' )
-              {!! Form::button('IMPRIMIR',['class'=>'btn btn-default','id'=>'btnLogOSPrint','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'IMPRIMIR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconPRINT.png) no-repeat; background-position:top;' ]) !!}
-         @else
-
+@if(auth()->user()->permiso('LOG_LOG_OS','GUARDAR',Auth::user()->usrID) || auth()->user()->permiso('LOG_LOG_OS','EDITAR',Auth::user()->usrID))
             {!! Form::button('GUARDAR',['class'=>'btn btn-default','id'=>'btnLogOSSave','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'GUARDAR','style'=>' margin-left:2px;font-weight: bold; padding-left:2px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconSAVE2.png) no-repeat; background-position:top;' ]) !!}
-            {!! Form::button('CANCEL',['class'=>'btn btn-default','id'=>'btnLogOSCancel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'CANCELAR','style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px;background: url(img/iconCANCEL.png) no-repeat; background-position:top;' ]) !!}
+@endif
 
+@if(auth()->user()->permiso('LOG_LOG_OS','GUARDAR',Auth::user()->usrID) || auth()->user()->permiso('LOG_LOG_OS','EDITAR',Auth::user()->usrID))
+            {!! Form::button('CANCEL',['class'=>'btn btn-default','id'=>'btnLogOSCancel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'CANCELAR','style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px;background: url(img/iconCANCEL.png) no-repeat; background-position:top;' ]) !!}
+@endif
+
+@if(auth()->user()->permiso('LOG_LOG_OS','GUARDAR',Auth::user()->usrID))
             {!! Form::button('NUEVO',['class'=>'btn btn-default','id'=>'btnLogOSNew','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'NUEVO',       'style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconADD.png) no-repeat; background-position:top;' ]) !!}
-            {!! Form::button('EDITAR',['class'=>'btn btn-default','id'=>'btnLogOSUpd','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'MODIFICAR',  'style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconUPD.png) no-repeat; background-position:top;']) !!}
-            {!! Form::button('ANULAR',['class'=>'btn btn-default','id'=>'btnLogOSDel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'ELIMINAR',   'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconDEL.png) no-repeat; background-position:top;' ]) !!}
+@endif
+
+@if(auth()->user()->permiso('LOG_LOG_OS','EDITAR',Auth::user()->usrID))
+            {!! Form::button('EDITAR',['class'=>'btn btn-default','id'=>'btnLogOSUpd','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'EDITAR',  'style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconUPD.png) no-repeat; background-position:top;']) !!}
+@endif
+
+@if(auth()->user()->permiso('LOG_LOG_OS','GUARDAR',Auth::user()->usrID))
+            {!! Form::button('ANULAR',['class'=>'btn btn-default','id'=>'btnLogOSDel','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'ANULAR',   'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconDEL.png) no-repeat; background-position:top;' ]) !!}
+
             {!! Form::button('RESERVAR',['class'=>'btn btn-default','id'=>'btnLogOSBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconBusy.png) no-repeat; background-position:top;' ]) !!}
+
+            {!! Form::button('SIAF',['class'=>'btn btn-default','id'=>'btnLogOSSiaf','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'SIAF','style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconADD.png) no-repeat; background-position:top;']) !!}
+@endif
+
+@if(auth()->user()->permiso('LOG_LOG_OS','IMPRIMIR',Auth::user()->usrID))
             {!! Form::button('IMPRIMIR',['class'=>'btn btn-default','id'=>'btnLogOSPrint','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'IMPRIMIR','style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconPRINT.png) no-repeat; background-position:top;' ]) !!}
-           {!! Form::button('SIAF',['class'=>'btn btn-default','id'=>'btnLogOSSiaf','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'SIAF','style'=>' margin-left:2px;font-weight: bold; padding-left:8px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/iconADD.png) no-repeat; background-position:top;']) !!}
+@endif
+
+
             {!! Form::button('CERRAR',['class'=>'btn btn-default btn-cerrar','id'=>'a','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'CERRAR',     'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px;background: url(img/iconClose.png) no-repeat; background-position:top;' ]) !!}
+
+@if(auth()->user()->permiso('LOG_LOG_OS','ELIMINAR',Auth::user()->usrID))
           <!--  {!! Form::button('BORRAR',['class'=>'btn btn-default','id'=>'btnLogOSTrsh','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'TRASH',     'style'=>' margin-left:2px;font-weight: bold; padding-left:4px; ;padding-top:35px; font-size:9px;;width:50px; height:50px;background: url(img/iconTRASH.png) no-repeat; background-position:top;' ]) !!}  -->
+@endif
         <!--  {!! Form::button('RESERVA',['class'=>'btn btn-default','id'=>'btnLogOSBusy','data-toggle'=>'tooltip' ,'data-placement'=>'bottom','title'=>'RESERVAR','style'=>' margin-left:2px;font-weight: bold; padding-left:3px; ;padding-top:35px; font-size:9px;;width:50px; height:50px; background: url(img/Cancel2.png) no-repeat; background-position:top;' ]) !!}    -->
-          @endif
+
         </td>
     </tr>
     </table>

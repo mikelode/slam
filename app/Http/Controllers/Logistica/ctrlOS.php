@@ -17,7 +17,7 @@ class ctrlOS extends Controller
     }
     public  function fnGetViewOS()
     {
-        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_OS'  ));
+/*        $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_OS'  ));
         if( isset ($result[0]->NEW ))
         {
             if( $result[0]->NEW =="1") {
@@ -30,6 +30,13 @@ class ctrlOS extends Controller
         }
         else
         {
+            return view('logistica.Adq.vwPermission');
+        }*/
+
+        if(Auth::user()->permiso('LOG_LOG_OS','VER',Auth::user()->usrID)){
+            return view ('logistica.Adq.vwAdqOServ');
+        }
+        else{
             return view('logistica.Adq.vwPermission');
         }
 

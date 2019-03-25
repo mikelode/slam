@@ -5,7 +5,7 @@
         <th>Documento</th>
         <th>Código</th>
         <th>Fecha de Recepcion</th>
-        <th style="width: 400px;">Glosa</th>
+        <th style="width: 400px;">Nota</th>
     </tr>
     </thead>
     <tbody>

@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Logistica\Almacen\almAlmacen;
 use Logistica\Almacen\almInternamiento;
+use Logistica\Almacen\almTLogOC;
 use Logistica\Almacen\almTPreSF;
 use Logistica\Http\Requests;
 use Logistica\Http\Controllers\Controller;
 use Logistica\Almacen\logTbNotif;
+use Logistica\Tramite\tramTLogOS;
 use Logistica\User;
 use Maatwebsite\Excel\Facades\Excel;
 use TCPDF;
@@ -291,8 +293,8 @@ class ctrlGrl extends Controller
         if( isset ($result[0]->NEW ))
         {
             if( $result[0]->NEW =="1") {
-               // return view ('logistica.Adq.vwAdqOCom');
-                 return view ('logistica.Partials.logRptRanking');
+                 //return view ('logistica.Partials.logRptRanking');
+                return view ('logistica.Partials.logRptRankingp');
             }
             else
             {
@@ -306,6 +308,92 @@ class ctrlGrl extends Controller
 
 
        
+    }
+
+    public function spLogGetRanking(Request $request)
+    {
+        try{
+
+            $tipo = $request->rnkTipo;
+
+            if($tipo == 'oc'){
+                $ranking = almTLogOC::select(DB::raw("orcRuc as rucID, dbo.fnLogGetGrlDat('RUC', orcRuc, '') as rucDsc,  sum(dbo.fnLogGetMonto(orcID, 'OC')) as rucMonto, 'BIENES' as rucTipo"))
+                    ->whereNull('orcNull')
+                    ->where('orcAnio',$request->rnkAnio)
+                    ->groupBy('orcRuc')
+                    ->orderBy('rucMonto','desc')
+                    ->get();
+            }
+            else if($tipo == 'os'){
+                $ranking = tramTLogOS::select(DB::raw("orsRuc as rucID, dbo.fnLogGetGrlDat('RUC', orsRuc, '') as rucDsc,  sum(dbo.fnLogGetMonto(orsID, 'OS')) as rucMonto, 'SERVICIOS' as rucTipo"))
+                    ->whereNull('orsNull')
+                    ->where('orsAnio', $request->rnkAnio)
+                    ->groupBy('orsRuc')
+                    ->orderBy('rucMonto','desc')
+                    ->get();
+            }
+            else if($tipo = 'cs'){
+                $rankingOC = almTLogOC::select(DB::raw("orcRuc as rucID, dbo.fnLogGetGrlDat('RUC', orcRuc, '') as rucDsc,  sum(dbo.fnLogGetMonto(orcID, 'OC')) as rucMonto, 'BIENES' as rucTipo"))
+                    ->whereNull('orcNull')
+                    ->where('orcAnio',$request->rnkAnio)
+                    ->groupBy('orcRuc');
+
+                $ranking = tramTLogOS::select(DB::raw("orsRuc as rucID, dbo.fnLogGetGrlDat('RUC', orsRuc, '') as rucDsc,  sum(dbo.fnLogGetMonto(orsID, 'OS')) as rucMonto, 'SERVICIOS' as rucTipo"))
+                    ->whereNull('orsNull')
+                    ->where('orsAnio', $request->rnkAnio)
+                    ->groupBy('orsRuc')
+                    ->union($rankingOC)
+                    ->orderBy('rucMonto','desc')
+                    ->get();
+            }
+            else{
+                throw new Exception("Debe seleccionar el tipo de ranking a buscar");
+            }
+
+            $view = view('logistica.Partials.logRankingRuc', compact('ranking','tipo'))->render();
+            $msg = 'Recuperado OK';
+            $msgId = 200;
+
+        }
+        catch (Exception $e){
+            $msgId = 500;
+            $msg = $e->getMessage();
+            $view = null;
+        }
+
+        return response()->json(compact('msg','msgId','view'));
+    }
+
+    public function spLogGetDetailRucCS(Request $request)
+    {
+        try{
+
+            $tipo = $request->tipo;
+
+            if($tipo == 'oc'){
+                $ordenes = almTLogOC::select(DB::raw("orcID as rucDoc, orcFecha as rucDocfecha, orcProcTip as rucProcesoid, dbo.fnLogGetGrlDat('ADQTIP', orcProcTip, '') as rucProcesodsc, orcSecFun as rucSfid, dbo.fnLogGetGrlDat('SECFUN', orcSecFun, '') as rucSfdsc, orcGlosa as rucGlosa, dbo.fnLogGetMonto(orcID, 'OC') as rucDocmonto"))
+                            ->where('orcRuc', $request->ruc)
+                            ->whereNull('orcNull')
+                            ->where('orcAnio', $request->anio)
+                            ->get();
+            }
+            else if($tipo == 'os'){
+                $ordenes = tramTLogOS::select(DB::raw("orsID as rucDoc, orsFecha as rucDocfecha, orsProcTip as rucProcesoid, dbo.fnLogGetGrlDat('ADQTIP', orsProcTip, '') as rucProcesodsc, orsSecFun as rucSfid, dbo.fnLogGetGrlDat('SECFUN', orsSecFun, '') as rucSfdsc, orsGlosa as rucGlosa, dbo.fnLogGetMonto(orsID, 'OS') as rucDocmonto"))
+                            ->where('orsRuc', $request->ruc)
+                            ->whereNull('orsNull')
+                            ->where('orsAnio', $request->anio)
+                            ->get();
+            }
+
+            $view = view('logistica.Partials.logRankingRucDetail', compact('ordenes'))->render();
+
+        }catch (Exception $e){
+            $msg = $e->getMessage();
+            $msgId = 500;
+            $view = null;
+        }
+
+        return response()->json(compact('msg','msgId','view'));
     }
 
 
@@ -1072,10 +1160,72 @@ class ctrlGrl extends Controller
 
     }
 
-    public function spRptRankingExcel($Doc,$FecIni,$FecFin)
+    public function spRptRankingExcel($Doc,$tipo,$anio)
     {
-        $result["Ranking"] = \DB::select('exec spLogGetRptProv  ?,?',array( '2017', " and  cast (Fecha as date) between '".$FecIni."' and '".$FecFin."' " ));
-        $varReturn =  view ('logistica.Rpt.logXlsRanking',compact( 'result'));
+        /*$result["Ranking"] = \DB::select('exec spLogGetRptProv  ?,?',array( '2017', " and  cast (Fecha as date) between '".$FecIni."' and '".$FecFin."' " ));*/
+
+        try{
+
+            if($tipo == 'oc'){
+                $ordenes = almTLogOC::select(DB::raw("'BB' + orcRuc as rucGrupo,  'BIENES' as rucTipo, orcRuc as rucID, orcID as rucDoc, orcFecha as rucDocfecha, orcProcTip as rucProcesoid, dbo.fnLogGetGrlDat('ADQTIP', orcProcTip, '') as rucProcesodsc, orcSecFun as rucSfid, dbo.fnLogGetGrlDat('SECFUN', orcSecFun, '') as rucSfdsc, orcGlosa as rucGlosa, dbo.fnLogGetMonto(orcID, 'OC') as rucDocmonto, rucDsc, rucMonto"))
+                    ->join(DB::raw("(select orcRuc as rucID, dbo.fnLogGetGrlDat('RUC', orcRuc, '') as rucDsc,  
+                                    sum(dbo.fnLogGetMonto(orcID, 'OC')) as rucMonto 
+                                    from TLogOC
+                                    where orcNull is NULL and orcAnio = 2019
+                                    GROUP BY orcRuc) T"), 'T.rucID','=','orcRuc')
+                    ->whereNull('orcNull')
+                    ->where('orcAnio', $anio)
+                    ->orderBy('rucMonto','DESC')
+                    ->get();
+            }
+            else if($tipo == 'os'){
+                $ordenes = tramTLogOS::select(DB::raw("'SS' + orsRuc as rucGrupo, 'SERVICIOS' as rucTipo, orsRuc as rucID, orsID as rucDoc, orsFecha as rucDocfecha, orsProcTip as rucProcesoid, dbo.fnLogGetGrlDat('ADQTIP', orsProcTip, '') as rucProcesodsc, orsSecFun as rucSfid, dbo.fnLogGetGrlDat('SECFUN', orsSecFun, '') as rucSfdsc, orsGlosa as rucGlosa, dbo.fnLogGetMonto(orsID, 'OS') as rucDocmonto, rucDsc, rucMonto"))
+                    ->join(DB::raw("(select orsRuc as rucID, dbo.fnLogGetGrlDat('RUC', orsRuc, '') as rucDsc,  
+                                    sum(dbo.fnLogGetMonto(orsID, 'OS')) as rucMonto 
+                                    from TLogOS
+                                    where orsNull is NULL and orsAnio = 2019
+                                    GROUP BY orsRuc) T"), 'T.rucID','=','orsRuc')
+                    ->whereNull('orsNull')
+                    ->where('orsAnio', $anio)
+                    ->orderBy('rucMonto', 'DESC')
+                    ->get();
+            }
+            else if($tipo == 'cs'){
+
+                $ordenesOC = almTLogOC::select(DB::raw("'BB' + orcRuc as rucGrupo, 'BIENES' as rucTipo, orcRuc as rucID, orcID as rucDoc, orcFecha as rucDocfecha, orcProcTip as rucProcesoid, dbo.fnLogGetGrlDat('ADQTIP', orcProcTip, '') as rucProcesodsc, orcSecFun as rucSfid, dbo.fnLogGetGrlDat('SECFUN', orcSecFun, '') as rucSfdsc, orcGlosa as rucGlosa, dbo.fnLogGetMonto(orcID, 'OC') as rucDocmonto, rucDsc, rucMonto"))
+                    ->join(DB::raw("(select orcRuc as rucID, dbo.fnLogGetGrlDat('RUC', orcRuc, '') as rucDsc,  
+                                    sum(dbo.fnLogGetMonto(orcID, 'OC')) as rucMonto 
+                                    from TLogOC
+                                    where orcNull is NULL and orcAnio = 2019
+                                    GROUP BY orcRuc) T"), 'T.rucID','=','orcRuc')
+                    ->whereNull('orcNull')
+                    ->where('orcAnio', $anio);
+
+                $ordenes = tramTLogOS::select(DB::raw("'SS' + orsRuc as rucGrupo, 'SERVICIOS' as rucTipo, orsRuc as rucID, orsID as rucDoc, orsFecha as rucDocfecha, orsProcTip as rucProcesoid, dbo.fnLogGetGrlDat('ADQTIP', orsProcTip, '') as rucProcesodsc, orsSecFun as rucSfid, dbo.fnLogGetGrlDat('SECFUN', orsSecFun, '') as rucSfdsc, orsGlosa as rucGlosa, dbo.fnLogGetMonto(orsID, 'OS') as rucDocmonto, rucDsc, rucMonto"))
+                    ->join(DB::raw("(select orsRuc as rucID, dbo.fnLogGetGrlDat('RUC', orsRuc, '') as rucDsc,  
+                                    sum(dbo.fnLogGetMonto(orsID, 'OS')) as rucMonto 
+                                    from TLogOS
+                                    where orsNull is NULL and orsAnio = 2019
+                                    GROUP BY orsRuc) T"), 'T.rucID','=','orsRuc')
+                    ->whereNull('orsNull')
+                    ->where('orsAnio', $anio)
+                    ->union($ordenesOC)
+                    ->orderBy('rucMonto', 'DESC')
+                    ->get();
+            }
+            else{
+                throw new Exception("Debe seleccionar el tipo de ranking a buscar");
+            }
+
+            $result = $ordenes->groupBy('rucGrupo');
+
+            $varReturn =  view ('logistica.Rpt.logXlsRanking',compact( 'result'));
+
+        }
+        catch (Exception $e){
+            $varReturn = $e->getMessage();
+        }
+
         return $varReturn ;
     }
 
