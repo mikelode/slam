@@ -128,6 +128,10 @@ class ctrlReq extends Controller
                         $dllSecfun = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $valor['secfun'] : $request["datos"]["reqSecFun"];
                         $dllRubro = substr($request["datos"]["reqSecFun"],-1) == 'M' ? $valor['rubro'] : $request["datos"]["reqRubro"];
 
+                        if($dllSecfun == 'NN' || $dllRubro == 'NN'){
+                            throw new Exception("No se pudo guardar el requerimiento porque uno de los ITEMS no tiene asignado correctamente su SECUENCIA FUNCIONAL o RUBRO \nRevise el item que tiene el precio " . $valor["precioUnt"]);
+                        }
+
                         $resultDetalles = \DB::select('exec spLogSetReqD ?,?,?,?,?  ,?,?,?,?,? ,?,?',
                             array(
                                 $varOpe,

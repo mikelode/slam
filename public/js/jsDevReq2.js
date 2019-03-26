@@ -72,18 +72,18 @@ $( document ).on( 'click',  '#btnLogReqSave , #btnLogReqDel ,  #btnLogReqTrsh',f
         var ItemArray = new Array();
         $('#tbProdBienes tbody tr').each(function ()
         {
-            if ($(this).attr("class")!="fila-Hide")  {
-                    var fila = new Object();
-                    fila.ID=0;
-                    fila.cant= $(this).find("td[name=tdCant]").html();
-                    fila.secfun = $(this).find("td[name=tdSF]").attr('codId');
-                    fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
-                    fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
-                    fila.prod = $(this).find("td[name=tdProd]").attr("codID");
-                    fila.und = $(this).find("td[name=tdUnd]").attr("codID");
-                    fila.espf = $(this).find("td[name=tdEspf]").html();
-                    fila.precioUnt = $(this).find("td[name=tdPrecio]").html();
-                    ItemArray.push(fila);
+            if ($(this).attr("class")!="fila-Hide"){
+                var fila = new Object();
+                fila.ID=0;
+                fila.cant= $(this).find("td[name=tdCant]").html();
+                fila.secfun = $(this).find("td[name=tdSF]").attr('codID');
+                fila.rubro = $(this).find("td[name=tdRubro]").attr('codID');
+                fila.clasf= $(this).find("td[name=tdClasf]").attr("codID");
+                fila.prod = $(this).find("td[name=tdProd]").attr("codID");
+                fila.und = $(this).find("td[name=tdUnd]").attr("codID");
+                fila.espf = $(this).find("td[name=tdEspf]").html();
+                fila.precioUnt = $(this).find("td[name=tdPrecio]").html();
+                ItemArray.push(fila);
                 flg= true;
             }
         });
