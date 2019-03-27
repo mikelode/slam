@@ -1067,8 +1067,8 @@ class tramiteController extends Controller
                 $item['rubro'] = trim($data->Fields('Fuente_financ')->value);
                 $item['claid'] = trim($data->Fields('Id_clasificador')->value);
                 $item['cla'] = trim($data->Fields('clasificador')->value);
-                $item['pim'] = trim($data->Fields('Pim')->value);
-                $item['cert'] = trim($data->Fields('Certif')->value);
+                $item['pim'] = str_replace(",",".", trim($data->Fields('Pim')->value)) ;
+                $item['cert'] = str_replace(",",".", trim($data->Fields('Certif')->value));
 
                 array_push($clasiaf,$item);
                 $data->MoveNExt();
@@ -1157,8 +1157,8 @@ class tramiteController extends Controller
                 $item['rubro'] = trim($data->Fields('Fuente_financ')->value);
                 $item['claid'] = trim($data->Fields('Id_clasificador')->value);
                 $item['cla'] = trim($data->Fields('clasificador')->value);
-                $item['pim'] = trim($data->Fields('Pim')->value);
-                $item['cert'] = trim($data->Fields('Certif')->value);
+                $item['pim'] = str_replace(",",".",trim($data->Fields('Pim')->value)) ;
+                $item['cert'] = str_replace(",",".",trim($data->Fields('Certif')->value));
 
                 array_push($clasiaf,$item);
                 $data->MoveNExt();
