@@ -413,6 +413,29 @@ function anularOc()
     });
 }
 
+function refreshDataOc(gi,oc) {
+
+    var url = 'internamiento/update/' + oc + '/' + gi;
+
+    $.get(url, function (response) {
+        alert(response.msg);
+
+        if(response.msgId == 200){
+            change_to_submenu('internamiento/bienes/' + response.doc);
+        }
+
+    }).fail(function(dataError){
+        var error = $.parseJSON(dataError.responseText);
+        var msg = "";
+
+        $.each(error, function(i, item){
+            msg += item[0] + "\n";
+        });
+        alert("ERROR: revise lo siguiente \n" + msg);
+    });
+
+}
+
 /*
 *  FUNCIONES DE ACCESO A LOS MENUS
 * */

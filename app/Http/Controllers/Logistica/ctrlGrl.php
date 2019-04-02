@@ -289,7 +289,7 @@ class ctrlGrl extends Controller
     
     public  function fnGetViewRptRanking  ()
     {
-          $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_OC'  ));
+         /* $result = \DB::select('exec spLogGetAcceso ? ,? ', array(Auth::user()->usrID,'LOG_LOG_OC'  ));
         if( isset ($result[0]->NEW ))
         {
             if( $result[0]->NEW =="1") {
@@ -304,10 +304,15 @@ class ctrlGrl extends Controller
         else
         {
             return view('logistica.Adq.vwPermission');
+        }*/
+
+        if(Auth::user()->permiso('LOG_LOG_OC','VER',Auth::user()->usrID)){
+            return view ('logistica.Partials.logRptRankingp');
+        }
+        else{
+            return view('logistica.Adq.vwPermission');
         }
 
-
-       
     }
 
     public function spLogGetRanking(Request $request)

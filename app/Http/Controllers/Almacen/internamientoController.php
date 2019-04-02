@@ -449,6 +449,107 @@ class internamientoController extends Controller
         return round((float)$monto,2);
     }
 
+    public function getUpdtCompra($oc, $gi)
+    {
+        try{
+
+            $exception = DB::transaction(function () use($oc, $gi){
+
+                $compra = DB::connection('dblogistica')->table('TLogOC')
+                    ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('DEP',orcDep,'') as ocDepdesc"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('RUC',orcRuc,'') as ocProv"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('ADQTIP',orcProcTip,'') as ocProcTipo"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('SECFUN',orcSecFun,'') as ocSecFuncDesc"))
+                    ->where('orcID',$oc)->get();
+
+                $comprad = DB::connection('dblogistica')->table('TLogOCD')
+                    ->select('*', DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('PROD',cdtCodProd,'') AS ocdProd"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('UNDABRV',cdtCodUnd,'') AS ocdUnd"))
+                    ->addSelect(DB::raw("DB_Logistica.dbo.fnLogGetGrlDat('CLASF',cdtCodClsf,'') AS ocdClsf"))
+                    ->where('cdtCodOC',$oc)->get();
+
+
+                $guia = almInternamiento::find($gi);
+                $guia->oc_plazo_dias = $compra[0]->orcPlazo;
+                $guia->oc_costotal = $this->costoTotalOC($compra[0]->orcID); //Hallar el costo total
+                $guia->oc_proveedor = $compra[0]->ocProv;
+                $guia->oc_rucprovee = $compra[0]->orcRuc;
+                $guia->oc_fecha = $compra[0]->orcFecha;
+                $guia->oc_dep_destino = $compra[0]->ocDepdesc;
+                $guia->oc_obra_destino = $compra[0]->ocSecFuncDesc;
+                $guia->usu_act = Auth::user()->usrID; // 'usuario';
+                $guia->fec_act = Carbon::now()->toDateString();
+                $guia->hor_act = Carbon::now()->toTimeString();
+                $guia->estado_anulacion = 'NO';
+                $guia->oc_tipoProceso = $compra[0]->orcProcTip;
+                $guia->oc_FteFto = $compra[0]->orcFteFto;
+                $guia->oc_rubro = $compra[0]->orcRubro;
+                $guia->oc_secFuncional = $compra[0]->orcSecFun;
+                $guia->oc_subSecFuncional = $compra[0]->orcSubSec;
+                $guia->oc_docRef = $compra[0]->orcRef;
+                $guia->oc_glosa = $compra[0]->orcGlosa;
+                $guia->oc_expSiaf = 'siaf'; //$oc[0]->orcExpSiaf;
+                $guia->save();
+
+                almInventario::where('cod_giu',$gi)->delete();
+
+                foreach ($comprad as $i => $prodOc)
+                {
+                    $ocDet = new almInventario();
+
+                    $ocDet->cod_giu = $gi;
+                    $ocDet->prod_oc = $prodOc->cdtCodOC;
+                    $ocDet->prod_cod = $prodOc->cdtCodProd;
+                    $ocDet->prod_desc = $prodOc->ocdProd.': '.$prodOc->cdtEspecif;
+                    $ocDet->prod_marca = $prodOc->cdtMarca;
+                    $ocDet->prod_cant = $prodOc->cdtCant;
+                    $ocDet->prod_medida = $prodOc->ocdUnd;
+                    $ocDet->prod_precio = $prodOc->cdtPrecio;
+                    $ocDet->prod_costo = $prodOc->cdtCant * $prodOc->cdtPrecio;
+                    $ocDet->prod_ingobs = null;
+                    $ocDet->prod_recep = 0;
+                    $ocDet->conf_prod = 'P';
+                    $ocDet->flagR = false;
+                    $ocDet->prod_distribuido = 0;
+                    $ocDet->prod_stock = 0;
+                    $ocDet->flagD = false;
+                    $ocDet->prod_salobs = null;
+                    $ocDet->prod_clasif = $prodOc->cdtCodClsf;
+                    $ocDet->fecha_act = Carbon::now()->toDateString();
+                    $ocDet->hora_act = Carbon::now()->toTimeString();
+                    $ocDet->user_act = Auth::user()->usrID; // 'Usuario';
+                    $ocDet->prod_ord = $i+1;
+
+                    $cuenta = almTPreCta::where('ctaTipo','PARTIDA_GASTOS')->where('ctaCgp',$prodOc->ocdClsf)->first();
+
+                    $ocDet->prod_cta = is_null($cuenta) ? '' : $cuenta->ctaPatrimd;
+                    $ocDet->prod_secfun = $prodOc->cdtSecFun;
+                    $ocDet->prod_rubro = $prodOc->cdtRubro;
+
+                    $ocDet->save();
+
+                    unset($ocDet);
+                }
+            });
+
+            if(is_null($exception)){
+                $msg = 'Se actualizaron los datos de la orden de compra: ' . $oc;
+                $msgId = 200;
+                $doc = $gi;
+            }
+            else{
+                throw new Exception($exception);
+            }
+
+        }catch (Exception $e){
+            $msg = "Error: " . $e->getMessage();
+            $msgId = 500;
+            $doc = null;
+        }
+
+        return response()->json(compact('msg','msgId','doc'));
+    }
+
     public function getRegisterNea(Request $request)
     {
         $almacen = almAlmacen::all();

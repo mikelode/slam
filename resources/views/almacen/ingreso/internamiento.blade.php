@@ -33,7 +33,12 @@
                             <p style="margin: 0 0 4px"><label class="control-label">Guia de Int:</label></p>
                             <p><h5 style="text-align: center">{{ $guia->ing_giu }}</h5></p>
                             <p style="margin: 0 0 4px"><label class="control-label">Orden de Compra:</label></p>
-                            <p><h5 style="text-align: center"> {{ $guia->oc_cod }} </h5></p>
+                            <p style="text-align: center">
+                                <span style="font-size: 14px;">{{ $guia->oc_cod }}</span> -
+                                <button type="button" class="btn btn-warning btn-sm" onclick="refreshDataOc('{{ $guia->ing_giu }}', '{{ $guia->oc_cod }}');" style="padding: 4px; font-size: 10px; line-height: normal;">
+                                    <i class="glyphicon glyphicon-refresh"></i>
+                                </button>
+                            </p>
                             <p style="margin: 0 0 4px"><label class="control-label">Tipo de Ingreso:</label></p>
                             <p><h5 style="text-align: center"> {{ $guia->tipo_internamiento=='A'?'En Almacen':'En Obra' }} </h5></p>
                         </div>

@@ -46,6 +46,8 @@ Route::post('task/{operation}','Almacen\internamientoController@postMakeTask');
 Route::get('internamiento/view/{gi}/{pi}','Almacen\internamientoController@getViewInternamiento');
 Route::post('internamiento/edit/{gi}/{pi}','Almacen\internamientoController@postUpdtInternamiento');
 Route::get('internamiento/delete/{gi}/{pi}','Almacen\internamientoController@getDelInternamiento');
+Route::get('internamiento/update/{oc}/{gi}','Almacen\internamientoController@getUpdtCompra');
+
 /*
  * DISTRIBUCION O SALIDA
  * */
