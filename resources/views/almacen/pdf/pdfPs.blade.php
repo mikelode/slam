@@ -219,7 +219,7 @@
         </div>
         <div class="content">
             <h6 style="padding: 0; margin: 0;">LOS SIGUIENTES BIENES</h6>
-            <table width="100%">
+            <table style="table-layout:fixed" width="100%">
                 <thead>
                     <tr>
                         <td width="2%">N°</td>
